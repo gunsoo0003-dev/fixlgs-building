@@ -1,0 +1,16 @@
+FIX BUILDING SELF CHECK STEP2 I18N AUDIT
+
+- Asset types: 10
+- English localized asset content: 10/10
+- Japanese localized asset content: 10/10
+- Asset names localized for display while Korean keys remain for scoring/graphics lookup
+- Asset insights localized: good/goodText/tired/tiredText
+- Asset review guides localized: focus/fit/caution/checks
+- Asset characteristics value labels localized
+- Applied gate/caution messages localized by display layer
+- Reason-axis labels localized
+- STEP2 result UI labels/headings/table/CTA localized
+- Public STEP2 result component receives locale
+- Personal STEP2 result component receives locale
+- Scoring/asset ranking logic unchanged
+- node --check passed: self-check-stage2-copy.js, SelfCheckClient.js

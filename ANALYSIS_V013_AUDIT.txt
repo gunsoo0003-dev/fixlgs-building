@@ -1,0 +1,35 @@
+FIX BUILDING — 02 ANALYSIS V013 implementation audit
+Date: 2026-09-02
+
+Purpose
+- Rebuild Korean ANALYSIS content around one priority: explain difficult building-analysis knowledge so a first-time learner can actually understand it.
+
+Implemented
+1. Added app/analysis-v013-ko-data.js.
+2. Replaced Korean concept content with 8 engine-grounded concept pages.
+3. Rewrote all 37 Korean six-axis learning pages around the existing analysis engine.
+4. Rewrote all 10 Korean practice pages so every new number/entity is introduced before being used.
+5. Removed the early 'answer first' box from workbook pages; the conclusion now comes after the explanation path.
+6. Kept all learning information visible from the start; no reveal/action button is required to read the lesson.
+7. Replaced Korean A/B/C visual labels where practical with first/second/third comparison or first/second financing method.
+8. Preserved engine figures and guardrails: 15억, 9,600→8,400→7,000, 6.4→약4.7%, financing examples, tenant 43%/14 months, repairs 5,000만, stress scenarios.
+9. Kept fixed Previous/Next navigation for long vertical pages.
+10. Retained final summary, comprehension check, and learning-result flow.
+11. English/Japanese content remains on the existing V008 overlays; Korean is the current content-development target.
+
+Content rules now enforced
+- New information: introduce what it is and why it appears before shorthand is used.
+- No logical jumps: explain why → process → changed number → meaning → judgment.
+- One page = one learning objective; vertical length may increase.
+- Professional terms are preserved only after their meaning is explained.
+- No aggregate buy/sell score or automatic investment conclusion.
+
+Validation performed in this environment
+- JavaScript syntax check completed for the new data module and edited client source.
+- Structural file checks and archive integrity are run before delivery.
+- Production Next.js build requires dependencies; do not claim build PASS unless npm run build completes locally.
+
+Build attempt
+- `npm run build` was attempted in this environment.
+- Result: could not start because the `next` executable is not installed (`next: not found`).
+- Therefore production build PASS is NOT claimed.

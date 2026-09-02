@@ -1,0 +1,28 @@
+FIX BUILDING 공개 결과 54개 UI 통합 검수
+
+목표
+- 애드센스/검색용 공개 결과 페이지를 실제 사용자 결과 화면과 동일한 디자인 언어 및 섹션 구조로 통합
+- 실제 사용자 응답 점수/순위/교차결과는 임의 생성하지 않음
+
+적용
+STEP1 14개
+- 실제 STEP1과 동일한 result hero / result grid / profile / findings / deep report / next CTA 구조
+- 개인 축 점수 대신 유형 고정 해설 사용
+
+STEP2 10개
+- 실제 STEP2와 동일한 result hero / asset rank / asset deep / compare report / next CTA 구조
+- 다른 자산의 가짜 순위 생성 없음
+
+STEP3 16개
+- 실제 STEP3와 동일한 result hero / process cards / detail list / deep report / next CTA 구조
+- 행동 점수 임의 생성 없음
+
+FINAL 14개
+- 실제 FINAL과 동일한 final hero / synthesis / formula / integration grid / findings / deep report / next CTA 구조
+- 자산/행동유형 임의 매칭 없음
+
+공통
+- 공개 결과 54개 정적 경로 유지
+- dev-preview는 실제 공개 URL로 이동
+- 기존 고유 title/H1/본문 고유화 유지
+- 공개 샘플에서 실제 사용자 응답값을 조작하지 않음

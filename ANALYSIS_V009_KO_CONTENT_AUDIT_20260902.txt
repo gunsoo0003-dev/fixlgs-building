@@ -1,0 +1,36 @@
+FIX BUILDING — ANALYSIS V009 KO CONTENT IMPLEMENTATION AUDIT
+Date: 2026-09-02
+
+Source planning file
+- 건물서비스_2번ANALYSIS_기획서_CURRENT_V009_20260902.xlsx
+- V009 implementation target: Korean content/UX first. Existing EN/JA overlays preserved until KO approval.
+
+Implemented
+1. V009 Korean source data added in app/analysis-v009-ko-data.js.
+2. CONCEPT: 6 screens use V009 body, professional concept, case data, common mistake, correct analysis flow, rule, watch-out, takeaway and action labels.
+3. LEARN: 37 screens use V009 content:
+   - PRICE 7
+   - INCOME 6
+   - FINANCE 6
+   - TENANCY 6
+   - BUILDING 6
+   - SURVIVAL 6
+4. PRACTICE: 10 FULL CASE screens use V009 Korean practical questions, learned principle, base data, explicit action, result, judgment, web-tool purpose, watch-out and takeaway.
+5. Page movement is separated from learning actions:
+   - bottom navigation labels are always 이전 / 다음 in Korean.
+   - learning action CTA uses explicit verbs from V009 and Santorini Blue emphasis.
+   - NEXT is not gated by a generic '확인' action.
+6. Learning-screen information flow standardized:
+   current step → question → easy explanation → case data → professional concept → common mistake → correct flow → visual → action → meaning → rule/watch/takeaway → next.
+7. Korean V009 content is included in the initial SEO corpus DOM; EN/JA continue using existing V008 overlays.
+8. Existing FIX BUILDING header/footer, routing, basePath and analysis graphics are preserved.
+
+Static validation
+- TypeScript parser pass for app/*.js and app/[locale]/*.js with JSX parsing enabled.
+- analysis.css brace count PASS (443 / 443).
+- V009 source counts: CONCEPT 6 / LEARN 37 / PRACTICE 10.
+
+Production build status
+- npm ci was attempted but package installation timed out in this execution environment.
+- npm run build cannot run because node_modules/.bin/next is unavailable: `next: not found`.
+- Production build PASS is therefore NOT claimed. Run locally after npm install.

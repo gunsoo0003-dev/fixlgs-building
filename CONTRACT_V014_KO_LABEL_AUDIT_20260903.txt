@@ -1,0 +1,26 @@
+FIX BUILDING CONTRACT V014 — KO bilingual label audit
+
+Scope
+- Korean CONTRACT main / 01 / 02~06 labels
+- English editorial labels retained as design language
+- Korean explanations appended to the same label
+
+Examples
+- NORMAL BASELINE · 정상 기준
+- VARIABLES · 실제 거래 변수
+- MISSED POINT · 놓치기 쉬운 지점
+- HOW TO CHECK · 실제 확인 방법
+- DEEP DIVE 01 · 심화 분석 01
+- REAL-WORLD CASES · 실전 사례
+- DECISION · 행동 판단
+- CORE PRINCIPLE · 핵심 원칙
+- FINAL SUMMARY · 최종 요약
+- ACTION · 행동 / CHECK · 확인 / PREVENT · 예방
+
+Controls
+- EN/JA page copy not modified.
+- basePath /building retained.
+- Local contract images remain WebP.
+- No Blogger external image URLs added.
+- JS syntax checks passed for ContractPage.js, contract-0206-v013.js, contract-parties-v004.js.
+- npm build not claimed; node_modules is not present in the supplied project archive.

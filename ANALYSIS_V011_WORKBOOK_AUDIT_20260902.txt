@@ -1,0 +1,38 @@
+FIX BUILDING — ANALYSIS V011 WORKBOOK IMPLEMENTATION AUDIT
+Date: 2026-09-02
+
+SOURCE
+- Code baseline: fixlgs-building_ANALYSIS_V009_KO_CONTENT_20260902.zip
+- Planning baseline: 건물서비스_2번ANALYSIS_기획서_CURRENT_V011_20260902.xlsx
+- Source ZIP integrity: PASS
+- Source top-level folder: fixlgs-building
+
+V011 IMPLEMENTATION
+- ANALYSIS identity changed to digital learning workbook layout.
+- HOME keeps 5 choices but option list is simplified to a single vertical selection flow.
+- CONCEPT uses one vertical workbook story per page:
+  current position -> one question -> easy body -> one core visual -> supporting explanation -> one takeaway -> prev/next.
+- CONCEPT dashboard sidebars / RULE-WATCH-TAKEAWAY card stacks removed from visible workbook UI.
+- LEARN keeps all 37 Korean V009 learning steps.
+- LEARN uses one analysis method per page and a single vertical flow.
+- LEARN retains detailed Korean V009 content; wrong approach / analysis flow / case / visual / exact principle are woven vertically instead of a 2-column dashboard.
+- Action CTA is no longer rendered on every learning page. Only meaningful PRICE reveal interactions use the extra CTA; TENANCY and SURVIVAL use their native visual interaction.
+- PREV / NEXT are independent of action completion and stay consistent.
+- PRACTICE keeps all 10 case steps.
+- PRACTICE is simplified to current situation -> apply -> result/verdict -> takeaway.
+- Only CASE03/CASE04 use explicit reveal action; CASE06 and CASE08 use direct in-visual interaction; other steps show their result without forced button work.
+- Related web tools stay optional and do not gate progress.
+- Existing V007 fixed numeric logic and V009 Korean educational content retained.
+- English/Japanese copy was not expanded; existing translation structure retained. Shared layout labels remain localized to avoid regression.
+
+STATIC VALIDATION
+- TypeScript JSX parser: PASS for all app/*.js files.
+- analysis.css brace balance: PASS.
+- Korean content counts: CONCEPT 6 / LEARN 37 / PRACTICE 10.
+- Removed visible references to old V009 dashboard layout helpers from active stage components.
+
+BUILD STATUS
+- Baseline dependency install attempt: npm ci timed out in this container.
+- Final dependency install attempt: npm ci timed out in this container.
+- npm run build cannot execute here because next binary is unavailable after incomplete dependency install.
+- Therefore production build PASS is NOT claimed. Run npm install (or npm ci) and npm run build locally before deployment.

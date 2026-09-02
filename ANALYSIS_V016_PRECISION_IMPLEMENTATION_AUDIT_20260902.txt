@@ -1,0 +1,53 @@
+FIX BUILDING — ANALYSIS V016 PRECISION IMPLEMENTATION AUDIT
+Date: 2026-09-02
+
+SOURCE OF TRUTH
+- Planning workbook: 건물서비스_2번ANALYSIS_기획서_CURRENT_V015_20260902.xlsx
+- Engine source: PRICE 7 + INCOME 6 + FINANCE 6 + TENANCY 6 + BUILDING 6 + SURVIVAL 6 = 37 knowledge nodes
+- Additional user-facing control: simplify complex comparison tables into readable paragraph/vertical-flow explanations.
+
+FINAL IMPLEMENTATION CHECK
+[PASS] Concept: 8 pages retained with explanation-first Korean content.
+[PASS] Learn: 37/37 engine knowledge nodes preserved.
+[PASS] Practice: 37/37 engine nodes reapplied, plus P01 start + P02 baseline + P40 synthesis + P41 finish = 41 pages.
+[PASS] Baseline: available cash KRW 1.1B / minimum reserve KRW 0.1B preserved.
+[PASS] PRICE: 7/7 nodes, 15.0 / 14.2 / 15.1 / 13.8 data preserved.
+[PASS] INCOME: 6/6 nodes, 96M -> 84M -> 70M and 6.4% -> about 4.7% preserved.
+[PASS] FINANCE: 6/6 nodes, 600M@5% / 1B@7%, equity and interest logic preserved.
+[PASS] TENANCY: 6/6 nodes, 36M / 84M ~=43%, 14 months, 3/6 month vacancy losses preserved.
+[PASS] BUILDING: 6/6 nodes, 24 years, 20M+15M+15M=50M repair structure preserved.
+[PASS] SURVIVAL: 6/6 nodes, CURRENT/CONSERVATIVE/STRONG deterministic values preserved; recurring CF and one-time cash need kept separate.
+[PASS] Practice carry-forward: previous-axis result -> current question -> next-axis input preserved.
+[PASS] Final review: rewritten from shallow six-line summary to six detailed narrative sections; each contains evidence, interpretation, axis conclusion, and bridge to the next axis.
+[PASS] Transfer learning: added 8-step reusable process so learner can apply the method to another building.
+[PASS] Understanding validation: expanded to 12 reason-based questions including cross-axis questions.
+[PASS] Remediation: wrong answers link back to exact learning nodes.
+[PASS] Tables/complex comparisons: no HTML table added; Korean finance and survival comparison visuals converted to stacked paragraph-first explanations.
+[PASS] User-facing A/B shorthand removed from V015 Korean practice strings; first/second loan wording used.
+[PASS] SEO/initial DOM: final review, reusable analysis sequence, and quiz explanation text added to server-rendered SEO corpus.
+[PASS] Fixed previous/next navigation retained.
+[PASS] No score/grade/pass-fail investment judgment introduced.
+[PASS] No buy/sell recommendation introduced.
+
+STATIC VERIFICATION
+- Custom V015-to-code content audit: 28/28 PASS.
+- 37 learning node IDs unique: PASS.
+- 37 practice carry mappings unique and complete: PASS.
+- Review axes: 6/6 PASS.
+- Reusable analysis steps: 8/8 PASS.
+- Quiz questions: 12/12 PASS.
+- Quiz review targets resolve to valid learning node IDs: PASS.
+- JS data modules node --check: PASS.
+- AnalysisV008Client delimiter balance heuristic: PASS.
+- HTML table tag scan in primary ANALYSIS client/final data: 0.
+
+BUILD STATUS
+- npm run build attempted.
+- Not executed to completion because node_modules/next is not present in this environment: "next: not found".
+- npm ci --offline also attempted; npm cache is incomplete (tslib package not cached).
+- Therefore this audit does NOT claim a production Next.js build PASS.
+
+COMPLETION JUDGMENT
+- V015 planning requirements + subsequent user-facing explanation/table simplification requirements are represented in code.
+- Static content/structure audit found no planning-node omissions.
+- Production build must still be run in the user's normal local environment after dependency install.

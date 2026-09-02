@@ -1,0 +1,19 @@
+ANALYSIS V031 HOME DESIGN AUDIT
+- Base: V030 desktop subtitle width
+- Detail axis pages: preserved
+- Main title: 건물분석
+- Top navigation: 7 independent vertical category buttons
+  01 PRICE / 가격
+  02 INCOME / 수익
+  03 RIGHTS / 권리
+  04 BUILDING / 건물
+  05 LOCATION / 입지
+  06 OPERATION / 운영
+  07 TOOLS / 분석도구
+- Axis buttons open the corresponding analysis route.
+- TOOLS button smooth-scrolls to the tools section.
+- Below-navigation editorial rhythm follows SELF CHECK reference:
+  hero/category stack -> large statement -> explanatory editorial -> six-axis overview -> tools -> final summary
+- PC category stack is visually dominant; mobile remains stacked and touch-friendly.
+- node --check: PASS
+- production build: NOT RUN (node_modules absent; next: not found)

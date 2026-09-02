@@ -1,0 +1,19 @@
+FIX BUILDING — ANALYSIS V026 DESKTOP LAYOUT AUDIT
+Date: 2026-09-02
+
+Scope: PRICE content unchanged. Desktop layout / typography only.
+
+PASS  Desktop global max width 1180px -> 1380px
+PASS  Analysis content max width 900px -> 1260px
+PASS  PRICE 03 large question typography keeps existing font scale and gains wider line measure
+PASS  PRICE 06 final principle keeps existing font scale and gains wider line measure
+PASS  PRICE 01 terms changed from 2-column grid to 1-column vertical list
+PASS  PRICE 01 term name 24px, description 16px (1.5x ratio)
+PASS  PRICE 01 descriptions retain readable max-width instead of stretching full desktop width
+PASS  Mobile breakpoints retained
+PASS  Content copy unchanged
+PASS  V024 case report audit
+PASS  V025 principle summary audit
+PASS  JS syntax check
+
+NOTE  Production build not run because node_modules is not included in the handoff ZIP.

@@ -1,0 +1,12 @@
+ANALYSIS V032 MAIN REDESIGN AUDIT
+- Hero: title + seven vertical category buttons on left
+- Hero: interactive six-axis building analyzer animation on right
+- Axis hover/focus highlights corresponding animation node
+- Removed duplicate clickable six-axis overview from home body
+- Replaced summary/table-like content with independent editorial content
+- Added: one-number thesis, six reading lenses, one-building/six-readings, common mistakes, analysis order, final principle
+- Tools section changed to white background
+- Home typography and entrance motion aligned to SELF CHECK editorial rhythm
+- Detailed axis pages not intentionally changed
+- node --check: PASS
+- production build: NOT RUN (node_modules/next unavailable in source package)

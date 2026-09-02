@@ -1,0 +1,16 @@
+FIX BUILDING 공개 결과 54개 실제 UI 공용화 검수
+
+- STEP1 공개 14개: Stage1Result 직접 재사용
+- STEP2 공개 10개: Stage2Result 직접 재사용
+- STEP3 공개 16개: Stage3Result 직접 재사용
+- FINAL 공개 14개: SummaryResult 직접 재사용
+- PublicResultFrame 별도 UI 제거
+- 공개 페이지용 별도 메인 마크업 제거
+- publicMode는 문구/데이터 라벨만 분기
+- 개인 점수/실제 응답/자산 순위를 임의 생성하지 않음
+- STEP1 대표 막대: 유형 프로토타입 대표 경향으로 명시
+- STEP2 비교 자산: 개인 순위가 아닌 관련 비교 자산으로 명시
+- STEP3 프로세스: 해당 행동유형 정의의 후보 프로세스 사용
+- FINAL 자산/행동 결과: 실제 응답으로 계산된다고 표시, 임의 조합 없음
+- 공개 결과 title/H1 고유화 구조 유지
+- 질문/점수/개인 결과 계산 엔진 변경 없음

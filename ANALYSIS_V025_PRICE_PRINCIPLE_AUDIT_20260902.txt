@@ -1,0 +1,28 @@
+FIX BUILDING — ANALYSIS V025 PRICE PRINCIPLE AUDIT
+Date: 2026-09-02
+
+Scope
+- PRICE 06 final summary/principle section only
+- PRICE 03/04/05 preserved from V024
+- Other axes unchanged
+
+Applied
+- Removed repetitive 7-step recap from final section
+- Reframed ending as the single PRICE principle: “이 가격이 설명되는가?”
+- Three evidence pillars: 비교 기준 / 조건 근거 / 수익 지지력
+- Added one summary graphic that merges the three pillars into the core question
+- Added contrast: 숫자만 보는 분석 vs 근거를 보는 분석
+- Final principle: 좋은 가격분석은 적정가격 숫자 하나를 맞히는 능력이 아니라, 가격의 이유를 끝까지 확인하는 능력
+- Added NEXT · INCOME bridge without interaction
+- No click/choice UI in final section
+
+Validation
+- node --check app/AnalysisV008Client.js: PASS
+- node --check app/analysis-v019-data.js: PASS
+- ANALYSIS V019 GUIDE AUDIT: PASS
+- ANALYSIS V024 PRICE CASE REPORT AUDIT: PASS
+- ANALYSIS V025 PRICE SUMMARY AUDIT: PASS
+- Production build: NOT RUN (node_modules not included in artifact)
+
+Note
+- An older V021 audit contains expectations superseded by later PRICE meeting decisions and therefore is not a release gate for V025.

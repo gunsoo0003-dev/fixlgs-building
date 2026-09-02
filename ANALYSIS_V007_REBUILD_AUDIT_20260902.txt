@@ -1,0 +1,58 @@
+FIX BUILDING — 02 ANALYSIS V007 REBUILD AUDIT
+Date: 2026-09-02
+
+SOURCE OF TRUTH
+- 건물서비스_2번ANALYSIS_기획서_CURRENT_V007_20260902.xlsx
+- Detailed implementation checks used latest sheets: 11, 12, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 27.
+
+SEQUENTIAL UX
+- HERO -> ANALYSIS MAP -> SIX-AXIS LEARNING -> FULL ANALYSIS CASE -> FINAL FRAME.
+- ANALYSIS MAP cards expand only their core RULE; they do not jump past the learning sequence.
+- Six-axis learning is one focused panel and advances only by PREV/NEXT in this fixed order:
+  PRICE -> INCOME -> FINANCE -> TENANCY -> BUILDING -> SURVIVAL.
+- FULL ANALYSIS CASE remains locked until all six axes are completed.
+- FULL CASE is one large 10-step panel and advances only by PREV/NEXT. Progress labels are not clickable.
+- FULL CASE order: CASE START -> BASELINE -> PRICE -> INCOME -> FINANCE -> TENANCY -> BUILDING -> SURVIVAL -> SYNTHESIS -> FINAL FRAME.
+
+V007 COPY VERIFICATION
+- Sheet 24 Korean screen copy: 10/10 screens exact for Eyebrow, title, body, core data, secondary label, verdict, support/note.
+- Sheet 25 Korean SURVIVAL copy: scenario labels, leads, assumptions, A/B result copy, fixed note, education note exact.
+- Sheet 26 Korean six-axis copy: 6/6 exact for question, intro, flow, RULE, verdict example, ANALYSIS NOTE.
+
+DATA / DETERMINISM
+- CURRENT: A +4,000 / B 0 / one-time cash need 0.
+- CONSERVATIVE: A +2,500 / B -1,900 / one-time cash need 2,000.
+- STRONG STRESS: A +1,000 / B -3,800 / one-time cash need 5,000.
+- One-time repair cash is kept separate from recurring cash flow.
+- The selected scenario state is shared through SURVIVAL, SYNTHESIS, and FINAL FRAME.
+
+GRAPHICS / MOTION
+- PRICE: horizontal target/comparable price axis + condition disclosure.
+- INCOME: 9,600 -> 8,400 -> 7,000 and 6.4% -> about 4.7%.
+- FINANCE: A/B equity-loan structure bars + annual interest.
+- TENANCY: 5-space block model; key-tenant focus reveals 43% and 14-month timing.
+- BUILDING: silhouette/pins for roof, exterior, HVAC + near-term repair total.
+- SURVIVAL: zero-line A/B bars, RATE/VACANCY decomposition, separate one-time cash need.
+- SYNTHESIS: six horizontal bands; no radar chart or composite score.
+- FINAL: 15억 / 6.4% fades and six analysis layers enter.
+- No decorative infinite animation. prefers-reduced-motion is handled.
+
+SEO / ROUTING
+- /building/ko/analysis, /building/en/analysis, /building/ja/analysis.
+- canonical + hreflang/alternates + index/follow metadata.
+- analysis URLs included in sitemap.
+- robots allows analysis routes.
+- home/service ANALYSIS card links internally to locale analysis route.
+- Core copy/data for all learning/case steps is present in the initial React render; interaction adds presentation/state changes.
+
+STATIC VERIFICATION
+- node --check app/analysis-copy.js: PASS.
+- TypeScript parser check across app/*.js JSX: PASS.
+- analysis.css brace balance: PASS.
+- Locale structural checks (ko/en/ja map=6, case steps=10, case metadata arrays=10): PASS.
+
+PRODUCTION BUILD
+- NOT VERIFIED in this container.
+- npm run build cannot start because the local next binary is absent.
+- npm ci was attempted but the package-registry operation timed out in the execution environment.
+- Run npm install (or npm ci) and npm run build on the local project before deployment.

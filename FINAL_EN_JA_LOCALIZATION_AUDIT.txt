@@ -1,0 +1,15 @@
+FINAL EN/JA LOCALIZATION AUDIT
+===============================
+Syntax:
+SelfCheckClient.js PASS
+self-check-final-copy.js PASS
+
+Stage1 localized type counts:
+EN T types: 14
+JA T types: 14
+Final praise mappings: P01-P12 EN/JA included in self-check-final-copy.js
+Final dynamic localization: behaviors/contradictions/risks reuse localized ID mappings from stage1 copy
+Asset names/details: reuse stage2 localization
+Decision process/comic: reuse stage3 localization
+Scoring/type-selection logic: unchanged
+Build: not run (node_modules/.bin/next absent in supplied project).

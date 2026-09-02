@@ -1,0 +1,53 @@
+FIX BUILDING — 02 ANALYSIS V007 PHASED LEARNING AUDIT
+Date: 2026-09-02
+
+SOURCE OF TRUTH
+- 건물서비스_2번ANALYSIS_기획서_CURRENT_V007_20260902.xlsx
+- Priority sheets reviewed: 00, 11, 12, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 27
+
+V007 STRUCTURE INTERPRETATION
+1) HERO
+2) ANALYSIS MAP: overview only; 6 axes, question + one sentence. User may expand ANALYSIS FLOW.
+3) PART 1 — LEARN SIX ANALYSIS METHODS
+   PRICE → INCOME → FINANCE → TENANCY → BUILDING → SURVIVAL
+   - only one learning axis is visually active at a time
+   - future axes are progress indicators, not jump navigation
+   - each axis contains question → flow → visual evidence → RULE → judgment → NOTE
+4) PART 1 COMPLETE bridge
+   - practical case is not visually exposed before the six-axis sequence is completed
+   - explicit transition CTA to practical application
+5) PART 2 — FULL ANALYSIS CASE
+   CASE START → BASELINE → PRICE → INCOME → FINANCE → TENANCY → BUILDING → SURVIVAL → SYNTHESIS → FINAL FRAME
+   - one large case panel at a time
+   - PREV/NEXT sequential flow; progress is status, not direct-jump navigation
+6) FINAL FRAME
+   - 15억 / 6.4% → six-axis frame
+   - selected SURVIVAL scenario remains reflected through SYNTHESIS / FINAL
+
+SEO / INITIAL DOM
+- Six-axis lesson markup and full-case markup remain in the initial React render.
+- UI progression is controlled with hidden/active states rather than fetching core copy after interaction.
+- /ko/analysis, /en/analysis, /ja/analysis route structure retained.
+- canonical / hreflang / index-follow / sitemap / robots retained.
+
+DATA LOCKS
+- PRICE: 15.0 / 14.2 / 15.1 / 13.8
+- INCOME: 9,600 → 8,400 → 7,000; 6.4% → about 4.7%
+- FINANCE: A 6억·5%·3,000만 / B 10억·7%·7,000만
+- TENANCY: key tenant 43%, 14 months, 4 occupied + 1 vacancy
+- BUILDING: 2,000 + 1,500 + 1,500 = 5,000만
+- SURVIVAL:
+  CURRENT A +4,000 / B 0
+  CONSERVATIVE A +2,500 / B -1,900 / one-time 2,000
+  STRONG STRESS A +1,000 / B -3,800 / one-time 5,000
+
+COPY AUDIT
+- Sheet 24 Korean screen copy: all long-form text fields checked present in analysis-copy.js
+- Sheet 25 scenario copy: all long-form text fields checked present
+- Sheet 26 six-axis copy: all narrative/rule/judgment/note text checked present; numerical example values are stored structurally in ANALYSIS_DATA and rendered by components
+
+STATIC CHECKS
+- analysis-copy.js: node --check PASS
+- AnalysisPage.js / AnalysisInteractive.js / analysis-copy.js delimiter balance PASS
+- analysis.css brace balance PASS
+- npm install / next build: NOT VERIFIED in this container because npm dependency installation timed out

@@ -1,0 +1,42 @@
+FIX BUILDING — ANALYSIS V018 ENGINE-EXPLAINED IMPLEMENTATION AUDIT
+Date: 2026-09-02
+
+V016 implementation principle
+- The six-axis analysis engine is the content source of truth.
+- Do not invent filler curriculum to increase density.
+- Explain the engine's actual analysis logic in plain Korean.
+- Concept / Learning / Practice / Synthesis are four views of the same engine.
+
+Implemented
+1. Korean concept uses the engine-based V013/V015 concept copy.
+2. Korean learning uses all 37 engine nodes directly:
+   PRICE 7 / INCOME 6 / FINANCE 6 / TENANCY 6 / BUILDING 6 / SURVIVAL 6.
+3. Removed V017 forced-density coaching UI from the active Korean route:
+   no repeated 'first impression / missing condition / reuse' layer.
+4. Learning page now centers on the engine explanation itself:
+   question -> full explanation -> case data -> existing visual -> rule/caution -> term -> takeaway.
+5. Practice applies the same 37 nodes to the deterministic 15억 case.
+6. BASELINE corrected and retained:
+   available cash 10억 / minimum reserve 1억 / max purchase-price equity 9억.
+7. Practice P40 changed from six-axis recap to cross-axis connection content.
+   Korean P40 recap visual is suppressed until the later graphics redesign.
+8. Final synthesis is connection-based, not a six-axis recap:
+   price↔income -> income↔finance -> finance↔tenancy -> liquidity↔building -> all↔survival.
+9. Quiz/test remains removed.
+10. Final reusable analysis order remains as an optional closing guide, not a test.
+11. No graphics overhaul performed in V018; content-first as requested.
+
+Static audit
+- V018 active import: PASS
+- Engine nodes: 37/37 PASS
+- Forced density UI removed: PASS
+- No active V017/V016 density dependency: PASS
+- Practice generated from engine nodes: PASS
+- Synthesis connection structure: PASS
+- Quiz/test UI absent: PASS
+- npm run analysis:audit: PASS
+
+Build
+- npm run build attempted.
+- Not completed in this environment because node_modules is absent and `next` is not available (`next: not found`).
+- Therefore production build PASS is NOT claimed.

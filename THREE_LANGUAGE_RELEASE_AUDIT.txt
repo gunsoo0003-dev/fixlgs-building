@@ -1,0 +1,21 @@
+FIX BUILDING — Self Check 3-language release integration audit
+
+Scope completed in this package:
+1. Removed Korean-only runtime blocker from SelfCheck landing CTA.
+2. KO / EN / JA can all enter the real questionnaire workflow.
+3. Shared language menu preserves the current URL path, query string, and hash while switching locale.
+4. Language selection is saved to localStorage and a SameSite=Lax cookie for later preference use.
+5. Self-check progress state remains stored under the same locale-independent STORAGE_KEY, so switching language on a workflow route can restore the current screen/page/answers.
+6. Progress aria-label is localized for KO / EN / JA.
+7. Invalid public-result fallback message is localized for KO / EN / JA.
+8. Existing localized landing, 42 questions, STEP1, STEP2, STEP3, FINAL, public result metadata/sitemap structures are preserved.
+
+Static validation:
+- Korean-only blocker strings in runtime: none
+- EN question IDs: 42/42
+- JA question IDs: 42/42
+- SelfCheckClient brace/parens balance: PASS
+- SiteHeader brace/parens balance: PASS
+
+Build note:
+- Full `npm run build` could not be executed in this environment because dependencies are not available locally and offline npm install could not obtain uncached tslib.

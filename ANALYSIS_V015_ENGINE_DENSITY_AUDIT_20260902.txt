@@ -1,0 +1,52 @@
+FIX BUILDING — 02 ANALYSIS V015 ENGINE DENSITY AUDIT
+Date: 2026-09-02
+
+SOURCE
+- Code baseline: fixlgs-building_ANALYSIS_V013_ENGINE_EXPLAINED_20260902.zip
+- Planning baseline: 건물서비스_2번ANALYSIS_기획서_CURRENT_V015_20260902.xlsx
+
+V015 IMPLEMENTATION
+1. Korean CONCEPT keeps the V013 easy-explanation structure.
+2. Korean LEARN preserves all 37 engine knowledge nodes:
+   - PRICE 7
+   - INCOME 6
+   - FINANCE 6
+   - TENANCY 6
+   - BUILDING 6
+   - SURVIVAL 6
+3. Korean PRACTICE rebuilt from 10 summary pages to 41 cumulative workbook pages:
+   - Practice intro 1
+   - BASELINE 1
+   - 37 engine nodes reapplied one by one
+   - Synthesis 1
+   - Final frame 1
+4. Every practice engine node includes:
+   - prior-stage evidence carried in
+   - the engine node being applied
+   - full explanatory application text
+   - judgment boundary / caution
+   - explicit handoff to the next node
+5. BASELINE restored before PRICE:
+   - available cash 11억
+   - minimum cash reserve 1억
+   - purchase-price cash capacity about 10억 in the educational case
+6. Cross-axis carry is explicit:
+   PRICE → INCOME → FINANCE → TENANCY → BUILDING → SURVIVAL
+7. SURVIVAL keeps deterministic scenario logic and separates recurring cash flow from one-time cash need.
+8. No hidden/reveal content is required for Korean learning/practice; content is rendered openly with fixed previous/next navigation.
+9. SSR/SEO corpus now uses V015 Korean concept/learn/practice data.
+10. EN/JA remain on the existing V008 locale data and routes.
+
+STATIC CHECKS
+- engine learning node count: 37
+- practice carry mappings: 37/37
+- practice application mappings: 37/37
+- Korean practice total: 41 pages expected
+- node --check: PASS for modified JS files
+- font binary scan: no .woff/.woff2/.ttf/.otf/.eot files found
+
+BUILD CHECK
+- Baseline npm run build: NOT RUNNABLE in this environment because node_modules is absent and `next` is not installed.
+- npm ci --offline: failed because required npm packages are not cached.
+- Post-edit npm run build: same `next: not found` environment limitation.
+- Therefore production build PASS is NOT claimed.

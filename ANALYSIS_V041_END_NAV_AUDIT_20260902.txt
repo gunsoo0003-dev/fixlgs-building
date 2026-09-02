@@ -1,0 +1,11 @@
+FIX BUILDING ANALYSIS V041 END NAV AUDIT
+- Base: V040 runtime ct fix
+- Added final navigation at the end of every analysis axis detail page.
+- Back button routes consistently to /{locale}/analysis rather than browser history.
+- Other-analysis area excludes the currently viewed axis and shows the remaining five axes.
+- KO/EN/JA labels localized.
+- Desktop: five editorial modules in one row.
+- Tablet/mobile: vertical modules.
+- Existing six-axis content and analysis home preserved.
+- node --check: PASS.
+- Production build: attempted only when local Next binary exists.

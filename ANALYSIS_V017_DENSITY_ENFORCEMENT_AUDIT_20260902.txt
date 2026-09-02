@@ -1,0 +1,92 @@
+FIX BUILDING — ANALYSIS V017 DENSITY ENFORCEMENT AUDIT
+Date: 2026-09-02
+
+Purpose
+- Enforce content density mechanically instead of relying on vague “make it deeper” instructions.
+- Preserve all 37 engine knowledge nodes and expose the reasoning gaps a first-time learner would otherwise need to fill alone.
+- Keep graphics redesign on hold. Current visuals remain; content is made complete first.
+
+Density enforcement applied
+1) CONCEPT 8/8 pages
+   - Why this matters
+   - Common first misunderstanding
+   - Existing detailed explanation
+   - Case data / rule / caution / term
+   - How to reuse the idea on another building
+
+2) LEARN 37/37 engine nodes
+   Every node now has, in addition to the original engine manuscript:
+   - likely first interpretation
+   - missing condition
+   - actual checking sequence (3 steps)
+   - existing full body
+   - concrete case data
+   - rule / caution / technical term
+   - how to reuse on another building
+   - takeaway
+   Result: 37/37 nodes have first + missing + how + reuse fields. Missing 0.
+
+3) PRACTICE 41 pages
+   - P01 start
+   - P02 baseline
+   - P03~P39: 37 engine nodes reapplied
+   - P40: cross-axis connection, not six-axis replay
+   - P41: transition from connected case to synthesis
+   Every engine practice page exposes why the analysis is being done now, the actual sequence to follow, previous-result carry-over, judgment boundary, next-stage handoff, and reuse on another building.
+
+4) BASELINE correction
+   - Available funds: KRW 1.0B (10억원)
+   - Minimum cash reserve: KRW 0.1B (1억원)
+   - Maximum purchase-price equity under this simplified baseline: KRW 0.9B (9억원)
+   This restores the intended comparison: first loan method uses 9억원 equity and leaves 1억원; second uses 5억원 equity and leaves 5억원, before separately verified acquisition/initial costs.
+
+5) SYNTHESIS redesigned
+   Removed the six-axis “review list” behavior from the visible synthesis page.
+   Synthesis now connects:
+   - PRICE ↔ INCOME
+   - INCOME ↔ FINANCE
+   - FINANCE ↔ TENANCY
+   - FINANCE/BASELINE ↔ BUILDING cash need
+   - all prior axes ↔ SURVIVAL
+   Then gives one integrated case judgment.
+
+6) User test removed
+   - Quiz/check routes removed from the visible Korean workflow.
+   - No forced 12-question test after synthesis.
+   - Final step is reusable analysis procedure, not a test.
+
+7) SEO / initial DOM
+   AnalysisPage server corpus now uses V017 concept/learn/practice density content and V017 integrated synthesis.
+   Quiz content is removed from the Korean SEO corpus.
+
+Automated regression guard
+- Added: scripts/analysis-v017-density-audit.mjs
+- Added npm command: npm run analysis:audit
+- Audit fails if 37 engine nodes are not preserved, density fields are missing, synthesis regresses to six-axis replay, quiz UI returns, V017 is not used in server corpus, baseline values are missing, or core deterministic case facts disappear.
+
+Automated audit result
+- Engine nodes: 37/37 PASS
+- PRICE 7/7 PASS
+- INCOME 6/6 PASS
+- FINANCE 6/6 PASS
+- TENANCY 6/6 PASS
+- BUILDING 6/6 PASS
+- SURVIVAL 6/6 PASS
+- Node density mapping: 37/37 PASS
+- Concept density: 8/8 PASS
+- Practice structure: 41 pages PASS
+- Learning density UI fields PASS
+- Practice density UI fields PASS
+- Cross-axis synthesis PASS
+- User quiz UI removed PASS
+- SEO V017 wiring PASS
+- PRICE/INCOME/FINANCE/TENANCY/BUILDING/SURVIVAL deterministic facts PASS
+- Final npm run analysis:audit: ALL DENSITY CHECKS PASS
+
+Syntax / build
+- app/analysis-v017-density.js: node --check PASS
+- app/AnalysisV008Client.js: node --check PASS
+- app/AnalysisPage.js: node --check PASS
+- npm run build attempted.
+- Production build could not run in this environment because Next.js executable is not installed: `next: not found`.
+- Therefore this audit does NOT claim a production Next.js build PASS.

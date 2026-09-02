@@ -1,0 +1,40 @@
+FIX BUILDING — 02 ANALYSIS V019 FINAL GUIDE AUDIT
+Date: 2026-09-02
+
+SOURCE
+- Final work instruction: 6 analysis axes + 7 analysis tools
+- Core content rule: use the FIX analysis engine itself; explain it simply and quickly
+
+IMPLEMENTED STRUCTURE
+- Home: 6 analysis-axis cards + separate ANALYSIS TOOLS 07 section
+- 6 axes: PRICE / INCOME / RIGHTS / BUILDING / LOCATION / OPERATION
+- 7 tools: yield / loan-leverage / fair-price / price-per-pyeong / vacancy / registry rights / comprehensive analysis
+- Each axis: terms -> core concept -> analysis method -> practice -> related tools
+- No HTML tables in the active ANALYSIS UI
+- CSS graphics used instead of dense tables
+- Practice is not scored; user makes a judgment, then sees FIX ANALYSIS and explanation
+- Summary uses six result cards + one large conclusion, with no composite score
+- Mobile layouts avoid horizontal table scrolling
+- Existing Header/Footer/locale route/metadata/sitemap/robots structure retained
+
+CONTENT CHECKS
+PRICE: comparison transactions, unit price, condition differences, income-value cross-check, practical case
+INCOME: income -> vacancy/costs -> remaining income logic, practical case
+RIGHTS: registry / section A / section B / mortgage / seizure etc., practical case and caution
+BUILDING: building register / use / age / equipment / violations / repair cost / total investment, practical case
+LOCATION: demand / access / hinterland demand / competition / vacancy / rent / sustainability, practical case
+OPERATION: tenants / contract / vacancy history / facilities / repair frequency / management cost / operating burden, practical case
+
+STATIC AUDIT
+- npm run analysis:audit: PASS
+- 6 axes: PASS
+- 7 tools: PASS
+- terms -> concept -> method -> practice -> tools: PASS
+- HTML tables: 0
+- mobile CSS: PASS
+- node static syntax checks on modified JS: PASS
+
+BUILD
+- Baseline build attempt before modification: FAIL because `next` executable is unavailable (`next: not found`).
+- Final build attempt after modification: same environment limitation (`next: not found`).
+- Therefore production build PASS is not claimed.

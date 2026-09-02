@@ -1,0 +1,30 @@
+FIX BUILDING — CONTRACT V006 / 01 계약 상대 확인 회의안 반영
+Date: 2026-09-03
+
+Scope
+- 01 계약 상대 확인만 수정
+- 02~09 CONTRACT 콘텐츠/라우트 유지
+- SELF CHECK / ANALYSIS 등 타 서비스 파일 미수정
+
+회의 반영
+1. 처음 계약 절차: CHECK + IF DIFFERENT + ACTION이 한 단계 안에서 끝까지 이어지도록 상세화
+2. NORMAL BASELINE: 4개 항목 나열이 아니라 소유자→현장 상대→계약서 매도인→지급계좌의 '연결 확인' 의미를 명시
+3. VARIABLES: 반복 3열 박스 해체. 상황/확인/왜 중요한가/예방/발견 후 행동/최종 판단으로 재편집
+4. MISSED POINT: 검은 배경 제거, 화이트 전환. 4개 권한의 의미 + 실제 상황 4개 + 예방 + 판단 추가
+5. 경험자 실수: 회색 박스 반복 제거. 왜 놓치는지/문제/예방/발견 후 대응/판단까지 확장
+6. HOW TO CHECK: WHERE/COMPARE/NORMAL/IF DIFFERENT 4칸 표 제거. LOOK HERE→COMPARE→IF MATCHED→IF NOT→ACTION 행동 흐름으로 재설계
+7. 설명-서류 불일치 섹션: 검은 배경 제거, 화이트 전환
+8. DEEP DIVE 02 검은 배경 제거, 화이트/라이트그레이 전환
+9. CORE PRINCIPLE 블루 섹션 유지
+10. CORE PRINCIPLE 뒤 FINAL SUMMARY 신설
+11. FINAL SUMMARY: 소유자/계약 상대/계약 권한/대금 수령 권한/최종 행동 5개 요약 + 10초 체크 + 02 계약 대상·현황 확인 링크
+12. 본문 내 CONTRACT 01 검은 풀배경 제거. 블루 CORE PRINCIPLE만 컬러 풀섹션으로 유지
+
+검수
+- app/contract-parties-v004.js: node --check PASS
+- V005 대비 변경 파일: app/ContractPage.js, app/contract-parties-v004.js, app/contract.css + 본 audit
+- /contract/property 다음 단계 링크 확인
+- /contract/object 오타 경로 없음
+- 01 custom section black backgrounds 없음
+- basePath /building 유지
+- npm run build: 실행환경 의존성 설치가 완료되지 않아 실제 Next build 검증 불가 (next executable unavailable)

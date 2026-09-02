@@ -1,0 +1,26 @@
+FIX BUILDING 02 ANALYSIS — V012 CODE AUDIT
+Date: 2026-09-02
+
+Implemented
+- Korean user-facing axis names changed to easy Korean labels.
+- Workbook flow revised to read top-to-bottom with answer-first explanations.
+- Learning reveal/action buttons removed for Korean flow; learning content is visible from initial render.
+- Tenancy and survival learning visuals expose information without required clicks.
+- Long vertical pages allowed; content is not compressed to viewport height.
+- Previous/Next navigation fixed to viewport bottom for long-page usability.
+- Left/Right arrow keyboard navigation added for PC when form controls are not focused.
+- Final Korean flow now continues: practical case -> dense summary -> 10-question comprehension check -> learning result.
+- Result reports well-understood areas and areas worth reviewing; no grade/risk score/buy-sell recommendation.
+- Web tools remain optional and do not gate learning progression.
+- English/Japanese routing/content structure retained for later localization work.
+
+Validation
+- ZIP source integrity checked before edit.
+- Modified files: app/AnalysisV008Client.js, app/analysis.css, new app/analysis-v012-ko.js.
+- Bracket-count/static sanity checks completed.
+- Production build NOT verified in this environment because dependencies are unavailable and npm offline cache is incomplete (next executable unavailable).
+
+Packaging
+- Top-level folder: fixlgs-building
+- node_modules, .next, .git excluded.
+- Font binary files excluded from delivery archive; preserve the existing local project's font files when replacing the project.

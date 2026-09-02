@@ -1,0 +1,28 @@
+import fs from 'node:fs';
+const data=fs.readFileSync('app/analysis-v019-data.js','utf8');
+const client=fs.readFileSync('app/AnalysisV008Client.js','utf8');
+const css=fs.readFileSync('app/analysis.css','utf8');
+const fail=[];
+const pass=(n,ok,d='')=>{console.log(`${ok?'PASS':'FAIL'}  ${n}${d?` — ${d}`:''}`);if(!ok)fail.push(n)};
+const price=data.slice(data.indexOf("id:'price'"),data.indexOf("id:'income'"));
+for(let i=1;i<=7;i++) pass(`PRICE ${String(i).padStart(2,'0')} 이유 해설`,price.includes(`node:'PRICE ${String(i).padStart(2,'0')}'`));
+for(const x of ['14.2','15.1','13.8','15억','6.4%','4.7%']) pass(`사례 핵심수치 ${x}`,price.includes(x));
+for(const x of ['매매가','시세','실거래가','평당가','공시지가','공시가격','감정가']) pass(`용어 ${x}`,price.includes(`['${x}'`));
+pass('핵심개념 문구',price.includes('왜 이 가격인가'));
+pass('핵심개념 그래픽',price.includes("type:'priceReasons'"));
+pass('의미없는 PRICE 막대 제거',!price.includes("type:'bars'"));
+pass('분석방법 7단계 상세',(price.match(/graphic:\{type:/g)||[]).length===7 && price.includes('methodGuide:['));
+for(const x of ['분석방법','확인할 것','주의사항']) pass(`분석방법 UI ${x}`,client.includes(x));
+for(const x of ['anchor','comparable','unit','causes','premium','cross','decision']) pass(`분석방법 그래픽 ${x}`,price.includes(`type:'${x}'`));
+pass('03·04 동일 메인 타이포 스케일',css.includes('.an23-method-content>h3') && css.includes('font-size:clamp(31px,4.1vw,54px)'));
+pass('04 분석형 2열 정보구조',css.includes('.an23-method-grid{display:grid;grid-template-columns:'));
+pass('모바일 1열 전환',css.includes('@media(max-width:900px){.an23-method-grid{grid-template-columns:1fr'));
+pass('사용자 화면 ENGINE LOGIC 제거',!client.includes('ENGINE LOGIC'));
+pass('사용자 화면 엔진 적용 제거',!client.includes('엔진 적용'));
+pass('실제 사례 제목',client.includes('05 · 실제 사례'));
+pass('가격 판단 브랜드',client.includes('FIX ANALYSIS · 가격 판단'));
+pass('시험형 PRICE 제거',price.includes("mode:'explain'"));
+pass('HTML table 없음',!/<table|<thead|<tbody|<tr|<td/.test(client));
+pass('V023 CSS',css.includes('V023 PRICE 04'));
+if(fail.length){console.error(`\nV023 PRICE AUDIT FAILED: ${fail.length}`);process.exit(1)}
+console.log('\nANALYSIS V023 PRICE 04 PASS');

@@ -1,0 +1,70 @@
+FIX BUILDING — ANALYSIS V008 IMPLEMENTATION AUDIT
+Date: 2026-09-02
+
+SOURCE OF TRUTH
+- 건물서비스_2번ANALYSIS_기획서_CURRENT_V008_20260902.xlsx
+- V008 sheets 29~42 are treated as the current production specification.
+
+IMPLEMENTED FLOW
+- ANALYSIS HOME: 5 choices only
+  01 Full course
+  02 Concept
+  03 Six-axis learning
+  04 Practical case
+  05 Web tools
+- Full course: CONCEPT 01~06 -> 6-axis micro learning -> practical case -> final completion.
+- Root /analysis always opens the selection home.
+- Direct workflow URLs are supported and mirror the self-check style:
+  /analysis/concept/01 ... /06
+  /analysis/learn/price/01 ...
+  /analysis/practice/01 ... /10
+  /analysis/tools
+- One visible learning screen = one step. Core SEO copy remains present in the server-rendered DOM via a visually hidden corpus.
+- Future-step progress indicators are display-only, not jump buttons.
+
+COUNTS
+- Home choices: 5
+- Concept: 6 screens
+- Learning: 37 screens
+  PRICE 7 / INCOME 6 / FINANCE 6 / TENANCY 6 / BUILDING 6 / SURVIVAL 6
+- Practice: 10 screens
+- Tool catalog: 9 entries
+
+LEARNING STEP CONTRACT
+- WHY / CASE DATA / VISUAL OR INTERACTION / ANALYSIS RULE / WATCH OUT / TAKEAWAY / NEXT
+- Learning NEXT is locked until the step action has been performed.
+- Practice results and judgment are revealed after the required action; NEXT remains locked until then.
+- TENANCY practical step uses key-tenant selection.
+- SURVIVAL practical step uses scenario selection.
+
+SCENARIO CONTROL
+- CURRENT: A +4,000 / B 0 / one-time cash need 0
+- CONSERVATIVE: A +2,500 / B -1,900 / one-time cash need 2,000
+- STRONG STRESS: A +1,000 / B -3,800 / one-time cash need 5,000
+- One-time cash need is separate from recurring annual cash flow.
+- Selected scenario is shared through SURVIVAL / SYNTHESIS / FINAL practice state.
+
+MULTILINGUAL / SEO
+- ko / en / ja share the same stage IDs, counts, numerical assumptions and route structure.
+- Locale copy is centrally managed; SEO corpus is localized per route locale.
+- Root /ko|en|ja/analysis keeps index/follow metadata, canonical and hreflang.
+- Workflow subpaths canonicalize to the locale analysis root and are noindex/follow to avoid duplicate indexing.
+- Sitemap continues to include the three locale analysis root URLs.
+- robots structure was preserved.
+
+WEB TOOLS
+- Tool catalog and practice-step related-tool placement are implemented.
+- Planned tools are shown as planned rather than linked to invented URLs.
+- Existing/live tools currently route to the verified FIXLGS toolbox entry point unless a specific audited URL is available; no unverified specific slug was invented.
+
+STATIC VERIFICATION
+- 36 app JS/JSX files parsed with TypeScript JSX parser: PASS
+- analysis.css brace balance: PASS
+- V008 stage counts / required learning fields / fixed scenario values: PASS
+- No changes to shared Header/Footer/layout components were required for V008.
+
+BUILD STATUS
+- Baseline production build could not be executed in this container because the inherited project did not include a complete node_modules tree.
+- npm ci was attempted but the package registry install timed out in this environment.
+- npm run build therefore cannot be truthfully marked PASS here.
+- Required local final check: npm install && npm run build

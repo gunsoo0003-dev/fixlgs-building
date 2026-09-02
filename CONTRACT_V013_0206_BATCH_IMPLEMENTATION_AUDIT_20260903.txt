@@ -1,0 +1,41 @@
+FIX BUILDING CONTRACT V013 — 02~06 BATCH IMPLEMENTATION AUDIT
+Date: 2026-09-03
+
+Scope
+- KO CONTRACT 02~06 only
+- 01 CONTRACT retained as reference implementation
+- 07 checklist and 08/09 retain existing implementation for later dedicated work
+- SELF CHECK / ANALYSIS unchanged
+
+Implemented
+- New structured KO data: app/contract-0206-v013.js
+- New KO renderer for 02~06 in app/ContractPage.js
+- New editorial CSS namespace: ctj-* in app/contract.css
+- 10 local WebP graphics added under public/images/contract/
+
+Design controls
+- Common outer width: 1380px
+- Typography follows ANALYSIS / final CONTRACT 01 scale
+- Desktop section headings prefer one line; copy shortened where needed
+- Primary reading flow is top-to-bottom; 2-column layouts only for short comparisons
+- Body backgrounds white/light gray; blue full-width CORE PRINCIPLE remains the exception
+- No black full-width body section added
+- Images are local WebP only; no Blogger external URL dependency
+
+Content controls
+- 02 WHAT/SCOPE: ownership/use/scope/current-condition and final acquisition list
+- 03 MONEY: transaction payment, total cash need, assumptions, lien payoff, settlement, conditional payment
+- 04 TERMS: contract engineering, clause components, written evidence, limits of special clauses
+- 05 RECHECK: baseline vs current, change levels, post-discovery actions
+- 06 CLOSE: MONEY/RIGHTS/DOCUMENTS/HANDOVER synchronization and operational handover
+- Repeated themes move by role instead of repeating the same definition
+
+Validation
+- TypeScript parser diagnostics: 0 for changed JS/JSX files
+- 10/10 referenced WebP files exist
+- External blogger.googleusercontent.com references in app/public: none
+- basePath /building preserved
+- sitemap CONTRACT routes preserved
+- V012 regression comparison: no unexpected changes outside allowed CONTRACT files/assets
+- npm ci --offline attempted but package cache lacked tslib; no executable Next environment created
+- npm build therefore NOT claimed as passed

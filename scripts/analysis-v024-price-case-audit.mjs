@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+const data=fs.readFileSync('app/analysis-v019-data.js','utf8');
+const client=fs.readFileSync('app/AnalysisV008Client.js','utf8');
+const css=fs.readFileSync('app/analysis.css','utf8');
+const fail=[];
+const pass=(n,ok)=>{console.log(`${ok?'PASS':'FAIL'}  ${n}`);if(!ok)fail.push(n)};
+const price=data.slice(data.indexOf("id:'price'"),data.indexOf("id:'income'"));
+pass('05 실제사례 리포트 모드',price.includes("mode:'report'"));
+for(const x of ['가격 위치','비교조건','프리미엄 근거','수익 지지력']) pass(`리포트 항목 ${x}`,price.includes(`label:'${x}'`));
+for(const x of ['14.2억원','15.1억원','13.8억원','6.4% → 약 4.7%']) pass(`사례 데이터 ${x}`,price.includes(x));
+pass('최종 PRICE 판단',price.includes("state:'가격 측면에서는 다소 불리합니다.'"));
+pass('PRICE 축 한정 주의',price.includes('이 판단은 PRICE 가격축에 한정됩니다.'));
+pass('대표 판단 그래픽 1개',price.includes("graphic:{\n        title:'판단 근거가 한 방향으로 모이는지 봅니다.'"));
+pass('그래픽 근거 3축',price.includes("['가격 위치','상단']") && price.includes("['추가 우위','부족']") && price.includes("['수익 지지력','강하지 않음']"));
+pass('케이스 리포트 전용 컴포넌트',client.includes('function PriceCaseReport'));
+pass('대표 그래픽 전용 컴포넌트',client.includes('function PriceCaseGraphic'));
+pass('4번 문법 반복 회피',!client.includes('an24-case-report') || (!client.includes('an24-case-method') && !client.includes('an24-case-caution')));
+pass('리포트형 CSS',css.includes('V024 PRICE 05 — case report'));
+pass('HTML table 없음',!/<table|<thead|<tbody|<tr|<td/.test(client));
+if(fail.length){console.error(`\nV024 PRICE CASE AUDIT FAILED: ${fail.length}`);process.exit(1)}
+console.log('\nANALYSIS V024 PRICE CASE REPORT PASS');

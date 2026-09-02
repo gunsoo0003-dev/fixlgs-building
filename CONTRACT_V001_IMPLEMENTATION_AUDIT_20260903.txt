@@ -1,0 +1,32 @@
+FIX BUILDING 03 CONTRACT IMPLEMENTATION AUDIT
+Date: 2026-09-03
+
+IMPLEMENTED
+- New multilingual route: /[locale]/contract/[[...view]]
+- Main CONTRACT page with 3 CTA, clickable contract-lock graphic, 7-stage quick access, tutorial principles and separate risk content
+- Detail pages: parties, property, payment, terms, recheck, closing, checklist, red-flags, mistakes
+- Shared six-part detail rhythm: basics, key points, importance, checking/contract method, example, key principle
+- Contract-specific editorial character scenes and summary graphics
+- Checklist page designed for Essential / Detailed future expansion; no unfinished download/payment action is exposed
+- KO, EN, JA localized copy and metadata
+- SiteHeader active CONTRACT state
+- Home service CONTRACT link
+- Sitemap CONTRACT URLs for KO/EN/JA
+- prefers-reduced-motion support
+- Existing SELF CHECK / ANALYSIS content and CSS preserved unchanged
+
+STATIC VALIDATION
+- app/contract-copy.js: node --check PASS
+- app/sitemap.js: node --check PASS
+- 9 pages x 3 locales data shape verified: each detail page has 6 sections
+- Route collision scan: one catch-all CONTRACT page only
+- Bracket/parenthesis balance checks for JSX source: PASS
+- No visible coming-soon/download/payment placeholder strings in CONTRACT UI copy
+- SELF CHECK and ANALYSIS representative source hashes match original ZIP
+- basePath remains /building
+
+BUILD STATUS
+- Original ZIP does not contain node_modules or an executable node_modules/.bin/next.
+- npm ci was attempted twice; dependency installation could not complete in this runtime (network/transport timeout; offline cache is incomplete).
+- Therefore npm run build and browser-based PC/mobile rendering could NOT be truthfully completed in this environment.
+- This is recorded as a verification limitation, not as a successful build.

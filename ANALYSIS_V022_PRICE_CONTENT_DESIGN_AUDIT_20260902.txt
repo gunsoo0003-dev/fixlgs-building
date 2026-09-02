@@ -1,0 +1,57 @@
+FIX BUILDING — ANALYSIS V022 PRICE CONTENT/DESIGN AUDIT
+Date: 2026-09-02
+
+Scope
+- PRICE axis only
+- Other five axes intentionally unchanged
+
+Applied decisions
+1. TERMS
+   - Keeps analytical terms instead of oversimplifying them.
+   - Explanations focus on how each term is used in analysis, not dictionary definitions.
+
+2. CORE IDEA
+   - Main idea retained: price is judged by why the price exists, not the number alone.
+   - Meaningless comparison bar chart remains removed.
+   - One concept graphic: 15억 → 크기/연식/입지/공실/상태 → 가격은 여러 조건이 만든 결과.
+
+3. WHY PRICE IS ANALYZED THIS WAY
+   - Rebuilt as a typography-led vertical reasoning story.
+   - Seven blocks follow: user question → strong answer → easy explanation → professional concept → takeaway → next question.
+   - Professional concepts retained: 비교가능성, 단위가격, 프리미엄 근거, 수익구조 교차검증.
+   - Internal 'engine' wording is not exposed in user-facing copy.
+   - Content depth retained while reducing cognitive load.
+
+4. ANALYSIS METHOD
+   - Seven-step practical method retained.
+   - Each step includes what to check, why it matters, and cautions where needed.
+
+5. REAL CASE
+   - Concrete 15억원 case retained.
+   - Comps: 14.2억 / 15.1억 / 13.8억.
+   - Income cross-check: 6.4% headline → approx. 4.7% after vacancy/owner operating cost.
+   - Interpretation expanded so users can follow how evidence leads to '가격 측면에서는 다소 불리합니다.'
+   - Price-axis conclusion explicitly kept separate from whole-building buy/sell conclusion.
+
+6. RECAP
+   - Added a typography flow recap before tools.
+   - PRICE analysis sequence is shown as seven connected decisions.
+   - Final takeaway: price analysis verifies the evidence explaining a price; it does not merely guess one correct number.
+
+7. RELATED TOOLS
+   - Renumbered to 07 after adding recap section 06.
+   - 적정가격 비교 / 평당가 계산 retained.
+
+Design principle
+- High information density, low cognitive load.
+- Large questions, strong short answers, comfortable body copy, selective blue emphasis, generous whitespace.
+- No table/card wall for the reasoning section.
+- Typography itself carries the reasoning flow.
+
+Checks
+- node --check app/analysis-v019-data.js: PASS
+- node --check app/AnalysisV008Client.js: PASS
+- node --check app/AnalysisPage.js: PASS
+- npm run analysis:audit: PASS
+- npm run analysis:price-audit: PASS
+- Production build: NOT RUN. npm install did not complete within the available environment timeout.

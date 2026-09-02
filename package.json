@@ -1,0 +1,21 @@
+{
+  "name": "fixlgs-building",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "analysis:audit": "node scripts/analysis-v019-guide-audit.mjs",
+    "analysis:price-audit": "node scripts/analysis-v021-price-audit.mjs",
+    "analysis:price-case-audit": "node scripts/analysis-v024-price-case-audit.mjs",
+    "analysis:price-summary-audit": "node scripts/analysis-v025-price-summary-audit.mjs",
+    "analysis:income-audit": "node scripts/analysis-v028-income-audit.mjs",
+    "analysis:axes-audit": "node scripts/analysis-v029-five-axes-audit.mjs"
+  },
+  "dependencies": {
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

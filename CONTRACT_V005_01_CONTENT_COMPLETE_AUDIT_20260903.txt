@@ -1,0 +1,24 @@
+FIX BUILDING · CONTRACT V005 · 01 계약 상대 확인 상세콘텐츠 완성 기준판
+
+수정 범위
+- app/contract-parties-v004.js
+- app/ContractPage.js 의 01 parties 전용 렌더러
+- app/contract.css 의 01 parties 상세 편집 스타일
+
+핵심 변경
+1. 초보자용 실제 계약 절차 9단계 추가
+2. 정상 본인계약 기준 구조 상세화
+3. 공동소유 / 대리인 / 법인 / 제3자 계좌 각각:
+   상황 → 무엇을 확인 → 왜 중요한가 → 예방 → 발견 후 대응 → 최종 행동
+4. 경험자 누락 포인트에 예방책 + 발견 후 대응 추가
+5. HOW TO CHECK를 WHERE / COMPARE / NORMAL / IF DIFFERENT 구조로 확장
+6. 설명과 서류 불일치 전용 대응 섹션 추가
+7. DEEP DIVE 01 대리계약, 02 공동소유를 전문 상세본문으로 확장
+8. CASE A~E를 상황 → 확인 → 발견 → 행동 → 결과 구조로 확장
+9. 최종 판단을 진행 / 보완 후 진행 / 서명·지급 보류 / 계약 재검토 4단계로 확장
+10. 새 그래픽 제작 없음. 본문 편집 디자인만 조정.
+
+검수 한계
+- 작업 환경에 node_modules/next가 없어 실제 Next build는 실행 검증하지 못함.
+- npm ci 시도는 환경에서 완료되지 않아 중단하고 생성된 node_modules는 제거함.
+- basePath /building 유지.

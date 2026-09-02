@@ -1,0 +1,16 @@
+STEP1 EN/JA localization audit
+- STEP1 type IDs: T01-T14 localized in English and Japanese.
+- Localized fields: display type name, editorial character name, headline, summary line, profile/features, strength, caution, review approach, example interpretation.
+- STEP1 result UI labels/headings/descriptions localized.
+- Six decision axes localized.
+- Eight readiness labels localized.
+- High/Moderate/Low labels and readiness status localized.
+- Dynamic answer-pattern cards B01-B12 and BG1-BG4 localized.
+- Cross-check/risk cards C01/C02/C03/C04/C05/C07/C08/C09/C10 and R01-R08 localized, including check/prescription text.
+- Next-action labels localized.
+- Scoring, prototypes and type-selection logic unchanged.
+- STEP2/STEP3/FINAL localization intentionally deferred to subsequent stages.
+- English/Japanese diagnostic start lock intentionally remains until all result stages are localized.
+Verification:
+- self-check-stage1-copy.js passed `node --check`.
+- Delimiter counts in SelfCheckClient.js are balanced after edit.

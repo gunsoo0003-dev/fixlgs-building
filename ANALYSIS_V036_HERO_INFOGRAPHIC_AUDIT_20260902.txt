@@ -1,0 +1,37 @@
+FIX BUILDING — ANALYSIS V036 HERO INFOGRAPHIC AUDIT
+Date: 2026-09-02
+
+Scope
+- ANALYSIS main hero only.
+- Replaced single wireframe building with multi-building infographic SVG.
+- Added animated analysis connection lines and data points.
+- Expanded desktop hero width and spacing.
+- Reduced desktop CTA height by ~29% (76px -> 54px).
+
+Hero layout
+- Desktop hero shell max width: 1580px.
+- Desktop columns: 360–420px CTA column + flexible infographic column.
+- Desktop column gap: 190px.
+- CTA max width: 390px.
+
+CTA
+- Desktop min-height: 54px.
+- Existing blue -> white hover inversion preserved.
+- Existing independent CTA blocks preserved.
+
+Building infographic
+- 5 distinct buildings with different massing/heights.
+- Blue/white/gray architectural infographic palette.
+- Building group remains visually stable; no scan animation.
+- Animated motion is limited to analysis connector lines/data points.
+- Axis hover/focus strengthens corresponding connector and relevant building.
+- TOOLS hover strengthens whole infographic.
+
+Responsive
+- Tablet/mobile infographic reflows below CTA column.
+- Reduced motion disables connector/dot animation.
+
+Validation
+- next.config.mjs syntax check: PASS.
+- Source pattern checks: PASS.
+- Production build: NOT RUN because node_modules/.bin/next is absent in the provided source package.

@@ -1,0 +1,33 @@
+FIX BUILDING — ANALYSIS V039 3-LOCALE LOCALIZATION AUDIT
+Date: 2026-09-02
+
+Scope
+- /building/ko/analysis
+- /building/en/analysis
+- /building/ja/analysis
+- 6 detail axes for EN/JA: PRICE, INCOME, RIGHTS, BUILDING, LOCATION, OPERATION
+- 7 analysis tools on the ANALYSIS home
+
+Localization policy
+- KO keeps the approved Korean source content and layout.
+- EN uses natural real-estate analysis language rather than literal machine translation.
+- JA uses concise Japanese UI/editorial language and avoids Korean sentence structure.
+- The current 6-axis model is used consistently; legacy FINANCE/TENANCY/SURVIVAL content is not used by the V039 ANALYSIS UI.
+- Tool action links remain hidden for AdSense review, as in V038.
+
+Implemented
+- Added app/analysis-v039-localized.js.
+- Localized ANALYSIS home tutorial content, 7 hero entries, workflow, distinctions, result states, tool guidance, and final checks.
+- Added EN/JA versions of all 6 detail axes with localized terms, core concepts, reasoning questions, method sequence, educational case, and final principle.
+- Localized 7 tool names/descriptions for EN/JA.
+- Updated AnalysisPage SEO corpus to emit locale-appropriate axis/tool copy.
+- Localized shared detail-page labels used by case/principle graphics and section chrome.
+- Existing KO design, routing, animations, basePath and AdSense hidden-link behavior preserved.
+
+Static checks
+- app/AnalysisV008Client.js: node --check PASS
+- app/AnalysisPage.js: node --check PASS
+- app/analysis-v039-localized.js: node --check PASS
+- Korean Hangul tokens in analysis-v039-localized.js: 0
+- Locale routes remain ko/en/ja via app/[locale]/analysis/[[...view]]/page.js
+- Production build not run because node_modules/.bin/next is not present in the supplied working package.

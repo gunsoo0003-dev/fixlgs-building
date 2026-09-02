@@ -1,0 +1,36 @@
+FIX BUILDING SELF CHECK — I18N STRUCTURE PASS
+
+Purpose
+- Separate user-facing self-check copy from component markup before EN/JA localization.
+- Keep scoring, answer values, type selection, asset scoring and result logic untouched.
+
+Added
+- app/self-check-copy.js
+  - common UI copy
+  - stage labels
+  - journey/progress labels
+  - intro copy
+  - landing HERO / 2,240 / DISCOVER / WHAT WE CHECK / WHY / METHOD / FLOW / ASSET FIT / HOW TO READ / CTA
+  - locale containers: ko / en / ja
+  - deep fallback helper getSelfCheckCopy(locale)
+
+Refactored
+- app/SelfCheckClient.js
+  - Landing reads copy via getSelfCheckCopy(locale)
+  - FlowQuestions reads common/stage/question UI copy via getSelfCheckCopy(locale)
+  - StageIntro and JourneyHeader read locale copy
+  - ResultShell/BrandHeader receive locale
+  - BrandHeader home link no longer hardcodes /ko
+
+Intentionally NOT translated in this pass
+- EN/JA text values (next step)
+- 42 question/scenario text overlays
+- result reports / public 54 result content
+- SEO metadata
+
+Safety
+- locale !== ko launch block is intentionally kept until EN/JA content is complete.
+- scoring and calculation logic were not changed.
+
+Build
+- npm run build could not run in this artifact environment because node_modules / next executable are not included in the essential project package.
