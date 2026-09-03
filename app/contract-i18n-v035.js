@@ -3237,7 +3237,7 @@ export const CONTRACT_I18N_V035 = {
     "en": {
       "hero": {
         "eyebrow": "08 · RED FLAGS · Fraud & Warning Signs",
-        "title": "One overlooked warning sign can become the start of a major loss.",
+        "title": "One missed signal can cost you.",
         "lead": "Risky transactions do not always look risky at the beginning. Small exceptions may appear between friendly explanations and otherwise normal documents, and as signing approaches the other side may begin delaying verification or changing how money is supposed to move. The key is not the other party's impression, but whether the transaction structure remains consistent from beginning to end."
       },
       "content": {
@@ -3256,7 +3256,7 @@ export const CONTRACT_I18N_V035 = {
               "Payment flow changes"
             ],
             "label": "FIRST IMPRESSION · First impression",
-            "title": "Risky transactions do not always look unusual at first."
+            "title": "Risk can look normal at first."
           },
           {
             "no": "02",
@@ -3271,7 +3271,7 @@ export const CONTRACT_I18N_V035 = {
               "Third-party account requested"
             ],
             "label": "CONNECTED SIGNALS · Connected signals",
-            "title": "Connected inconsistencies matter more than a single signal."
+            "title": "Look for connected inconsistencies."
           },
           {
             "no": "03",
@@ -3286,7 +3286,7 @@ export const CONTRACT_I18N_V035 = {
               "Pressure to skip checks"
             ],
             "label": "DECISION PRESSURE · Decision pressure",
-            "title": "Attractive terms can break the verification process."
+            "title": "Good terms can weaken checks."
           },
           {
             "no": "04",
@@ -3303,7 +3303,7 @@ export const CONTRACT_I18N_V035 = {
               "CONTRACT"
             ],
             "label": "CROSS CHECK · Cross-check",
-            "title": "Consistency matters more than the mere existence of documents."
+            "title": "Documents must agree with each other."
           },
           {
             "no": "05",
@@ -3319,7 +3319,7 @@ export const CONTRACT_I18N_V035 = {
               "Payment requested first"
             ],
             "label": "BEFORE PAYMENT · Before payment",
-            "title": "Recheck changes that appear just before money moves."
+            "title": "Recheck last-minute changes."
           },
           {
             "no": "06",
@@ -3334,11 +3334,11 @@ export const CONTRACT_I18N_V035 = {
               "Reconsider the transaction"
             ],
             "label": "WHEN TO STOP · When to slow down",
-            "title": "If verification breaks down, slow the transaction down."
+            "title": "Slow down when checks break down."
           }
         ],
         "eyebrow": "WHY RED FLAGS MATTER · Why warning signs matter",
-        "title": "Risk grows when small exceptions are left unexplained.",
+        "title": "Unexplained exceptions raise risk.",
         "intro": "A single warning sign does not prove fraud. But the picture changes when explanations differ across multiple areas, access to records is restricted, and the payment method also begins to change. The six patterns below show how warning signs can connect during a real transaction."
       },
       "groups": [
@@ -3347,22 +3347,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Identity & Authority",
           "items": [
             [
-              "The owner and contracting party differ without a clear explanation.",
+              "Owner and signer do not match.",
               "The connection between the person signing and the actual rights holder has not been verified.",
               "Verify the owner's identity and the basis for agency or representative authority, and slow the transaction until authority is confirmed."
             ],
             [
-              "Documents supporting the agent's authority are repeatedly delayed.",
+              "Agent authority proof is delayed.",
               "It becomes difficult to confirm the actual scope of authority and the principal's intent.",
               "Verify the scope of authority and the principal's intent directly, and hold any deposit until the authority is confirmed."
             ],
             [
-              "The property is jointly owned, but authority from some owners is missing.",
+              "Some co-owner authority is missing.",
               "Part of the authority required for the transaction may not be in place.",
               "Confirm each owner's authority and any required consent before proceeding."
             ],
             [
-              "The property is company-owned, but the actual signer's authority is unclear.",
+              "Company signing authority is unclear.",
               "The company ownership and the authority of the person signing are not connected.",
               "Compare corporate information with representative or delegated authority and sign only after authority is confirmed."
             ]
@@ -3373,22 +3373,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Documents",
           "items": [
             [
-              "The other side resists checking current ownership or official records.",
+              "Current records are hard to verify.",
               "Your opportunity to verify the current condition directly is reduced.",
               "Review current source records yourself and delay the decision until the reason for withholding them is resolved."
             ],
             [
-              "Only partial screens or screenshots are shown instead of complete records.",
+              "Only partial records are shown.",
               "It is difficult to check the issue date, full context, or omitted information.",
               "Compare again using records that show the full content and relevant date."
             ],
             [
-              "Owner, area, or tenancy information differs across documents.",
+              "Key facts differ across documents.",
               "The documents are not pointing to the same set of facts.",
               "List each inconsistency and determine which information reflects the current situation."
             ],
             [
-              "Important records are promised only after the contract is signed.",
+              "Key records come after signing.",
               "Information needed to make the decision is being pushed until after commitment.",
               "Obtain the information needed for the decision first and hold signing or payment until it is reviewed."
             ]
@@ -3399,22 +3399,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Money Flow",
           "items": [
             [
-              "Payment is requested to a third-party account with no clear connection to the owner.",
+              "Payment redirected to a third party.",
               "The link between the contracting party and the authority to receive funds may be broken.",
               "Verify the account holder and the basis for receiving funds, and do not transfer until the relationship is explained."
             ],
             [
-              "The payment account changes suddenly just before signing or closing.",
+              "The payment account changes late.",
               "The payment structure you previously verified has changed immediately before funds move.",
               "Reconfirm the reason for the change and authority over the new account, then compare it with the contract."
             ],
             [
-              "An additional amount outside the contract is requested separately.",
+              "Off-contract payment requested.",
               "A flow of money not documented in the agreement has been added.",
               "Reconcile the total payment and its basis in writing before deciding whether to transfer."
             ],
             [
-              "Payment is rushed through cash or another method that is difficult to trace.",
+              "Payment method is unclear.",
               "It may become difficult to verify the payment basis and actual recipient later.",
               "Clarify the reason for payment and the recipient, and use a verifiable payment method."
             ]
@@ -3425,22 +3425,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Pressure",
           "items": [
             [
-              "You are repeatedly told the opportunity will disappear unless you sign today.",
+              "You are pressured to sign today.",
               "The pressure can reduce verification time and change the proper order of decision-making.",
               "Secure enough time to verify and do not finalize the signing schedule before reviewing the required information."
             ],
             [
-              "A deposit is requested before the key documents are checked.",
+              "Deposit requested before checks.",
               "Money begins moving before verification is complete.",
               "Restore the proper sequence and decide on payment only after reviewing the core records."
             ],
             [
-              "You are discouraged from obtaining professional or independent verification.",
+              "Independent review is discouraged.",
               "An independent verification path may be blocked.",
               "Review important items independently and ask why outside verification is being discouraged."
             ],
             [
-              "Questions are dismissed as a waste of time and a quick decision is demanded.",
+              "Questions dismissed; speed demanded.",
               "Important inconsistencies may be pushed past without an answer.",
               "Slow the process until important questions are answered and keep a record of the responses."
             ]
@@ -3451,22 +3451,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Explanation Consistency",
           "items": [
             [
-              "Tenancy or deposit figures change each time you ask.",
+              "Tenancy figures keep changing.",
               "The actual assumed amount and closing calculation may be different from what you expected.",
               "Recalculate from tenant-level source records and do not finalize the amount until the differences are explained."
             ],
             [
-              "Explanations about rights repeatedly differ from the documents.",
+              "Rights story conflicts with records.",
               "The transaction described verbally may not match the current rights status.",
               "Rebuild the facts from current rights records and resolve the difference between the records and the explanation."
             ],
             [
-              "The reason for the sale or the transaction background keeps changing.",
+              "The transaction story keeps changing.",
               "You need to determine whether a material fact affecting the contract is changing as well.",
               "Check the changed facts against evidence and assess whether they affect the contract terms."
             ],
             [
-              "Important promises differ depending on who explains them.",
+              "Important promises vary by speaker.",
               "It can become unclear who is responsible for the promise and what was actually agreed.",
               "Consolidate the verbal explanation into one version and align it with the contract and supporting records."
             ]
@@ -3477,22 +3477,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Verification Avoidance",
           "items": [
             [
-              "The person responsible keeps changing instead of directly answering important questions.",
+              "Responsible contact keeps changing.",
               "There may be no accountable person giving a clear answer.",
               "Ask the same question to the responsible contracting party and record the basis for the answer."
             ],
             [
-              "Verification requests are framed as distrust and you are pressured to stop checking.",
+              "Verification itself is discouraged.",
               "The normal verification process itself may be blocked.",
               "Maintain the necessary verification process and hold the transaction if required information is not provided."
             ],
             [
-              "Site inspection or direct owner confirmation is repeatedly avoided.",
+              "Direct confirmation is avoided.",
               "It becomes difficult to verify key facts independently.",
               "Set the required verification method and timing, and reconsider the transaction if it cannot be completed."
             ],
             [
-              "An inconsistency is dismissed as 'standard practice' without explaining the reason.",
+              "Dismissed as 'standard practice'.",
               "The actual basis for applying that practice to this transaction has not been verified.",
               "Verify the authority, documents, and payment basis for this specific transaction instead of relying on a general claim of custom."
             ]
@@ -3501,7 +3501,7 @@ export const CONTRACT_I18N_V035 = {
       ],
       "scan": {
         "eyebrow": "RED FLAG SCAN · Warning-sign scan",
-        "title": "When a warning sign appears, identify what needs to be verified.",
+        "title": "Find what needs verification.",
         "body": "This is not a checkbox document. Read what is unusual in each SIGNAL, then use WHY and VERIFY NOW to recheck the actual transaction structure."
       },
       "stop": {
@@ -3515,19 +3515,19 @@ export const CONTRACT_I18N_V035 = {
             "Slow the signing or payment schedule and cross-check different sources."
           ],
           [
-            "Authority + documents + money all conflict",
+            "Authority + records + money conflict",
             "Hold signing and payment until the core inconsistencies are resolved, and reconsider the transaction itself."
           ]
         ],
         "eyebrow": "STOP SIGNAL · When to stop and verify",
-        "title": "If authority, documents, and money stop matching, pause and verify.",
+        "title": "Pause when core facts diverge.",
         "note": "The number of signals is not a fraud probability score. The purpose is to raise the level of verification and the strength of your response when inconsistencies appear."
       }
     },
     "ja": {
       "hero": {
         "eyebrow": "08 · RED FLAGS · 詐欺・危険サイン",
-        "title": "見落とした一つの危険サインが大きな損失の始まりになることがあります。",
+        "title": "見落としが大きな損失につながります。",
         "lead": "危険な取引が最初から危険に見えるとは限りません。親切な説明や一見正常な書類の中に小さな例外が現れ、契約が近づくにつれて確認を先送りしたり、資金の流れを変えたりすることがあります。重要なのは相手の印象ではなく、取引構造が最後まで一貫してつながっているかを確認することです。"
       },
       "content": {
@@ -3546,7 +3546,7 @@ export const CONTRACT_I18N_V035 = {
               "資金フロー変更"
             ],
             "label": "FIRST IMPRESSION · 第一印象",
-            "title": "危険な取引は最初から不自然に見えるとは限りません。"
+            "title": "危険な取引も最初は普通に見えます。"
           },
           {
             "no": "02",
@@ -3561,7 +3561,7 @@ export const CONTRACT_I18N_V035 = {
               "第三者口座の要求"
             ],
             "label": "CONNECTED SIGNALS · つながるサイン",
-            "title": "一つのサインより、つながった不一致を見ます。"
+            "title": "不一致のつながりを見ます。"
           },
           {
             "no": "03",
@@ -3576,7 +3576,7 @@ export const CONTRACT_I18N_V035 = {
               "確認省略の圧力"
             ],
             "label": "DECISION PRESSURE · 判断圧力",
-            "title": "良い条件が確認手順を崩すことがあります。"
+            "title": "好条件でも確認を崩さない。"
           },
           {
             "no": "04",
@@ -3593,7 +3593,7 @@ export const CONTRACT_I18N_V035 = {
               "CONTRACT 契約"
             ],
             "label": "CROSS CHECK · 交差確認",
-            "title": "書類があることより、互いに一致することが重要です。"
+            "title": "書類同士の一致を確認します。"
           },
           {
             "no": "05",
@@ -3609,7 +3609,7 @@ export const CONTRACT_I18N_V035 = {
               "先払い要求"
             ],
             "label": "BEFORE PAYMENT · 送金直前",
-            "title": "お金が動く直前の変更は再確認します。"
+            "title": "送金直前の変更を再確認します。"
           },
           {
             "no": "06",
@@ -3624,11 +3624,11 @@ export const CONTRACT_I18N_V035 = {
               "取引再検討"
             ],
             "label": "WHEN TO STOP · 止まる場面",
-            "title": "確認が途切れたら取引速度を落とします。"
+            "title": "確認できなければ速度を落とします。"
           }
         ],
         "eyebrow": "WHY RED FLAGS MATTER · なぜ危険サインを見るのか",
-        "title": "小さな例外をそのままにすると取引リスクは大きくなります。",
+        "title": "説明できない例外はリスクです。",
         "intro": "一つの危険サインだけで詐欺と断定することはできません。しかし複数の領域で説明が食い違い、資料確認が妨げられ、さらに支払方法まで変わり始める場合は注意が必要です。以下の6つの場面では、実際の契約で見落としやすい危険サインのつながり方を整理します。"
       },
       "groups": [
@@ -3637,22 +3637,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "本人・権限",
           "items": [
             [
-              "所有者と契約相手が説明なく異なる。",
+              "所有者と契約相手が違う。",
               "契約相手と実際の権利者とのつながりが確認できていない状態です。",
               "所有者本人と代理・代表権の根拠を確認し、権限が確認できるまで契約を急ぎません。"
             ],
             [
-              "代理権を示す資料の提出が繰り返し延期される。",
+              "代理権資料が遅れる。",
               "実際の委任範囲や本人の意思を確認しにくくなります。",
               "委任範囲と本人の意思を直接確認し、確認できるまで手付金の支払いを保留します。"
             ],
             [
-              "共有物件なのに一部所有者の権限確認が欠けている。",
+              "共有者の権限が一部不足。",
               "取引に必要な権限の一部が不足している可能性があります。",
               "所有者ごとの契約権限と必要な同意を確認してから進めます。"
             ],
             [
-              "法人所有なのに実際の契約権限者が不明確。",
+              "法人の契約権限が不明。",
               "法人名義と実際の署名者の権限がつながっていません。",
               "法人情報と代表・委任権限を照合し、署名権限を確認してから契約します。"
             ]
@@ -3663,22 +3663,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "書類",
           "items": [
             [
-              "最新の登記・公的資料の確認を嫌がる。",
+              "最新資料の確認を嫌がる。",
               "現在の状態を直接確認する機会が減ります。",
               "最新の原資料を自分で確認し、提出が遅れる理由が解消されるまで判断を保留します。"
             ],
             [
-              "原資料ではなく一部画面やスクリーンショットだけを見せる。",
+              "一部画面しか見せない。",
               "発行日、全体の文脈、抜けている部分を確認しにくくなります。",
               "発行日と全体内容を確認できる資料で再照合します。"
             ],
             [
-              "書類ごとに所有者・面積・賃貸借の説明が異なる。",
+              "書類ごとに重要情報が違う。",
               "複数資料が同じ事実を示していない状態です。",
               "不一致項目を一覧化し、どの資料が現在の事実を反映しているか確認します。"
             ],
             [
-              "重要資料は契約後に見せると言われる。",
+              "重要資料を契約後に回す。",
               "契約判断に必要な情報が署名後へ先送りされます。",
               "判断に必要な資料を先に確保し、確認できるまで署名・送金を保留します。"
             ]
@@ -3689,22 +3689,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "資金の流れ",
           "items": [
             [
-              "所有者との関係が明確でない第三者口座への送金を求められる。",
+              "第三者口座への送金を求める。",
               "契約相手と代金受領権限のつながりが切れている可能性があります。",
               "口座名義と代金受領権限の根拠を確認し、説明がつくまで送金しません。"
             ],
             [
-              "契約直前に振込口座が突然変更される。",
+              "直前に振込口座が変わる。",
               "確認済みの支払構造が送金直前に変わっています。",
               "変更理由と新口座の受領権限を再確認し、契約内容と照合します。"
             ],
             [
-              "契約書と異なる金額を別途送るよう求められる。",
+              "契約外の追加送金を求める。",
               "書面にない資金の流れが追加されています。",
               "総支払額と支払根拠を書面で一致させてから送金可否を判断します。"
             ],
             [
-              "現金など追跡しにくい方法での支払いを急かされる。",
+              "追跡しにくい支払を急かす。",
               "後から支払根拠や実際の受取人を確認しにくくなる可能性があります。",
               "支払根拠と受取人を明確にし、確認可能な方法で進めます。"
             ]
@@ -3715,22 +3715,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "過度な催促",
           "items": [
             [
-              "今日契約しなければ機会がなくなると繰り返し迫られる。",
+              "今日中の契約を迫られる。",
               "確認時間を奪い、判断の順序を変えさせる可能性があります。",
               "確認時間を確保し、資料確認前に契約日程を確定しません。"
             ],
             [
-              "書類確認より先に手付金の送金を求められる。",
+              "確認前に手付金を求める。",
               "確認より先に資金が動く構造になります。",
               "確認順序を元に戻し、核心資料を確認してから支払いを判断します。"
             ],
             [
-              "専門家や第三者の確認をしないよう求められる。",
+              "第三者確認を嫌がる。",
               "独立した検証経路が遮断される可能性があります。",
               "必要な項目は独立して確認し、なぜ外部確認を避けるのか確認します。"
             ],
             [
-              "質問を時間の無駄だとして早い決断を求められる。",
+              "質問を嫌い即決を迫る。",
               "重要な不一致が回答なしで通過する可能性があります。",
               "重要な質問に答えが出るまで進行を遅らせ、回答を記録します。"
             ]
@@ -3741,22 +3741,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "説明の一貫性",
           "items": [
             [
-              "賃貸借・保証金の数字が質問するたびに変わる。",
+              "賃貸借の数字が変わる。",
               "実際の承継額や残代金計算が変わる可能性があります。",
               "テナント別の原資料から再集計し、差が説明できるまで金額を確定しません。"
             ],
             [
-              "権利関係の説明が書類と繰り返し異なる。",
+              "権利説明が書類と違う。",
               "口頭で聞いた取引条件と現在の権利状態が違う可能性があります。",
               "最新の権利資料を基準に事実を整理し直し、説明との差を解消します。"
             ],
             [
-              "売却理由や取引背景の説明が繰り返し変わる。",
+              "取引の説明が変わる。",
               "契約条件に影響する重要事実まで変わっていないか確認が必要です。",
               "変更された重要事実を資料と照合し、契約条件への影響を確認します。"
             ],
             [
-              "重要な約束が担当者ごとに違って伝えられる。",
+              "担当者ごとに約束が違う。",
               "誰が責任を負う約束なのか不明確になる可能性があります。",
               "口頭説明を一つに整理し、契約書・確認資料と一致させます。"
             ]
@@ -3767,22 +3767,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "確認回避",
           "items": [
             [
-              "重要な質問に直接答えず担当者を何度も変える。",
+              "担当者を替えて回答を避ける。",
               "責任ある回答主体が見えなくなる可能性があります。",
               "責任ある契約当事者に同じ質問を確認し、回答の根拠を記録します。"
             ],
             [
-              "確認依頼を『信用していないのか』として止めようとする。",
+              "確認そのものを嫌がる。",
               "正常な確認手続きそのものが妨げられる可能性があります。",
               "必要な確認手順を維持し、資料提供がなければ進行を保留します。"
             ],
             [
-              "現場確認や所有者への直接確認を繰り返し避ける。",
+              "現場・所有者確認を避ける。",
               "重要事実を独立して検証しにくくなります。",
               "必要な確認方法と時点を決め、実行できなければ取引を再検討します。"
             ],
             [
-              "不一致の理由を説明せず『慣行だから』とだけ言う。",
+              "不一致を「慣行」で済ませる。",
               "この取引にその慣行を適用する実際の根拠が確認できていません。",
               "慣行という説明ではなく、この取引の権限・書類・支払根拠を確認します。"
             ]
@@ -3791,7 +3791,7 @@ export const CONTRACT_I18N_V035 = {
       ],
       "scan": {
         "eyebrow": "RED FLAG SCAN · 危険サインスキャン",
-        "title": "異常サインが見えたら、すぐに確認すべき点を特定します。",
+        "title": "確認すべき点を特定します。",
         "body": "ここはチェックボックス型の文書ではありません。各SIGNALで何が不自然なのかを読み、WHYとVERIFY NOWに沿って実際の取引構造を再確認します。"
       },
       "stop": {
@@ -3810,7 +3810,7 @@ export const CONTRACT_I18N_V035 = {
           ]
         ],
         "eyebrow": "STOP SIGNAL · 止まって確認する場面",
-        "title": "権限・書類・資金が同時に食い違うなら、止まって確認します。",
+        "title": "権限・書類・資金がずれたら止まる。",
         "note": "サインの数は詐欺の確率を示すスコアではありません。目的は異常サインを見つけたときに確認レベルと対応強度を上げることです。"
       }
     }
@@ -3837,7 +3837,7 @@ export const CONTRACT_I18N_V035 = {
               "Condition omitted"
             ],
             "label": "ASSUMPTION · Assumptions",
-            "title": "An explanation is accepted as fact before it is verified."
+            "title": "Explanation becomes assumed fact."
           },
           {
             "no": "02",
@@ -3852,7 +3852,7 @@ export const CONTRACT_I18N_V035 = {
               "Does not match current state"
             ],
             "label": "DOCUMENT · Documents",
-            "title": "Having a document is mistaken for having verified its contents."
+            "title": "Document received, checks skipped."
           },
           {
             "no": "03",
@@ -3867,7 +3867,7 @@ export const CONTRACT_I18N_V035 = {
               "Dispute"
             ],
             "label": "VERBAL · Verbal Agreements",
-            "title": "Important promises are left to memory."
+            "title": "Important promises stay verbal."
           },
           {
             "no": "04",
@@ -3882,7 +3882,7 @@ export const CONTRACT_I18N_V035 = {
               "Less leverage"
             ],
             "label": "MONEY · Payment",
-            "title": "The payment date arrives and money is sent before conditions are checked."
+            "title": "Paying before conditions are checked."
           },
           {
             "no": "05",
@@ -3897,7 +3897,7 @@ export const CONTRACT_I18N_V035 = {
               "Recheck skipped"
             ],
             "label": "RECHECK · Recheck",
-            "title": "A fact checked once is assumed to remain unchanged until the end."
+            "title": "One check is treated as permanent."
           },
           {
             "no": "06",
@@ -3912,11 +3912,11 @@ export const CONTRACT_I18N_V035 = {
               "Post-acquisition confusion"
             ],
             "label": "HANDOVER · Handover",
-            "title": "Sending the final payment is mistaken for completing the entire transaction."
+            "title": "Treating final payment as completion."
           }
         ],
         "eyebrow": "WHY MISTAKES HAPPEN · Why mistakes happen",
-        "title": "Major mistakes are often built from repeated small omissions.",
+        "title": "Small omissions create major mistakes.",
         "intro": "In building transactions, mistakes are often created not by one dramatic error but by a chain of small omissions: accepting an explanation without checking it, leaving verbal agreements undocumented, or failing to recheck before closing. The six patterns below focus on mistakes the buyer can actively control."
       },
       "groups": [
@@ -3925,22 +3925,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Assumptions",
           "items": [
             [
-              "Assuming every facility seen on site is included in the sale.",
+              "Assuming visible facilities are included.",
               "Because visible use is mistaken for ownership and transfer scope.",
               "List important facilities and confirm ownership, inclusion, and removal status in the contract or an attachment."
             ],
             [
-              "Assuming a tenant will leave exactly as planned.",
+              "Assuming tenant move-out goes to plan.",
               "Because a stated move-out plan is treated as if vacant possession has already been completed.",
               "Verify the tenant, deadline, deposit settlement, and actual vacant-possession condition separately."
             ],
             [
-              "Assuming a lien or other right will automatically be released before closing.",
+              "Assuming rights clear automatically.",
               "Because a promise to release is confused with actual release readiness.",
               "Recheck the right to be released, payoff amount, required documents, and execution sequence before closing."
             ],
             [
-              "Assuming an undocumented arrangement is acceptable because it is described as common practice.",
+              "Assuming 'common practice' is enough.",
               "Because 'custom' is allowed to substitute for evidence specific to the current transaction.",
               "Verify the authority, ownership, use, or payment basis that actually applies to this transaction."
             ]
@@ -3951,22 +3951,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Documents",
           "items": [
             [
-              "Receiving a document without checking when it was issued.",
+              "Ignoring the document date.",
               "Because outdated information can be mistaken for the current situation.",
               "Mark the issue or reference date for key records and recheck freshness before signing and closing."
             ],
             [
-              "Reading only the document title and not the details.",
+              "Reading the title, not the details.",
               "Because the limits of what the document proves are not distinguished.",
               "Read and check the key fields that matter to the decision, such as owner, area, rights, and reference date."
             ],
             [
-              "Failing to compare documents against one another.",
+              "Not comparing documents.",
               "Because each record can look reasonable on its own while describing different facts.",
               "Cross-check key information across ownership records, official property records, leases, the site, and the contract."
             ],
             [
-              "Relying only on copies or screenshots and skipping source records.",
+              "Using copies instead of source records.",
               "Because omitted content, date context, or alterations may be difficult to detect.",
               "Use source records or independently verifiable official records for material decisions whenever possible."
             ]
@@ -3977,22 +3977,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Verbal Agreements",
           "items": [
             [
-              "Leaving a repair promise only as a verbal agreement.",
+              "Leaving repair promises verbal.",
               "Because memories can differ about repair scope, completion standard, and deadline.",
               "Record the location, work scope, responsibility, deadline, and verification method as a contract condition."
             ],
             [
-              "Agreeing verbally on which facilities are included.",
+              "Keeping included facilities verbal.",
               "Because the parties may later disagree about whether an item was excluded.",
               "List important facilities and fixtures as included, excluded, or to be removed, and link them to photos."
             ],
             [
-              "Failing to document a vacancy or move-out promise.",
+              "Not documenting vacancy promises.",
               "Because the occupant, timing, and deposit settlement can become unclear.",
               "Document who must deliver what condition by when, and what happens if it is not completed."
             ],
             [
-              "Omitting an important term because 'both sides already know it.'",
+              "Leaving out 'known' terms.",
               "Because shared understanding is not the same as a term that can be verified later.",
               "Record agreements affecting payment, handover, or rights in the contract, special conditions, or attachments."
             ]
@@ -4003,22 +4003,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Payment",
           "items": [
             [
-              "Looking only at the payment date and not the payment conditions.",
+              "Checking the date, not the conditions.",
               "Because a calendar date is mistaken for proof that the transaction is ready for payment.",
               "Check the preconditions and evidence of completion for each payment stage before transferring funds."
             ],
             [
-              "Calculating closing funds only from the remaining contract balance.",
+              "Using only the contract balance.",
               "Because assumed deposits, adjustments, and payoff amounts can be missed.",
               "Prepare a separate final reconciliation that includes prior payments, assumed amounts, adjustments, and payoff figures."
             ],
             [
-              "Failing to reconfirm the account holder immediately before transfer.",
+              "Not rechecking the transfer account.",
               "Because account information may have changed or been communicated incorrectly after signing.",
               "Immediately before transfer, compare the contract, reconciliation, and account basis and reconfirm both recipient and amount."
             ],
             [
-              "Paying first because the date is already scheduled even after a problem is found.",
+              "Paying despite an unresolved problem.",
               "Because meeting the schedule is given priority over verification.",
               "If a required condition is unresolved, hold payment and first consider resolution, professional review, or schedule adjustment."
             ]
@@ -4029,22 +4029,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Recheck",
           "items": [
             [
-              "Failing to recheck ownership or rights records before closing.",
+              "Skipping the final rights recheck.",
               "Because new rights or encumbrances can arise after signing.",
               "Compare the latest rights status with the signing-date baseline immediately before closing."
             ],
             [
-              "Failing to update tenancy information before closing.",
+              "Skipping the tenancy update.",
               "Because new leases, move-outs, or deposit changes can alter the assumed amount.",
               "Recompile the latest lease and deposit information for each tenant before closing."
             ],
             [
-              "Accepting a statement that a special condition was completed without verifying it.",
+              "Accepting completion without proof.",
               "Because claimed performance and actual completion can be different.",
               "Verify repairs, vacancy, document delivery, and rights release against the contract's completion standard and evidence."
             ],
             [
-              "Using an old closing calculation without updating it.",
+              "Using an outdated closing calculation.",
               "Because leases, utilities, service charges, and payoff figures can change.",
               "Rebuild the closing worksheet using current figures and compare it with the other party's calculation."
             ]
@@ -4055,22 +4055,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "Handover",
           "items": [
             [
-              "Assuming handover is complete once the keys are received.",
+              "Treating keys as full handover.",
               "Because actual operation requires tenancy, facility, and management information in addition to physical access.",
               "Use a handover list covering keys, access, leases, facilities, management records, and contacts."
             ],
             [
-              "Failing to obtain tenant contacts and management information.",
+              "Missing tenant and management contacts.",
               "Because rent collection, complaints, and facility response can be disrupted immediately after acquisition.",
               "Take over tenant, property-management, and maintenance contacts and relevant accounts."
             ],
             [
-              "Failing to obtain operating instructions, warranties, and rental information for facilities.",
+              "Missing facility operating records.",
               "Because responsibility, contractual relationships, and maintenance methods can be difficult to determine when a problem occurs.",
               "Collect manuals, warranties, rental agreements, and maintenance records for each major facility."
             ],
             [
-              "Leaving post-closing reporting, registration, and tax tasks to memory.",
+              "Leaving post-closing tasks to memory.",
               "Because statutory deadlines or assigned tasks can be missed.",
               "Track post-closing work in a separate list with responsible person, deadline, and completion evidence."
             ]
@@ -4079,7 +4079,7 @@ export const CONTRACT_I18N_V035 = {
       ],
       "scan": {
         "eyebrow": "MISTAKE SCAN · Mistake-pattern scan",
-        "title": "Mistakes can be blocked by changing the order of your actions.",
+        "title": "Fix the order to block mistakes.",
         "body": "Read what was skipped in each MISTAKE, understand the cause through WHY IT HAPPENS, and insert the BLOCK IT action into the actual transaction sequence."
       },
       "failure": {
@@ -4098,14 +4098,14 @@ export const CONTRACT_I18N_V035 = {
           "PAY & TAKE OVER"
         ],
         "eyebrow": "FAILURE PATH · How small omissions grow",
-        "title": "Small omissions become major mistakes when they connect.",
+        "title": "Small omissions compound.",
         "goodLabel": "CONTROL PATH · A safer control sequence",
         "badLabel": "FAILURE PATH · How small omissions grow",
         "note": "No process eliminates every possible mistake. But controllable errors can be reduced substantially by refusing to guess important facts, documenting agreements, rechecking conditions before payment, and completing the actual handover."
       },
       "principle": {
         "eyebrow": "CORE PRINCIPLE · Core principle",
-        "title": "The best way to prevent a major mistake is to stop repeating small omissions.",
+        "title": "Stop repeating small omissions.",
         "body": "No process eliminates every possible mistake. But controllable errors can be reduced substantially by refusing to guess important facts, documenting agreements, rechecking conditions before payment, and completing the actual handover."
       }
     },
@@ -4130,7 +4130,7 @@ export const CONTRACT_I18N_V035 = {
               "条件漏れ"
             ],
             "label": "ASSUMPTION · 思い込み",
-            "title": "説明を確認済みの事実として受け取ってしまいます。"
+            "title": "説明を事実だと思い込む。"
           },
           {
             "no": "02",
@@ -4145,7 +4145,7 @@ export const CONTRACT_I18N_V035 = {
               "現在と不一致"
             ],
             "label": "DOCUMENT · 書類",
-            "title": "書類があるだけで内容まで確認したと思ってしまいます。"
+            "title": "書類があるだけで安心する。"
           },
           {
             "no": "03",
@@ -4160,7 +4160,7 @@ export const CONTRACT_I18N_V035 = {
               "紛争"
             ],
             "label": "VERBAL · 口頭合意",
-            "title": "重要な約束を記憶に任せてしまいます。"
+            "title": "重要な約束を記憶に任せる。"
           },
           {
             "no": "04",
@@ -4175,7 +4175,7 @@ export const CONTRACT_I18N_V035 = {
               "交渉力低下"
             ],
             "label": "MONEY · 支払い",
-            "title": "支払日が来ると条件確認より先に送金してしまいます。"
+            "title": "条件確認より先に支払う。"
           },
           {
             "no": "05",
@@ -4190,7 +4190,7 @@ export const CONTRACT_I18N_V035 = {
               "再確認漏れ"
             ],
             "label": "RECHECK · 再確認",
-            "title": "一度確認した事実が最後まで同じだと思ってしまいます。"
+            "title": "一度の確認で終わらせる。"
           },
           {
             "no": "06",
@@ -4205,11 +4205,11 @@ export const CONTRACT_I18N_V035 = {
               "取得後の混乱"
             ],
             "label": "HANDOVER · 引渡し",
-            "title": "残代金を払えば取引が全部終わったと思ってしまいます。"
+            "title": "残代金で全部終わったと思う。"
           }
         ],
         "eyebrow": "WHY MISTAKES HAPPEN · なぜミスが起こるのか",
-        "title": "大きなミスは小さな省略の積み重ねから生まれます。",
+        "title": "小さな省略が大きなミスになります。",
         "intro": "建物契約のミスは、一度の大きな判断違いよりも、「説明だけで済ませる」「口頭合意を書面にしない」「決済前に再確認しない」といった小さな省略が連続して起きることが多いです。以下の6つは買主自身が管理できる代表的なミスパターンです。"
       },
       "groups": [
@@ -4218,22 +4218,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "思い込み",
           "items": [
             [
-              "現場で見た設備がすべて売買に含まれると思い込む。",
+              "見える設備は全部含むと思う。",
               "見えている利用状態と実際の所有・引継ぎ範囲を区別していないためです。",
               "重要設備は所有者・含有有無・撤去有無を一覧と契約条件で固定します。"
             ],
             [
-              "テナントは予定どおり退去すると考える。",
+              "テナントは予定どおり退去すると思う。",
               "退去予定という説明を実際の明渡し完了と同じものとして扱うためです。",
               "対象テナント・期限・保証金精算・実際の引渡し状態を別々に確認します。"
             ],
             [
-              "権利抹消は当然決済前に終わると思い込む。",
+              "権利抹消は当然終わると思う。",
               "抹消の約束と実際の抹消準備を区別していないためです。",
               "抹消対象・返済額・必要書類・実行順序を決済前に再確認します。"
             ],
             [
-              "公的資料にない説明でも慣行なら問題ないと思い込む。",
+              "「慣行なら大丈夫」と思う。",
               "『慣行』という言葉が現在の取引の根拠を代わりにしてしまうためです。",
               "現在の取引に適用される権限・所有・利用・支払根拠を別途確認します。"
             ]
@@ -4244,22 +4244,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "書類",
           "items": [
             [
-              "書類を受け取るだけで発行日を確認しない。",
+              "書類の発行日を見ない。",
               "古い情報を現在の状態だと誤解する可能性があるためです。",
               "重要資料ごとに発行日・基準日を記録し、契約前と決済前に最新性を再確認します。"
             ],
             [
-              "書類名だけ見て内容を細かく読まない。",
+              "書類名だけ見て中身を読まない。",
               "その資料が何を証明し、何を証明しないかを区別していないためです。",
               "所有者・面積・権利・基準日など判断に必要な項目を直接読んで確認します。"
             ],
             [
-              "異なる資料同士を照合しない。",
+              "資料同士を照合しない。",
               "各資料が単独では正しく見えても、別の事実を示している可能性があるためです。",
               "所有記録・公的物件資料・賃貸借・現場・契約書の核心情報が一致するか交差確認します。"
             ],
             [
-              "コピーやスクリーンショットだけで原資料確認を省く。",
+              "コピーだけで原資料を見ない。",
               "抜けている内容や修正の有無を確認しにくい可能性があるためです。",
               "重要判断では可能な限り原資料または公式に確認可能な資料を基準にします。"
             ]
@@ -4270,22 +4270,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "口頭合意",
           "items": [
             [
-              "修理の約束を口頭だけで残す。",
+              "修理の約束を口頭で済ませる。",
               "修理範囲・完了基準・期限について記憶がずれる可能性があるためです。",
               "場所・作業範囲・責任・期限・確認方法を契約条件として残します。"
             ],
             [
-              "設備の含有有無を会話だけで決める。",
+              "設備範囲を口頭で決める。",
               "引渡し時に『それは対象外だった』という解釈差が生じる可能性があるためです。",
               "重要設備・什器は含む・除外・撤去を一覧化し、写真と連動させます。"
             ],
             [
-              "明渡し・退去の約束を書面化しない。",
+              "明渡しを文書化しない。",
               "対象者・時点・保証金精算が曖昧になる可能性があるためです。",
               "誰がいつどの状態で引き渡すか、未完了時の次の対応まで書面に残します。"
             ],
             [
-              "『お互い分かっているから』と重要条件を契約書から外す。",
+              "「分かっている」と条件を外す。",
               "共通認識と後から確認できる契約条件は別だからです。",
               "決済・引渡し・権利に影響する合意は契約書・特約・別紙に残します。"
             ]
@@ -4296,22 +4296,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "支払い",
           "items": [
             [
-              "支払日だけ見て支払条件を確認しない。",
+              "支払日だけ見て条件を見ない。",
               "カレンダー上の日付と実際に支払える状態を同じものとして扱うためです。",
               "各支払段階で先行条件と完了証拠を確認してから送金します。"
             ],
             [
-              "残代金を契約書の残額だけで計算する。",
+              "契約残額だけで残代金を計算する。",
               "保証金承継・精算・抹消返済額など実際の資金フローを見落とす可能性があるためです。",
               "既払額・承継・精算・返済額を反映した最終計算表を別に作成します。"
             ],
             [
-              "送金直前に口座名義を再確認しない。",
+              "送金前に口座名義を見直さない。",
               "契約後の口座変更や誤って伝えられた情報が反映される可能性があるためです。",
               "送金直前に契約書・精算表・口座根拠を読み直し、名義と金額を再確認します。"
             ],
             [
-              "問題が見つかっても日程が決まっているからと先に支払う。",
+              "問題があっても先に支払う。",
               "日程遵守が確認より優先されてしまうためです。",
               "未確認条件があれば支払いを止め、解決・専門家確認・日程調整を先に検討します。"
             ]
@@ -4322,22 +4322,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "再確認",
           "items": [
             [
-              "契約前に確認した権利記録を決済前に再確認しない。",
+              "決済前に権利を再確認しない。",
               "契約後に新たな権利変動が発生する可能性があるためです。",
               "決済直前の最新権利状態を契約時基準と比較します。"
             ],
             [
-              "賃貸借の変化を決済前に更新しない。",
+              "決済前に賃貸借を更新しない。",
               "新規契約・退去・保証金変更が承継額を変える可能性があるためです。",
               "テナントごとの最新賃貸借・保証金資料を再集計します。"
             ],
             [
-              "特約を『やったと言われた』だけで完了扱いする。",
+              "「完了した」で確認を終える。",
               "約束の履行と実際の完了状態が異なる可能性があるためです。",
               "修理・明渡し・資料提供・権利抹消を契約上の完了基準と証拠で確認します。"
             ],
             [
-              "最終精算額に以前の計算表をそのまま使う。",
+              "古い精算表をそのまま使う。",
               "賃貸借・公共料金・返済額などが変わる可能性があるためです。",
               "決済当日に最新値で精算表を作り直し、相手方計算と照合します。"
             ]
@@ -4348,22 +4348,22 @@ export const CONTRACT_I18N_V035 = {
           "name": "引渡し",
           "items": [
             [
-              "鍵を受け取れば引継ぎ完了だと思う。",
+              "鍵だけで引継ぎ完了と思う。",
               "実際の運営には賃貸借・設備・管理資料が追加で必要だからです。",
               "鍵・入館・賃貸借・設備・管理・連絡先を引継ぎ一覧で確認します。"
             ],
             [
-              "テナント連絡先や管理情報を引き継がない。",
+              "テナント・管理情報を受け取らない。",
               "取得直後の賃料・問い合わせ・設備対応が途切れる可能性があるためです。",
               "テナント・管理会社・保守業者の連絡先と必要アカウントを引き継ぎます。"
             ],
             [
-              "設備の使用方法・保証・レンタル情報を受け取らない。",
+              "設備の運用資料を受け取らない。",
               "故障時に責任・契約関係・管理方法が分かりにくくなる可能性があるためです。",
               "設備ごとにマニュアル・保証書・レンタル契約・定期点検資料を確保します。"
             ],
             [
-              "取引後の届出・登記・税務対応を記憶に任せる。",
+              "取引後の手続きを記憶に任せる。",
               "法定期限や担当業務が抜ける可能性があるためです。",
               "後続業務は担当者・期限・完了証拠を含む別リストで管理します。"
             ]
@@ -4372,7 +4372,7 @@ export const CONTRACT_I18N_V035 = {
       ],
       "scan": {
         "eyebrow": "MISTAKE SCAN · ミスパターンスキャン",
-        "title": "行動の順序を変えることでミスを防ぐことができます。",
+        "title": "行動順序でミスを防ぎます。",
         "body": "各MISTAKEで何を省略したかを確認し、WHY IT HAPPENSで原因を理解した上で、BLOCK ITの行動を実際の取引手順に組み込みます。"
       },
       "failure": {
@@ -4390,15 +4390,15 @@ export const CONTRACT_I18N_V035 = {
           "条件充足",
           "支払い・引継ぎ"
         ],
-        "eyebrow": "FAILURE PATH · ミスが大きくなる順序",
-        "title": "小さな省略がつながると大きなミスになります。",
-        "goodLabel": "CONTROL PATH · ミスを防ぐ順序",
-        "badLabel": "FAILURE PATH · ミスが大きくなる順序",
+        "eyebrow": "FAILURE PATH · ミスの連鎖",
+        "title": "小さな省略が大きなミスになります。",
+        "goodLabel": "CONTROL PATH · 防ぐ順序",
+        "badLabel": "FAILURE PATH · ミスの連鎖",
         "note": "契約ミスを完全になくす方法はありません。しかし重要事実を推測せず、合意を書面化し、支払前に条件を再確認し、実際の引渡しまで完了する順序を繰り返すことで、管理可能なミスは大きく減らせます。"
       },
       "principle": {
         "eyebrow": "CORE PRINCIPLE · 核心原則",
-        "title": "大きなミスを防ぐ最善の方法は、小さな省略を繰り返さないことです。",
+        "title": "小さな省略を繰り返さない。",
         "body": "契約ミスを完全になくす方法はありません。しかし重要事実を推測せず、合意を書面化し、支払前に条件を再確認し、実際の引渡しまで完了する順序を繰り返すことで、管理可能なミスは大きく減らせます。"
       }
     }
