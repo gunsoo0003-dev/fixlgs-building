@@ -17,7 +17,7 @@ export async function generateMetadata({params}){
   const canonical=`${SITE_URL}/building/${locale}${path}`;
   const title=page?`${page.title} | FIX BUILDING`:copy.metaTitle;
   const description=page?page.hero:copy.metaDescription;
-  return {title,description,alternates:{canonical,languages:{'ko-KR':`${SITE_URL}/building/ko${path}`,'en':`${SITE_URL}/building/en${path}`,'ja-JP':`${SITE_URL}/building/ja${path}`}},robots:{index:true,follow:true},openGraph:{title,description,url:canonical,type:'article'}};
+  return {title,description,alternates:{canonical,languages:{'ko':`${SITE_URL}/building/ko${path}`,'en':`${SITE_URL}/building/en${path}`,'ja':`${SITE_URL}/building/ja${path}`,'x-default':`${SITE_URL}/building/ko${path}`}},robots:{index:true,follow:true},openGraph:{title,description,url:canonical,type:'article'}};
 }
 
 export default async function ContractRoute({params}){

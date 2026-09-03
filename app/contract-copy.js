@@ -100,8 +100,8 @@ const ko={
 };
 
 const en={...ko,
-  metaTitle:'Property Contract Guide | FIX BUILDING',metaDescription:'A step-by-step guide to parties, property scope, payment terms, contract clauses, pre-closing checks and closing for building purchases.',
-  eyebrow:'FIX BUILDING · 03 CONTRACT',title:'Property Contract',lead:'Learn what to verify, what to turn into contract conditions and what to recheck before closing after you decide to buy a building.',
+  metaTitle:'Building Contract Guide | Verification, Terms & Closing | FIX BUILDING',metaDescription:'Learn how to verify the contracting party, define the property scope, structure payment terms, document agreements, recheck changes, and close a building transaction.',
+  eyebrow:'FIX BUILDING · 03 CONTRACT',title:'Building Contract',lead:'Learn what to verify before signing, how to turn agreements into clear conditions, and what to check again before closing.',
   ctas:{flow:'View the full contract process',risk:'Fraud & transaction red flags',mistakes:'Common contract mistakes'},
   quick:{eyebrow:'QUICK ACCESS',title:'Choose a contract stage.',lead:'Follow the full process the first time, or jump directly to the stage you need to review again.'},
   tutorial:{eyebrow:'CONTRACT PRINCIPLES',title:'Read the structure before the wording.',lead:'Before memorizing individual checks, build a framework for how to read the transaction.',items:[
@@ -121,7 +121,7 @@ const en={...ko,
   }))
 };
 const ja={...ko,
-  metaTitle:'不動産契約ガイド | FIX BUILDING',metaDescription:'建物購入時の契約当事者、契約対象、支払条件、特約、決済前の再確認、所有権移転までを段階ごとに整理します。',
+  metaTitle:'建物契約ガイド | 契約確認・条件・決済 | FIX BUILDING',metaDescription:'建物契約で確認すべき相手、契約対象、支払条件、特約、決済前の再確認、引渡しまでの流れを整理します。',
   eyebrow:'FIX BUILDING · 03 CONTRACT',title:'建物契約',lead:'購入を決めた建物について、契約時に何を確認し、何を条件として残し、決済前に何を再確認するかを順番に整理します。',
   ctas:{flow:'契約の流れをすべて見る',risk:'詐欺・取引リスクの兆候',mistakes:'よくある契約ミス'},
   quick:{eyebrow:'QUICK ACCESS',title:'契約プロセスごとに確認する',lead:'初めてなら全体の流れを、見直したい項目がある場合は必要な段階を選択してください。'},

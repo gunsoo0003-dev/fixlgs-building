@@ -9,6 +9,7 @@ import {CONTRACT_0206_V013} from './contract-0206-v013';
 import {CONTRACT_CHECKLIST_V016} from './contract-checklist-v016';
 import {CONTRACT_REDFLAGS_V023} from './contract-redflags-v023';
 import {CONTRACT_MISTAKES_V025} from './contract-mistakes-v025';
+import {CONTRACT_I18N_V035} from './contract-i18n-v035';
 
 const BASE_PATH='/building';
 
@@ -71,9 +72,10 @@ function MiniIcon({type}){
 
 function ContractLock({locale}){
   const labels=['WHO','WHAT','MONEY','TERMS','VERIFY','CLOSE'];
+  const local={en:{WHO:'WHO · Contracting Party',WHAT:'WHAT · Contract Scope',MONEY:'MONEY · Payment',TERMS:'TERMS · Contract Terms',VERIFY:'VERIFY · Recheck',CLOSE:'CLOSE · Closing'},ja:{WHO:'WHO · 契約相手',WHAT:'WHAT · 契約対象',MONEY:'MONEY · 支払い',TERMS:'TERMS · 契約条件',VERIFY:'VERIFY · 再確認',CLOSE:'CLOSE · 決済・引渡し'}};
   return <div className="ct-lock" aria-label="Contract verification layers">
     <div className="ct-building"><span>FIX</span><b>BUILDING</b></div>
-    <div className="ct-layers">{labels.map((label,i)=><div className="ct-layer" style={{'--i':i}} key={label}><span>{String(i+1).padStart(2,'0')}</span><strong>{locale==='ko'?koLabel(label):label}</strong></div>)}</div>
+    <div className="ct-layers">{labels.map((label,i)=><div className="ct-layer" style={{'--i':i}} key={label}><span>{String(i+1).padStart(2,'0')}</span><strong>{locale==='ko'?koLabel(label):(local[locale]?.[label]||label)}</strong></div>)}</div>
   </div>;
 }
 
@@ -160,11 +162,12 @@ const CONTRACT_HOME_TUTORIAL_KO=[
   }
 ];
 
-function ContractTutorialSection({section,index}){
+function ContractTutorialSection({section,index,locale='ko'}){
+  const ui=locale==='en'?{cascade:'ONE ERROR CAN TRAVEL',prepare:'PREPARE',why:'WHY',result:'RESULT'}:locale==='ja'?{cascade:'ONE ERROR CAN TRAVEL · 1つの誤りが連鎖する流れ',prepare:'PREPARE · 準備',why:'WHY · 理由',result:'RESULT · 契約前の結果'}:{cascade:'ONE ERROR CAN TRAVEL · 하나의 오류가 이어지는 방식',prepare:'PREPARE · 준비',why:'WHY · 이유',result:'RESULT · 계약 전 결과'};
   return <article className={`ct-home-guide-section is-${section.type}`} data-ct-reveal>
     <div className="ct-home-guide-heading"><span>{String(index+1).padStart(2,'0')}</span><div><small>{section.eyebrow}</small><h3>{section.title}</h3><p>{section.intro}</p></div></div>
 
-    {section.points&&<div className="ct-home-guide-points">{section.points.map(([title,body],j)=>{const split=index===0&&j===0?body.split(' 수익성이나 입지가'):null;return <div key={title}><span>{String(j+1).padStart(2,'0')}</span><div><h4>{title}</h4><p>{split?<>{split[0]}<br className="ct-pc-break"/>수익성이나 입지가{split[1]}</>:body}</p></div></div>})}</div>}
+    {section.points&&<div className="ct-home-guide-points">{section.points.map(([title,body],j)=>{const split=locale==='ko'&&index===0&&j===0?body.split(' 수익성이나 입지가'):null;return <div key={title}><span>{String(j+1).padStart(2,'0')}</span><div><h4>{title}</h4><p>{split?<>{split[0]}<br className="ct-pc-break"/>수익성이나 입지가{split[1]}</>:body}</p></div></div>})}</div>}
 
     {section.flow&&<div className="ct-home-process" aria-label="계약 기본 흐름">{section.flow.map(([title,body],i)=><div key={title}><span>{String(i+1).padStart(2,'0')}</span><strong>{title}</strong><p>{body}</p></div>)}</div>}
 
@@ -172,11 +175,11 @@ function ContractTutorialSection({section,index}){
 
     {section.axes&&<div className="ct-home-axes">{section.axes.map(([key,title,question,body,connection],i)=><article key={key}><span>{String(i+1).padStart(2,'0')}</span><div className="ct-home-axis-copy"><small>{key}</small><h4>{title}</h4><strong>{question}</strong><p>{body}</p><em>{connection}</em></div></article>)}</div>}
 
-    {section.cascade&&<div className="ct-home-cascade"><small>ONE ERROR CAN TRAVEL · 하나의 오류가 이어지는 방식</small><div>{section.cascade.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong>{i<section.cascade.length-1&&<b>→</b>}</div>)}</div></div>}
+    {section.cascade&&<div className="ct-home-cascade"><small>{ui.cascade}</small><div>{section.cascade.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong>{i<section.cascade.length-1&&<b>→</b>}</div>)}</div></div>}
 
     {section.comparisons&&<div className="ct-home-thinking">{section.comparisons.map(([before,after,body],i)=><article key={before}><span>{String(i+1).padStart(2,'0')}</span><div className="ct-home-thinking-shift"><small>BEFORE</small><strong>{before}</strong><b>→</b><small>AFTER</small><strong>{after}</strong></div><p>{body}</p></article>)}</div>}
 
-    {section.preparations&&<div className="ct-home-preparations">{section.preparations.map(([label,title,items,why,result],i)=><article key={label}><span>{String(i+1).padStart(2,'0')}</span><div><small>{label}</small><h4>{title}</h4><div className="ct-home-prep-body"><div><b>PREPARE · 준비</b><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></div><div><b>WHY · 이유</b><p>{why}</p></div><div><b>RESULT · 계약 전 결과</b><div className="ct-home-prep-tags">{result.map(x=><em key={x}>{x}</em>)}</div></div></div></div></article>)}</div>}
+    {section.preparations&&<div className="ct-home-preparations">{section.preparations.map(([label,title,items,why,result],i)=><article key={label}><span>{String(i+1).padStart(2,'0')}</span><div><small>{label}</small><h4>{title}</h4><div className="ct-home-prep-body"><div><b>{ui.prepare}</b><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></div><div><b>{ui.why}</b><p>{why}</p></div><div><b>{ui.result}</b><div className="ct-home-prep-tags">{result.map(x=><em key={x}>{x}</em>)}</div></div></div></div></article>)}</div>}
 
     {section.questions&&<div className="ct-home-questions">{section.questions.map(([question,body],i)=><article key={question}><span>{String(i+1).padStart(2,'0')}</span><div><h4>{question}</h4><p>{body}</p></div></article>)}</div>}
 
@@ -221,30 +224,28 @@ function OtherLinks({copy,current,locale}){
 }
 
 function DeepDive({page,locale}){
-  if(locale!=='ko') return null;
-  const deep=CONTRACT_KO_DEEP[page.slug];
+  const deep=locale==='ko'?CONTRACT_KO_DEEP[page.slug]:CONTRACT_I18N_V035.advanced?.[locale]?.[page.slug]?.deep;
   if(!deep) return null;
   return <section className="ct-deep" data-ct-reveal>
-    <header className="ct-deep-head"><small>{koLabel('FIELD GUIDE')}</small><h2>실전에서 한 단계 더 확인하기</h2><p>{deep.intro}</p></header>
+    <header className="ct-deep-head"><small>{locale==='ko'?koLabel('FIELD GUIDE'):'FIELD GUIDE'}</small><h2>{locale==='en'?'Go one level deeper in practice':locale==='ja'?'実務でもう一段深く確認する':'실전에서 한 단계 더 확인하기'}</h2><p>{deep.intro}</p></header>
     <div className="ct-deep-cards">{deep.cards.map((card,i)=><article key={card.title}><span>{String(i+1).padStart(2,'0')}</span><h3>{card.title}</h3><p>{card.body}</p><ul>{card.points.map(point=><li key={point}>{point}</li>)}</ul></article>)}</div>
-    <div className="ct-field-questions"><div><small>{koLabel('PRACTICAL QUESTIONS')}</small><h3>{deep.fieldTitle}</h3></div><ol>{deep.fieldQuestions.map((q,i)=><li key={q}><span>{String(i+1).padStart(2,'0')}</span><p>{q}</p></li>)}</ol></div>
-    <aside className="ct-source-note"><small>{koLabel('REFERENCE NOTE')}</small><p>{deep.sourceNote}</p></aside>
+    <div className="ct-field-questions"><div><small>{locale==='ko'?koLabel('PRACTICAL QUESTIONS'):'PRACTICAL QUESTIONS'}</small><h3>{deep.fieldTitle}</h3></div><ol>{deep.fieldQuestions.map((q,i)=><li key={q}><span>{String(i+1).padStart(2,'0')}</span><p>{q}</p></li>)}</ol></div>
+    <aside className="ct-source-note"><small>{locale==='ko'?koLabel('REFERENCE NOTE'):'REFERENCE NOTE'}</small><p>{deep.sourceNote}</p></aside>
   </section>;
 }
 
 
 function CompleteGuide({page,locale}){
-  if(locale!=='ko') return null;
-  const data=CONTRACT_KO_COMPLETE[page.slug];
+  const data=locale==='ko'?CONTRACT_KO_COMPLETE[page.slug]:CONTRACT_I18N_V035.advanced?.[locale]?.[page.slug]?.complete;
   if(!data) return null;
   return <section className="ct-complete" data-ct-reveal>
-    <header className="ct-complete-head"><small>{koLabel('COMPLETE PRACTICE GUIDE')}</small><h2>{data.title}</h2><p>{data.overview}</p></header>
+    <header className="ct-complete-head"><small>{locale==='ko'?koLabel('COMPLETE PRACTICE GUIDE'):'COMPLETE PRACTICE GUIDE'}</small><h2>{data.title}</h2><p>{data.overview}</p></header>
     <div className="ct-complete-checks">{data.checks.map((item,i)=><article key={item[0]}>
       <div className="ct-complete-no">{String(i+1).padStart(2,'0')}</div><div><h3>{item[0]}</h3><p>{item[1]}</p><ul>{item[2].map(x=><li key={x}>{x}</li>)}</ul></div>
     </article>)}</div>
-    <section className="ct-scenarios"><header><small>{koLabel('REAL-WORLD SCENARIOS')}</small><h3>상황으로 다시 확인하기</h3></header><div>{data.scenarios.map((x,i)=><article key={x[0]}><span>{String(i+1).padStart(2,'0')}</span><h4>{x[0]}</h4><p>{x[1]}</p><dl><dt>주의할 점</dt><dd>{x[2]}</dd><dt>확인 방향</dt><dd>{x[3]}</dd></dl></article>)}</div></section>
-    <section className="ct-final-questions"><div><small>{koLabel('BEFORE YOU MOVE ON')}</small><h3>다음 단계로 넘어가기 전 질문</h3></div><ol>{data.questions.map((q,i)=><li key={q}><span>{String(i+1).padStart(2,'0')}</span><p>{q}</p></li>)}</ol></section>
-    {data.patterns&&<section className="ct-patterns"><header><small>{koLabel('CLAUSE PATTERNS')}</small><h3>특약은 이런 구조로 생각합니다</h3><p>아래는 그대로 복사하는 법률 문구가 아니라 조건을 설계하는 사고틀입니다.</p></header><div>{data.patterns.map(x=><article key={x[0]}><h4>{x[0]}</h4><p>{x[1]}</p><strong>{x[2]}</strong></article>)}</div></section>}
+    <section className="ct-scenarios"><header><small>{locale==='ko'?koLabel('REAL-WORLD SCENARIOS'):'REAL-WORLD SCENARIOS'}</small><h3>{locale==='en'?'Recheck through real-world scenarios':locale==='ja'?'実際の状況でもう一度確認する':'상황으로 다시 확인하기'}</h3></header><div>{data.scenarios.map((x,i)=><article key={x[0]}><span>{String(i+1).padStart(2,'0')}</span><h4>{x[0]}</h4><p>{x[1]}</p><dl><dt>{locale==='en'?'RISK':locale==='ja'?'注意':'주의할 점'}</dt><dd>{x[2]}</dd><dt>{locale==='en'?'RESPONSE':locale==='ja'?'対応':'확인 방향'}</dt><dd>{x[3]}</dd></dl></article>)}</div></section>
+    <section className="ct-final-questions"><div><small>{locale==='ko'?koLabel('BEFORE YOU MOVE ON'):'BEFORE YOU MOVE ON'}</small><h3>{locale==='en'?'Questions before you move on':locale==='ja'?'次の段階へ進む前の質問':'다음 단계로 넘어가기 전 질문'}</h3></div><ol>{data.questions.map((q,i)=><li key={q}><span>{String(i+1).padStart(2,'0')}</span><p>{q}</p></li>)}</ol></section>
+    {data.patterns&&<section className="ct-patterns"><header><small>{locale==='ko'?koLabel('CLAUSE PATTERNS'):'CLAUSE PATTERNS'}</small><h3>{locale==='en'?'Think about special conditions in this structure':locale==='ja'?'特約はこの構造で考えます':'특약은 이런 구조로 생각합니다'}</h3><p>{locale==='en'?'These are thinking patterns for designing conditions, not legal wording to copy verbatim.':locale==='ja'?'そのままコピーする法律文ではなく、条件を設計するための考え方です。':'아래는 그대로 복사하는 법률 문구가 아니라 조건을 설계하는 사고틀입니다.'}</p></header><div>{data.patterns.map(x=><article key={x[0]}><h4>{x[0]}</h4><p>{x[1]}</p><strong>{x[2]}</strong></article>)}</div></section>}
     {data.signals&&<section className="ct-signal-list"><header><small>{koLabel('10 RED FLAGS')}</small><h3>한 번 더 확인할 거래 신호</h3></header><ol>{data.signals.map((x,i)=><li key={x}><span>{String(i+1).padStart(2,'0')}</span><p>{x}</p></li>)}</ol></section>}
     {data.mistakes&&<section className="ct-signal-list"><header><small>{koLabel('15 COMMON MISTAKES')}</small><h3>건물 계약에서 반복되는 작은 생략</h3></header><ol>{data.mistakes.map((x,i)=><li key={x}><span>{String(i+1).padStart(2,'0')}</span><p>{x}</p></li>)}</ol></section>}
     {data.essential&&<section className="ct-full-checklist"><header><small>{koLabel('ESSENTIAL 18')}</small><h3>필수 체크리스트 전체 항목</h3><p>필수 항목을 빠르게 훑고, 상세 항목은 단계별로 다시 확인할 수 있도록 구성했습니다.</p></header><ol>{data.essential.map((x,i)=><li key={x}><span>{String(i+1).padStart(2,'0')}</span><p>{x}</p></li>)}</ol></section>}
@@ -331,7 +332,8 @@ function Journey0206({copy,page,locale}){
 
 
 function Checklist07({copy,page,locale}){
-  const d=CONTRACT_CHECKLIST_V016;
+  const d=locale==='ko'?CONTRACT_CHECKLIST_V016:CONTRACT_I18N_V035.checklist?.[locale];
+  const ui=locale==='en'?{badge:'ESSENTIAL',action:'ACTION IF NOT MET',usageFlow:'Recommended sequence',doc1Title:'Contract Essential Checklist',doc1Lead:'18 core checks for deciding whether the transaction should proceed.',doc2Title:'Detailed Contract Checklist',doc2Lead:'Includes all 18 ESSENTIAL checks plus detailed verification for WHO → WHAT → MONEY → TERMS → RECHECK → CLOSE.',continueLabel:'Continued',essentialSubtitle:'Use this version for a fast decision and a final core recheck before closing.',detailSubtitle:'Review core risks and transaction-specific variables in one document.',transitionTitle:'DETAIL already includes all 18 ESSENTIAL checks.',transitionBody:'Use ESSENTIAL for a fast decision and DETAIL for a precise transaction review. You may start directly with DETAIL.',principle:'CORE PRINCIPLE'}:locale==='ja'?{badge:'必須',action:'未達時の対応',usageFlow:'推奨使用順序',doc1Title:'契約必須チェックリスト',doc1Lead:'取引を進めるか判断するための核心18項目です。',doc2Title:'契約詳細チェックリスト',doc2Lead:'ESSENTIAL 18項目をすべて含み、WHO → WHAT → MONEY → TERMS → RECHECK → CLOSEの詳細確認を追加します。',continueLabel:'続き',essentialSubtitle:'迅速判断と決済直前の核心再確認に使用します。',detailSubtitle:'必須核心と取引別の詳細変数を一つの文書で確認します。',transitionTitle:'DETAILには必須18項目もすべて含まれています。',transitionBody:'迅速判断はESSENTIAL、精密確認はDETAILを使います。最初からDETAILで始めても構いません。',principle:'CORE PRINCIPLE · 核心原則'}:{badge:'필수',action:'미충족 시 실행',usageFlow:'추천 사용 순서',doc1Title:'계약 필수 체크리스트',doc1Lead:'거래 진행 여부를 판단하는 핵심 18항목입니다. A4 한 장의 사용 가능한 영역을 최대한 채우되, 하나의 체크항목이 페이지 사이에서 잘리지 않도록 문서 단위로 배치합니다.',doc2Title:'계약 상세 체크리스트',doc2Lead:'ESSENTIAL 18개를 모두 포함하고, WHO → WHAT → MONEY → TERMS → RECHECK → CLOSE별 세부 검증항목을 추가한 정밀 점검 문서입니다. 상세판 안의 필수항목은 별도 표식으로 다시 확인할 수 있습니다.',continueLabel:'계속',essentialSubtitle:'필수판은 빠른 거래 판단과 잔금 직전 핵심 재확인에 사용합니다.',detailSubtitle:'필수 핵심과 거래별 세부변수를 한 문서에서 함께 확인합니다.',transitionTitle:'상세판 하나에 필수 18개까지 모두 담았습니다.',transitionBody:'빠르게 판단할 때는 ESSENTIAL, 실제 계약을 정밀하게 검토할 때는 DETAIL을 사용합니다. DETAIL은 필수 18개를 모두 포함한 확장판이므로 처음부터 상세판으로 바로 시작해도 됩니다.',principle:'CORE PRINCIPLE · 핵심 원칙'};
   const essentialMap={
     '01 WHO · 계약 상대 / 권한':[0,1,2],
     '02 WHAT · 계약 대상 / 현황':[3,4,5],
@@ -343,12 +345,12 @@ function Checklist07({copy,page,locale}){
   const chunkPages=(items,size=9)=>Array.from({length:Math.ceil(items.length/size)},(_,i)=>items.slice(i*size,(i+1)*size));
   const essentialItems=d.essential.map((item,index)=>({...item,index,isEssential:true,group:'ESSENTIAL'}));
   const essentialPages=chunkPages(essentialItems,9);
-  const detailItems=Object.entries(d.detailed).flatMap(([group,items],groupIndex)=>[
+  const detailItems=d.detailSequence?d.detailSequence.map((item,index)=>({...item,index,group:item.group||'DETAIL'})):Object.entries(d.detailed).flatMap(([group,items],groupIndex)=>[
     ...(essentialMap[group]||[]).map(index=>({...d.essential[index],index,isEssential:true,group,groupIndex})),
     ...items.map((item,detailIndex)=>({...item,isEssential:false,group,groupIndex,detailIndex}))
   ]);
   const detailPages=chunkPages(detailItems,9);
-  const CheckRow=({item,index,showEssential=false})=><li className={`ct7-check-row${item.isEssential?' is-essential':''}`}><span className="ct7-box" aria-hidden="true"/><span className="ct7-index">{String(index+1).padStart(2,'0')}</span><div className="ct7-row-copy"><div className="ct7-question-line"><h3>{item.q}</h3>{showEssential&&item.isEssential&&<b className="ct7-essential-badge">필수</b>}</div><p><strong>미충족 시 실행</strong>{item.a}</p></div></li>;
+  const CheckRow=({item,index,showEssential=false})=><li className={`ct7-check-row${item.isEssential?' is-essential':''}`}><span className="ct7-box" aria-hidden="true"/><span className="ct7-index">{String(index+1).padStart(2,'0')}</span><div className="ct7-row-copy"><div className="ct7-question-line"><h3>{item.q}</h3>{showEssential&&item.isEssential&&<b className="ct7-essential-badge">{d.labels?.badge||ui.badge}</b>}</div><p><strong>{d.labels?.action||ui.action}</strong>{item.a}</p></div></li>;
   const SheetHeader=({documentNo,kicker,title,subtitle,pageNo,totalPages})=><header className="ct7-sheet-head"><div className="ct7-sheet-brand"><strong>FIX BUILDING</strong><span>CONTRACT CONTROL DOCUMENT</span></div><div className="ct7-sheet-code"><span>DOCUMENT {documentNo}</span><b>PAGE {String(pageNo).padStart(2,'0')} / {String(totalPages).padStart(2,'0')}</b></div><div className="ct7-sheet-title"><small>{kicker}</small><h2>{title}</h2>{subtitle&&<p>{subtitle}</p>}</div></header>;
   const SheetFooter=({documentNo,pageNo,totalPages})=><footer className="ct7-sheet-foot"><span>FIX BUILDING · CONTRACT CHECKLIST</span><span>DOCUMENT {documentNo}</span><b>{String(pageNo).padStart(2,'0')} / {String(totalPages).padStart(2,'0')}</b></footer>;
   let detailRunningIndex=0;
@@ -359,15 +361,15 @@ function Checklist07({copy,page,locale}){
 
     <section className="ct7-basis" data-ct-reveal><div className="ct-shell"><header><small>{d.basis.eyebrow}</small><h2>{d.basis.title}</h2></header><div className="ct7-basis-stack"><article><small>{d.basis.essential.label}</small><h3>{d.basis.essential.title}</h3><p>{d.basis.essential.body}</p><ul>{d.basis.essential.reasons.map(x=><li key={x}>{x}</li>)}</ul></article><article><small>{d.basis.detailed.label}</small><h3>{d.basis.detailed.title}</h3><p>{d.basis.detailed.body}</p><ul>{d.basis.detailed.reasons.map(x=><li key={x}>{x}</li>)}</ul></article></div></div></section>
 
-    <section className="ct7-usage" data-ct-reveal><div className="ct-shell"><header><small>{d.usage.eyebrow}</small><h2>{d.usage.title}</h2></header><div className="ct7-usage-modes">{d.usage.modes.map(([title,label,body])=><article key={title}><small>{label}</small><h3>{title}</h3><p>{body}</p></article>)}</div><h3 className="ct7-usage-flow-title">추천 사용 순서</h3><ol>{d.usage.steps.map(([no,time,body])=><li key={no}><span>{no}</span><strong>{time}</strong><p>{body}</p></li>)}</ol><blockquote>{d.usage.note}</blockquote><figure className="ct7-editorial-visual ct7-documents-image"><img src={`${BASE_PATH}/images/contract/building-contract-07-essential-detail.webp`} alt="필수 체크리스트와 상세 체크리스트 두 종류의 고급 A4 계약 점검 문서를 함께 사용하는 장면" loading="lazy" decoding="async"/></figure></div></section>
+    <section className="ct7-usage" data-ct-reveal><div className="ct-shell"><header><small>{d.usage.eyebrow}</small><h2>{d.usage.title}</h2></header><div className="ct7-usage-modes">{d.usage.modes.map(([title,label,body])=><article key={title}><small>{label}</small><h3>{title}</h3><p>{body}</p></article>)}</div><h3 className="ct7-usage-flow-title">{ui.usageFlow}</h3><ol>{d.usage.steps.map(([no,time,body])=><li key={no}><span>{no}</span><strong>{time}</strong><p>{body}</p></li>)}</ol><blockquote>{d.usage.note}</blockquote><figure className="ct7-editorial-visual ct7-documents-image"><img src={`${BASE_PATH}/images/contract/building-contract-07-essential-detail.webp`} alt="필수 체크리스트와 상세 체크리스트 두 종류의 고급 A4 계약 점검 문서를 함께 사용하는 장면" loading="lazy" decoding="async"/></figure></div></section>
 
-    <section className="ct7-document-zone ct7-essential-document" data-ct-reveal><div className="ct-shell"><div className="ct7-document-intro"><small>DOCUMENT 01 · ESSENTIAL CHECKLIST</small><h2>계약 필수 체크리스트</h2><p>거래 진행 여부를 판단하는 핵심 18항목입니다. A4 한 장의 사용 가능한 영역을 최대한 채우되, 하나의 체크항목이 페이지 사이에서 잘리지 않도록 문서 단위로 배치합니다.</p><div><span>18 CHECKS</span><span>{essentialPages.length} A4 PAGES</span></div></div><div className="ct7-paper-stack">{essentialPages.map((items,pageIndex)=><article className="ct7-sheet" key={`essential-${pageIndex}`}><SheetHeader documentNo="01" kicker="ESSENTIAL CHECKLIST · 필수 체크리스트" title={pageIndex===0?'거래 진행 전에 반드시 확인할 핵심항목':'필수 체크리스트 · 계속'} subtitle={pageIndex===0?'필수판은 빠른 거래 판단과 잔금 직전 핵심 재확인에 사용합니다.':null} pageNo={pageIndex+1} totalPages={essentialPages.length}/><ol>{items.map(item=><CheckRow item={item} index={item.index} key={item.q}/>)}</ol><SheetFooter documentNo="01" pageNo={pageIndex+1} totalPages={essentialPages.length}/></article>)}</div></div></section>
+    <section className="ct7-document-zone ct7-essential-document" data-ct-reveal><div className="ct-shell"><div className="ct7-document-intro"><small>DOCUMENT 01 · ESSENTIAL CHECKLIST</small><h2>{ui.doc1Title}</h2><p>{ui.doc1Lead}</p><div><span>18 CHECKS</span><span>{essentialPages.length} A4 PAGES</span></div></div><div className="ct7-paper-stack">{essentialPages.map((items,pageIndex)=><article className="ct7-sheet" key={`essential-${pageIndex}`}><SheetHeader documentNo="01" kicker="ESSENTIAL CHECKLIST · 필수 체크리스트" title={pageIndex===0?(d.labels?.core||ui.doc1Title):`${ui.doc1Title} · ${ui.continueLabel}`} subtitle={pageIndex===0?ui.essentialSubtitle:null} pageNo={pageIndex+1} totalPages={essentialPages.length}/><ol>{items.map(item=><CheckRow item={item} index={item.index} key={item.q}/>)}</ol><SheetFooter documentNo="01" pageNo={pageIndex+1} totalPages={essentialPages.length}/></article>)}</div></div></section>
 
-    <section className="ct7-transition"><div className="ct-shell"><small>DOCUMENT 02 · DETAIL CHECKLIST</small><h2>상세판 하나에<br/>필수 18개까지 모두 담았습니다.</h2><p>빠르게 판단할 때는 ESSENTIAL, 실제 계약을 정밀하게 검토할 때는 DETAIL을 사용합니다. DETAIL은 필수 18개를 모두 포함한 확장판이므로 처음부터 상세판으로 바로 시작해도 됩니다.</p></div></section>
+    <section className="ct7-transition"><div className="ct-shell"><small>DOCUMENT 02 · DETAIL CHECKLIST</small><h2>{ui.transitionTitle}</h2><p>{ui.transitionBody}</p></div></section>
 
-    <section className="ct7-document-zone ct7-detail-document" data-ct-reveal><div className="ct-shell"><div className="ct7-document-intro"><small>DOCUMENT 02 · DETAIL CHECKLIST</small><h2>계약 상세 체크리스트</h2><p>ESSENTIAL 18개를 모두 포함하고, WHO → WHAT → MONEY → TERMS → RECHECK → CLOSE별 세부 검증항목을 추가한 정밀 점검 문서입니다. 상세판 안의 필수항목은 별도 표식으로 다시 확인할 수 있습니다.</p><div><span>{detailItems.length} CHECKS</span><span>ESSENTIAL 18 INCLUDED</span><span>{detailPages.length} A4 PAGES</span></div></div><div className="ct7-paper-stack">{detailPages.map((items,pageIndex)=>{const startIndex=detailRunningIndex;detailRunningIndex+=items.length;const groups=[...new Set(items.map(item=>item.group.replace(/^\d+\s+/, '').split(' · ')[0]))].join(' / ');return <article className="ct7-sheet ct7-detail-sheet" key={`detail-${pageIndex}`}><SheetHeader documentNo="02" kicker={`DETAIL CHECKLIST · ${groups}`} title={pageIndex===0?'계약 상세 체크리스트':'상세 체크리스트 · 계속'} subtitle={pageIndex===0?'필수 핵심과 거래별 세부변수를 한 문서에서 함께 확인합니다.':null} pageNo={pageIndex+1} totalPages={detailPages.length}/><ol>{items.map((item,i)=><CheckRow item={item} index={startIndex+i} showEssential key={`${item.group}-${item.q}`}/>)}</ol><SheetFooter documentNo="02" pageNo={pageIndex+1} totalPages={detailPages.length}/></article>})}</div></div></section>
+    <section className="ct7-document-zone ct7-detail-document" data-ct-reveal><div className="ct-shell"><div className="ct7-document-intro"><small>DOCUMENT 02 · DETAIL CHECKLIST</small><h2>{d.labels?.detailTitle||ui.doc2Title}</h2><p>{ui.doc2Lead}</p><div><span>{detailItems.length} CHECKS</span><span>ESSENTIAL 18 INCLUDED</span><span>{detailPages.length} A4 PAGES</span></div></div><div className="ct7-paper-stack">{detailPages.map((items,pageIndex)=>{const startIndex=detailRunningIndex;detailRunningIndex+=items.length;const groups=[...new Set(items.map(item=>item.group.replace(/^\d+\s+/, '').split(' · ')[0]))].join(' / ');return <article className="ct7-sheet ct7-detail-sheet" key={`detail-${pageIndex}`}><SheetHeader documentNo="02" kicker={`DETAIL CHECKLIST · ${groups}`} title={pageIndex===0?(d.labels?.detailTitle||ui.doc2Title):`${ui.doc2Title} · ${ui.continueLabel}`} subtitle={pageIndex===0?ui.detailSubtitle:null} pageNo={pageIndex+1} totalPages={detailPages.length}/><ol>{items.map((item,i)=><CheckRow item={item} index={startIndex+i} showEssential key={`${item.group}-${item.q}`}/>)}</ol><SheetFooter documentNo="02" pageNo={pageIndex+1} totalPages={detailPages.length}/></article>})}</div></div></section>
 
-    <section className="ct7-principle"><div className="ct-shell"><small>CORE PRINCIPLE · 핵심 원칙</small><h2>{d.principle.split('\n').map(x=><span key={x}>{x}</span>)}</h2></div></section>
+    <section className="ct7-principle"><div className="ct-shell"><small>{ui.principle}</small><h2>{d.principle.split('\n').map(x=><span key={x}>{x}</span>)}</h2></div></section>
     <p className="ct-notice ct-shell">{copy.notice}</p>
     <OtherLinks copy={copy} current={page.slug} locale={locale}/>
   </main>;
@@ -375,13 +377,13 @@ function Checklist07({copy,page,locale}){
 
 
 function RedFlags08({copy,page,locale}){
-  const d=CONTRACT_REDFLAGS_V023;
+  const d=locale==='ko'?CONTRACT_REDFLAGS_V023:CONTRACT_I18N_V035.redflags?.[locale];
   return <main className="contract-page ct8-page">
     <section className="ct8-hero"><div className="ct-shell"><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{d.hero.eyebrow}</small><h1>{d.hero.title.split('\n').map(x=><span key={x}>{x}</span>)}</h1><p>{d.hero.lead}</p></div></section>
 
     <section className="ct8-content" data-ct-reveal><div className="ct-shell"><header className="ct8-content-intro"><small>{d.content.eyebrow}</small><h2>{d.content.title}</h2><p>{d.content.intro}</p></header><figure className="ct89-editorial-image"><img src={`${BASE_PATH}/images/contract/building-contract-08-red-flag-scan.webp`} alt="부동산 계약 자료의 신원, 권한, 서류, 지급 흐름을 연결해 위험신호를 검토하는 장면" loading="lazy" decoding="async"/></figure><div className="ct8-editorial-stack">{d.content.sections.map((section)=><article className="ct8-editorial" key={section.no}><div className="ct8-editorial-meta"><span>{section.no}</span><small>{section.label}</small></div><h3>{section.title}</h3><div className="ct8-editorial-copy">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div><div className="ct8-editorial-flow">{section.flow.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong></div>)}</div></article>)}</div><figure className="ct89-editorial-image ct89-editorial-image-end"><img src={`${BASE_PATH}/images/contract/building-contract-08-proceed-or-hold.webp`} alt="당사자, 서류, 권한, 최신 권리상태, 계약조건을 검증하며 거래 진행 또는 보류를 판단하는 흐름" loading="lazy" decoding="async"/></figure></div></section>
 
-    <section className="ct8-scan" data-ct-reveal><div className="ct-shell"><header className="ct8-scan-intro"><small>RED FLAG SCAN · 위험신호 스캔</small><h2>이상신호가 보이면 바로 검증할 지점을 찾습니다.</h2><p>이 영역은 체크박스 문서가 아닙니다. 각 SIGNAL에서 무엇이 이상한지 읽고, WHY와 VERIFY NOW를 따라 실제 거래구조를 다시 확인합니다.</p></header><div className="ct8-scan-groups">{d.groups.map((group,gIndex)=><section className="ct8-scan-group" key={group.code}><header><span>{String(gIndex+1).padStart(2,'0')}</span><div><small>{group.code}</small><h3>{group.ko}</h3></div></header><ol>{group.items.map(([signal,why,action],i)=><li key={signal}><span className="ct8-signal-no">SIGNAL {String(i+1).padStart(2,'0')}</span><h4>{signal}</h4><div className="ct8-signal-detail"><p><strong>WHY</strong>{why}</p><p><strong>VERIFY NOW</strong>{action}</p></div></li>)}</ol></section>)}</div><section className="ct8-stop"><small>{d.stop.eyebrow}</small><h2>{d.stop.title}</h2><div>{d.stop.levels.map(([title,body],i)=><article key={title}><span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p className="ct8-stop-note">{d.stop.note}</p></section></div></section>
+    <section className="ct8-scan" data-ct-reveal><div className="ct-shell"><header className="ct8-scan-intro"><small>{d.scan?.eyebrow||'RED FLAG SCAN · 위험신호 스캔'}</small><h2>{d.scan?.title||'이상신호가 보이면 바로 검증할 지점을 찾습니다.'}</h2><p>{d.scan?.body||'이 영역은 체크박스 문서가 아닙니다. 각 SIGNAL에서 무엇이 이상한지 읽고, WHY와 VERIFY NOW를 따라 실제 거래구조를 다시 확인합니다.'}</p></header><div className="ct8-scan-groups">{d.groups.map((group,gIndex)=><section className="ct8-scan-group" key={group.code}><header><span>{String(gIndex+1).padStart(2,'0')}</span><div><small>{group.code}</small><h3>{group.name||group.ko}</h3></div></header><ol>{group.items.map(([signal,why,action],i)=><li key={signal}><span className="ct8-signal-no">SIGNAL {String(i+1).padStart(2,'0')}</span><h4>{signal}</h4><div className="ct8-signal-detail"><p><strong>WHY</strong>{why}</p><p><strong>VERIFY NOW</strong>{action}</p></div></li>)}</ol></section>)}</div><section className="ct8-stop"><small>{d.stop.eyebrow}</small><h2>{d.stop.title}</h2><div>{d.stop.levels.map(([title,body],i)=><article key={title}><span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p className="ct8-stop-note">{d.stop.note}</p></section></div></section>
     <p className="ct-notice ct-shell">{copy.notice}</p>
     <OtherLinks copy={copy} current={page.slug} locale={locale}/>
   </main>;
@@ -389,16 +391,16 @@ function RedFlags08({copy,page,locale}){
 
 
 function Mistakes09({copy,page,locale}){
-  const d=CONTRACT_MISTAKES_V025;
+  const d=locale==='ko'?CONTRACT_MISTAKES_V025:CONTRACT_I18N_V035.mistakes?.[locale];
   return <main className="contract-page ct8-page ct9-page">
     <section className="ct8-hero"><div className="ct-shell"><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{d.hero.eyebrow}</small><h1>{d.hero.title.split('\n').map(x=><span key={x}>{x}</span>)}</h1><p>{d.hero.lead}</p></div></section>
 
     <section className="ct8-content" data-ct-reveal><div className="ct-shell"><header className="ct8-content-intro"><small>{d.content.eyebrow}</small><h2>{d.content.title}</h2><p>{d.content.intro}</p></header><figure className="ct89-editorial-image"><img src={`${BASE_PATH}/images/contract/building-contract-09-skipped-checks.webp`} alt="부동산 계약 과정에서 구두합의, 문서대조, 재확인 등 중요한 절차가 생략되는 실수 흐름" loading="lazy" decoding="async"/></figure><div className="ct8-editorial-stack">{d.content.sections.map((section)=><article className="ct8-editorial" key={section.no}><div className="ct8-editorial-meta"><span>{section.no}</span><small>{section.label}</small></div><h3>{section.title}</h3><div className="ct8-editorial-copy">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div><div className="ct8-editorial-flow">{section.flow.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong></div>)}</div></article>)}</div></div></section>
 
-    <section className="ct8-scan ct9-scan-unified" data-ct-reveal><div className="ct-shell"><header className="ct8-scan-intro"><small>MISTAKE SCAN · 계약 실수 점검</small><h2>내가 반복하는 생략부터 찾아냅니다.</h2><p>{d.content.transition.body}</p></header><div className="ct8-scan-groups">{d.groups.map((group,gIndex)=><section className="ct8-scan-group" key={group.code}><header><span>{String(gIndex+1).padStart(2,'0')}</span><div><small>{group.code}</small><h3>{group.ko}</h3></div></header><ol>{group.items.map(([mistake,why,block],i)=><li key={mistake}><span className="ct8-signal-no">MISTAKE {String(i+1).padStart(2,'0')}</span><h4>{mistake}</h4><div className="ct8-signal-detail"><p><strong>WHY IT HAPPENS · 왜 생기나</strong>{why}</p><p><strong>BLOCK IT · 이렇게 차단</strong>{block}</p></div></li>)}</ol></section>)}</div><figure className="ct89-editorial-image ct89-editorial-image-scan"><img src={`${BASE_PATH}/images/contract/building-contract-09-failure-control-path.webp`} alt="같은 부동산 거래에서 확인 생략의 실수 경로와 검증 중심의 통제 경로를 비교한 장면" loading="lazy" decoding="async"/></figure>
+    <section className="ct8-scan ct9-scan-unified" data-ct-reveal><div className="ct-shell"><header className="ct8-scan-intro"><small>{d.scan?.eyebrow||'MISTAKE SCAN · 계약 실수 점검'}</small><h2>{d.scan?.title||'내가 반복하는 생략부터 찾아냅니다.'}</h2><p>{d.scan?.body||d.content.transition?.body}</p></header><div className="ct8-scan-groups">{d.groups.map((group,gIndex)=><section className="ct8-scan-group" key={group.code}><header><span>{String(gIndex+1).padStart(2,'0')}</span><div><small>{group.code}</small><h3>{group.name||group.ko}</h3></div></header><ol>{group.items.map(([mistake,why,block],i)=><li key={mistake}><span className="ct8-signal-no">MISTAKE {String(i+1).padStart(2,'0')}</span><h4>{mistake}</h4><div className="ct8-signal-detail"><p><strong>{locale==='ko'?'WHY IT HAPPENS · 왜 생기나':'WHY IT HAPPENS'}</strong>{why}</p><p><strong>{locale==='ko'?'BLOCK IT · 이렇게 차단':'BLOCK IT'}</strong>{block}</p></div></li>)}</ol></section>)}</div><figure className="ct89-editorial-image ct89-editorial-image-scan"><img src={`${BASE_PATH}/images/contract/building-contract-09-failure-control-path.webp`} alt="같은 부동산 거래에서 확인 생략의 실수 경로와 검증 중심의 통제 경로를 비교한 장면" loading="lazy" decoding="async"/></figure>
     <section className="ct9-failure ct9-failure-unified"><small>{d.failure.eyebrow}</small><h2>{d.failure.title}</h2><div className="ct9-paths"><article className="is-bad"><small>{d.failure.badLabel}</small>{d.failure.bad.map((x,i)=><div key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong></div>)}</article><article className="is-good"><small>{d.failure.goodLabel}</small>{d.failure.good.map((x,i)=><div key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong></div>)}</article></div><p>{d.failure.note}</p></section></div></section>
 
-    <section className="ct9-principle"><div className="ct-shell"><small>CORE PRINCIPLE · 핵심 원칙</small><h2>{d.principle.split('\n').map(x=><span key={x}>{x}</span>)}</h2></div></section>
+    <section className="ct9-principle"><div className="ct-shell"><small>{locale==='ko'?'CORE PRINCIPLE · 핵심 원칙':d.principle?.eyebrow||'CORE PRINCIPLE'}</small><h2>{(typeof d.principle==='string'?d.principle:d.principle?.title||'').split('\n').map(x=><span key={x}>{x}</span>)}</h2></div></section>
     <p className="ct-notice ct-shell">{copy.notice}</p>
     <OtherLinks copy={copy} current={page.slug} locale={locale}/>
   </main>;
@@ -409,6 +411,7 @@ function Detail({copy,page,locale}){
     <section className="ct-detail-hero"><div className="ct-shell ct-detail-hero-grid"><div><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{page.num} · {page.label}</small><h1>{page.title}</h1><p>{page.question}</p><em>{page.hero}</em></div><CharacterScene type={page.slug}/></div></section>
     <div className="ct-shell ct-detail-content">
       {page.sections.map(([title,body],i)=><section className="ct-detail-block" data-ct-reveal key={title}><header><small>{copy.sections[i]}</small><h2>{title}</h2></header>{i===5?<div className="ct-principle"><small>{copy.principle}</small><strong>{body}</strong></div>:i===4?<aside className="ct-case"><small>{copy.caseLabel}</small><span>{body}</span></aside>:<p>{body}</p>}{i===1&&<SummaryGraphic page={page}/>} {i===3&&['payment','terms','closing'].includes(page.slug)&&<SummaryGraphic page={page}/>}</section>)}
+      <DeepDive page={page} locale={locale}/>
       <CompleteGuide page={page} locale={locale}/>
       <ChecklistPreview page={page} copy={copy}/>
       <SourceLinks locale={locale}/>
@@ -430,14 +433,14 @@ export default function ContractPage({locale='ko',initialView=[]}){
   },[slug]);
   if(page&&locale==='ko'&&page.slug==='parties') return <PartiesPrototype copy={copy} page={page} locale={locale}/>;
   if(page&&locale==='ko'&&CONTRACT_0206_V013[page.slug]) return <Journey0206 copy={copy} page={page} locale={locale}/>;
-  if(page&&locale==='ko'&&page.slug==='checklist') return <Checklist07 copy={copy} page={page} locale={locale}/>;
-  if(page&&locale==='ko'&&page.slug==='red-flags') return <RedFlags08 copy={copy} page={page} locale={locale}/>;
-  if(page&&locale==='ko'&&page.slug==='mistakes') return <Mistakes09 copy={copy} page={page} locale={locale}/>;
+  if(page&&page.slug==='checklist') return <Checklist07 copy={copy} page={page} locale={locale}/>;
+  if(page&&page.slug==='red-flags') return <RedFlags08 copy={copy} page={page} locale={locale}/>;
+  if(page&&page.slug==='mistakes') return <Mistakes09 copy={copy} page={page} locale={locale}/>;
   if(page) return <Detail copy={copy} page={page} locale={locale}/>;
   return <main className="contract-page ct-main">
     <section className="ct-hero"><div className="ct-shell ct-hero-grid"><div className="ct-hero-copy"><small>{copy.eyebrow}</small><h1>{copy.title}</h1><p>{copy.lead}</p><div className="ct-hero-actions"><a className="is-primary" href="#contract-process">{copy.ctas.flow}<b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/red-flags`}>{copy.ctas.risk}<b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/mistakes`}>{copy.ctas.mistakes}<b>→</b></a></div></div><ContractLock locale={locale}/></div></section>
     <section className="ct-quick" id="contract-process" data-ct-reveal><div className="ct-shell"><header><small>{copy.quick.eyebrow}</small><h2>{copy.quick.title}</h2><p>{copy.quick.lead}</p></header><div className="ct-quick-grid">{copy.pages.slice(0,7).map((p,i)=><a href={`${BASE_PATH}/${locale}/contract/${p.slug}`} key={p.slug} style={{'--quick-i':i}}><span>{p.num}</span><MiniIcon type={p.icon}/><strong>{p.title}</strong><small>{locale==='ko'?koLabel(p.label):p.label}</small></a>)}</div></div></section>
-    {locale==='ko'?<section className="ct-home-guide"><div className="ct-shell"><header className="ct-home-guide-intro" data-ct-reveal><small>CONTRACT TUTORIAL · 계약 튜토리얼</small><h2>계약 전에 전체 구조부터 이해합니다.</h2><p>복잡한 계약용어를 외우기보다 실제 거래가 어떤 순서로 연결되는지 이해하는 것이 먼저입니다. 아래 내용은 건물 계약에서 왜 확인이 필요한지, 무엇을 함께 봐야 하는지, 계약 전에 어떤 기준을 준비해야 하는지를 실전 흐름으로 설명합니다.</p></header><div className="ct-home-guide-stack">{CONTRACT_HOME_TUTORIAL_KO.map((section,i)=><ContractTutorialSection section={section} index={i} key={section.eyebrow}/>)}</div></div></section>:<section className="ct-tutorial" data-ct-reveal><div className="ct-shell"><header><small>{copy.tutorial.eyebrow}</small><h2>{copy.tutorial.title}</h2><p>{copy.tutorial.lead}</p></header><div className="ct-tutorial-list">{copy.tutorial.items.map(([t,b],i)=><article key={t}><span>{String(i+1).padStart(2,'0')}</span><div><h3>{t}</h3><p>{b}</p></div></article>)}</div></div></section>}
+    {(()=>{const home=locale==='ko'?{intro:{eyebrow:'CONTRACT TUTORIAL · 계약 튜토리얼',title:'계약 전에 전체 구조부터 이해합니다.',body:'복잡한 계약용어를 외우기보다 실제 거래가 어떤 순서로 연결되는지 이해하는 것이 먼저입니다. 아래 내용은 건물 계약에서 왜 확인이 필요한지, 무엇을 함께 봐야 하는지, 계약 전에 어떤 기준을 준비해야 하는지를 실전 흐름으로 설명합니다.'},sections:CONTRACT_HOME_TUTORIAL_KO}:CONTRACT_I18N_V035.home?.[locale];return <section className="ct-home-guide"><div className="ct-shell"><header className="ct-home-guide-intro" data-ct-reveal><small>{home.intro.eyebrow}</small><h2>{home.intro.title}</h2><p>{home.intro.body}</p></header><div className="ct-home-guide-stack">{home.sections.map((section,i)=><ContractTutorialSection section={section} index={i} locale={locale} key={section.eyebrow}/>)}</div></div></section>})()}
     <section className="ct-takeaway" data-ct-reveal><div className="ct-shell"><small>{locale==='ko'?koLabel('CONTRACT STANDARD'):'CONTRACT STANDARD'}</small>{copy.takeaway.map(x=><strong key={x}>{x}</strong>)}</div></section>
   </main>;
 }

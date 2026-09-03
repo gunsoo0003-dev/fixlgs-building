@@ -1,0 +1,67 @@
+FIX BUILDING · 03 CONTRACT V035 I18N IMPLEMENTATION AUDIT
+Date: 2026-09-03
+
+SOURCE
+- Code source: CONTRACT V034 MAIN HERO SEQUENCE
+- Localization source: 건물서비스_3번CONTRACT_3개국어현지화_CURRENT_V006_FINAL_20260903.xlsx
+
+IMPLEMENTED
+1. CONTRACT main
+- EN/JA hero copy refreshed from V006 planning.
+- EN/JA now use the long-form CONTRACT tutorial layout instead of the short fallback tutorial.
+- Hero contract-layer labels localized for EN/JA.
+
+2. CONTRACT 01~06
+- Existing KO bespoke pages preserved unchanged.
+- EN/JA core copy retained/updated through contract-copy.
+- EN/JA DEEP DIVE + COMPLETE PRACTICE GUIDE data generated from V006 and connected to Detail rendering.
+- EN/JA 01~06 use the common detail layout because the V006 workbook contains approved CORE/DEEP/COMPLETE copy, not translations for every KO-only bespoke Journey sentence.
+
+3. CONTRACT 07 CHECKLIST
+- EN/JA connected to the completed document layout.
+- ESSENTIAL: 18 items per locale.
+- DETAIL: 66 items per locale, including the 18 essential items in final sequence.
+- Action labels and essential badges localized.
+
+4. CONTRACT 08 RED FLAGS
+- EN/JA connected to full editorial layout.
+- 6 groups x 4 = 24 signals per locale.
+- WHY / VERIFY NOW localized.
+- STOP SIGNAL localized.
+- No fraud-probability scoring introduced.
+
+5. CONTRACT 09 MISTAKES
+- EN/JA connected to full editorial layout.
+- 6 groups x 4 = 24 mistakes per locale.
+- WHY IT HAPPENS / BLOCK IT localized.
+- FAILURE / CONTROL path and core principle localized.
+
+6. SEO
+- EN main title: Building Contract Guide | Verification, Terms & Closing | FIX BUILDING
+- JA main title: 建物契約ガイド | 契約確認・条件・決済 | FIX BUILDING
+- self canonical retained for each locale.
+- hreflang: ko / en / ja / x-default.
+- Existing sitemap already generates CONTRACT main + 9 detail routes x 3 locales = 30 URLs.
+
+VALIDATION
+- TypeScript parser syntax check on changed JS/JSX: PASS.
+- Generated localization module counts:
+  * 01~06 advanced: EN 6 / JA 6
+  * 07 essential: EN 18 / JA 18
+  * 07 detail sequence: EN 66 / JA 66
+  * 08 signals: EN 24 / JA 24
+  * 09 mistakes: EN 24 / JA 24
+- Public PNG count: 0
+- Public WebP count: 88
+
+BUILD STATUS
+- next build NOT RUN in this environment.
+- Reason: node_modules and Next binary are intentionally not included in distribution ZIP.
+- Do not interpret this audit as a successful Next production build.
+
+CHANGED / ADDED FILES
+- app/ContractPage.js
+- app/contract-copy.js
+- app/contract-i18n-v035.js (new)
+- app/[locale]/contract/[[...view]]/page.js
+- CONTRACT_V035_I18N_IMPLEMENTATION_AUDIT_20260903.txt
