@@ -673,10 +673,12 @@
   .ct-pc-break{display:none}
 }
 @media(max-width:720px){
-  .ct-main .ct-lock{min-height:460px}.ct-main .ct-layer{width:270px;padding:15px 16px;animation:ctMainLayerMobile .62s cubic-bezier(.2,.75,.2,1) calc(.24s + var(--i)*.1s) forwards,ctMainLayerSequence 10.8s cubic-bezier(.22,.78,.2,1) calc(1.55s + var(--i)*.92s) infinite}.ct-main .ct-layer:before,.ct-main .ct-layer span,.ct-main .ct-layer strong,.ct-main .ct-layer:after{animation-duration:10.8s}.ct-main .ct-building{width:155px;height:320px}
+  .ct-main .ct-lock{min-height:460px;overflow:hidden}.ct-main .ct-layer{width:min(270px,calc(100% - 48px));padding:15px 16px;animation:ctMainLayerMobile .62s cubic-bezier(.2,.75,.2,1) calc(.24s + var(--i)*.1s) forwards,ctMainLayerSequenceMobile 10.8s cubic-bezier(.22,.78,.2,1) calc(1.55s + var(--i)*.92s) infinite}.ct-main .ct-layer:before,.ct-main .ct-layer span,.ct-main .ct-layer strong,.ct-main .ct-layer:after{animation-duration:10.8s}.ct-main .ct-layer:after{right:-34px;width:34px}.ct-main .ct-building{width:155px;height:320px}
   .ct-main .ct-layer:hover{transform:none;box-shadow:none}
 }
+@media(max-width:390px){.ct-main .ct-layer{width:min(252px,calc(100% - 48px));padding:14px}.ct-main .ct-layer strong{font-size:15px}.ct-main .ct-building{width:142px;height:304px}}
 @keyframes ctMainLayerMobile{to{opacity:1;transform:none}}
+@keyframes ctMainLayerSequenceMobile{0%,60%,100%{opacity:1;color:#111;border-color:#d5dce1;background:rgba(255,255,255,.98);box-shadow:0 0 0 rgba(8,104,215,0);transform:translateX(calc(var(--i)*5px)) translateY(0) scale(1)}8%{opacity:1;color:#fff;border-color:#0b74ef;background:#0868d7;box-shadow:0 16px 34px rgba(8,104,215,.20),0 0 0 1px rgba(8,104,215,.14);transform:translateX(calc(var(--i)*5px + 4px)) translateY(-4px) scale(1.018)}22%{opacity:1;color:#fff;border-color:#1380ff;background:#0a74ec;box-shadow:0 20px 42px rgba(8,104,215,.23),0 0 24px rgba(8,104,215,.16);transform:translateX(calc(var(--i)*5px + 6px)) translateY(-5px) scale(1.022)}34%{opacity:1;color:#fff;border-color:#0f7cf7;background:#0868d7;box-shadow:0 14px 30px rgba(8,104,215,.16),0 0 12px rgba(8,104,215,.10);transform:translateX(calc(var(--i)*5px + 2px)) translateY(-2px) scale(1.008)}}
 
 @media(prefers-reduced-motion:reduce){
   .ct-main [data-ct-reveal],.ct-main [data-ct-reveal] *{transition:none!important}

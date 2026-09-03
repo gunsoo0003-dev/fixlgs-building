@@ -1,0 +1,17 @@
+FIX BUILDING CONTRACT V036 - I18N layout/image fix
+
+Issue fixed:
+- V035 localized EN/JA copy, but 01 WHO and 02~06 still fell back to the generic Detail renderer because the premium renderers were guarded by locale==='ko'.
+
+Changes:
+- 01 WHO: KO continues to use PartiesPrototype; EN/JA now use LocalizedPartiesVisual with the same ctp visual system and all 3 contract-01 WebP images.
+- 02~06: KO continues to use Journey0206; EN/JA now use LocalizedJourney0206 with the same ctj visual system and each page's hero/support WebP images.
+- EN/JA copy comes from CONTRACT_I18N_V035 + localized CONTRACT_COPY data; no Korean dataset is reused as visible body copy.
+- DEEP DIVE / COMPLETE GUIDE remains connected for EN/JA.
+- 07/08/09 already use shared premium renderers and were left intact.
+
+Verification:
+- ContractPage.js syntax: PASS (node --check)
+- contract-i18n-v035.js syntax: PASS (node --check)
+- Contract 01~06 required WebP images: all present
+- node_modules: not included in artifact, so npm run build was not executable in this environment.

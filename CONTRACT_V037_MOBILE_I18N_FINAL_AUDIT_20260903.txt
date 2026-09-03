@@ -1,0 +1,47 @@
+FIX BUILDING · CONTRACT V037 MOBILE / I18N FINAL AUDIT
+Date: 2026-09-03
+Base: CONTRACT V036 I18N layout/images
+
+Changes
+1. CONTRACT main HERO mobile containment
+   - mobile lock overflow hidden
+   - mobile layer travel reduced to 5px stagger
+   - connector length reduced to 34px
+   - <=390px layer/building size refinement
+   - integrated into existing mobile CSS block (no trailing patch accumulation)
+
+2. 02~06 Japanese supplementary labels
+   - CONTRACT FLOW · 契約フロー
+   - NORMAL BASELINE · 基準状態
+   - VARIABLES · 取引変数
+   - HOW TO CHECK · 確認方法
+
+3. Image alt localization
+   - 02~06 Japanese hero/support image alt localized
+   - 07 images localized KO/EN/JA
+   - 08 images localized KO/EN/JA
+   - 09 images localized KO/EN/JA
+
+4. Japanese micro UI labels
+   - 07 ESSENTIAL document kicker localized
+   - 07 included label localized
+   - 08 WHY / VERIFY NOW Japanese bilingual labels
+   - 09 WHY IT HAPPENS / BLOCK IT Japanese bilingual labels
+
+Validation
+- ContractPage.js syntax: PASS
+- contract-i18n-v035.js syntax: PASS
+- sitemap.js syntax: PASS
+- robots.js syntax: PASS
+- contract.css brace balance: PASS
+- mobile keyframe duplicate check: PASS
+- contract image references: 19
+- missing contract images: 0
+- localized hardcoded alt static check: PASS
+- sitemap locales: ko / en / ja
+- contract detail slugs: 9 present
+- robots sitemap URL: /building/sitemap.xml
+
+Build
+- node_modules is intentionally excluded from the artifact.
+- next executable was not present in the validation environment, so npm run build was not claimed as PASS.
