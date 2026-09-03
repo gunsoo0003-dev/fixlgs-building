@@ -499,12 +499,12 @@
 
 /* CONTRACT 07 V019 — A4 standard two-line checklist form */
 .ct7-row-copy{min-width:0}
-.ct7-question-line{display:flex;align-items:center;gap:8px;min-width:0}
-.ct7-question-line h3{min-width:0;white-space:nowrap}
+.ct7-question-line{display:flex;align-items:flex-start;gap:8px;min-width:0}
+.ct7-question-line h3{min-width:0;flex:1 1 auto;white-space:normal;overflow-wrap:break-word}
 .ct7-essential-badge{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;padding:2px 5px;background:#0868d7;color:#fff;font-size:6.8px;line-height:1.15;font-weight:900;letter-spacing:.04em}
-.ct7-check-row,.ct7-detail-sheet .ct7-check-row{padding:12px 0 11px}
+.ct7-check-row,.ct7-detail-sheet .ct7-check-row{padding:10px 0 9px}
 .ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:14.8px;line-height:1.26}
-.ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{margin:5px 0 0;padding-top:5px;font-size:8.85px;line-height:1.35;white-space:nowrap;letter-spacing:-.025em}
+.ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{margin:5px 0 0;padding-top:5px;font-size:8.85px;line-height:1.35;white-space:normal;overflow-wrap:break-word;letter-spacing:-.025em}
 .ct7-check-row p strong{margin-right:6px;font-size:7.1px}
 
 @media(max-width:820px){
@@ -521,7 +521,7 @@
 .ct7-sheet-title{padding-bottom:15px}
 .ct7-sheet-title h2,.ct7-detail-sheet .ct7-sheet-title h2{font-size:29px;line-height:1.1}
 .ct7-sheet-title p{font-size:12px;line-height:1.62}
-.ct7-check-row,.ct7-detail-sheet .ct7-check-row{grid-template-columns:32px 38px minmax(0,1fr);gap:13px;padding:19px 0 17px;min-height:72px}
+.ct7-check-row,.ct7-detail-sheet .ct7-check-row{grid-template-columns:32px 38px minmax(0,1fr);gap:13px;padding:10px 0 9px;min-height:0}
 .ct7-box,.ct7-detail-sheet .ct7-box{width:25px;height:25px;border-width:1.8px;margin-top:1px}
 .ct7-index,.ct7-detail-sheet .ct7-index{padding-top:6px;font-size:8.6px}
 .ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:17.1px;line-height:1.28;letter-spacing:-.03em}
