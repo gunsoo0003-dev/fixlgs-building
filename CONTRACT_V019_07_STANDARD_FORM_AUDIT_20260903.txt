@@ -1,0 +1,29 @@
+FIX BUILDING CONTRACT V019 — 07 CHECKLIST STANDARD FORM AUDIT
+Date: 2026-09-03
+
+SOURCE
+- Based on V018 07 refined checklist.
+
+MEETING RULES APPLIED
+- ESSENTIAL and DETAIL use the same standard checklist row form.
+- One checklist question per first line.
+- One "미충족 시 실행" action sequence per second line.
+- Long action wording compressed to essential practical steps; no font-shrinking workaround.
+- DETAIL per-item category metadata line removed.
+- DETAIL essential items retain only a small "필수" badge beside the question.
+- Desktop A4 distribution fixed at 11 checklist rows per page.
+- ESSENTIAL: 18 items -> 2 A4 pages (11 + 7).
+- DETAIL: 66 items -> 6 A4 pages (11 each).
+- DETAIL includes all ESSENTIAL 18 items plus 48 detail-only items.
+
+VALIDATION
+- Source checklist definitions: 66 (18 essential + 48 detail-only).
+- DETAIL rendered items: 66 (18 essential inserted + 48 detail-only).
+- Maximum compact question length: checked for one-line standard form.
+- Maximum compact action length: 55 characters.
+- Old variable-weight page packing removed.
+- Old per-row group metadata removed.
+- PNG assets: 0.
+- WebP assets: 82.
+- app/contract-checklist-v016.js syntax: node --check PASS.
+- Full npm build not claimed; node_modules is not bundled in release source.

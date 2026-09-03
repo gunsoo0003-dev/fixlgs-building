@@ -386,3 +386,133 @@
   .ctj-deep-list article{grid-template-columns:40px 1fr;gap:14px}.ctj-cases article>div:first-child{grid-template-columns:40px 1fr;gap:14px}.ctj-cases dl,.ctj-cases article>strong{margin-left:54px}.ctj-decision>div>div{grid-template-columns:1fr}.ctj-decision article{min-height:0;border-right:0}
   .ctj-principle{padding:100px 0}.ctj-principle h2{font-size:48px}.ctj-final-list article{grid-template-columns:40px 1fr;gap:14px}.ctj-final-list h3,.ctj-final-list p{grid-column:2}.ctj-final-list h3{font-size:21px}
 }
+
+/* CONTRACT 07 CHECKLIST — premium A4 document preview */
+.ct7-page{background:#fff;color:#111}.ct7-page .ct-shell{width:min(calc(100% - 64px),1380px);margin-inline:auto}.ct7-hero{padding:145px 0 112px;border-bottom:1px solid #dfe3e8}.ct7-hero small,.ct7-intro header small,.ct7-basis header small,.ct7-usage header small,.ct7-transition small,.ct7-principle small,.ct7-document-intro>small{display:block;color:#0868d7;font-size:10px;font-weight:850;letter-spacing:.16em}.ct7-hero h1{margin:18px 0 24px;font-size:clamp(52px,7vw,94px);line-height:.95;letter-spacing:-.065em}.ct7-hero h2{margin:0 0 26px;max-width:1040px;font-size:clamp(34px,4.6vw,66px);line-height:1.08;letter-spacing:-.052em}.ct7-hero p{margin:0;max-width:1020px;font-size:clamp(19px,2vw,27px);line-height:1.72;letter-spacing:-.03em;color:#444d55}
+.ct7-intro,.ct7-basis,.ct7-usage{padding:clamp(90px,10vw,150px) 0}.ct7-intro header,.ct7-basis header,.ct7-usage header{max-width:1060px}.ct7-intro h2,.ct7-basis h2,.ct7-usage h2{margin:16px 0 24px;font-size:clamp(38px,5vw,68px);line-height:1.08;letter-spacing:-.052em}.ct7-intro header>p,.ct7-basis header>p{margin:0;max-width:980px;font-size:18px;line-height:1.9;color:#505962}.ct7-intro-points{margin-top:64px;border-top:1px solid #111}.ct7-intro-points article{display:grid;grid-template-columns:70px 260px 1fr;gap:26px;align-items:start;padding:32px 0;border-bottom:1px solid #dfe3e8}.ct7-intro-points span{font-size:11px;color:#0868d7;font-weight:850}.ct7-intro-points h3{margin:0;font-size:25px;letter-spacing:-.03em}.ct7-intro-points p{margin:0;font-size:17px;line-height:1.8;color:#535d67}
+.ct7-basis{background:#f6f8fa}.ct7-basis-stack{margin-top:60px;border-top:1px solid #111}.ct7-basis-stack article{display:grid;grid-template-columns:240px minmax(280px,400px) 1fr;gap:34px;padding:44px 0;border-bottom:1px solid #d9dfe5}.ct7-basis-stack article>small{font-size:11px;font-weight:900;color:#0868d7;letter-spacing:.08em}.ct7-basis-stack h3{margin:0;font-size:30px;line-height:1.25;letter-spacing:-.04em}.ct7-basis-stack p{margin:0 0 18px;font-size:16px;line-height:1.8;color:#4d5760}.ct7-basis-stack ul{grid-column:3;list-style:none;padding:0;margin:0}.ct7-basis-stack li{padding:11px 0;border-bottom:1px solid #d9dfe5;font-size:15px;line-height:1.65}.ct7-basis-stack li:before{content:'—';color:#0868d7;margin-right:10px}
+.ct7-usage ol{list-style:none;padding:0;margin:58px 0 0;border-top:1px solid #111}.ct7-usage li{display:grid;grid-template-columns:70px 190px 1fr;gap:26px;padding:28px 0;border-bottom:1px solid #dfe3e8;align-items:start}.ct7-usage li span{color:#0868d7;font-size:11px;font-weight:900}.ct7-usage li strong{font-size:22px;letter-spacing:-.03em}.ct7-usage li p{margin:0;font-size:17px;line-height:1.75;color:#4f5962}.ct7-usage blockquote{margin:54px 0 0;padding:30px 34px;border-left:5px solid #0868d7;background:#f4f7fa;font-size:18px;line-height:1.8;font-weight:700;letter-spacing:-.02em}
+
+.ct7-document-zone{padding:clamp(105px,11vw,170px) 0;background:#eef1f4;border-top:1px solid #d9dee3;border-bottom:1px solid #d9dee3}.ct7-detail-document{background:#e8ecf0}.ct7-document-intro{max-width:980px;margin:0 auto 72px}.ct7-document-intro h2{margin:16px 0 22px;font-size:clamp(42px,5.4vw,72px);line-height:1.06;letter-spacing:-.055em}.ct7-document-intro>p{margin:0;max-width:900px;font-size:18px;line-height:1.85;color:#505962}.ct7-document-intro>div{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.ct7-document-intro>div span{padding:9px 12px;border:1px solid #cbd2d8;background:#f9fafb;font-size:10px;font-weight:850;letter-spacing:.11em;color:#34404a}
+.ct7-paper-stack{display:flex;flex-direction:column;align-items:center;gap:64px}.ct7-sheet{position:relative;width:min(100%,794px);aspect-ratio:210/297;display:flex;flex-direction:column;padding:54px 58px 38px;background:#fff;border:1px solid #d3d8dd;box-shadow:0 22px 54px rgba(20,30,40,.12),0 2px 8px rgba(20,30,40,.05);overflow:hidden}.ct7-sheet:before{content:'';position:absolute;inset:0;border:8px solid rgba(8,104,215,.018);pointer-events:none}.ct7-sheet-head{flex:0 0 auto}.ct7-sheet-brand{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid #111}.ct7-sheet-brand strong{font-size:13px;letter-spacing:.13em}.ct7-sheet-brand span{font-size:7.5px;font-weight:800;letter-spacing:.16em;color:#6c757d}.ct7-sheet-code{display:flex;justify-content:space-between;align-items:center;padding:11px 0 25px}.ct7-sheet-code span,.ct7-sheet-code b{font-size:7.5px;letter-spacing:.14em;color:#737d86}.ct7-sheet-code b{color:#111}.ct7-sheet-title{padding-bottom:18px;border-bottom:2px solid #111}.ct7-sheet-title small{display:block;margin-bottom:9px;color:#0868d7;font-size:8px;font-weight:900;letter-spacing:.13em}.ct7-sheet-title h2{margin:0;font-size:28px;line-height:1.12;letter-spacing:-.045em}.ct7-sheet-title p{margin:9px 0 0;max-width:590px;font-size:11.5px;line-height:1.65;color:#58626b}.ct7-sheet ol{flex:1 1 auto;list-style:none;padding:0;margin:0}.ct7-check-row{display:grid;grid-template-columns:28px 34px 1fr;gap:12px;align-items:start;padding:17px 0 15px;border-bottom:1px solid #d8dde2;break-inside:avoid}.ct7-check-row:last-child{border-bottom:0}.ct7-box{width:22px;height:22px;border:1.7px solid #111;margin-top:1px;background:#fff}.ct7-index{padding-top:5px;font-size:7.8px;font-weight:900;color:#0868d7;letter-spacing:.08em}.ct7-check-row h3{margin:0;font-size:15.5px;line-height:1.36;letter-spacing:-.027em}.ct7-check-row p{margin:7px 0 0;padding-top:7px;border-top:1px solid #edf0f2;font-size:9.6px;line-height:1.58;color:#525d66}.ct7-check-row p strong{display:inline-block;margin-right:7px;color:#0868d7;font-size:7.5px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.ct7-sheet-foot{flex:0 0 auto;display:grid;grid-template-columns:1fr auto auto;gap:18px;align-items:center;padding-top:11px;border-top:1px solid #111;color:#747d85;font-size:7px;font-weight:800;letter-spacing:.11em}.ct7-sheet-foot b{color:#111}.ct7-detail-sheet .ct7-sheet-title h2{font-size:25px}.ct7-detail-sheet .ct7-check-row{padding:21px 0 18px}.ct7-detail-sheet .ct7-check-row h3{font-size:17px}.ct7-detail-sheet .ct7-check-row p{font-size:10.4px;line-height:1.65}
+.ct7-transition{padding:105px 0;background:#111;color:#fff}.ct7-transition small{color:#78b7ff}.ct7-transition h2{margin:18px 0 20px;font-size:clamp(42px,5.5vw,76px);line-height:1.08;letter-spacing:-.055em}.ct7-transition p{margin:0;max-width:900px;font-size:18px;line-height:1.8;color:#c5cbd1}
+.ct7-principle{padding:110px 0;background:#0868d7;color:#fff}.ct7-principle small{color:#d5e9ff}.ct7-principle h2{margin:20px 0 0;font-size:clamp(46px,6.4vw,86px);line-height:1.08;letter-spacing:-.06em}.ct7-principle h2 span{display:block}
+
+@media(max-width:820px){.ct7-page .ct-shell{width:min(calc(100% - 36px),1380px)}.ct7-hero{padding:120px 0 76px}.ct7-hero h1{font-size:52px}.ct7-hero h2{font-size:36px}.ct7-hero p{font-size:18px}.ct7-intro,.ct7-basis,.ct7-usage{padding:78px 0}.ct7-intro h2,.ct7-basis h2,.ct7-usage h2{font-size:38px}.ct7-intro header>p{font-size:16px}.ct7-intro-points article,.ct7-usage li{grid-template-columns:42px 1fr;gap:14px}.ct7-intro-points article h3,.ct7-usage li strong{grid-column:2}.ct7-intro-points article p,.ct7-usage li p{grid-column:2}.ct7-basis-stack article{grid-template-columns:1fr;gap:16px;padding:34px 0}.ct7-basis-stack ul{grid-column:1}.ct7-document-zone{padding:78px 0}.ct7-document-intro{margin-bottom:44px}.ct7-document-intro h2{font-size:40px}.ct7-document-intro>p{font-size:16px}.ct7-paper-stack{gap:34px}.ct7-sheet{width:100%;aspect-ratio:auto;min-height:0;padding:34px 26px 26px}.ct7-sheet-brand span{display:none}.ct7-sheet-code{padding-bottom:19px}.ct7-sheet-title h2,.ct7-detail-sheet .ct7-sheet-title h2{font-size:26px}.ct7-check-row,.ct7-detail-sheet .ct7-check-row{grid-template-columns:28px 30px 1fr;gap:10px;padding:19px 0}.ct7-box{width:23px;height:23px}.ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:20px}.ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{font-size:14px;line-height:1.72}.ct7-check-row p strong{display:block;margin:0 0 5px;font-size:9px}.ct7-sheet-foot{margin-top:16px}.ct7-transition{padding:76px 0}.ct7-transition h2{font-size:42px}.ct7-transition p{font-size:16px}.ct7-principle{padding:80px 0}.ct7-principle h2{font-size:48px}}
+
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff!important}
+  .ct7-page>.ct7-hero,.ct7-page>.ct7-intro,.ct7-page>.ct7-basis,.ct7-page>.ct7-usage,.ct7-page>.ct7-transition,.ct7-page>.ct7-principle,.ct7-page>.ct-notice,.ct7-page .ct-other-links,.ct7-document-intro{display:none!important}
+  .ct7-document-zone{padding:0!important;background:#fff!important;border:0!important}
+  .ct7-document-zone .ct-shell{width:100%!important;max-width:none!important;margin:0!important}
+  .ct7-paper-stack{display:block!important}
+  .ct7-sheet{width:210mm!important;height:297mm!important;aspect-ratio:auto!important;margin:0!important;padding:15mm 15mm 10mm!important;border:0!important;box-shadow:none!important;break-after:page;page-break-after:always;overflow:hidden!important}
+  .ct7-sheet:last-child{break-after:auto;page-break-after:auto}
+  .ct7-sheet:before{display:none}
+  .ct7-check-row{break-inside:avoid;page-break-inside:avoid}
+}
+
+/* CONTRACT 07 V018 — checklist document refinement */
+.ct7-usage-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:58px;border-top:1px solid #111;border-bottom:1px solid #111}
+.ct7-usage-modes article{padding:34px 30px 36px;border-right:1px solid #dfe3e8}
+.ct7-usage-modes article:last-child{border-right:0}
+.ct7-usage-modes small{display:block;margin-bottom:14px;color:#0868d7;font-size:10px;font-weight:900;letter-spacing:.1em}
+.ct7-usage-modes h3{margin:0 0 14px;font-size:25px;line-height:1.2;letter-spacing:-.035em}
+.ct7-usage-modes p{margin:0;font-size:16px;line-height:1.78;color:#505a63}
+.ct7-usage-flow-title{margin:68px 0 0;font-size:30px;letter-spacing:-.04em}
+.ct7-row-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 7px}
+.ct7-row-meta span,.ct7-row-meta b{display:inline-block;font-size:6.9px;line-height:1.2;font-weight:850;letter-spacing:.06em}
+.ct7-row-meta span{color:#6a747d}
+.ct7-row-meta b{padding:3px 6px;background:#0868d7;color:#fff}
+.ct7-check-row.is-essential{background:linear-gradient(90deg,rgba(8,104,215,.045),rgba(8,104,215,0) 64%)}
+.ct7-check-row.is-essential .ct7-box{border-color:#0868d7}
+.ct7-sheet{padding-top:46px;padding-bottom:30px}
+.ct7-sheet-code{padding-bottom:18px}
+.ct7-sheet-title{padding-bottom:14px}
+.ct7-sheet-title p{margin-top:7px}
+.ct7-check-row{padding:13px 0 12px}
+.ct7-check-row h3{font-size:15px;line-height:1.3}
+.ct7-check-row p{margin-top:5px;padding-top:5px;font-size:9.2px;line-height:1.48}
+.ct7-detail-sheet .ct7-check-row{padding:13px 0 12px}
+.ct7-detail-sheet .ct7-check-row h3{font-size:15.3px;line-height:1.3}
+.ct7-detail-sheet .ct7-check-row p{font-size:9.35px;line-height:1.5}
+
+@media(max-width:820px){
+  .ct7-usage-modes{grid-template-columns:1fr}
+  .ct7-usage-modes article{border-right:0;border-bottom:1px solid #dfe3e8;padding:28px 0}
+  .ct7-usage-modes article:last-child{border-bottom:0}
+  .ct7-usage-modes h3{font-size:24px}
+  .ct7-usage-modes p{font-size:16px}
+  .ct7-row-meta span,.ct7-row-meta b{font-size:8px}
+  .ct7-check-row,.ct7-detail-sheet .ct7-check-row{padding:19px 0}
+  .ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:20px}
+  .ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{font-size:14px;line-height:1.72}
+}
+
+@media print{
+  .ct7-usage-modes{display:none!important}
+  .ct7-row-meta span,.ct7-row-meta b{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* CONTRACT 07 V019 — A4 standard two-line checklist form */
+.ct7-row-copy{min-width:0}
+.ct7-question-line{display:flex;align-items:center;gap:8px;min-width:0}
+.ct7-question-line h3{min-width:0;white-space:nowrap}
+.ct7-essential-badge{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;padding:2px 5px;background:#0868d7;color:#fff;font-size:6.8px;line-height:1.15;font-weight:900;letter-spacing:.04em}
+.ct7-check-row,.ct7-detail-sheet .ct7-check-row{padding:12px 0 11px}
+.ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:14.8px;line-height:1.26}
+.ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{margin:5px 0 0;padding-top:5px;font-size:8.85px;line-height:1.35;white-space:nowrap;letter-spacing:-.025em}
+.ct7-check-row p strong{margin-right:6px;font-size:7.1px}
+
+@media(max-width:820px){
+  .ct7-question-line{align-items:flex-start;flex-wrap:wrap}
+  .ct7-question-line h3{white-space:normal}
+  .ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{white-space:normal;font-size:14px;line-height:1.72}
+  .ct7-essential-badge{font-size:8px;padding:3px 6px}
+}
+
+
+/* CONTRACT 07 V020 — premium 9-row A4 checklist */
+.ct7-sheet{padding:50px 56px 38px}
+.ct7-sheet-code{padding:10px 0 20px}
+.ct7-sheet-title{padding-bottom:15px}
+.ct7-sheet-title h2,.ct7-detail-sheet .ct7-sheet-title h2{font-size:29px;line-height:1.1}
+.ct7-sheet-title p{font-size:12px;line-height:1.62}
+.ct7-check-row,.ct7-detail-sheet .ct7-check-row{grid-template-columns:32px 38px minmax(0,1fr);gap:13px;padding:19px 0 17px;min-height:72px}
+.ct7-box,.ct7-detail-sheet .ct7-box{width:25px;height:25px;border-width:1.8px;margin-top:1px}
+.ct7-index,.ct7-detail-sheet .ct7-index{padding-top:6px;font-size:8.6px}
+.ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:17.1px;line-height:1.28;letter-spacing:-.03em}
+.ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{margin:7px 0 0;padding-top:6px;font-size:10.3px;line-height:1.42;letter-spacing:-.024em}
+.ct7-check-row p strong,.ct7-detail-sheet .ct7-check-row p strong{font-size:7.9px;margin-right:7px}
+.ct7-essential-badge{font-size:7.2px;padding:2px 6px}
+.ct7-detail-sheet .ct7-check-row{background:transparent}
+.ct7-detail-sheet .ct7-check-row.is-essential{background:linear-gradient(90deg,rgba(8,104,215,.045),rgba(8,104,215,0) 64%)}
+
+@media(max-width:820px){
+  .ct7-check-row,.ct7-detail-sheet .ct7-check-row{min-height:0;grid-template-columns:30px 32px minmax(0,1fr);padding:19px 0}
+  .ct7-check-row h3,.ct7-detail-sheet .ct7-check-row h3{font-size:20px}
+  .ct7-check-row p,.ct7-detail-sheet .ct7-check-row p{font-size:14px;line-height:1.72;white-space:normal}
+  .ct7-box,.ct7-detail-sheet .ct7-box{width:24px;height:24px}
+}
+
+
+/* CONTRACT 07 V021 — vertical basis flow + one-line intro headlines */
+@media(min-width:821px){
+  .ct7-hero h2,.ct7-intro h2,.ct7-basis h2,.ct7-usage h2{max-width:none;white-space:nowrap}
+  .ct7-basis header{max-width:none}
+  .ct7-basis-stack article{display:block;padding:50px 0 54px}
+  .ct7-basis-stack article>small{display:block;margin-bottom:18px}
+  .ct7-basis-stack h3{margin:0 0 22px;font-size:34px;line-height:1.18;white-space:nowrap}
+  .ct7-basis-stack p{max-width:1040px;margin:0 0 28px;font-size:17px;line-height:1.85}
+  .ct7-basis-stack ul{display:block;max-width:1040px;margin:0;padding:0;border-top:1px solid #d9dfe5}
+  .ct7-basis-stack li{padding:13px 0;font-size:15.5px;line-height:1.6}
+}
+
+/* CONTRACT 07 editorial images — V022 */
+.ct7-editorial-visual{margin:64px 0 0;border:1px solid #d9dfe5;background:#f7f8fa;overflow:hidden}
+.ct7-editorial-visual img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.ct7-why-image{margin-top:70px}
+.ct7-documents-image{margin-top:72px}
+@media(max-width:820px){.ct7-editorial-visual{margin-top:44px}.ct7-editorial-visual img{aspect-ratio:16/10}}
+@media print{.ct7-editorial-visual{display:none!important}}

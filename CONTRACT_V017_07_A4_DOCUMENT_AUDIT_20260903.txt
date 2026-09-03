@@ -1,0 +1,27 @@
+FIX BUILDING 03 CONTRACT — V017 07 A4 DOCUMENT AUDIT
+Date: 2026-09-03
+
+Scope
+- Reworked CONTRACT 07 checklist from one long web list into two premium document-style previews.
+- DOCUMENT 01: ESSENTIAL CHECKLIST, 18 checks, 3 A4 pages, 6 checks per page.
+- DOCUMENT 02: DETAIL CHECKLIST, 48 checks, 12 A4 pages, each 8-check category split 4 + 4 across two pages.
+
+Design
+- Screen preview uses A4 210:297 aspect ratio on desktop.
+- Light gray document workspace + white sheets + restrained border/shadow.
+- Repeating FIX BUILDING document header, document number, page number and footer.
+- One-column checklist rows with large checkbox, sequence number, question and practical unmet-condition action.
+- No download/PDF/Excel button exposed.
+- Mobile drops fixed A4 ratio to preserve readable typography.
+
+Print readiness
+- @page size A4.
+- Print sheet size 210mm x 297mm.
+- One .ct7-sheet per printed page with page breaks.
+- Site intro/hero/navigation-style sections hidden in print CSS so document sheets remain.
+
+Regression / asset checks
+- Changed source files from V016: app/ContractPage.js, app/contract.css.
+- PNG files in public: 0.
+- WebP files in public: 82.
+- node_modules is not included in source archive; npm build was not reported as passed.

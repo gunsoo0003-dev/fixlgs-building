@@ -6,6 +6,7 @@ import {CONTRACT_KO_DEEP,CONTRACT_KO_SOURCES} from './contract-ko-deep';
 import {CONTRACT_KO_COMPLETE} from './contract-ko-complete';
 import {CONTRACT_PARTIES_V004} from './contract-parties-v004';
 import {CONTRACT_0206_V013} from './contract-0206-v013';
+import {CONTRACT_CHECKLIST_V016} from './contract-checklist-v016';
 
 const BASE_PATH='/building';
 
@@ -218,6 +219,50 @@ function Journey0206({copy,page,locale}){
   </main>;
 }
 
+
+function Checklist07({copy,page,locale}){
+  const d=CONTRACT_CHECKLIST_V016;
+  const essentialMap={
+    '01 WHO · 계약 상대 / 권한':[0,1,2],
+    '02 WHAT · 계약 대상 / 현황':[3,4,5],
+    '03 MONEY · 가격 / 지급조건':[6,8,9,10],
+    '04 TERMS · 계약서 / 특약':[11,12],
+    '05 RECHECK · 계약 후 / 잔금 전':[7,13],
+    '06 CLOSE · 잔금 / 이전 / 인도':[14,15,16,17]
+  };
+  const chunkPages=(items,size=9)=>Array.from({length:Math.ceil(items.length/size)},(_,i)=>items.slice(i*size,(i+1)*size));
+  const essentialItems=d.essential.map((item,index)=>({...item,index,isEssential:true,group:'ESSENTIAL'}));
+  const essentialPages=chunkPages(essentialItems,9);
+  const detailItems=Object.entries(d.detailed).flatMap(([group,items],groupIndex)=>[
+    ...(essentialMap[group]||[]).map(index=>({...d.essential[index],index,isEssential:true,group,groupIndex})),
+    ...items.map((item,detailIndex)=>({...item,isEssential:false,group,groupIndex,detailIndex}))
+  ]);
+  const detailPages=chunkPages(detailItems,9);
+  const CheckRow=({item,index,showEssential=false})=><li className={`ct7-check-row${item.isEssential?' is-essential':''}`}><span className="ct7-box" aria-hidden="true"/><span className="ct7-index">{String(index+1).padStart(2,'0')}</span><div className="ct7-row-copy"><div className="ct7-question-line"><h3>{item.q}</h3>{showEssential&&item.isEssential&&<b className="ct7-essential-badge">필수</b>}</div><p><strong>미충족 시 실행</strong>{item.a}</p></div></li>;
+  const SheetHeader=({documentNo,kicker,title,subtitle,pageNo,totalPages})=><header className="ct7-sheet-head"><div className="ct7-sheet-brand"><strong>FIX BUILDING</strong><span>CONTRACT CONTROL DOCUMENT</span></div><div className="ct7-sheet-code"><span>DOCUMENT {documentNo}</span><b>PAGE {String(pageNo).padStart(2,'0')} / {String(totalPages).padStart(2,'0')}</b></div><div className="ct7-sheet-title"><small>{kicker}</small><h2>{title}</h2>{subtitle&&<p>{subtitle}</p>}</div></header>;
+  const SheetFooter=({documentNo,pageNo,totalPages})=><footer className="ct7-sheet-foot"><span>FIX BUILDING · CONTRACT CHECKLIST</span><span>DOCUMENT {documentNo}</span><b>{String(pageNo).padStart(2,'0')} / {String(totalPages).padStart(2,'0')}</b></footer>;
+  let detailRunningIndex=0;
+  return <main className="contract-page ct7-page">
+    <section className="ct7-hero"><div className="ct-shell"><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{d.hero.eyebrow}</small><h1>{d.hero.title}</h1><h2>{d.hero.question}</h2><p>{d.hero.lead}</p></div></section>
+
+    <section className="ct7-intro" data-ct-reveal><div className="ct-shell"><header><small>{d.intro.eyebrow}</small><h2>{d.intro.title}</h2><p>{d.intro.body}</p></header><figure className="ct7-editorial-visual ct7-why-image"><img src={`${BASE_PATH}/images/contract/building-contract-07-why-checklist.webp`} alt="실제 부동산 계약 검토 과정에서 체크리스트로 핵심 항목을 하나씩 확인하는 장면" loading="lazy" decoding="async"/></figure><div className="ct7-intro-points">{d.intro.points.map(([t,b],i)=><article key={t}><span>{String(i+1).padStart(2,'0')}</span><h3>{t}</h3><p>{b}</p></article>)}</div></div></section>
+
+    <section className="ct7-basis" data-ct-reveal><div className="ct-shell"><header><small>{d.basis.eyebrow}</small><h2>{d.basis.title}</h2></header><div className="ct7-basis-stack"><article><small>{d.basis.essential.label}</small><h3>{d.basis.essential.title}</h3><p>{d.basis.essential.body}</p><ul>{d.basis.essential.reasons.map(x=><li key={x}>{x}</li>)}</ul></article><article><small>{d.basis.detailed.label}</small><h3>{d.basis.detailed.title}</h3><p>{d.basis.detailed.body}</p><ul>{d.basis.detailed.reasons.map(x=><li key={x}>{x}</li>)}</ul></article></div></div></section>
+
+    <section className="ct7-usage" data-ct-reveal><div className="ct-shell"><header><small>{d.usage.eyebrow}</small><h2>{d.usage.title}</h2></header><div className="ct7-usage-modes">{d.usage.modes.map(([title,label,body])=><article key={title}><small>{label}</small><h3>{title}</h3><p>{body}</p></article>)}</div><h3 className="ct7-usage-flow-title">추천 사용 순서</h3><ol>{d.usage.steps.map(([no,time,body])=><li key={no}><span>{no}</span><strong>{time}</strong><p>{body}</p></li>)}</ol><blockquote>{d.usage.note}</blockquote><figure className="ct7-editorial-visual ct7-documents-image"><img src={`${BASE_PATH}/images/contract/building-contract-07-essential-detail.webp`} alt="필수 체크리스트와 상세 체크리스트 두 종류의 고급 A4 계약 점검 문서를 함께 사용하는 장면" loading="lazy" decoding="async"/></figure></div></section>
+
+    <section className="ct7-document-zone ct7-essential-document" data-ct-reveal><div className="ct-shell"><div className="ct7-document-intro"><small>DOCUMENT 01 · ESSENTIAL CHECKLIST</small><h2>계약 필수 체크리스트</h2><p>거래 진행 여부를 판단하는 핵심 18항목입니다. A4 한 장의 사용 가능한 영역을 최대한 채우되, 하나의 체크항목이 페이지 사이에서 잘리지 않도록 문서 단위로 배치합니다.</p><div><span>18 CHECKS</span><span>{essentialPages.length} A4 PAGES</span></div></div><div className="ct7-paper-stack">{essentialPages.map((items,pageIndex)=><article className="ct7-sheet" key={`essential-${pageIndex}`}><SheetHeader documentNo="01" kicker="ESSENTIAL CHECKLIST · 필수 체크리스트" title={pageIndex===0?'거래 진행 전에 반드시 확인할 핵심항목':'필수 체크리스트 · 계속'} subtitle={pageIndex===0?'필수판은 빠른 거래 판단과 잔금 직전 핵심 재확인에 사용합니다.':null} pageNo={pageIndex+1} totalPages={essentialPages.length}/><ol>{items.map(item=><CheckRow item={item} index={item.index} key={item.q}/>)}</ol><SheetFooter documentNo="01" pageNo={pageIndex+1} totalPages={essentialPages.length}/></article>)}</div></div></section>
+
+    <section className="ct7-transition"><div className="ct-shell"><small>DOCUMENT 02 · DETAIL CHECKLIST</small><h2>상세판 하나에<br/>필수 18개까지 모두 담았습니다.</h2><p>빠르게 판단할 때는 ESSENTIAL, 실제 계약을 정밀하게 검토할 때는 DETAIL을 사용합니다. DETAIL은 필수 18개를 모두 포함한 확장판이므로 처음부터 상세판으로 바로 시작해도 됩니다.</p></div></section>
+
+    <section className="ct7-document-zone ct7-detail-document" data-ct-reveal><div className="ct-shell"><div className="ct7-document-intro"><small>DOCUMENT 02 · DETAIL CHECKLIST</small><h2>계약 상세 체크리스트</h2><p>ESSENTIAL 18개를 모두 포함하고, WHO → WHAT → MONEY → TERMS → RECHECK → CLOSE별 세부 검증항목을 추가한 정밀 점검 문서입니다. 상세판 안의 필수항목은 별도 표식으로 다시 확인할 수 있습니다.</p><div><span>{detailItems.length} CHECKS</span><span>ESSENTIAL 18 INCLUDED</span><span>{detailPages.length} A4 PAGES</span></div></div><div className="ct7-paper-stack">{detailPages.map((items,pageIndex)=>{const startIndex=detailRunningIndex;detailRunningIndex+=items.length;const groups=[...new Set(items.map(item=>item.group.replace(/^\d+\s+/, '').split(' · ')[0]))].join(' / ');return <article className="ct7-sheet ct7-detail-sheet" key={`detail-${pageIndex}`}><SheetHeader documentNo="02" kicker={`DETAIL CHECKLIST · ${groups}`} title={pageIndex===0?'계약 상세 체크리스트':'상세 체크리스트 · 계속'} subtitle={pageIndex===0?'필수 핵심과 거래별 세부변수를 한 문서에서 함께 확인합니다.':null} pageNo={pageIndex+1} totalPages={detailPages.length}/><ol>{items.map((item,i)=><CheckRow item={item} index={startIndex+i} showEssential key={`${item.group}-${item.q}`}/>)}</ol><SheetFooter documentNo="02" pageNo={pageIndex+1} totalPages={detailPages.length}/></article>})}</div></div></section>
+
+    <section className="ct7-principle"><div className="ct-shell"><small>CORE PRINCIPLE · 핵심 원칙</small><h2>{d.principle.split('\n').map(x=><span key={x}>{x}</span>)}</h2></div></section>
+    <p className="ct-notice ct-shell">{copy.notice}</p>
+    <OtherLinks copy={copy} current={page.slug} locale={locale}/>
+  </main>;
+}
+
 function Detail({copy,page,locale}){
   return <main className="contract-page ct-detail">
     <section className="ct-detail-hero"><div className="ct-shell ct-detail-hero-grid"><div><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{page.num} · {page.label}</small><h1>{page.title}</h1><p>{page.question}</p><em>{page.hero}</em></div><CharacterScene type={page.slug}/></div></section>
@@ -244,6 +289,7 @@ export default function ContractPage({locale='ko',initialView=[]}){
   },[slug]);
   if(page&&locale==='ko'&&page.slug==='parties') return <PartiesPrototype copy={copy} page={page} locale={locale}/>;
   if(page&&locale==='ko'&&CONTRACT_0206_V013[page.slug]) return <Journey0206 copy={copy} page={page} locale={locale}/>;
+  if(page&&locale==='ko'&&page.slug==='checklist') return <Checklist07 copy={copy} page={page} locale={locale}/>;
   if(page) return <Detail copy={copy} page={page} locale={locale}/>;
   return <main className="contract-page">
     <section className="ct-hero"><div className="ct-shell ct-hero-grid"><div className="ct-hero-copy"><small>{copy.eyebrow}</small><h1>{copy.title}</h1><p>{copy.lead}</p><div className="ct-hero-actions"><a className="is-primary" href="#contract-process">{copy.ctas.flow}<b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/red-flags`}>{copy.ctas.risk}<b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/mistakes`}>{copy.ctas.mistakes}<b>→</b></a></div></div><ContractLock locale={locale}/></div></section>
