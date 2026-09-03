@@ -1,0 +1,59 @@
+FIX BUILDING — CONTRACT V025 / 09 COMMON MISTAKES IMPLEMENTATION AUDIT
+Date: 2026-09-03
+
+Scope
+- Base: CONTRACT V024 (08 RED FLAGS editorial scan)
+- Implemented KO 09 /contract/mistakes as a dedicated page.
+- 01~08 behavior/content left in place except shared ContractPage routing/CSS additions.
+
+09 structure
+1. HERO
+2. Six vertical editorial sections
+   - FAMILIARITY
+   - FALSE CONFIDENCE
+   - VERBAL PROMISE
+   - ASSUMPTION
+   - PAYMENT FIRST
+   - NO RECHECK
+3. MISTAKE SCAN
+   - ASSUMPTION 4
+   - DOCUMENT 4
+   - VERBAL 4
+   - MONEY 4
+   - RECHECK 4
+   - HANDOVER 4
+   Total 24 mistakes
+4. FAILURE PATH
+   - Omission path: assumption -> verbal -> skip -> pay -> late discovery
+   - Control path: verify -> document -> recheck -> conditions -> pay/handover
+5. CORE PRINCIPLE
+
+Duplication control
+- 01~07 remain the owner pages for verification and contract execution methods.
+- 09 does not re-teach clause drafting, closing calculations, discharge procedure, or handover procedure.
+- Repeated subjects are reinterpreted as buyer-side omission/assumption behavior.
+- 08 remains external/transaction red-flag interpretation; 09 is internal buyer mistake interpretation.
+Examples:
+  third-party account: 08 = suspicious change/request pattern / 09 = buyer sends based on explanation without authority check
+  registry: 08 = seller avoids latest records / 09 = buyer keeps using old registry
+  verbal promise: 08 = counterparty avoids documentation / 09 = buyer fails to document the promise
+  facility scope: 08 = explanation/ownership keeps changing / 09 = buyer assumes visible facility is included
+
+Design controls
+- 1380px shell
+- 01~08 typography scale reused
+- PC subheads prefer one line; mobile wraps naturally
+- vertical editorial flow; no repeating 3/4-column cards
+- white/light-gray body; Santorini Blue accents
+- 09 visual language: MISTAKE / WHY IT HAPPENS / BLOCK IT
+- 08 visual language remains SIGNAL / WHY / VERIFY NOW
+
+Validation
+- 6 editorial sections
+- 6 mistake groups
+- 24 mistake items
+- 5-step bad path + 5-step control path
+- KO route dedicated before generic Detail fallback
+- public PNG count: 0
+- public WebP count: 84
+- npm run build attempted: unavailable because node_modules/next is absent (next: not found). Build success is NOT claimed.

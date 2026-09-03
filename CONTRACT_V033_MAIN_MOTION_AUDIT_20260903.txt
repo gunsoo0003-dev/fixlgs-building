@@ -1,0 +1,9 @@
+CONTRACT MAIN V033
+- Source: V032 MAIN TUTORIAL DEEP
+- Scope: contract main only
+- Desktop first WHY paragraph forced to two lines before "수익성이나 입지가"; mobile natural wrapping
+- Added ANALYSIS-style IntersectionObserver reveal rhythm to QUICK ACCESS, tutorial intro/sections, final principle
+- Added stronger hero 01-06 sequence: building reveal, staggered layers, connection line draw, logo finish, subtle float and hover reaction
+- Preserved HERO structure and QUICK ACCESS 01-07 links
+- No contract detail page content changed
+- Reduced-motion fallback included

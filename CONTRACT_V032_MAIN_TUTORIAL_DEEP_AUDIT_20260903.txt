@@ -1,0 +1,45 @@
+CONTRACT V032 MAIN TUTORIAL DEEP IMPLEMENTATION AUDIT
+Date: 2026-09-03
+Base: CONTRACT V031
+
+Scope
+- CONTRACT main page only.
+- Existing HERO structure and QUICK ACCESS 01~07 retained.
+- Korean CONTRACT tutorial below QUICK ACCESS expanded to implementation-level depth.
+
+Implemented tutorial structure
+01 WHY CONTRACT MATTERS
+- 3 editorial explanation rows
+- 6-step contract process: 확인 → 합의 → 문서화 → 재확인 → 지급 → 인도·이전
+- 3 connected omission examples
+
+02 SIX CONTRACT CHECKS
+- WHO / WHAT / MONEY / TERMS / VERIFY / CLOSE detailed rows
+- each row includes core question, explanation, and downstream connection
+- cascading-error visualization
+
+03 CONTRACT THINKING
+- 6 BEFORE → AFTER thinking shifts
+- explanation for each shift
+
+04 BEFORE CONTRACT
+- 6 preparation groups: RIGHTS / SCOPE / TENANCY / SITE / MONEY / TERMS
+- each group includes PREPARE / WHY / RESULT
+
+05 FIVE QUESTIONS
+- 5 pre-contract self-explanation questions
+- final rule for unresolved questions
+
+Desktop layout rules
+- 02 ANALYSIS-family typography retained.
+- Main CONTRACT wide container retained from V031.
+- Desktop tutorial headings use one-line copy where practical; font size is not reduced to force fitting.
+- Tutorial row layout changed from number + narrow title column + body column to number + full remaining copy width.
+- Body copy can use the available right-side width instead of wrapping inside an artificially narrow column.
+- White background editorial layout; no new black full-screen sections.
+
+Validation
+- Source-level content checks PASS.
+- CSS brace balance PASS.
+- ZIP integrity checked after packaging.
+- Full npm build was not run: source ZIP contains no node_modules and offline npm dependency installation did not complete, so build success is not claimed.

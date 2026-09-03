@@ -1,0 +1,38 @@
+FIX BUILDING CONTRACT V023 — 08 RED FLAGS SCAN
+Date: 2026-09-03
+
+Scope
+- 08 사기·위험 신호 감별 전용 페이지 구현
+- 09 흔한 계약 실수 미수정
+
+Structure
+1) 상단 정보형 콘텐츠
+   - 왜 위험신호를 감별하는가
+   - 단일 신호 vs 반복되는 불일치
+   - 6개 관점: IDENTITY / DOCUMENT / MONEY / PRESSURE / STORY / AVOIDANCE
+   - NORMAL vs RED FLAG 비교
+   - 기본 대응 원칙
+2) 하단 RED FLAG SCAN
+   - 세로 1열
+   - 6개 영역 × 4개 = 총 24개 위험신호
+   - 각 신호마다 '발견 시' 실제 확인 행동 1줄
+   - 점수화 없음
+   - STOP SIGNAL 3단계 판단
+
+Design controls
+- 07 A4 문서형과 다른 긴 웹 스캔 리포트 컨셉
+- A4/PAGE/DOCUMENT 표현 미사용
+- Black / White / Soft Gray + Santorini Blue #0868D7
+- 빨간 경고색 미사용
+- PC 1380px 공통 외곽 폭
+- 모바일 1열
+
+Verification
+- red flag groups: 6
+- scan signals: 24
+- stop levels: 3
+- PNG in public: 0
+- WebP in public: 84
+- basePath /building unchanged
+- No 09 data/code redesign included
+- npm build not reported as passed because node_modules is not bundled in this source ZIP

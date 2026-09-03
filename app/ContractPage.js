@@ -7,6 +7,8 @@ import {CONTRACT_KO_COMPLETE} from './contract-ko-complete';
 import {CONTRACT_PARTIES_V004} from './contract-parties-v004';
 import {CONTRACT_0206_V013} from './contract-0206-v013';
 import {CONTRACT_CHECKLIST_V016} from './contract-checklist-v016';
+import {CONTRACT_REDFLAGS_V023} from './contract-redflags-v023';
+import {CONTRACT_MISTAKES_V025} from './contract-mistakes-v025';
 
 const BASE_PATH='/building';
 
@@ -71,9 +73,117 @@ function ContractLock({locale}){
   const labels=['WHO','WHAT','MONEY','TERMS','VERIFY','CLOSE'];
   return <div className="ct-lock" aria-label="Contract verification layers">
     <div className="ct-building"><span>FIX</span><b>BUILDING</b></div>
-    <div className="ct-layers">{labels.map((label,i)=><a href={`${BASE_PATH}/${locale}/contract/${['parties','property','payment','terms','recheck','closing'][i]}`} className="ct-layer" style={{'--i':i}} key={label}><span>{String(i+1).padStart(2,'0')}</span><strong>{locale==='ko'?koLabel(label):label}</strong><i>{locale==='ko'?'LOCK → OPEN · 잠금 해제':'LOCK → OPEN'}</i></a>)}</div>
+    <div className="ct-layers">{labels.map((label,i)=><div className="ct-layer" style={{'--i':i}} key={label}><span>{String(i+1).padStart(2,'0')}</span><strong>{locale==='ko'?koLabel(label):label}</strong></div>)}</div>
   </div>;
 }
+
+const CONTRACT_HOME_TUTORIAL_KO=[
+  {
+    type:'why',
+    eyebrow:'01 · WHY CONTRACT MATTERS',
+    title:'계약은 분석한 가치를 권리로 바꿉니다.',
+    intro:'건물을 잘 분석했다는 사실만으로 원하는 자산을 그대로 인수하는 것은 아닙니다. 분석에서 확인한 가치와 위험이 실제 계약대상, 지급조건, 이행조건으로 연결되어야 처음 판단한 가치가 거래에서도 유지됩니다.',
+    points:[
+      ['좋은 건물과 좋은 계약은 다릅니다.','건물 분석은 이 자산을 사도 되는지를 판단하는 과정이고, 계약은 그 판단을 실제 거래조건으로 만드는 과정입니다. 수익성이나 입지가 좋아도 실제 인수범위와 권리관계가 분석 때의 전제와 다르면 결과는 달라질 수 있습니다.'],
+      ['계약은 여러 단계가 연결된 과정입니다.','계약서에 서명하는 순간만 보는 것이 아니라 확인한 사실을 합의하고, 합의한 내용을 문서화하고, 잔금 전에 다시 확인한 뒤 지급과 인도를 맞추는 전체 과정을 봐야 합니다.'],
+      ['작은 누락도 거래 전체를 흔듭니다.','권한, 시설범위, 임대차, 말소, 정산처럼 초기에 작아 보이는 항목도 뒤에서는 지급액, 인도범위, 권리이전 문제로 이어질 수 있습니다. 그래서 계약은 항목 하나보다 연결관계를 함께 확인하는 것이 중요합니다.']
+    ],
+    flow:[
+      ['확인','현재 사실과 자료를 확인합니다.'],['합의','확인한 사실을 기준으로 거래조건을 정합니다.'],['문서화','구두합의를 확인 가능한 조건으로 남깁니다.'],['재확인','계약 이후 달라진 사항을 다시 봅니다.'],['지급','조건 충족을 확인한 뒤 돈을 움직입니다.'],['인도·이전','권리·서류·시설·운영자료까지 넘겨받습니다.']
+    ],
+    examples:[
+      ['계약대상 누락','시설 하나의 소유관계가 불명확하면 인수범위와 가격이 달라질 수 있습니다.'],
+      ['임대차 정보 누락','보증금이나 임차조건이 다르면 실제 정산금액과 인수 후 현금흐름이 바뀔 수 있습니다.'],
+      ['권리변동 누락','계약 후 새로운 권리가 생기면 잔금과 소유권 이전 조건을 다시 판단해야 할 수 있습니다.']
+    ],
+    principle:'계약은 분석한 가치를 실제 권리와 거래조건으로 바꾸는 과정입니다.'
+  },
+  {
+    type:'axes',
+    eyebrow:'02 · SIX CONTRACT CHECKS',
+    title:'계약은 여섯 축을 함께 봅니다.',
+    intro:'건물 계약의 확인사항을 전부 외우는 것은 어렵습니다. 대신 사람·대상·돈·조건·변화·마무리라는 여섯 질문으로 나누면 복잡한 거래도 구조적으로 볼 수 있습니다.',
+    axes:[
+      ['WHO','누구와 계약하는가','계약 상대에게 실제 계약 권한이 있는가?','이름이 계약서에 적혀 있다는 사실만으로 충분하지 않습니다. 소유자, 대리인, 공동소유자 등 실제 계약에 관여하는 사람과 권한의 범위가 서로 맞는지 확인해야 합니다.','WHO가 불명확하면 뒤에 정하는 계약조건 자체가 흔들릴 수 있습니다.'],
+      ['WHAT','무엇을 실제로 인수하는가','가격에 포함된 대상과 현장에서 보이는 대상이 같은가?','건물과 토지만 보는 것이 아니라 임대차, 시설, 집기, 주차공간, 부속설비 등 실제로 무엇이 거래에 포함되는지 분리해서 봐야 합니다.','WHAT이 달라지면 가격, 특약, 인도범위도 함께 달라질 수 있습니다.'],
+      ['MONEY','돈은 어떤 조건에서 움직이는가','언제 얼마를 지급하는지보다 왜 그때 지급하는가?','계약금·중도금·잔금의 날짜만 보는 것이 아니라 각 지급시점에 어떤 조건이 충족되어 있어야 하는지를 함께 봐야 합니다.','돈은 일정이 아니라 확인된 조건과 연결되어야 합니다.'],
+      ['TERMS','합의한 내용을 어떻게 남기는가','말로 합의한 내용을 나중에도 확인할 수 있는가?','수리, 시설 인수, 명도, 말소, 정산처럼 결과에 영향을 주는 합의는 누가 무엇을 언제까지 어떻게 이행하는지가 확인 가능하도록 계약조건으로 정리해야 합니다.','조건이 모호하면 문제가 생겼을 때 무엇이 약속이었는지부터 다시 다투게 됩니다.'],
+      ['VERIFY','계약 이후 무엇이 달라졌는가','계약 당시 확인한 사실이 지금도 같은가?','계약일부터 잔금일까지는 시간이 흐릅니다. 권리관계, 임대차, 시설상태, 수리, 대출, 정산금액 등 거래조건에 영향을 주는 요소가 바뀔 수 있습니다.','한 번 확인한 사실을 거래가 끝날 때까지 그대로라고 가정하지 않습니다.'],
+      ['CLOSE','거래가 실제로 끝났는가','돈·권리·서류·인도가 모두 맞았는가?','잔금을 보냈다고 거래가 모두 끝난 것은 아닙니다. 권리말소, 소유권 이전, 열쇠·시설·임대차 자료의 인수까지 함께 맞아야 실제 거래가 완결됩니다.','CLOSE는 돈의 지급이 아니라 거래 전체의 완료상태를 확인하는 단계입니다.']
+    ],
+    cascade:['계약대상 불명확','가격 판단 오류','특약 내용 불완전','잔금 시 분쟁','인수범위 문제'],
+    principle:'계약은 앞 단계의 확인내용을 다음 단계의 조건으로 연결하는 작업입니다.'
+  },
+  {
+    type:'thinking',
+    eyebrow:'03 · CONTRACT THINKING',
+    title:'계약서를 보기 전에 기준부터 세웁니다.',
+    intro:'이 카테고리의 목적은 계약 문구를 외우는 것이 아닙니다. 실제 거래에서 설명을 어떻게 검증하고, 발견한 사실을 어떻게 조건으로 바꾸며, 지급 전에 무엇을 다시 판단해야 하는지 그 순서를 익히는 것입니다.',
+    comparisons:[
+      ['설명을 들었다','사실이 일치하는지 확인한다','상대방이나 중개인의 설명은 확인의 시작점일 수 있지만 확인 자체는 아닙니다. 사람의 설명, 공식자료, 현장상태가 같은 사실을 가리키는지 비교합니다.'],
+      ['서류가 있다','서류의 내용과 시점을 본다','서류가 존재하는 것과 필요한 사실을 정확히 보여주는 것은 다릅니다. 언제 발급된 자료인지, 현재 상태를 반영하는지, 다른 자료와 일치하는지를 봅니다.'],
+      ['계약서에 적었다','이행 여부까지 확인한다','계약조건은 약속을 남기는 장치이지만 실제 이행을 자동으로 보장하지는 않습니다. 잔금 전에 조건이 실제로 이행되었는지 다시 확인합니다.'],
+      ['지급일이 됐다','지급조건이 충족됐는지 본다','날짜는 지급시점을 정하지만 지급의 안전성을 보장하지는 않습니다. 말소, 명도, 수리 등 선행조건이 있다면 날짜보다 조건 충족 여부를 먼저 봅니다.'],
+      ['한 번 확인했다','중요 시점마다 다시 확인한다','계약 전에 확인한 정보가 잔금일까지 그대로 유지된다고 가정하지 않습니다. 중요한 자료는 계약 전과 잔금 전에 각각 다른 역할로 다시 봅니다.'],
+      ['잔금을 보냈다','거래가 완결됐는지 확인한다','돈을 지급한 순간과 자산을 완전히 인수한 순간은 다를 수 있습니다. 권리·서류·물리적 인도까지 함께 확인해야 합니다.']
+    ],
+    principle:'계약의 핵심은 의심하는 것이 아니라 확인 가능한 상태를 만드는 것입니다.'
+  },
+  {
+    type:'prepare',
+    eyebrow:'04 · BEFORE CONTRACT',
+    title:'계약서보다 먼저 기준자료를 준비합니다.',
+    intro:'계약서를 받은 뒤 처음부터 자료를 찾기 시작하면 중요한 내용을 놓치기 쉽습니다. 계약 전에 거래의 기준상태를 정리해 두면 무엇이 빠졌는지, 어떤 내용을 조건으로 남겨야 하는지 훨씬 쉽게 판단할 수 있습니다.',
+    preparations:[
+      ['RIGHTS','현재 권리상태를 기준으로 잡습니다.',['최신 권리 관련 자료','소유자·공동소유 정보','담보와 기타 권리관계'],'계약 상대와 실제 권리자가 일치하는지 확인하고, 잔금 전 무엇이 바뀌었는지를 비교하기 위한 기준입니다.',['현재 상태','해결 필요','잔금 전 재확인']],
+      ['SCOPE','인수대상을 목록으로 정리합니다.',['토지·건물','부속시설·설비','집기·주차·공용부분 관련사항'],'현장에서 보이는 것과 실제 소유하거나 인수할 수 있는 대상은 다를 수 있습니다. 포함·제외·확인 필요 항목을 미리 나눕니다.',['포함','제외','확인 필요']],
+      ['TENANCY','임대차를 인수조건과 연결합니다.',['임차인·계약기간','보증금·임대료','미수·정산·명도 예정'],'임대차는 수익뿐 아니라 잔금 시 실제 지급액과 인수 후 운영에 직접 영향을 줍니다.',['승계','정산','명도·추가확인']],
+      ['SITE','현장상태를 기록으로 남깁니다.',['주요 시설·하자','수리 약속','렌탈·리스·철거·교체 예정'],'계약 후에는 처음부터 그랬는지 계약 이후 달라졌는지 구분하기 어려울 수 있습니다. 사진과 목록으로 기준상태를 남기는 이유입니다.',['현재 상태','약속된 조치','완료 확인방법']],
+      ['MONEY','매매가와 실제 지급액을 나눠 봅니다.',['매매대금·보증금 승계','대출·말소금액','정산금·세금·비용','계약금·중도금·잔금'],'매매가격과 잔금일 실제 송금액은 같지 않을 수 있습니다. 누구에게 얼마를 어떤 조건에서 지급하는지까지 계산해야 합니다.',['수령자','금액','지급조건']],
+      ['TERMS','미확정사항은 계약 전에 정리합니다.',['수리·명도','권리말소·시설 인수','서류 제공·미납금 정산','계약 후 변경 방지'],'계약서를 받기 전에 조건 후보를 만들어 두면 계약서에 빠진 내용을 찾기 쉽습니다. 미확정사항에는 책임주체·기한·완료기준을 붙입니다.',['책임주체','기한','완료기준']]
+    ],
+    principle:'준비자료는 계약 전 상태를 기록하고 잔금 전 변화를 찾는 기준점이 됩니다.'
+  },
+  {
+    type:'questions',
+    eyebrow:'05 · FIVE QUESTIONS',
+    title:'계약 전 다섯 질문에 답해야 합니다.',
+    intro:'자료를 많이 모았더라도 거래 구조를 설명할 수 없다면 준비가 끝난 것이 아닙니다. 계약서를 작성하기 전에 아래 질문에 자신의 말로 답할 수 있는지 확인하면 빠진 부분을 찾기 쉽습니다.',
+    questions:[
+      ['누구와 계약하는가?','실제 권리자와 계약 상대의 관계, 대리나 공동소유가 있다면 그 권한 범위를 설명할 수 있어야 합니다.'],
+      ['무엇을 인수하는가?','토지·건물뿐 아니라 임대차와 시설까지 실제 인수범위를 설명할 수 있어야 합니다.'],
+      ['얼마를 왜 그때 지급하는가?','단순 지급일이 아니라 각 지급 전에 충족되어야 할 조건과 실제 송금액을 알고 있어야 합니다.'],
+      ['잔금 전에 무엇을 다시 확인하는가?','계약일부터 달라질 수 있는 권리·임대차·시설·정산 등 재확인 항목을 미리 정해 둬야 합니다.'],
+      ['무엇을 받아야 거래가 끝나는가?','소유권뿐 아니라 서류·열쇠·시설·임대차·운영자료까지 인수완료의 기준을 알고 있어야 합니다.']
+    ],
+    principle:'답하기 어려운 질문이 있다면 계약서를 쓰기 전에 그 사실부터 다시 확인합니다.'
+  }
+];
+
+function ContractTutorialSection({section,index}){
+  return <article className={`ct-home-guide-section is-${section.type}`} data-ct-reveal>
+    <div className="ct-home-guide-heading"><span>{String(index+1).padStart(2,'0')}</span><div><small>{section.eyebrow}</small><h3>{section.title}</h3><p>{section.intro}</p></div></div>
+
+    {section.points&&<div className="ct-home-guide-points">{section.points.map(([title,body],j)=>{const split=index===0&&j===0?body.split(' 수익성이나 입지가'):null;return <div key={title}><span>{String(j+1).padStart(2,'0')}</span><div><h4>{title}</h4><p>{split?<>{split[0]}<br className="ct-pc-break"/>수익성이나 입지가{split[1]}</>:body}</p></div></div>})}</div>}
+
+    {section.flow&&<div className="ct-home-process" aria-label="계약 기본 흐름">{section.flow.map(([title,body],i)=><div key={title}><span>{String(i+1).padStart(2,'0')}</span><strong>{title}</strong><p>{body}</p></div>)}</div>}
+
+    {section.examples&&<div className="ct-home-examples">{section.examples.map(([title,body],i)=><article key={title}><span>{String(i+1).padStart(2,'0')}</span><h4>{title}</h4><p>{body}</p></article>)}</div>}
+
+    {section.axes&&<div className="ct-home-axes">{section.axes.map(([key,title,question,body,connection],i)=><article key={key}><span>{String(i+1).padStart(2,'0')}</span><div className="ct-home-axis-copy"><small>{key}</small><h4>{title}</h4><strong>{question}</strong><p>{body}</p><em>{connection}</em></div></article>)}</div>}
+
+    {section.cascade&&<div className="ct-home-cascade"><small>ONE ERROR CAN TRAVEL · 하나의 오류가 이어지는 방식</small><div>{section.cascade.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong>{i<section.cascade.length-1&&<b>→</b>}</div>)}</div></div>}
+
+    {section.comparisons&&<div className="ct-home-thinking">{section.comparisons.map(([before,after,body],i)=><article key={before}><span>{String(i+1).padStart(2,'0')}</span><div className="ct-home-thinking-shift"><small>BEFORE</small><strong>{before}</strong><b>→</b><small>AFTER</small><strong>{after}</strong></div><p>{body}</p></article>)}</div>}
+
+    {section.preparations&&<div className="ct-home-preparations">{section.preparations.map(([label,title,items,why,result],i)=><article key={label}><span>{String(i+1).padStart(2,'0')}</span><div><small>{label}</small><h4>{title}</h4><div className="ct-home-prep-body"><div><b>PREPARE · 준비</b><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></div><div><b>WHY · 이유</b><p>{why}</p></div><div><b>RESULT · 계약 전 결과</b><div className="ct-home-prep-tags">{result.map(x=><em key={x}>{x}</em>)}</div></div></div></div></article>)}</div>}
+
+    {section.questions&&<div className="ct-home-questions">{section.questions.map(([question,body],i)=><article key={question}><span>{String(i+1).padStart(2,'0')}</span><div><h4>{question}</h4><p>{body}</p></div></article>)}</div>}
+
+    <strong className="ct-home-guide-principle">{section.principle}</strong>
+  </article>;
+}
+
 
 function CharacterScene({type}){
   return <div className={`ct-character ct-character-${type}`} aria-hidden="true">
@@ -263,6 +373,37 @@ function Checklist07({copy,page,locale}){
   </main>;
 }
 
+
+function RedFlags08({copy,page,locale}){
+  const d=CONTRACT_REDFLAGS_V023;
+  return <main className="contract-page ct8-page">
+    <section className="ct8-hero"><div className="ct-shell"><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{d.hero.eyebrow}</small><h1>{d.hero.title.split('\n').map(x=><span key={x}>{x}</span>)}</h1><p>{d.hero.lead}</p></div></section>
+
+    <section className="ct8-content" data-ct-reveal><div className="ct-shell"><header className="ct8-content-intro"><small>{d.content.eyebrow}</small><h2>{d.content.title}</h2><p>{d.content.intro}</p></header><figure className="ct89-editorial-image"><img src={`${BASE_PATH}/images/contract/building-contract-08-red-flag-scan.webp`} alt="부동산 계약 자료의 신원, 권한, 서류, 지급 흐름을 연결해 위험신호를 검토하는 장면" loading="lazy" decoding="async"/></figure><div className="ct8-editorial-stack">{d.content.sections.map((section)=><article className="ct8-editorial" key={section.no}><div className="ct8-editorial-meta"><span>{section.no}</span><small>{section.label}</small></div><h3>{section.title}</h3><div className="ct8-editorial-copy">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div><div className="ct8-editorial-flow">{section.flow.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong></div>)}</div></article>)}</div><figure className="ct89-editorial-image ct89-editorial-image-end"><img src={`${BASE_PATH}/images/contract/building-contract-08-proceed-or-hold.webp`} alt="당사자, 서류, 권한, 최신 권리상태, 계약조건을 검증하며 거래 진행 또는 보류를 판단하는 흐름" loading="lazy" decoding="async"/></figure></div></section>
+
+    <section className="ct8-scan" data-ct-reveal><div className="ct-shell"><header className="ct8-scan-intro"><small>RED FLAG SCAN · 위험신호 스캔</small><h2>이상신호가 보이면 바로 검증할 지점을 찾습니다.</h2><p>이 영역은 체크박스 문서가 아닙니다. 각 SIGNAL에서 무엇이 이상한지 읽고, WHY와 VERIFY NOW를 따라 실제 거래구조를 다시 확인합니다.</p></header><div className="ct8-scan-groups">{d.groups.map((group,gIndex)=><section className="ct8-scan-group" key={group.code}><header><span>{String(gIndex+1).padStart(2,'0')}</span><div><small>{group.code}</small><h3>{group.ko}</h3></div></header><ol>{group.items.map(([signal,why,action],i)=><li key={signal}><span className="ct8-signal-no">SIGNAL {String(i+1).padStart(2,'0')}</span><h4>{signal}</h4><div className="ct8-signal-detail"><p><strong>WHY</strong>{why}</p><p><strong>VERIFY NOW</strong>{action}</p></div></li>)}</ol></section>)}</div><section className="ct8-stop"><small>{d.stop.eyebrow}</small><h2>{d.stop.title}</h2><div>{d.stop.levels.map(([title,body],i)=><article key={title}><span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p className="ct8-stop-note">{d.stop.note}</p></section></div></section>
+    <p className="ct-notice ct-shell">{copy.notice}</p>
+    <OtherLinks copy={copy} current={page.slug} locale={locale}/>
+  </main>;
+}
+
+
+function Mistakes09({copy,page,locale}){
+  const d=CONTRACT_MISTAKES_V025;
+  return <main className="contract-page ct8-page ct9-page">
+    <section className="ct8-hero"><div className="ct-shell"><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{d.hero.eyebrow}</small><h1>{d.hero.title.split('\n').map(x=><span key={x}>{x}</span>)}</h1><p>{d.hero.lead}</p></div></section>
+
+    <section className="ct8-content" data-ct-reveal><div className="ct-shell"><header className="ct8-content-intro"><small>{d.content.eyebrow}</small><h2>{d.content.title}</h2><p>{d.content.intro}</p></header><figure className="ct89-editorial-image"><img src={`${BASE_PATH}/images/contract/building-contract-09-skipped-checks.webp`} alt="부동산 계약 과정에서 구두합의, 문서대조, 재확인 등 중요한 절차가 생략되는 실수 흐름" loading="lazy" decoding="async"/></figure><div className="ct8-editorial-stack">{d.content.sections.map((section)=><article className="ct8-editorial" key={section.no}><div className="ct8-editorial-meta"><span>{section.no}</span><small>{section.label}</small></div><h3>{section.title}</h3><div className="ct8-editorial-copy">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div><div className="ct8-editorial-flow">{section.flow.map((item,i)=><div key={item}><span>{String(i+1).padStart(2,'0')}</span><strong>{item}</strong></div>)}</div></article>)}</div></div></section>
+
+    <section className="ct8-scan ct9-scan-unified" data-ct-reveal><div className="ct-shell"><header className="ct8-scan-intro"><small>MISTAKE SCAN · 계약 실수 점검</small><h2>내가 반복하는 생략부터 찾아냅니다.</h2><p>{d.content.transition.body}</p></header><div className="ct8-scan-groups">{d.groups.map((group,gIndex)=><section className="ct8-scan-group" key={group.code}><header><span>{String(gIndex+1).padStart(2,'0')}</span><div><small>{group.code}</small><h3>{group.ko}</h3></div></header><ol>{group.items.map(([mistake,why,block],i)=><li key={mistake}><span className="ct8-signal-no">MISTAKE {String(i+1).padStart(2,'0')}</span><h4>{mistake}</h4><div className="ct8-signal-detail"><p><strong>WHY IT HAPPENS · 왜 생기나</strong>{why}</p><p><strong>BLOCK IT · 이렇게 차단</strong>{block}</p></div></li>)}</ol></section>)}</div><figure className="ct89-editorial-image ct89-editorial-image-scan"><img src={`${BASE_PATH}/images/contract/building-contract-09-failure-control-path.webp`} alt="같은 부동산 거래에서 확인 생략의 실수 경로와 검증 중심의 통제 경로를 비교한 장면" loading="lazy" decoding="async"/></figure>
+    <section className="ct9-failure ct9-failure-unified"><small>{d.failure.eyebrow}</small><h2>{d.failure.title}</h2><div className="ct9-paths"><article className="is-bad"><small>{d.failure.badLabel}</small>{d.failure.bad.map((x,i)=><div key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong></div>)}</article><article className="is-good"><small>{d.failure.goodLabel}</small>{d.failure.good.map((x,i)=><div key={x}><span>{String(i+1).padStart(2,'0')}</span><strong>{x}</strong></div>)}</article></div><p>{d.failure.note}</p></section></div></section>
+
+    <section className="ct9-principle"><div className="ct-shell"><small>CORE PRINCIPLE · 핵심 원칙</small><h2>{d.principle.split('\n').map(x=><span key={x}>{x}</span>)}</h2></div></section>
+    <p className="ct-notice ct-shell">{copy.notice}</p>
+    <OtherLinks copy={copy} current={page.slug} locale={locale}/>
+  </main>;
+}
+
 function Detail({copy,page,locale}){
   return <main className="contract-page ct-detail">
     <section className="ct-detail-hero"><div className="ct-shell ct-detail-hero-grid"><div><a className="ct-back" href={`${BASE_PATH}/${locale}/contract`}>{copy.back}</a><small>{page.num} · {page.label}</small><h1>{page.title}</h1><p>{page.question}</p><em>{page.hero}</em></div><CharacterScene type={page.slug}/></div></section>
@@ -290,13 +431,13 @@ export default function ContractPage({locale='ko',initialView=[]}){
   if(page&&locale==='ko'&&page.slug==='parties') return <PartiesPrototype copy={copy} page={page} locale={locale}/>;
   if(page&&locale==='ko'&&CONTRACT_0206_V013[page.slug]) return <Journey0206 copy={copy} page={page} locale={locale}/>;
   if(page&&locale==='ko'&&page.slug==='checklist') return <Checklist07 copy={copy} page={page} locale={locale}/>;
+  if(page&&locale==='ko'&&page.slug==='red-flags') return <RedFlags08 copy={copy} page={page} locale={locale}/>;
+  if(page&&locale==='ko'&&page.slug==='mistakes') return <Mistakes09 copy={copy} page={page} locale={locale}/>;
   if(page) return <Detail copy={copy} page={page} locale={locale}/>;
-  return <main className="contract-page">
+  return <main className="contract-page ct-main">
     <section className="ct-hero"><div className="ct-shell ct-hero-grid"><div className="ct-hero-copy"><small>{copy.eyebrow}</small><h1>{copy.title}</h1><p>{copy.lead}</p><div className="ct-hero-actions"><a className="is-primary" href="#contract-process">{copy.ctas.flow}<b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/red-flags`}>{copy.ctas.risk}<b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/mistakes`}>{copy.ctas.mistakes}<b>→</b></a></div></div><ContractLock locale={locale}/></div></section>
-    <section className="ct-quick" id="contract-process" data-ct-reveal><div className="ct-shell"><header><small>{copy.quick.eyebrow}</small><h2>{copy.quick.title}</h2><p>{copy.quick.lead}</p></header><div className="ct-quick-grid">{copy.pages.slice(0,7).map(p=><a href={`${BASE_PATH}/${locale}/contract/${p.slug}`} key={p.slug}><span>{p.num}</span><MiniIcon type={p.icon}/><strong>{p.title}</strong><small>{locale==='ko'?koLabel(p.label):p.label}</small></a>)}</div></div></section>
-    <section className="ct-tutorial" data-ct-reveal><div className="ct-shell"><header><small>{copy.tutorial.eyebrow}</small><h2>{copy.tutorial.title}</h2><p>{copy.tutorial.lead}</p></header><div className="ct-tutorial-list">{copy.tutorial.items.map(([t,b],i)=><article key={t}><span>{String(i+1).padStart(2,'0')}</span><div><h3>{t}</h3><p>{b}</p></div></article>)}</div></div></section>
-    <section className="ct-takeaway"><div className="ct-shell"><small>{locale==='ko'?koLabel('CONTRACT STANDARD'):'CONTRACT STANDARD'}</small>{copy.takeaway.map(x=><strong key={x}>{x}</strong>)}</div></section>
-    <section className="ct-risk-strip" data-ct-reveal><div className="ct-shell"><header><small>{locale==='ko'?koLabel('RISK GUIDE'):'RISK GUIDE'}</small><h2>{copy.riskStrip.title}</h2><p>{copy.riskStrip.lead}</p></header><div className="ct-risk-links"><a href={`${BASE_PATH}/${locale}/contract/red-flags`}><span>08</span><strong>{copy.pages[7].title}</strong><b>→</b></a><a href={`${BASE_PATH}/${locale}/contract/mistakes`}><span>09</span><strong>{copy.pages[8].title}</strong><b>→</b></a></div></div></section>
-
+    <section className="ct-quick" id="contract-process" data-ct-reveal><div className="ct-shell"><header><small>{copy.quick.eyebrow}</small><h2>{copy.quick.title}</h2><p>{copy.quick.lead}</p></header><div className="ct-quick-grid">{copy.pages.slice(0,7).map((p,i)=><a href={`${BASE_PATH}/${locale}/contract/${p.slug}`} key={p.slug} style={{'--quick-i':i}}><span>{p.num}</span><MiniIcon type={p.icon}/><strong>{p.title}</strong><small>{locale==='ko'?koLabel(p.label):p.label}</small></a>)}</div></div></section>
+    {locale==='ko'?<section className="ct-home-guide"><div className="ct-shell"><header className="ct-home-guide-intro" data-ct-reveal><small>CONTRACT TUTORIAL · 계약 튜토리얼</small><h2>계약 전에 전체 구조부터 이해합니다.</h2><p>복잡한 계약용어를 외우기보다 실제 거래가 어떤 순서로 연결되는지 이해하는 것이 먼저입니다. 아래 내용은 건물 계약에서 왜 확인이 필요한지, 무엇을 함께 봐야 하는지, 계약 전에 어떤 기준을 준비해야 하는지를 실전 흐름으로 설명합니다.</p></header><div className="ct-home-guide-stack">{CONTRACT_HOME_TUTORIAL_KO.map((section,i)=><ContractTutorialSection section={section} index={i} key={section.eyebrow}/>)}</div></div></section>:<section className="ct-tutorial" data-ct-reveal><div className="ct-shell"><header><small>{copy.tutorial.eyebrow}</small><h2>{copy.tutorial.title}</h2><p>{copy.tutorial.lead}</p></header><div className="ct-tutorial-list">{copy.tutorial.items.map(([t,b],i)=><article key={t}><span>{String(i+1).padStart(2,'0')}</span><div><h3>{t}</h3><p>{b}</p></div></article>)}</div></div></section>}
+    <section className="ct-takeaway" data-ct-reveal><div className="ct-shell"><small>{locale==='ko'?koLabel('CONTRACT STANDARD'):'CONTRACT STANDARD'}</small>{copy.takeaway.map(x=><strong key={x}>{x}</strong>)}</div></section>
   </main>;
 }
