@@ -1,0 +1,44 @@
+FIX BUILDING CONTRACT V038 — KO/EN/JA LAYOUT PARITY AUDIT
+Date: 2026-09-04
+
+Core change
+- Removed alternate EN/JA render paths for CONTRACT 01~06.
+- KO/EN/JA now use the same PartiesPrototype renderer for 01.
+- KO/EN/JA now use the same Journey0206 renderer for 02~06.
+- Locale changes data only; section markup and CSS classes are shared.
+
+01 WHO parity
+- section tags: 13 / 13
+- literal className sequence: 72 / 72, identical to V037 KO renderer
+- image tags: 3 / 3
+- figure tags: 3 / 3
+- article template tags: 10 / 10
+- localized data counts match KO structure:
+  first deal 9, normal chain 4, variables 4, missed chain 4, missed scenarios 4,
+  mistakes 5, HOW TO 6, mismatch 4, deep dives 2 x 5, cases 5, decision 4, final 5.
+
+02~06 parity
+- section tags: 12 / 12
+- literal className sequence: 45 / 45, identical to V037 KO renderer
+- image tags: 2 / 2
+- figure tags: 2 / 2
+- article template tags: 7 / 7
+- localized data counts follow each KO source page for flow, normal chain, variables, missed,
+  HOW TO, mismatch, deep-dive section counts, cases, decision and final summary.
+- 04 TERMS normal baseline specifically corrected to KO count 6 (not 7).
+
+07~09
+- Already use one renderer per page for KO/EN/JA; no locale-specific layout component split.
+
+MAIN
+- Already uses one shared DOM structure for KO/EN/JA; locale changes content data.
+
+Assets / SEO
+- CONTRACT local WebP assets present in public/images/contract.
+- sitemap contains ko/en/ja and all 9 detail slugs.
+- robots references sitemap.xml.
+
+Build status
+- npm install was attempted in the inspection container but dependency installation timed out.
+- next executable was therefore not available; no claim of npm run build PASS is made.
+- node_modules was removed before packaging.

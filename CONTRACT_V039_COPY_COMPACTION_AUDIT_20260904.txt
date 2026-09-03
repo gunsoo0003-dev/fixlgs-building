@@ -1,0 +1,41 @@
+CONTRACT V039 EN/JA COPY COMPACTION AUDIT — 2026-09-04
+
+GOAL
+- Preserve V038 KO/EN/JA 1:1 DOM/layout/image structure.
+- Reduce only EN/JA screen copy where translation expansion made cards and sections excessively tall.
+- Preserve KO copy and deep/reference data.
+
+IMPLEMENTATION
+- Added ctUi(locale,text,kind) screen-copy compaction helper.
+- KO bypasses compaction entirely.
+- EN/JA copy is reduced by complete sentence/clause boundaries only; no mid-word truncation.
+- Limits by role: lead EN330/JA125, card EN190/JA92, micro EN135/JA65, action EN150/JA75.
+- Lead blocks retain at least two sentences where available.
+- DEEP DIVE / COMPLETE GUIDE source content remains full-length.
+- Applied to HOME, 01~06 visual cards, 07 intro/usage, 08 editorial/signal/stop, 09 editorial/mistake/failure.
+
+LAYOUT PARITY
+- className sequence identical to V038: True
+- className count V038/V039: 298/298
+- section count V038/V039: 62/62
+- img tag count V038/V039: 11/11
+- ctUi render applications: 85
+
+ASSETS
+- Contract WebP files present: 19
+- Referenced contract WebP unique: 19
+- Missing referenced images: []
+
+SEO ROUTING
+- sitemap languages present: True
+- sitemap contract slugs present: True
+- robots sitemap path present: True
+
+BUILD
+- npm run build attempted.
+- Could not execute because node_modules is intentionally absent from delivery artifact; `next` executable not available in this environment.
+- Do not interpret this as a build PASS.
+
+RESULT
+- Static parity/assets/SEO checks PASS.
+- Local `npm run build` required after replacing project files.
