@@ -1,0 +1,21 @@
+FIX BUILDING · 05 EXIT V008 latest browser feedback audit
+
+Applied after V007
+- 01 WHY three change factors: horizontal multi-column -> vertical one-row-per-factor layout.
+- 01 WHY copy: shorter semantic paragraph units.
+- 02~06 WHY copy: lead shortened and content split into five semantic paragraphs; renderer no longer inserts forced line breaks after every sentence.
+- 01 REVIEW/HOLD signals: normalized to 5 concise items each and rendered in the same paired signal layout.
+- 02~06 REVIEW/READY signals: normalized to 5 concise items each.
+- Signal chips: desktop fixed 2-column grid with equal minimum chip height; mobile 1-column.
+- Signal panels: same flex structure so lower interpretation blocks align consistently.
+
+Static checks
+- exit-data.js: PASS
+- exit-prototype-data.js: PASS
+- ExitClient.js: PASS
+- ExitPrototypeClient.js: PASS
+- 01 WHY paragraphs 4 / factors 3 / review 5 / hold 5
+- 02~06 WHY 5 / review 5 / ready 5 per page
+
+Production build
+- Not run because node_modules is intentionally excluded from the deliverable.

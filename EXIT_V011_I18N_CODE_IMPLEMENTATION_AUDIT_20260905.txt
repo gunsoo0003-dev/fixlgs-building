@@ -1,0 +1,110 @@
+FIX BUILDING — 05 EXIT V011 I18N CODE IMPLEMENTATION AUDIT
+Date: 2026-09-05
+Source code: EXIT V010 NEW 7 IMAGES WEBP KO REVIEW
+Localization plan: V016 I18N FULLTEXT CODE READY
+
+[FINAL RESULT]
+CODE IMPLEMENTATION: PASS
+RELEASE / INDEXING: HOLD (browser QA / production build still required before index+sitemap release)
+
+[PLAN CROSS-CHECK]
+G01 KO CURRENT LOCK — PASS
+- V010 KO data was used as the source structure.
+- MAIN 101 leaf strings, 01 DECISION 266, 02 167, 03 166, 04 164, 05 164, 06 166.
+
+G02 EN FULL CONTENT — PASS
+- V016 EN FINAL strings injected for all 1,103 localized strings.
+- Hangul residue in EN localized strings: 0.
+
+G03 JA FULL CONTENT — PASS
+- V016 JA FINAL strings injected for all 1,103 localized strings.
+- Hangul residue in JA localized strings: 0.
+
+G04 SCHEMA MATCH — PASS
+- KO/EN/JA leaf counts match exactly for MAIN + 01~06.
+- id / num / code / status values retained.
+
+G05 HOME ENTRY — PASS
+- HomePageClient EXIT href changed from KO-only/# gate to /building/{locale}/exit.
+- KO / EN / JA use the same route pattern.
+
+G06 ROUTE — PASS
+- EXIT route now accepts ko/en/ja.
+- Previous locale !== ko => notFound gate removed.
+- main + decision + readiness + pricing + buyer-readiness + net-proceeds + closing accepted.
+
+G07 INTERNAL LINKS — PASS
+- /ko/exit hardcoding removed from ExitMainClient, ExitClient, ExitPrototypeClient.
+- Back / next / end navigation paths use current locale.
+- Runtime target-file /ko/exit references: 0.
+
+G08 LANGUAGE SWITCH — PASS (static code cross-check)
+- Existing SiteHeader language switch preserves the current path and replaces only locale.
+- EXIT pages now exist for ko/en/ja, so same-slug switching no longer lands on the former KO-only route gate.
+
+G09 BROWSER QA — HOLD FOR LOCAL/DEPLOYED BROWSER
+- TypeScript parser syntax check passed for all modified JSX/JS files.
+- Full Next production build could not be executed in this artifact environment because node_modules are intentionally absent and npm offline cache is incomplete.
+- Browser checks remain required after local npm install / existing project dependency restore.
+
+G10 SEO QA — PASS AT CODE LEVEL / BROWSER META INSPECTION PENDING
+- EN/JA main + 01~06 final title/description values implemented.
+- Self-canonical implemented by locale.
+- ko/en/ja hreflang + x-default candidate implemented by same slug.
+- robots remains noindex,follow for EXIT during QA.
+
+G11 ROBOTS — HOLD AS PLANNED
+- EXIT metadata remains index:false, follow:true.
+- Global robots file unchanged.
+
+G12 SITEMAP — HOLD AS PLANNED
+- EXIT URLs were NOT added to sitemap yet.
+- This matches V016 release gate: sitemap only after browser QA and index approval.
+
+[IMAGE / ALT]
+PASS
+- 7 existing WebP EXIT images retained and shared across locales.
+- 7 x 3 locale-specific ALT strings added.
+- Home EXIT service-card ALT synchronized to the new main image concept in KO/EN/JA.
+- service-exit.webp runtime reference remains removed.
+
+[UI LOCALIZATION]
+PASS
+- Main hardcoded KO headings moved to locale UI copy.
+- METHOD labels localized.
+- REVIEW / READY labels localized.
+- CASE labels localized.
+- SELF CHECK follow-up label localized.
+- PROFESSIONAL CHECK labels localized.
+- CONFIRMATION STATUS labels localized.
+- SUMMARY / NEXT / end-navigation copy localized.
+- EN action labels use "View {step}"; JA uses "{step}を見る" instead of unnatural suffix order.
+
+[FILES ADDED]
+- app/exit-i18n-data.js
+- EXIT_V011_I18N_CODE_IMPLEMENTATION_AUDIT_20260905.txt
+
+[FILES MODIFIED]
+- app/HomePageClient.js
+- app/site-copy.js
+- app/ExitMainClient.js
+- app/ExitClient.js
+- app/ExitPrototypeClient.js
+- app/exit-images.js
+- app/[locale]/exit/[[...view]]/page.js
+
+[STATIC VALIDATION]
+PASS
+- TypeScript parser: no syntax errors in modified JS/JSX.
+- Locale schema test: PASS.
+- EN localized Hangul residue: 0.
+- JA localized Hangul residue: 0.
+- Runtime /ko/exit hardcoding in implementation targets: 0.
+- EXIT image asset count: 7.
+
+[NEXT REQUIRED BEFORE PUBLIC INDEXING]
+1. Restore/install project dependencies locally.
+2. Run npm run build.
+3. Browser QA KO/EN/JA: HOME -> EXIT -> 01~06 -> language switch -> EXIT HOME.
+4. Verify long EN/JA text wrapping and mobile overflow.
+5. Only after QA PASS, change EXIT index policy and add EXIT URLs to sitemap.

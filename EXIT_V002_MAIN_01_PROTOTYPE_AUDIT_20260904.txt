@@ -1,0 +1,23 @@
+FIX BUILDING — EXIT V002 MAIN + 01 PROTOTYPE
+Date: 2026-09-04
+
+Scope
+- Added KO EXIT tutorial main at /building/ko/exit.
+- Retained KO EXIT 01 decision detail at /building/ko/exit/decision.
+- Home KO EXIT card now enters the EXIT tutorial main, not the detail directly.
+- 02~06 are visible as planned steps on main but disabled and have no routes/pages.
+
+Layout control
+- EXIT main reuses MANAGEMENT an32 tutorial layout system.
+- EXIT detail 01 continues to reuse ANALYSIS/MANAGEMENT detail shell.
+- Reading typography inherits MANAGEMENT 18px desktop/tablet and 16px mobile rules.
+- Existing CSS is reused; only EXIT-specific pending-state, formula, and CTA rules were added.
+
+SEO control
+- EXIT main and 01 remain noindex, follow during prototype review.
+- No EXIT sitemap entries added.
+- EN/JA EXIT routes remain unavailable.
+
+Next gate
+- User browser review of EXIT main + 01.
+- Complete 01 based on feedback before implementing 02~06.

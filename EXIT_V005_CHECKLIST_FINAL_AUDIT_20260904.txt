@@ -1,0 +1,36 @@
+FIX BUILDING 05 EXIT V005 / checklist-driven implementation audit
+
+Base: EXIT V004 01 PROFESSIONAL CHECK enhanced
+Scope: KO EXIT 02~06 content reinforcement
+
+Checklist workflow
+1. Created 50-item implementation checklist from 01-completion standard.
+2. Applied checklist to 02~06 data and shared renderer.
+3. Re-applied identical checklist before packaging.
+4. Final result: 50/50 PASS, 0 FAIL.
+
+Implemented per page
+- HERO/WHY expanded
+- CORE 6 items with detailed interpretation
+- METHOD 5 steps with checks, caution, completion criteria
+- REVIEW SIGNAL + READY SIGNAL
+- CASE A/B/C with numeric CASE C, observation, judgement point, next check
+- SELF CHECK 6 questions with reason and next action
+- PROFESSIONAL CHECK: WHAT TO CHECK / CHECK WHEN / PREPARE / CONFIRM WITH / apply
+- CONFIRMATION STATUS
+- SUMMARY 3 + FINAL POINT
+- Next-step and EXIT navigation active
+- User-visible prototype copy removed
+
+Static validation
+- node --check: exit-prototype-data.js PASS
+- node --check: ExitPrototypeClient.js PASS
+- node --check: ExitMainClient.js PASS
+- node --check: exit route page.js PASS
+- route allowlist: 02~06 PASS
+- data structure validation: PASS
+- user-visible '프로토타입' scan: 0
+
+Build note
+- node_modules is intentionally excluded from deliverable.
+- Next production build was not run in this packaging workspace because dependencies are not present.

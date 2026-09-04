@@ -156,7 +156,7 @@ export default function HomePage({ locale = 'ko' }) {
         <section className="services-section" aria-label={copy.servicesAria}>
           <div className="services-grid">
             {services.map((s) => (
-              <a className="service-card" id={s.id} href={s.id === 'self' ? `${BASE_PATH}/${locale}/self-check` : s.id === 'analysis' ? `${BASE_PATH}/${locale}/analysis` : s.id === 'contract' ? `${BASE_PATH}/${locale}/contract` : s.id === 'management' ? `${BASE_PATH}/${locale}/management` : '#'} key={s.id}>
+              <a className="service-card" id={s.id} href={s.id === 'self' ? `${BASE_PATH}/${locale}/self-check` : s.id === 'analysis' ? `${BASE_PATH}/${locale}/analysis` : s.id === 'contract' ? `${BASE_PATH}/${locale}/contract` : s.id === 'management' ? `${BASE_PATH}/${locale}/management` : s.id === 'exit' ? `${BASE_PATH}/${locale}/exit` : '#'} key={s.id}>
                 <img src={s.image} alt={s.alt} />
                 <div className="service-shade" />
                 <div className="service-copy"><small>{s.num}</small><h2>{s.cardTitle || s.label}</h2><p>{s.desc}</p><b>→</b></div>

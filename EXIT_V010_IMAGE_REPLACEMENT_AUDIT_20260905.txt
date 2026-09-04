@@ -1,0 +1,33 @@
+FIX BUILDING 05 EXIT V010 IMAGE REPLACEMENT AUDIT
+
+Scope
+- Replaced all temporary EXIT hero imagery with the newly generated 7-image series.
+- No planning Excel updated in this step.
+
+Mapping
+1. EXIT main        -> /building/images/exit/exit-main.webp
+2. 01 매각 판단     -> /building/images/exit/exit-decision.webp
+3. 02 가치정리      -> /building/images/exit/exit-value-ready.webp
+4. 03 가격전략      -> /building/images/exit/exit-pricing.webp
+5. 04 매수자 준비   -> /building/images/exit/exit-buyer-ready.webp
+6. 05 순회수액      -> /building/images/exit/exit-net-proceeds.webp
+7. 06 종료·인계     -> /building/images/exit/exit-closing.webp
+
+Code changes
+- Added app/exit-images.js central mapping + alt text.
+- ExitMainClient uses EXIT main image.
+- ExitClient uses 01 decision image.
+- ExitPrototypeClient resolves image by section id for 02~06.
+- site-copy EXIT card now uses the new EXIT main image.
+- Removed old public/assets/service-exit.webp after confirming zero remaining references.
+
+Web conversion
+- Source PNG -> WebP, max width 1600px, quality 84.
+- Final WebP sizes: approx. 82KB~162KB each.
+
+Validation
+- node --check PASS: exit-images.js, ExitMainClient.js, ExitClient.js, ExitPrototypeClient.js, site-copy.js
+- service-exit.webp refs: 0
+- old service-exit.webp asset: removed
+- ZIP top-level folder: fixlgs-building
+- node_modules/.next excluded

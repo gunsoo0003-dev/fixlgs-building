@@ -1,0 +1,32 @@
+FIX BUILDING 05 EXIT V007 UI FEEDBACK AUDIT
+Date: 2026-09-04
+Base: EXIT V006 DUPLICATE CONTROL FINALPASS
+Plan: FIX_BUILDING_05_EXIT_기획안_V012_UI피드백_공통레이아웃_수정기획_20260904.xlsx
+
+U01 PASS - EXIT main six-step inline links removed.
+U02 PASS - EXIT main six-step number/title pulled left; description starts earlier.
+U03 PASS - Desktop six-step titles kept to one line.
+U04 PASS - Body cross-references using bare step numbers replaced with meaning-first wording; navigation/meta numbering retained.
+U05 PASS - METHOD check chips use a 4-column desktop grid so common 5-8 item groups align within two rows; responsive collapse added.
+U06 PASS - Confirmation status boxes centered horizontally and vertically with unified padding/height.
+U07 PASS - SELF CHECK answer shading is isolated per question with explicit column gap.
+U08 PASS - SELF CHECK cards use equal row height/flex layout and answer boxes align at the bottom.
+U09 PASS - METHOD caution and completion boxes limited to about 50% width on desktop.
+U10 PASS - METHOD caution/completion start from the same left line and share the same width rule.
+U11 PASS - Mobile restores method boxes to 100% width; check items collapse to one column.
+U12 PASS - Common EXIT selectors apply the rules to detail pages 01-06.
+
+Additional parity work:
+- 01 self-check now includes an independent '답이 없다면' answer box like 02-06.
+- 01 method now includes completion criteria like 02-06.
+- User-facing cross-step wording in EXIT data was converted from numeric references to descriptive wording where it is instructional copy.
+
+Validation:
+- node --check: ExitMainClient.js PASS
+- node --check: ExitClient.js PASS
+- node --check: ExitPrototypeClient.js PASS
+- node --check: exit-main-data.js PASS
+- node --check: exit-data.js PASS
+- node --check: exit-prototype-data.js PASS
+- V012 U01-U12 static checklist: 12/12 PASS
+- Next production build: NOT RUN (node_modules excluded from deliverable)

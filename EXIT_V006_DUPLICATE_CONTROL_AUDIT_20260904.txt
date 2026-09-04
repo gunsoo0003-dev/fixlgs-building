@@ -1,0 +1,21 @@
+FIX BUILDING 05 EXIT V006 — DUPLICATE CONTENT CONTROL AUDIT
+Date: 2026-09-04
+Base: EXIT V005_02-06_CHECKLIST_FULL_CONTENT_KO_REVIEW
+Plan: V010_중복콘텐츠_상세수정방향
+
+V010 D01~D15 final result: PASS 15 / FAIL 0
+
+Key changes
+- 01: ANALYSIS/MANAGEMENT results are inputs; no re-teaching of calculation/management method.
+- 02: MANAGEMENT records -> sale information PACK. CONTRACT interpretation removed.
+- 03: ANALYSIS re-teaching removed. Market asking / target / minimum acceptable / non-price terms / adjustment rules are the core.
+- 04: Information re-description removed. Due-diligence Q&A flow = question -> first-answer doc -> evidence -> further check -> owner -> status.
+- 05: Payment/closing procedure removed. Net proceeds calculation uses CONFIRMED / ESTIMATED / TO CHECK.
+- 06: CONTRACT closing re-teaching reduced. Owner operational exit focuses on keys, accounts, vendors, autopay, personal data, residual tasks.
+- Internal separation: 02=PACK, 04=Q&A; 03=price strategy, 05=net capital; 05=estimate, 06=final completion.
+- Exact duplicate sentence scan in lead/WHY/CORE (30+ chars): 0.
+
+Static verification
+- node --check: PASS for exit-data.js, exit-prototype-data.js, exit-main-data.js, ExitPrototypeClient.js, ExitMainClient.js
+- Data structure: 02~06 each core 6 / method 5 / case 3 / self-check 6 / professional-check 4 / summary 3: PASS
+- Next production build: NOT RUN (node_modules excluded from deliverable workspace)

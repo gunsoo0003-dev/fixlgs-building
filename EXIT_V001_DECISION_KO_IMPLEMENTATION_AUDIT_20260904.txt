@@ -1,0 +1,35 @@
+FIX BUILDING 05 EXIT / V001 / 01 매각 판단 한국어 구현
+Date: 2026-09-04
+Base: MANAGEMENT_I18N_V023_HOME_ENTRY_FIX
+
+Scope
+- 한국어 01 매각 판단만 구현.
+- 02~06 미구현/비활성.
+- 한국어 홈 EXIT 카드만 /building/ko/exit/decision 연결.
+- EN/JA EXIT 카드 링크는 기존 비활성 상태 유지.
+
+Layout
+- 04 MANAGEMENT가 사용하는 AnalysisDetailShell / an19 / mg-* / an41 공통 레이아웃 재사용.
+- 기존 본문 타이포 및 1080px 가독폭 계승.
+- EXIT 전용 CSS는 필요한 보조 레이아웃만 최소 추가.
+
+Content
+- WHY
+- 6 decision factors
+- 5-step decision method with checks/cautions
+- review signals + hold signals
+- 3 practice cases including numeric Case C
+- 6 self-check questions
+- 5 common mistakes
+- professional-check boundary
+- 3-point summary
+- 02 가치정리 pending state
+
+SEO
+- /ko/exit/decision only.
+- Detail page robots noindex, follow during review.
+- No sitemap exposure added at this review stage.
+
+Build
+- Baseline npm run build could not run because node_modules/Next executable is excluded from the deployment ZIP.
+- npm ci attempt timed out in the isolated runtime; therefore static source inspection was used for this artifact.
