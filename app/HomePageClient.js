@@ -74,18 +74,7 @@ function FlowIcon({ type }) {
     <path className="g-out" d="M95 60h58"/>
   </svg>;
 
-  return <svg {...common}>
-    <rect className="g-result" x="113" y="45" width="28" height="30" rx="3"/>
-    <circle className="g-node" cx="20" cy="23" r="6"/><circle className="g-node" cx="24" cy="94" r="6"/>
-    <circle className="g-node" cx="68" cy="16" r="6"/><circle className="g-node" cx="72" cy="101" r="6"/>
-    <circle className="g-node" cx="65" cy="59" r="8"/>
-    <path className="g-network" d="M26 25l33 28M29 91l30-25M74 21l-4 30M76 97l-8-30M73 59h40"/>
-    <path className="g-network-soft" d="M26 25l48 72M29 91l45-70M20 23l52 78"/>
-    <Block x="47" y="43" w="15" h="9"/><Block x="47" y="67" w="15" h="9"/>
-    <path className="g-signal-in" d="M-2 59h17"/>
-    <circle className="g-core" cx="19" cy="59" r="4"/>
-    <path className="g-out" d="M141 60h13"/>
-  </svg>;
+  return null;
 }
 
 export default function HomePage({ locale = 'ko' }) {
