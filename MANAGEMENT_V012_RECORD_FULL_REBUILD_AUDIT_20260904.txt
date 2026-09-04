@@ -1,0 +1,49 @@
+FIX BUILDING — MANAGEMENT V012 / 06 RECORD FULL REBUILD
+Date: 2026-09-04
+
+Scope
+- Only 04 MANAGEMENT detail page 06 RECORD was structurally/content-revised from V011.
+- 01~05 management page data/content were not redesigned in this revision.
+
+Planning source
+- FIX_BUILDING_04_MANAGEMENT_코드상세기획_V008_06기록관리_전면보강_20260904.xlsx
+
+Implemented
+1. Expanded 06 intro/core concept into three meaningful paragraphs.
+2. Expanded 8 record categories with role + linked fields + boundary with 01~05.
+3. Added "자료가 있어도 기록이 아닌 경우" concept block.
+4. Added five common record fields with explanatory copy instead of chips only.
+5. Added event flow: 발생일 → 내용 → 사진·자료 → 조치 → 비용 → 결과 → 다음 일정.
+6. Expanded all 8 management-method steps into multi-paragraph educational copy.
+7. Added 4 "좋은 기록 vs 나쁜 기록" examples.
+8. Expanded monthly / quarterly / annual / ad-hoc management logs.
+9. Expanded four actual-use cases around retrieval and reuse of records.
+10. Compressed abnormal-signal headings and separated interpretation.
+11. Added dedicated EXIT bridge explaining reuse of operation history.
+12. Updated final record-management summary with three distinct principles.
+
+Layout controls applied to 06 only
+- Record categories: desktop 2 columns, mobile 1 column.
+- Management logs: desktop 2x2, mobile 1 column.
+- Good vs bad record examples: desktop 2x2, mobile 1 column.
+- Actual cases: desktop 2x2, mobile 1 column.
+- Abnormal signals: desktop 2x2, mobile 1 column.
+- Management periods: desktop 2x2, mobile 1 column.
+- Final summary: desktop 3 columns in one row, mobile 1 column.
+- STEP 1~8 remain vertical one-column long-form content.
+- Common five fields use a vertical explanatory list to avoid an isolated 5th card.
+
+Duplicate-content controls
+- 06 explains connection, search, evidence and reuse.
+- 01 income calculations, 03 tenant handling, 04 cost economics, and 05 facility diagnosis are not re-taught inside 06.
+- Facility/tenant events are used only as examples of record structure and retrieval.
+
+Changed files
+- app/management-data.js
+- app/ManagementClient.js
+- app/analysis.css
+
+Validation
+- Source structure inspected after edits.
+- node_modules is not included in the supplied project artifact, so a full Next.js build cannot be executed in this container.
+- ZIP root folder remains fixlgs-building.

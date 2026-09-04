@@ -22,5 +22,6 @@ export default function sitemap(){
     changeFrequency:'monthly',
     priority:.65,
   })));
-  return [...home,...analysis,...contract,...selfCheck,...results];
+  const management=locales.map(locale=>({url:`${SITE_URL}/building/${locale}/management`,lastModified:now,changeFrequency:'monthly',priority:.9}));
+  return [...home,...analysis,...contract,...management,...selfCheck,...results];
 }

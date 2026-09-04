@@ -1,0 +1,50 @@
+FIX BUILDING 04 MANAGEMENT V022 KO/EN/JA LOCALIZATION AUDIT
+2026-09-04
+
+TOTAL 43 | PASS 43 | FAIL 0
+
+PASS | rent en structure parity | same keys/types/list counts as KO
+PASS | rent en Korean leakage | no Hangul in localized data
+PASS | rent ja structure parity | same keys/types/list counts as KO
+PASS | rent ja Korean leakage | no Hangul in localized data
+PASS | vacancy en structure parity | same keys/types/list counts as KO
+PASS | vacancy en Korean leakage | no Hangul in localized data
+PASS | vacancy ja structure parity | same keys/types/list counts as KO
+PASS | vacancy ja Korean leakage | no Hangul in localized data
+PASS | tenant en structure parity | same keys/types/list counts as KO
+PASS | tenant en Korean leakage | no Hangul in localized data
+PASS | tenant ja structure parity | same keys/types/list counts as KO
+PASS | tenant ja Korean leakage | no Hangul in localized data
+PASS | cost en structure parity | same keys/types/list counts as KO
+PASS | cost en Korean leakage | no Hangul in localized data
+PASS | cost ja structure parity | same keys/types/list counts as KO
+PASS | cost ja Korean leakage | no Hangul in localized data
+PASS | facility en structure parity | same keys/types/list counts as KO
+PASS | facility en Korean leakage | no Hangul in localized data
+PASS | facility ja structure parity | same keys/types/list counts as KO
+PASS | facility ja Korean leakage | no Hangul in localized data
+PASS | record en structure parity | same keys/types/list counts as KO
+PASS | record en Korean leakage | no Hangul in localized data
+PASS | record ja structure parity | same keys/types/list counts as KO
+PASS | record ja Korean leakage | no Hangul in localized data
+PASS | global en Korean leakage | no Hangul in localized home/tutorial/tool data
+PASS | global ja Korean leakage | no Hangul in localized home/tutorial/tool data
+PASS | single shared renderer | ManagementClient shared across KO/EN/JA
+PASS | no hardcoded KO management routes | all links generated from locale
+PASS | localized alt/aria/UI | UI/alt/aria sourced from locale data
+PASS | Japanese sentence punctuation | SentenceText supports Japanese punctuation
+PASS | route locales | ko/en/ja accepted
+PASS | hreflang | ko/en/ja/x-default alternates
+PASS | self canonical | root/detail canonical follows current locale/path
+PASS | sitemap localized roots | KO/EN/JA management roots included
+PASS | detail index policy | root index; localized detail pages remain noindex/follow per current MANAGEMENT policy
+PASS | image management-main-hero.webp | asset present
+PASS | image management-01-rent.webp | asset present
+PASS | image management-02-vacancy.webp | asset present
+PASS | image management-03-tenant.webp | asset present
+PASS | image management-04-cost.webp | asset present
+PASS | image management-05-facility.webp | asset present
+PASS | image management-05-facility-criteria.webp | asset present
+PASS | image management-06-record.webp | asset present
+
+BROWSER QA: NOT TESTED in this packaging environment (node_modules absent). Actual Chrome visual parity for EN/JA remains a separate QA step.

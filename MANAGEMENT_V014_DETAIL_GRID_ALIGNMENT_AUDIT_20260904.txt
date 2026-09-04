@@ -1,0 +1,20 @@
+FIX BUILDING · MANAGEMENT V014 · DETAIL GRID ALIGNMENT AUDIT
+Date: 2026-09-04
+
+Scope
+- 01~06 detail pages only: layout/alignment rules from planning V010.
+- No content copy changes.
+- No main six-axis tutorial changes.
+
+Implemented
+1. 이상징후 4 items: true 2x2 grid for 01~06; mobile 1 column.
+2. 관리주기 4 items: true 2x2 grid for 01~06; mobile 1 column.
+3. 실제상황 4 items: true 2x2 grid for 01~06; mobile 1 column.
+4. 요약 3 items: true 3-column single row on desktop; mobile 1 column.
+5. 06 record categories/log/compare/cases: explicit two-column tracks retained through tablet; mobile only collapses.
+6. Internal alignment: title / description / check / interpretation rows use shared grid row minima so left-right baselines and bottom lines remain visually aligned.
+7. No per-page width patch; shared classes only.
+
+Files changed
+- app/ManagementClient.js
+- app/analysis.css

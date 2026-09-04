@@ -1,0 +1,42 @@
+FIX BUILDING — MANAGEMENT V010 02~06 기획안 대조 코드반영 감사
+Date: 2026-09-04
+Base: MANAGEMENT KO V009 RENT DETAIL
+Plan: FIX_BUILDING_04_MANAGEMENT_코드상세기획_V006_02-06_01기준_세부보강_20260904.xlsx
+
+반영 범위
+- 01 임대수익: V009 콘텐츠 유지. 공통 요약 제목만 '임대수익 요약'으로 정리.
+- 02 공실: 11_02공실_세부보강 기준 반영.
+- 03 임차인: 12_03임차인_세부보강 기준 반영.
+- 04 비용: 13_04비용_세부보강 기준 반영.
+- 05 시설: 14_05시설_세부보강 기준 반영.
+- 06 기록관리·관리일지: 15_06기록관리_세부보강 기준 반영.
+
+공통 화면 규칙
+1. STEP 화면에서 '왜 보나요 / 실제 관리방법 / 다음' 라벨 제거.
+2. STEP은 번호+제목 → 의미단위 본문 → 확인할 것 → 주의할 점.
+3. 각 상세 핵심개념은 introParagraphs로 의미단위 문단 분리.
+4. 이상징후는 설명 + 확인할 것 + 해석.
+5. 실제상황은 상황 + 확인할 것 + 어떻게 볼까 + 기록할 것.
+6. 관리주기는 단순 라벨이 아니라 설명 + 확인할 것 + 판단 포인트.
+7. 마지막 요약은 주제명+요약 형식.
+8. 05 시설은 8개 시설군의 정상상태/이상징후/전문가 점검 기준/기록할 내용 4프레임.
+9. 06 기록관리는 월간/분기/연간/수시 사건 관리일지를 기록관리 내부에 통합.
+
+데이터 구조 점검
+- rent: methods 7 / signals 4 / cases 4 / periods 4 / summary 3
+- vacancy: methods 7 / signals 4 / cases 4 / periods 4 / summary 3
+- tenant: methods 8 / signals 4 / cases 4 / periods 4 / summary 3
+- cost: methods 7 / signals 4 / cases 4 / periods 4 / summary 3
+- facility: methods 6 / facility groups 8 / signals 4 / cases 4 / periods 4 / summary 3
+- record: methods 8 / logs 4 / signals 4 / cases 4 / periods 4 / summary 3
+
+변경 파일
+- app/ManagementClient.js
+- app/management-data.js
+- MANAGEMENT_V010_02_06_PLAN_PARITY_AUDIT_20260904.txt
+
+검증
+- management-data.js를 .mjs로 복사해 node --check PASS.
+- ESM import 후 각 상세 페이지 필드/개수 검증 PASS.
+- ManagementClient.js에서 '왜 보나요', '실제 관리방법', '다음.' 사용자 노출 코드 제거 확인.
+- npm run build 시 node_modules 부재로 next 실행 불가 (next: not found). 코드 변경에 의한 build 오류 판정은 아님.

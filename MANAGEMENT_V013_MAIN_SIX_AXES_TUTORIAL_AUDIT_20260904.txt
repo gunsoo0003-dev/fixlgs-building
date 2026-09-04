@@ -1,0 +1,8 @@
+FIX BUILDING / MANAGEMENT V013
+Scope: 04 MANAGEMENT main — THE SIX AXES tutorial only.
+- Removed all per-axis detail links.
+- Each row now explains only why that axis must be managed.
+- Row structure: number / why-it-matters headline / short explanation.
+- Updated tutorial lead copy.
+- Preserved shared an32-perspective list structure; only column proportion is adjusted for this block.
+- Detail pages and other sections are untouched.

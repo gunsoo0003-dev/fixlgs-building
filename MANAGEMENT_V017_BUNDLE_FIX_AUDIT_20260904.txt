@@ -1,0 +1,31 @@
+FIX BUILDING · 04 MANAGEMENT V017 bundle fix audit
+Date: 2026-09-04
+
+Scope
+1) Main hero image alignment/size
+- Desktop image starts below the MANAGEMENT title block rather than at the eyebrow line.
+- Management-only hero grid widens the image column and reduces the inter-column gap.
+- Desktop hero image min-height increased to visually reach the left-side management-tools CTA region.
+- Tablet/mobile retain responsive stacking and mobile 4:3 crop behavior.
+
+2) CONNECTED MANAGEMENT layout
+- Reworked each case from 3-column number/title/description into 2-column number + stacked content.
+- Relationship keywords stay on one line on desktop.
+- Description and conclusion sit below the relationship line at full reading width.
+- Heavy text-like chevrons replaced by small, light Santorini-blue arrow separators rendered separately from the labels.
+- Mobile allows natural wrapping.
+
+3) Font 404 cleanup
+- Removed dead @font-face declarations for missing /building/fonts/FIXKR-*.ttf and FIXEN-*.ttf files.
+- Existing SUIT webfont remains active; FIX KR/FIX EN family references now naturally fall through to SUIT.
+- This matches the browser's effective fallback before the change while eliminating repeated local font 404 requests.
+
+Files changed
+- app/ManagementClient.js
+- app/analysis.css
+- app/globals.css
+
+Not changed
+- MANAGEMENT content data
+- Detail-page image assignments
+- 01-06 detailed educational content

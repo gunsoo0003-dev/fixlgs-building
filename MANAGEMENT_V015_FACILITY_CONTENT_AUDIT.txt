@@ -1,0 +1,37 @@
+FIX BUILDING MANAGEMENT V015
+Date: 2026-09-04
+Scope: 05 시설 상세페이지의 '시설별 관리기준' 콘텐츠 전면 보강
+Base: MANAGEMENT_KO_V014_DETAIL_GRID_ALIGNMENT
+Planning source: FIX_BUILDING_04_MANAGEMENT_코드상세기획_V011_05시설별_관리기준_콘텐츠보강_20260904.xlsx
+
+Changed:
+- app/management-data.js
+- app/ManagementClient.js
+- app/analysis.css
+
+Implemented:
+- Removed old four-field repetition: 정상상태 / 이상징후 / 전문가 점검 / 기록할 내용
+- New facility structure for all 8 facility groups:
+  1) 점검기준
+  2) 체크해야 할 것
+  3) 3-paragraph facility-specific tutorial post
+  4) 판단사례 A/B
+  5) 전문가 점검 전환 기준
+- Excluded per-facility 점검주기 and 기록필드 to avoid overlap with 관리주기 and 06 기록관리.
+- Retained 02 ANALYSIS-derived an19 block/method list structure and added only facility-specific inner content styles.
+- Mobile: facility criteria/checks/cases collapse to one column.
+
+Facility groups:
+01 옥상·방수
+02 외벽
+03 급배수
+04 전기
+05 소방
+06 승강기
+07 냉난방
+08 주차·공용부
+
+Validation:
+- node --check app/management-data.js: PASS
+- node --check app/ManagementClient.js: PASS
+- Full Next build: unavailable in artifact environment because node_modules is absent.

@@ -402,3 +402,625 @@
 @media(hover:hover) and (pointer:fine){.an41-other-axis:hover{background:#f5f9ff}.an41-other-axis:hover .an41-other-arrow{transform:translateX(4px)}}
 @media(max-width:980px){.an41-other-grid{grid-template-columns:1fr}.an41-other-axis{grid-template-columns:34px minmax(0,1fr) 22px;border-right:0;border-bottom:1px solid #dfe4e7;padding:22px 4px}.an41-other-axis:last-child{border-bottom:0}.an41-other-copy em{font-size:12px}}
 @media(max-width:620px){.an41-axis-endnav{margin-top:54px;padding-top:26px}.an41-back-home{width:100%;justify-content:flex-start;min-height:50px}.an41-other-head{margin-top:54px}.an41-other-head h2{font-size:32px}.an41-other-grid{margin-top:24px}.an41-other-copy strong{font-size:20px}}
+
+/* MANAGEMENT 01 RENT — content rhythm only; layout shell remains ANALYSIS shared */
+.mg-rent-detail .mg-rent-longcopy{max-width:920px}
+.mg-rent-step-copy{max-width:900px;margin:0}
+.mg-rent-step-copy p{margin:0 0 14px;font-size:16px;line-height:1.95;color:#48535b}
+.mg-rent-step-copy p:last-child{margin-bottom:0}
+.mg-rent-method-list .an19-method-caution{margin-top:30px;padding:24px 0 0 18px;border-top:1px solid #e2e7ea;border-left:2px solid #111}
+.mg-rent-method-list .an19-method-caution small{display:block;margin-bottom:8px;font-size:10px;font-weight:900;color:#111}
+.mg-rent-method-list .an19-method-caution p{margin:0;max-width:900px;font-size:15px;line-height:1.9;color:#4d585f}
+.mg-rent-practice>header>p,.mg-rent-signals>header>p,.mg-rent-periods>header>p{max-width:900px;margin:18px 0 0;font-size:15px;line-height:1.85;color:#68737b}
+.mg-rent-case-list{margin-top:50px}
+.mg-rent-case-note{max-width:900px;margin-top:24px;padding-top:20px;border-top:1px solid #e4e8eb}
+.mg-rent-case-note small,.mg-rent-interpret small{display:block;margin-bottom:8px;font-size:10px;font-weight:900;color:#0868D7}
+.mg-rent-case-note p,.mg-rent-interpret p{margin:0;max-width:900px;font-size:15px;line-height:1.9;color:#4d585f}
+.mg-rent-signals .an19-terms>div,.mg-rent-periods .an19-terms>div{padding-top:36px;padding-bottom:38px}
+.mg-rent-signals .an19-method-check,.mg-rent-periods .an19-method-check{max-width:960px}
+.mg-rent-interpret{max-width:960px;margin-top:22px}
+.mg-rent-summary-num{display:block;margin-bottom:10px;font-size:11px;font-weight:900;color:#0868D7}
+.mg-rent-summary .an19-terms strong{margin-bottom:12px}
+@media(max-width:620px){
+  .mg-rent-detail .mg-rent-longcopy{max-width:none}
+  .mg-rent-step-copy p{font-size:15px;line-height:1.9}
+  .mg-rent-practice>header>p,.mg-rent-signals>header>p,.mg-rent-periods>header>p{font-size:14px;line-height:1.85}
+}
+
+/* MANAGEMENT V012 — 06 RECORD CONTENT + LAYOUT */
+.mg-record-categories .an19-terms{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+.mg-record-categories .an19-terms>div{padding:34px 0 36px}
+.mg-record-categories .an19-terms>div:nth-child(odd){padding-right:24px}
+.mg-record-categories .an19-terms>div:nth-child(even){padding-left:24px}
+.mg-record-categories .an19-terms p{max-width:none}
+
+.mg-record-quality .an19-longcopy{max-width:920px;margin-top:34px}
+.mg-record-quality .an19-longcopy p{margin:0 0 18px;font-size:17px;line-height:1.95;color:#48535b}
+.mg-record-quality .an19-longcopy p:last-child{margin-bottom:0}
+
+.mg-record-fields>header>p,.mg-record-quality-examples>header>p{max-width:900px;margin:18px 0 0;font-size:15px;line-height:1.85;color:#68737b}
+.mg-record-field-grid{margin-top:46px;border-top:2px solid #111}
+.mg-record-field-grid>article{display:grid;grid-template-columns:64px minmax(0,1fr);gap:24px;padding:34px 0;border-bottom:1px solid var(--an19-line)}
+.mg-record-field-grid>article>span{padding-top:4px;font-size:11px;font-weight:900;color:var(--an19-blue)}
+.mg-record-field-grid h3{margin:0 0 9px;font-size:25px;line-height:1.35;letter-spacing:-.035em}
+.mg-record-field-grid p{margin:0 0 8px;font-size:16px;line-height:1.85;color:#465159}
+.mg-record-field-grid em{display:block;font-style:normal;font-size:14px;line-height:1.85;color:#748089}
+
+.mg-record-flow>header>p{max-width:900px}
+.mg-record-flow-example{margin-top:28px;padding:24px 0;border-top:1px solid #e1e6e9;border-bottom:1px solid #e1e6e9;max-width:1080px}
+.mg-record-flow-example small{display:block;margin-bottom:8px;font-size:10px;font-weight:900;color:var(--an19-blue)}
+.mg-record-flow-example p{margin:0;font-size:15px;line-height:1.9;color:#4d585f}
+
+.mg-record-log .an19-terms{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+.mg-record-log .an19-terms>div{padding:34px 0 36px}
+.mg-record-log .an19-terms>div:nth-child(odd){padding-right:24px}
+.mg-record-log .an19-terms>div:nth-child(even){padding-left:24px}
+.mg-record-log .an19-terms p{max-width:none}
+
+.mg-record-compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin-top:46px;border-top:2px solid #111}
+.mg-record-compare-grid>article{padding:36px 0 40px;border-bottom:1px solid var(--an19-line)}
+.mg-record-compare-grid>article>span{display:block;margin-bottom:12px;font-size:10px;font-weight:900;color:var(--an19-blue)}
+.mg-record-compare-grid h3{margin:0 0 22px;font-size:25px;line-height:1.35;letter-spacing:-.035em}
+.mg-record-compare{padding:18px 0;border-top:1px solid #e3e8eb}
+.mg-record-compare small{display:block;margin-bottom:8px;font-size:10px;font-weight:900;color:#69747b}
+.mg-record-compare.good small{color:var(--an19-blue)}
+.mg-record-compare p{margin:0;font-size:15px;line-height:1.85;color:#4b565e}
+
+.mg-record-practice .mg-rent-case-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;border-top:2px solid #111}
+.mg-record-practice .mg-rent-case-list>article{display:grid;grid-template-columns:42px minmax(0,1fr);gap:18px;padding:38px 0;border-bottom:1px solid var(--an19-line)}
+.mg-record-practice .mg-rent-case-list h3{font-size:24px}
+
+.mg-record-grid4 .an19-terms{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px}
+.mg-record-grid4 .an19-terms>div{padding:34px 0 38px}
+.mg-record-grid4 .an19-terms>div:nth-child(odd){padding-right:24px}
+.mg-record-grid4 .an19-terms>div:nth-child(even){padding-left:24px}
+.mg-record-grid4 .an19-terms p{max-width:none}
+
+.mg-record-exit .an19-longcopy{max-width:920px;margin-top:34px}
+.mg-record-exit .an19-longcopy p{margin:0 0 18px;font-size:17px;line-height:1.95;color:#48535b}
+.mg-record-exit-facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding-top:24px;border-top:1px solid #e1e6e9}
+.mg-record-exit-facts span{padding:9px 12px;background:#f5f7f8;font-size:12px;color:#39434a}
+
+.mg-record-summary .an19-terms{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:36px}
+.mg-record-summary .an19-terms>div{padding:30px 0 34px}
+.mg-record-summary .an19-terms>div:nth-child(odd),.mg-record-summary .an19-terms>div:nth-child(even){padding-left:0;padding-right:0}
+.mg-record-summary .an19-terms p{max-width:none}
+
+@media(max-width:900px){
+  .mg-record-categories .an19-terms,.mg-record-log .an19-terms,.mg-record-compare-grid,.mg-record-practice .mg-rent-case-list,.mg-record-grid4 .an19-terms{grid-template-columns:1fr}
+  .mg-record-categories .an19-terms>div:nth-child(odd),.mg-record-categories .an19-terms>div:nth-child(even),.mg-record-log .an19-terms>div:nth-child(odd),.mg-record-log .an19-terms>div:nth-child(even),.mg-record-grid4 .an19-terms>div:nth-child(odd),.mg-record-grid4 .an19-terms>div:nth-child(even){padding-left:0;padding-right:0}
+  .mg-record-summary .an19-terms{grid-template-columns:1fr}
+}
+
+@media(max-width:620px){
+  .mg-record-quality .an19-longcopy p,.mg-record-exit .an19-longcopy p{font-size:15px;line-height:1.9}
+  .mg-record-field-grid>article{grid-template-columns:1fr;gap:8px;padding:30px 0}
+  .mg-record-field-grid h3{font-size:22px}
+  .mg-record-practice .mg-rent-case-list>article{grid-template-columns:1fr;gap:10px;padding:32px 0}
+  .mg-record-compare-grid h3{font-size:22px}
+}
+
+/* MANAGEMENT V013 · main six-axis tutorial */
+.mg-six-why-list article{grid-template-columns:64px minmax(360px,.92fr) minmax(0,1.08fr);gap:40px}
+.mg-six-why-list h3{font-size:clamp(24px,1.8vw,30px);line-height:1.38;max-width:520px}
+.mg-six-why-list p{font-size:15px;line-height:1.9;max-width:680px}
+@media(max-width:1100px){.mg-six-why-list article{grid-template-columns:54px minmax(300px,.9fr) minmax(0,1.1fr);gap:28px}}
+@media(max-width:700px){.mg-six-why-list article{grid-template-columns:34px 1fr;gap:12px}.mg-six-why-list h3,.mg-six-why-list p{grid-column:2;max-width:none}.mg-six-why-list h3{font-size:24px;line-height:1.4}.mg-six-why-list p{font-size:14px;line-height:1.82}}
+
+
+/* MANAGEMENT V014 · detail grid alignment parity (01~06) */
+/* Shared 4-item sections: true 2-column grid on desktop/tablet, 1 column only on mobile. */
+.mg-detail-grid2 .an19-terms{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:48px;
+  row-gap:0;
+  align-items:stretch;
+}
+.mg-detail-grid2 .an19-terms>div{
+  min-width:0;
+  height:100%;
+  padding:36px 0 38px;
+  display:grid;
+  grid-template-rows:minmax(68px,auto) minmax(92px,auto) minmax(122px,auto) minmax(76px,1fr);
+  align-content:start;
+  border-bottom:1px solid var(--an19-line);
+}
+.mg-detail-grid2 .an19-terms>div:nth-child(odd){padding-left:0;padding-right:24px}
+.mg-detail-grid2 .an19-terms>div:nth-child(even){padding-left:24px;padding-right:0}
+.mg-detail-grid2 .an19-terms>div>strong{align-self:start;margin-bottom:12px}
+.mg-detail-grid2 .an19-terms>div>p{align-self:start;max-width:none;margin:0}
+.mg-detail-grid2 .an19-terms>div>.an19-method-check{align-self:start;width:100%;max-width:none;margin-top:18px}
+.mg-detail-grid2 .an19-terms>div>.mg-rent-interpret{align-self:start;width:100%;max-width:none;margin-top:20px;padding-top:18px;border-top:1px solid #e4e8eb}
+
+/* Four real-world cases use the same 2x2 rhythm across 01~06. */
+.mg-detail-practice .mg-rent-case-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:48px;
+  row-gap:0;
+  border-top:2px solid #111;
+}
+.mg-detail-practice .mg-rent-case-list>article{
+  min-width:0;
+  height:100%;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:18px;
+  padding:38px 0 40px;
+  border-bottom:1px solid var(--an19-line);
+  align-items:start;
+}
+.mg-detail-practice .mg-rent-case-list>article:nth-child(odd){padding-right:24px}
+.mg-detail-practice .mg-rent-case-list>article:nth-child(even){padding-left:24px}
+.mg-detail-practice .mg-rent-case-list>article>section{
+  min-width:0;
+  display:grid;
+  grid-template-rows:minmax(76px,auto) minmax(118px,auto) minmax(118px,auto) minmax(96px,auto) minmax(96px,1fr);
+  align-content:start;
+}
+.mg-detail-practice .mg-rent-case-list h3{align-self:start;margin-top:0}
+.mg-detail-practice .mg-rent-step-copy{align-self:start;max-width:none}
+.mg-detail-practice .an19-method-check{align-self:start;max-width:none;margin-top:20px}
+.mg-detail-practice .mg-rent-case-note{align-self:start;max-width:none;margin-top:20px}
+
+/* Three summaries must stay on one row on desktop; never 2+1. */
+.mg-detail-summary3 .an19-terms{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  column-gap:36px;
+  row-gap:0;
+  align-items:stretch;
+}
+.mg-detail-summary3 .an19-terms>div{
+  min-width:0;
+  height:100%;
+  padding:30px 0 34px;
+  display:grid;
+  grid-template-rows:auto minmax(72px,auto) 1fr;
+  align-content:start;
+  border-bottom:1px solid var(--an19-line);
+}
+.mg-detail-summary3 .an19-terms>div:nth-child(odd),
+.mg-detail-summary3 .an19-terms>div:nth-child(even){padding-left:0;padding-right:0}
+.mg-detail-summary3 .an19-terms p{max-width:none}
+
+/* Record-only 2-column groups keep the same column tracks and stretch behavior. */
+.mg-record-categories .an19-terms,
+.mg-record-log .an19-terms,
+.mg-record-compare-grid,
+.mg-record-practice .mg-rent-case-list,
+.mg-record-grid4 .an19-terms{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:48px;
+  align-items:stretch;
+}
+.mg-record-categories .an19-terms>div,
+.mg-record-log .an19-terms>div,
+.mg-record-grid4 .an19-terms>div,
+.mg-record-compare-grid>article,
+.mg-record-practice .mg-rent-case-list>article{height:100%}
+
+/* Keep tablet as two columns. Collapse only on mobile. */
+@media(max-width:1000px) and (min-width:701px){
+  .mg-detail-grid2 .an19-terms>div{
+    grid-template-rows:minmax(84px,auto) minmax(116px,auto) minmax(148px,auto) minmax(92px,1fr);
+  }
+  .mg-detail-practice .mg-rent-case-list>article>section{
+    grid-template-rows:minmax(94px,auto) minmax(146px,auto) minmax(144px,auto) minmax(112px,auto) minmax(112px,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .mg-detail-grid2 .an19-terms,
+  .mg-detail-practice .mg-rent-case-list,
+  .mg-record-categories .an19-terms,
+  .mg-record-log .an19-terms,
+  .mg-record-compare-grid,
+  .mg-record-practice .mg-rent-case-list,
+  .mg-record-grid4 .an19-terms,
+  .mg-detail-summary3 .an19-terms,
+  .mg-record-summary .an19-terms{
+    grid-template-columns:1fr;
+  }
+  .mg-detail-grid2 .an19-terms>div,
+  .mg-detail-grid2 .an19-terms>div:nth-child(odd),
+  .mg-detail-grid2 .an19-terms>div:nth-child(even),
+  .mg-record-categories .an19-terms>div:nth-child(odd),
+  .mg-record-categories .an19-terms>div:nth-child(even),
+  .mg-record-log .an19-terms>div:nth-child(odd),
+  .mg-record-log .an19-terms>div:nth-child(even),
+  .mg-record-grid4 .an19-terms>div:nth-child(odd),
+  .mg-record-grid4 .an19-terms>div:nth-child(even){
+    padding-left:0;
+    padding-right:0;
+  }
+  .mg-detail-grid2 .an19-terms>div{
+    display:block;
+    height:auto;
+  }
+  .mg-detail-practice .mg-rent-case-list>article,
+  .mg-detail-practice .mg-rent-case-list>article:nth-child(odd),
+  .mg-detail-practice .mg-rent-case-list>article:nth-child(even){
+    grid-template-columns:1fr;
+    gap:10px;
+    padding-left:0;
+    padding-right:0;
+    height:auto;
+  }
+  .mg-detail-practice .mg-rent-case-list>article>section{display:block}
+  .mg-detail-summary3 .an19-terms>div{display:block;height:auto}
+}
+
+/* MANAGEMENT V015 · facility-specific management criteria content */
+.mg-facility-guide>header>p{margin:18px 0 0;max-width:780px;font-size:15px;line-height:1.9;color:#68737b}
+.mg-facility-list>article{padding-top:52px;padding-bottom:56px}
+.mg-facility-list>article>section{min-width:0}
+.mg-facility-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin-top:28px;padding:30px 0;border-top:1px solid #111;border-bottom:1px solid var(--an19-line)}
+.mg-facility-quick>div{min-width:0}
+.mg-facility-quick small,.mg-facility-cases small,.mg-facility-expert small{display:block;font-size:10px;font-weight:850;color:var(--an19-blue);margin-bottom:13px}
+.mg-facility-quick ul{margin:0;padding-left:20px}
+.mg-facility-quick li{font-size:15px;line-height:1.85;color:#465159;margin:5px 0}
+.mg-facility-chips{display:flex;flex-wrap:wrap;gap:8px}
+.mg-facility-chips span{padding:9px 12px;background:#f5f7f8;font-size:12px;line-height:1.4;color:#39434a}
+.mg-facility-post{max-width:900px;padding:38px 0 12px}
+.mg-facility-post h4{font-size:25px;line-height:1.45;letter-spacing:-.035em;margin:0 0 20px}
+.mg-facility-post p{max-width:860px;font-size:16px;line-height:1.95;color:#48535b;margin:0 0 16px}
+.mg-facility-cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;margin-top:20px;border-top:1px solid #111}
+.mg-facility-cases>div{padding:28px 0 30px;border-bottom:1px solid var(--an19-line)}
+.mg-facility-cases>div:first-child{padding-right:24px}.mg-facility-cases>div:last-child{padding-left:24px}
+.mg-facility-cases p{font-size:14px;line-height:1.85;color:#59636a;margin:0 0 12px}
+.mg-facility-cases strong{display:block;font-size:14px;line-height:1.85;color:#111}
+.mg-facility-expert{max-width:900px;margin-top:28px;padding:22px 0 0;border-top:1px solid #e4e8eb}
+.mg-facility-expert p{font-size:14px;line-height:1.85;color:#444;margin:0}
+@media(max-width:700px){
+  .mg-facility-quick,.mg-facility-cases{grid-template-columns:1fr;gap:0}
+  .mg-facility-quick>div{padding:20px 0}
+  .mg-facility-quick>div+div{border-top:1px solid #edf0f2}
+  .mg-facility-cases>div:first-child,.mg-facility-cases>div:last-child{padding-left:0;padding-right:0}
+  .mg-facility-post h4{font-size:22px}
+  .mg-facility-post p{font-size:15px;line-height:1.9}
+}
+
+/* MANAGEMENT V016 · generated editorial web images */
+.mg-home-hero-image{
+  align-self:start;
+  width:100%;
+  margin:0;
+  min-height:760px;
+  overflow:hidden;
+  background:#f3f5f6;
+}
+.mg-home-hero-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:760px;
+  object-fit:cover;
+  object-position:center center;
+}
+.mg-detail-hero-image{
+  width:100%;
+  margin:0;
+  padding:52px 0 72px;
+  border-bottom:1px solid var(--an19-line);
+}
+.mg-detail-hero-image img{
+  display:block;
+  width:100%;
+  aspect-ratio:2/1;
+  object-fit:cover;
+  background:#f3f5f6;
+}
+.mg-detail-hero-image.is-rent img{object-position:center center}
+.mg-detail-hero-image.is-vacancy img{object-position:center center}
+.mg-detail-hero-image.is-tenant img{object-position:center 46%}
+.mg-detail-hero-image.is-cost img{object-position:center 48%}
+.mg-detail-hero-image.is-facility img{object-position:center center}
+.mg-detail-hero-image.is-record img{object-position:center center}
+.mg-facility-criteria-image{
+  width:100%;
+  margin:44px 0 6px;
+  overflow:hidden;
+  background:#f3f5f6;
+}
+.mg-facility-criteria-image img{
+  display:block;
+  width:100%;
+  aspect-ratio:2/1;
+  object-fit:cover;
+  object-position:center center;
+}
+@media(max-width:1100px){
+  .mg-home-hero-image{min-height:620px}
+  .mg-home-hero-image img{min-height:620px}
+}
+@media(max-width:700px){
+  .mg-home-hero-image{min-height:0;margin-top:42px;aspect-ratio:4/3}
+  .mg-home-hero-image img{min-height:0;aspect-ratio:4/3;object-fit:cover}
+  .mg-detail-hero-image{padding:34px 0 50px}
+  .mg-detail-hero-image img,.mg-facility-criteria-image img{aspect-ratio:4/3}
+  .mg-facility-criteria-image{margin-top:32px}
+}
+
+/* MANAGEMENT V017 · hero balance, connected-flow editorial stack, dead font request cleanup */
+@media(min-width:1101px){
+  .mg-home-hero .an32-hero-grid{
+    grid-template-columns:minmax(390px,.64fr) minmax(740px,1.36fr);
+    gap:118px;
+  }
+  .mg-home-hero-image{
+    margin-top:126px;
+    min-height:960px;
+  }
+  .mg-home-hero-image img{
+    min-height:960px;
+  }
+}
+
+.mg-connected-list article{
+  grid-template-columns:64px minmax(0,1fr);
+  gap:24px;
+  align-items:start;
+  padding:40px 0 42px;
+}
+.mg-connected-copy{min-width:0}
+.mg-connected-flow{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:0;
+  margin:0 0 18px;
+  font-size:28px;
+  line-height:1.3;
+  white-space:nowrap;
+}
+.mg-connected-node{display:inline-flex;align-items:center;white-space:nowrap}
+.mg-connected-node i{
+  display:inline-block;
+  margin:0 14px;
+  color:var(--an19-blue);
+  font-style:normal;
+  font-size:18px;
+  line-height:1;
+  font-weight:500;
+  transform:translateY(-1px);
+}
+.mg-connected-copy p{
+  max-width:980px;
+  margin:0;
+  font-size:15px;
+  line-height:1.85;
+  color:#5f6970;
+}
+.mg-connected-copy>strong{
+  display:block;
+  max-width:980px;
+  margin-top:7px;
+  font-size:15px;
+  line-height:1.75;
+  color:#30383e;
+}
+
+@media(max-width:1100px){
+  .mg-home-hero-image{margin-top:0;min-height:720px}
+  .mg-home-hero-image img{min-height:720px}
+}
+@media(max-width:700px){
+  .mg-home-hero-image{margin-top:42px;min-height:0}
+  .mg-home-hero-image img{min-height:0}
+  .mg-connected-list article{grid-template-columns:34px minmax(0,1fr);gap:12px;padding:30px 0}
+  .mg-connected-copy{grid-column:2}
+  .mg-connected-flow{flex-wrap:wrap;white-space:normal;font-size:24px;gap:4px 0;margin-bottom:14px}
+  .mg-connected-node i{margin:0 9px;font-size:15px}
+  .mg-connected-copy p,.mg-connected-copy>strong{font-size:14px;line-height:1.8}
+}
+
+
+/* MANAGEMENT V018 · body typography parity with CONTRACT (18px desktop/tablet) */
+/* Keep heading, label, chip and metadata scales unchanged; only reading copy is normalized. */
+.mg-management-page .an19-content p:not(.an19-note){
+  font-size:18px;
+}
+.mg-management-page .an32-title>p,
+.mg-management-page .an32-statement>.an19-shell>span,
+.mg-management-page .an33-state-grid p,
+.mg-management-page .an32-editorial-grid p,
+.mg-management-page .an32-lens-list p,
+.mg-management-page .an32-section-head>p,
+.mg-management-page .mg-six-why-list p,
+.mg-management-page .mg-connected-copy p,
+.mg-management-page .mg-connected-copy>strong,
+.mg-management-page .an32-order-list p,
+.mg-management-page .an32-final>.an19-shell>p,
+.mg-management-page .an33-final-checks p{
+  font-size:18px;
+}
+
+@media(max-width:700px){
+  /* Preserve the established mobile density; the 18px parity target is for desktop/tablet reading copy. */
+  .mg-management-page .an19-content p:not(.an19-note),
+  .mg-management-page .an32-title>p,
+  .mg-management-page .an32-statement>.an19-shell>span,
+  .mg-management-page .an33-state-grid p,
+  .mg-management-page .an32-editorial-grid p,
+  .mg-management-page .an32-lens-list p,
+  .mg-management-page .an32-section-head>p,
+  .mg-management-page .mg-six-why-list p,
+  .mg-management-page .mg-connected-copy p,
+  .mg-management-page .mg-connected-copy>strong,
+  .mg-management-page .an32-order-list p,
+  .mg-management-page .an32-final>.an19-shell>p,
+  .mg-management-page .an33-final-checks p{
+    font-size:16px;
+  }
+}
+
+/* MANAGEMENT V019 · readable body width + sentence rhythm */
+/* Management uses the shared 1260px shell, but its reading copy should not stop at the legacy 820/920px limits. */
+.mg-management-page .an19-content .an19-longcopy{
+  width:100%;
+  max-width:1080px;
+}
+.mg-management-page .an19-content .mg-rent-longcopy,
+.mg-management-page .mg-record-quality .an19-longcopy,
+.mg-management-page .mg-record-exit .an19-longcopy{
+  max-width:1080px;
+}
+.mg-management-page .mg-facility-post,
+.mg-management-page .mg-facility-post p,
+.mg-management-page .mg-facility-expert{
+  max-width:1080px;
+}
+.mg-management-page .mg-sentence-line{
+  display:block;
+}
+.mg-management-page .mg-sentence-line + .mg-sentence-line{
+  margin-top:3px;
+}
+@media(max-width:700px){
+  .mg-management-page .an19-content .an19-longcopy,
+  .mg-management-page .an19-content .mg-rent-longcopy,
+  .mg-management-page .mg-record-quality .an19-longcopy,
+  .mg-management-page .mg-record-exit .an19-longcopy,
+  .mg-management-page .mg-facility-post,
+  .mg-management-page .mg-facility-post p,
+  .mg-management-page .mg-facility-expert{
+    max-width:none;
+  }
+  .mg-management-page .mg-sentence-line + .mg-sentence-line{margin-top:0}
+}
+
+/* MANAGEMENT V019 · full-page prose width audit */
+.mg-management-page .an19-block>header>p,
+.mg-management-page .an19-method>header>p,
+.mg-management-page .mg-facility-guide>header>p{
+  max-width:1080px;
+}
+.mg-management-page .mg-rent-step-copy,
+.mg-management-page .mg-rent-method-list .an19-method-caution p,
+.mg-management-page .mg-rent-case-note,
+.mg-management-page .mg-rent-case-note p,
+.mg-management-page .mg-rent-interpret,
+.mg-management-page .mg-rent-interpret p{
+  max-width:1080px;
+}
+@media(max-width:700px){
+  .mg-management-page .an19-block>header>p,
+  .mg-management-page .an19-method>header>p,
+  .mg-management-page .mg-facility-guide>header>p,
+  .mg-management-page .mg-rent-step-copy,
+  .mg-management-page .mg-rent-method-list .an19-method-caution p,
+  .mg-management-page .mg-rent-case-note,
+  .mg-management-page .mg-rent-case-note p,
+  .mg-management-page .mg-rent-interpret,
+  .mg-management-page .mg-rent-interpret p{
+    max-width:none;
+  }
+}
+
+
+/* MANAGEMENT V020 · main typography normalization + semantic sentence breaks */
+/* V019 rendered sentence fragments as nested spans. Shared ANALYSIS selectors style descendant spans as tiny blue metadata,
+   so MANAGEMENT reading copy inherited the wrong 10px/blue treatment. SentenceText now emits text + <br> only. */
+.mg-management-page .an32-home .an32-statement>.an19-shell>p{
+  max-width:1080px;
+  margin:24px 0 20px;
+  font-size:20px;
+  line-height:1.75;
+  letter-spacing:-.025em;
+  font-weight:650;
+  color:#20262b;
+}
+.mg-management-page .an32-home .an32-statement>.an19-shell>span{
+  max-width:1080px;
+  font-size:18px;
+  line-height:1.9;
+}
+
+/* Connected flow: keep only the row number in the inherited small blue metadata style. */
+.mg-management-page .mg-connected-list .mg-connected-node{
+  font-size:inherit;
+  line-height:inherit;
+  color:inherit;
+  font-weight:inherit;
+  padding-top:0;
+}
+.mg-management-page .mg-connected-flow{
+  font-size:28px;
+  line-height:1.35;
+  color:#111;
+  font-weight:720;
+}
+.mg-management-page .mg-connected-copy p{
+  max-width:1080px;
+  font-size:18px;
+  line-height:1.85;
+  color:#5f6970;
+}
+.mg-management-page .mg-connected-copy>strong{
+  max-width:1080px;
+  margin-top:10px;
+  font-size:18px;
+  line-height:1.8;
+  color:#30383e;
+  font-weight:650;
+}
+
+/* Tools and final check are reading content, not metadata. */
+.mg-management-page .an32-home .an32-order-list p,
+.mg-management-page .an32-home .an33-final-checks p{
+  font-size:18px;
+  line-height:1.82;
+  color:#5f6970;
+}
+.mg-management-page .an32-home .an32-section-head>p,
+.mg-management-page .an32-home .an32-editorial-grid p,
+.mg-management-page .an32-home .an32-lens-list p,
+.mg-management-page .an32-home .mg-six-why-list p,
+.mg-management-page .an32-home .an32-final>.an19-shell>p{
+  font-size:18px;
+  line-height:1.9;
+}
+.mg-management-page .an32-home .an32-section-head>p,
+.mg-management-page .an32-home .an32-final>.an19-shell>p{
+  max-width:1080px;
+}
+.mg-management-page .an32-home .an32-order-list>div{
+  align-items:start;
+}
+.mg-management-page .an32-home .an32-order-list p{
+  padding-top:2px;
+}
+.mg-management-page .an32-home .an33-final-checks article{
+  min-width:0;
+}
+
+@media(max-width:700px){
+  .mg-management-page .an32-home .an32-statement>.an19-shell>p{
+    font-size:18px;
+    line-height:1.75;
+    margin:20px 0 16px;
+  }
+  .mg-management-page .an32-home .an32-statement>.an19-shell>span,
+  .mg-management-page .mg-connected-copy p,
+  .mg-management-page .mg-connected-copy>strong,
+  .mg-management-page .an32-home .an32-order-list p,
+  .mg-management-page .an32-home .an33-final-checks p,
+  .mg-management-page .an32-home .an32-section-head>p,
+  .mg-management-page .an32-home .an32-editorial-grid p,
+  .mg-management-page .an32-home .an32-lens-list p,
+  .mg-management-page .an32-home .mg-six-why-list p,
+  .mg-management-page .an32-home .an32-final>.an19-shell>p{
+    font-size:16px;
+  }
+  .mg-management-page .mg-connected-flow{font-size:24px}
+}
+
+
+/* MANAGEMENT V021 · management-terms description width only */
+/* Keep the shared typography and 18px body size; remove the legacy 980px cap only in 01 · 관리용어. */
+.mg-management-page .mg-management-terms .an19-terms p{
+  width:100%;
+  max-width:none;
+}

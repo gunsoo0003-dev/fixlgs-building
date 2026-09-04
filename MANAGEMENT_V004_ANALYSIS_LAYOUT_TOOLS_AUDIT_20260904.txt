@@ -1,0 +1,16 @@
+FIX BUILDING / MANAGEMENT V004
+Date: 2026-09-04
+
+Changes
+1. MANAGEMENT detail pages now use the same ANALYSIS detail layout vocabulary and DOM sequence:
+   - an19-axis-page / an19-axis-hero
+   - an19-shell an19-content
+   - an19-block / an19-terms / an19-concept
+   - an19-method an23-analysis-method / an23-method-list
+   - an19-practice / an19-related
+   - an41-axis-endnav
+2. Removed MANAGEMENT-only detail grids that caused page-by-page layout variation.
+3. Record management and BUILDING MANAGEMENT LOG remain integrated in the RECORD page.
+4. CONTRACT ctj-next is retained for next-step navigation.
+5. MANAGEMENT TOOLS changed from large card/hover presentation to lightweight text-link rows.
+6. Images/graphics remain deferred for later replacement.

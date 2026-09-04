@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect,useMemo,useRef,useState} from 'react';
+import AnalysisDetailShell from './AnalysisDetailShell';
 import {ANALYSIS_AXES_V019,ANALYSIS_TOOLS_V019,ANALYSIS_SUMMARY_V019} from './analysis-v019-data';
 import {ANALYSIS_HOME_V039,ANALYSIS_TOOLS_V039,ANALYSIS_AXES_V039} from './analysis-v039-localized';
 
@@ -350,9 +351,7 @@ function AxisView({axis,locale,onHome,onOpen,axes}){
     targets.forEach(el=>io.observe(el));
     return()=>io.disconnect();
   },[axis.id]);
-  return <article className="an19-axis-page">
-    <div className="an19-axis-hero"><div className="an19-shell"><button className="an19-back" onClick={onHome}>← {t.back}</button><small>{axis.num} · {axis.code}</small><h1>{axis.name}</h1><p>{axis.question}</p></div></div>
-    <div className="an19-shell an19-content">
+  return <AnalysisDetailShell eyebrow={`${axis.num} · ${axis.code}`} title={axis.name} lead={axis.question} onBack={onHome} backLabel={`← ${t.back}`}>
       <section className="an19-block"><header><small>{t.terms}</small><h2>{axis.termsTitle||t.termsTitle}</h2></header><div className="an19-terms">{axis.terms.map(([name,desc])=><div key={name}><strong>{name}</strong><p>{desc}</p></div>)}</div></section>
       <section className="an19-block an19-concept"><header><small>{t.concept}</small><h2>{axis.concept.title}</h2></header><Paragraphs text={axis.concept.body} className="an19-longcopy"/><Graphic axis={axis} locale={locale}/>{axis.concept.takeaway&&<p className="an19-concept-takeaway">{axis.concept.takeaway}</p>}</section>
       {axis.engineGuide&&<section className="an19-block an19-engine-guide an19-reason-story"><header><small>{axis.reasonSection?.eyebrow||'03 · 가격을 이렇게 분석하는 이유'}</small><h2>{axis.reasonSection?.title||'가격을 보는 순서에는 이유가 있습니다.'}</h2><p>{axis.reasonSection?.lead||'전문적인 분석법은 그대로 사용하되, 한 가지 질문씩 따라가며 왜 필요한지 이해합니다.'}</p></header><div className="an19-reason-list">{axis.engineGuide.map((item,i)=><article key={item.node} className="an19-reason-item"><div className="an19-reason-index">{String(i+1).padStart(2,'0')}</div><div className="an19-reason-content"><h3>{item.title}</h3><p className="an19-reason-answer">{item.answer}</p><Paragraphs text={item.body} className="an19-reason-body"/>{item.concept&&<p className="an19-reason-concept">{item.concept}</p>}{item.takeaway&&<p className="an19-reason-takeaway">{item.takeaway}</p>}{item.next&&<p className="an19-reason-next"><span>{t.next}</span>{item.next}</p>}</div></article>)}</div></section>}
@@ -366,8 +365,7 @@ function AxisView({axis,locale,onHome,onOpen,axes}){
         <div className="an41-other-head"><small>EXPLORE NEXT</small><h2>{t.otherAnalyses}</h2></div>
         <div className="an41-other-grid">{axes.filter(item=>item.id!==axis.id).map(item=><button type="button" key={item.id} className="an41-other-axis" onClick={()=>onOpen(item.id)}><span className="an41-other-num">{item.num}</span><span className="an41-other-copy"><small>{item.code}</small><strong>{item.name}</strong><em>{item.question}</em></span><span className="an41-other-arrow" aria-hidden="true">→</span></button>)}</div>
       </nav>
-    </div>
-  </article>;
+  </AnalysisDetailShell>;
 }
 
 export default function AnalysisV008Client({locale='ko',initialView=[]}){

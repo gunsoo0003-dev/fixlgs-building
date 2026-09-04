@@ -1,0 +1,10 @@
+MANAGEMENT V006 — STRICT ANALYSIS SHARED LAYOUT
+
+1. Created app/AnalysisDetailShell.js.
+2. 02 ANALYSIS AxisView and 04 MANAGEMENT SectionView now use the SAME outer detail-page component.
+3. MANAGEMENT detail sections use the same ANALYSIS class structure: an19-block / an19-terms / an19-concept / an19-longcopy / an19-method / an19-steps / an19-practice / an19-related / an41-axis-endnav.
+4. Removed MANAGEMENT-specific layout CSS from analysis.css.
+5. MANAGEMENT tools no longer use a large blue card or management-specific grid. They are rendered as simple text links inside the existing an19-steps structure.
+6. Record management and management log remain integrated.
+7. Right-side management images remain deferred; no new image layout was introduced.
+8. CONTRACT ctj-next remains for the next-step block as previously requested.

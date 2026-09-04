@@ -1,0 +1,37 @@
+MANAGEMENT V019 · READABLE WIDTH + SENTENCE RHYTHM
+Date: 2026-09-04
+
+Scope
+- 04 MANAGEMENT only.
+- No heading/subheading typography changes.
+- Keep V018 desktop/tablet body size at 18px.
+
+Changes
+1. MANAGEMENT long-form copy width
+   - Shared shell remains unchanged.
+   - Legacy 820/920px longcopy constraints are overridden only inside .mg-management-page.
+   - Desktop/tablet reading width: max 1080px.
+   - Facility explanatory post/expert copy follows the same reading width.
+
+2. Sentence rhythm
+   - Added SentenceText helper.
+   - Dynamic long-form/detail prose is split after sentence-ending punctuation (. ! ?).
+   - Each completed sentence starts on a new visual line.
+   - Existing paragraph arrays remain paragraph boundaries; no content is deleted or summarized.
+   - No hardcoded <br> layout patching.
+
+3. Mobile
+   - Existing 16px mobile body size retained.
+   - Width constraints collapse naturally to available width.
+
+Intent
+- Prevent early wrapping while unused horizontal space remains.
+- Make Korean instructional prose read in sentence-sized units.
+- Preserve shared ANALYSIS layout and avoid affecting 01 SELF-CHECK / 02 ANALYSIS / 03 CONTRACT.
+
+Full-page follow-up audit
+- Detail section header explanatory copy: legacy 720/780px limits overridden to 1080px.
+- Method STEP reading copy/caution copy: legacy 900px reading limits expanded to 1080px.
+- Facility post/expert prose: expanded to 1080px.
+- Literal MANAGEMENT prose in ManagementClient is also sentence-aware, so multi-sentence copy starts each completed sentence on a new line.
+- Card/grid column widths remain controlled by their existing grid; no forced full-width inside 2-column cards.

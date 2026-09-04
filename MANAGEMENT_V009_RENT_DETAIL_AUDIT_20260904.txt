@@ -1,0 +1,33 @@
+FIX BUILDING — MANAGEMENT V009 RENT DETAIL AUDIT
+Date: 2026-09-04
+
+Scope
+- Only 01 RENT / 임대수익 관리 detailed page was refined.
+- 02 VACANCY through 06 RECORD data is byte-for-byte unchanged from V008.
+- MANAGEMENT home content was not changed.
+
+Implemented from V005 planning workbook
+1. Core concept paragraph rhythm
+   - Split into 3 meaning-based paragraphs.
+   - Rent-only reading width modifier; shared ANALYSIS shell remains unchanged.
+2. STEP rendering for RENT only
+   - Removed user-visible planning labels: "왜 보나요.", "실제 관리방법", "다음."
+   - Screen structure: step number/title -> natural paragraphs -> 확인할 것 -> 주의할 점.
+3. Actual situations
+   - Expanded 4 cases to situation -> checks -> judgement -> record points.
+4. Warning signals
+   - Expanded 4 signals to explanation -> checks -> interpretation.
+5. Management cycle
+   - Expanded monthly / quarterly / before renewal / annual from label-only chips to explanatory content.
+6. Final summary
+   - Expanded 3 principles with explanatory copy.
+7. Layout preservation
+   - AnalysisDetailShell and an19 shared structure remain in use.
+   - No MANAGEMENT-wide width/grid/breakpoint changes.
+   - Added rent-only content-rhythm modifiers at end of analysis.css.
+
+Validation
+- management-data.js dynamic import: PASS.
+- RENT data counts: 7 method steps / 4 signals / 4 cases / 4 periods / 3 summaries.
+- 02-06 management data comparison against V008: PASS (unchanged).
+- npm run build: NOT RUN TO COMPLETION because node_modules is not included; Next CLI unavailable in this artifact environment.

@@ -1,0 +1,52 @@
+FIX BUILDING / 04 MANAGEMENT / V016 WEB IMAGE IMPLEMENTATION AUDIT
+Date: 2026-09-04
+
+SOURCE BASE
+- V015 facility management criteria build used as source.
+
+IMAGE CONVERSION
+- 8 generated PNG files converted to WebP (quality 84, method 6).
+- Original size: 1774 x 887 each.
+- Output directory: public/images/management/
+- Total WebP payload: approx. 1.2 MB.
+
+FILES
+- management-main-hero.webp
+- management-01-rent.webp
+- management-02-vacancy.webp
+- management-03-tenant.webp
+- management-04-cost.webp
+- management-05-facility.webp
+- management-05-facility-criteria.webp
+- management-06-record.webp
+
+IMPLEMENTATION
+1. Main MANAGEMENT hero
+   - Removed the visible SVG/analyzer graphic from the hero.
+   - Replaced it with management-main-hero.webp (handshake image selected by user).
+2. Detail pages
+   - 01 RENT: management-01-rent.webp
+   - 02 VACANCY: management-02-vacancy.webp
+   - 03 TENANT: management-03-tenant.webp
+   - 04 COST: management-04-cost.webp
+   - 05 FACILITY: management-05-facility.webp
+   - 06 RECORD: management-06-record.webp
+   - Shared detail image block inserted immediately below AnalysisDetailShell hero and above 01 관리용어.
+3. 05 FACILITY criteria section
+   - management-05-facility-criteria.webp inserted under the facility-management-criteria introduction.
+4. Responsive layout
+   - Desktop detail images: 2:1.
+   - Mobile detail images: 4:3.
+   - Main hero image uses cover crop with responsive height.
+5. Accessibility
+   - Korean alt descriptions added for all 8 images.
+
+CODE CONTROL
+- Existing ANALYSIS shared shell remains unchanged.
+- No duplicated page-specific image component was created.
+- Main hero's unused SVG graphic component and hover-only focus state were removed after image replacement.
+
+CHECKS
+- node --check app/ManagementClient.js: PASS
+- node --check app/management-data.js: PASS
+- Full Next build: NOT RUN (node_modules absent in provided source ZIP)

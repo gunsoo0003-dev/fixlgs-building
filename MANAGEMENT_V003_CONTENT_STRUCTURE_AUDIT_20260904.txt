@@ -1,0 +1,26 @@
+FIX BUILDING 04 MANAGEMENT V003
+Date: 2026-09-04
+
+Scope
+- Keep 02 ANALYSIS layout/style system as the common base.
+- Keep 03 CONTRACT ctj-next as the detail-page next-step navigation.
+- Do not finalize or replace MANAGEMENT imagery/graphics in this pass.
+
+Changes
+1. Expanded all six Korean detail pages.
+   - core concept + why it matters
+   - management items
+   - commonly missed points
+   - practical management standards
+   - practical situations/examples
+   - management cycle
+2. Integrated BUILDING MANAGEMENT LOG into 06 RECORD.
+   - Removed standalone management-log quick entry and standalone home section.
+   - RECORD is now "기록 관리 · 관리일지" and contains the 8-part management log.
+3. Changed MANAGEMENT TOOLS from large tool cards to lightweight text-link rows.
+   - Reused existing CONTRACT ct-risk-links styling instead of introducing a new card design.
+   - Tool functions remain MVP placeholders for later implementation.
+4. Preserved the existing right-side temporary management graphic.
+   - Image replacement is explicitly deferred to the final visual phase.
+
+No new MANAGEMENT-specific CSS patch was added.

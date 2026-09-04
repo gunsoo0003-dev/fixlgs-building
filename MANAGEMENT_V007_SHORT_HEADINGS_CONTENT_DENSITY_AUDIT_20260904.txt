@@ -1,0 +1,13 @@
+FIX BUILDING — MANAGEMENT V007
+Date: 2026-09-04
+Scope: Korean MANAGEMENT content only.
+
+Changes
+1. Shortened six MANAGEMENT prompt/subtitles to compact one-line phrases.
+2. Shortened detail-page core takeaway headings so long content no longer acts as oversized headings.
+3. Preserved and expanded the meaning inside body copy instead of deleting it.
+4. Strengthened intro/why copy for all six sections with practical management context.
+5. No graphics/image work in this revision.
+6. Shared ANALYSIS detail layout structure from V006 remains unchanged.
+7. CONTRACT next-step structure remains unchanged.
+8. Management tools structure remains unchanged from V006.

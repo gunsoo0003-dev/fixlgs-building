@@ -1,0 +1,17 @@
+FIX BUILDING · MANAGEMENT V018
+
+Scope
+- 04 MANAGEMENT reading/body copy only
+- Desktop/tablet body copy normalized to 18px to match the 03 CONTRACT reading scale requested by the user.
+- Major headings, subheadings, labels, chips, metadata, step numbers and navigation typography are unchanged.
+- Mobile remains 16px to preserve established responsive density.
+
+Implementation
+- Added root scope class: mg-management-page
+- Scoped 18px override to MANAGEMENT only, avoiding ANALYSIS shared pages.
+- Detailed reading paragraphs under an19-content normalized to 18px.
+- Main tutorial/editorial/connected/tools/final reading copy normalized to 18px.
+
+Files changed
+- app/ManagementClient.js
+- app/analysis.css

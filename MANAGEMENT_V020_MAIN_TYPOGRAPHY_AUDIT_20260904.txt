@@ -1,0 +1,20 @@
+FIX BUILDING / 04 MANAGEMENT V020
+Scope: MANAGEMENT main typography + sentence rhythm only.
+
+Root cause fixed:
+- V019 SentenceText wrapped every sentence in .mg-sentence-line <span>.
+- Shared ANALYSIS rules such as .an32-perspective-list span, .an32-order-list span,
+  .an33-final-checks span and .an32-statement span target descendant spans.
+- As a result, MANAGEMENT prose was unintentionally rendered as small/blue metadata (roughly 10px in several blocks).
+
+V020 changes:
+1. SentenceText now emits semantic text with <br> between sentence units, no styling span wrappers.
+2. MANAGEMENT STARTS AFTER PURCHASE lead sentence: 20px desktop, 18px mobile.
+3. General main reading copy: 18px desktop/tablet, 16px mobile.
+4. CONNECTED MANAGEMENT flow nodes inherit the 28px black flow-title typography instead of generic metadata span rules.
+5. CONNECTED MANAGEMENT body/key copy: 18px.
+6. Tool descriptions: 18px.
+7. FINAL CHECK card descriptions: 18px.
+8. Final paragraph rewritten into two sentences so the sentence break occurs at a meaningful period boundary.
+9. Existing large headings, small English eyebrows, row numbers, labels and metadata sizes remain unchanged.
+10. Detail-page content structure is otherwise unchanged.
