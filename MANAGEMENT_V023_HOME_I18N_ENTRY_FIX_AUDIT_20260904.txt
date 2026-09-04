@@ -1,0 +1,23 @@
+FIX BUILDING — MANAGEMENT V023 HOME I18N ENTRY FIX
+Date: 2026-09-04
+
+Issue
+- Home service card allowed MANAGEMENT navigation only when locale === 'ko'.
+- EN/JA home cards therefore resolved to '#', even though /en/management and /ja/management exist.
+
+Fix
+- Removed the KO-only locale condition from the MANAGEMENT service-card href.
+- The card now resolves from the active locale:
+  /building/ko/management
+  /building/en/management
+  /building/ja/management
+
+Scope
+- app/HomePageClient.js only.
+- MANAGEMENT page renderer, copy, CSS, sitemap, robots and metadata were not changed.
+
+Static checks
+PASS | target KO-only condition removed
+PASS | locale-based MANAGEMENT href present
+PASS | no remaining management + locale==='ko' gate found in app JS
+NOT TESTED | full Next build/browser QA (node_modules absent in supplied archive)
