@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { SITE_COPY, LOCALES } from './site-copy';
+import { SITE_COPY, LOCALES, HEADER_SUBMENUS } from './site-copy';
 
 const BASE_PATH = '/building';
 
 export default function SiteHeader({ locale='ko' }) {
   const copy = SITE_COPY[locale] || SITE_COPY.ko;
   const services = copy.services;
+  const submenus = HEADER_SUBMENUS[locale] || HEADER_SUBMENUS.ko;
   const pathname = usePathname();
   const [langOpen, setLangOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
@@ -18,9 +19,6 @@ export default function SiteHeader({ locale='ko' }) {
   const cleanPath = (pathname || `/${locale}`).replace(/^\/building(?=\/|$)/, '');
   const localeRoot = `/${locale}`;
   const isHome = cleanPath === localeRoot || cleanPath === `${localeRoot}/`;
-  const isSelfCheck = cleanPath.startsWith(`${localeRoot}/self-check`);
-  const isAnalysis = cleanPath.startsWith(`${localeRoot}/analysis`);
-  const isContract = cleanPath.startsWith(`${localeRoot}/contract`);
 
   useEffect(() => {
     const onMouseMove = (e) => {
@@ -71,6 +69,14 @@ export default function SiteHeader({ locale='ko' }) {
     return `${BASE_PATH}/${locale}#${id}`;
   };
 
+  const submenuHref = (href) => `${BASE_PATH}/${locale}${href}`;
+  const sampleHref = `${BASE_PATH}/${locale}/self-check/results`;
+  const serviceCurrent = (id) => {
+    if (isHome) return activeSection === id;
+    if (id === 'self') return cleanPath.startsWith(`${localeRoot}/self-check`);
+    return cleanPath.startsWith(`${localeRoot}/${id}`);
+  };
+
   const languageHref = (code) => `${BASE_PATH}${cleanPath.replace(/^\/(ko|en|ja)(?=\/|$)/, `/${code}`)}`;
   const switchLanguage = (event, code) => {
     if (code === locale) {
@@ -96,12 +102,19 @@ export default function SiteHeader({ locale='ko' }) {
       <div className="nav-inner">
         <a className="nav-brand" href={`${BASE_PATH}/${locale}#top`}>FIX BUILDING</a>
         <div className="nav-actions">
-          <nav aria-label={copy.navAria}>
+          <nav className="nav-primary" aria-label={copy.navAria}>
             {services.map((service) => {
-              const current = isHome ? activeSection === service.id : ((service.id === 'self' && isSelfCheck) || (service.id === 'analysis' && isAnalysis) || (service.id === 'contract' && isContract));
-              return <a key={service.id} href={serviceHref(service.id)} className={current ? 'is-current' : ''}>{service.label}</a>;
+              const current = serviceCurrent(service.id);
+              const children = submenus[service.id] || [];
+              return <div className="nav-service" key={service.id}>
+                <a href={serviceHref(service.id)} className={`nav-service-link ${current ? 'is-current' : ''}`}>{service.label}</a>
+                {children.length > 0 && <div className="nav-submenu" aria-label={`${service.label} submenu`}>
+                  {children.map((item) => <a key={item.href} href={submenuHref(item.href)}>{item.label}</a>)}
+                </div>}
+              </div>;
             })}
           </nav>
+          <a className="nav-result-samples" href={sampleHref}>RESULT SAMPLES</a>
           <div className={`language-menu ${langOpen ? 'is-open' : ''}`}>
             <button type="button" className="language-trigger" aria-haspopup="menu" aria-expanded={langOpen} onClick={() => setLangOpen((value) => !value)}>
               {locale.toUpperCase()} <span aria-hidden="true">⌄</span>

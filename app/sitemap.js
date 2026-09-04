@@ -23,5 +23,10 @@ export default function sitemap(){
     priority:.65,
   })));
   const management=locales.map(locale=>({url:`${SITE_URL}/building/${locale}/management`,lastModified:now,changeFrequency:'monthly',priority:.9}));
-  return [...home,...analysis,...contract,...management,...selfCheck,...results];
+  const exitSlugs=['decision','readiness','pricing','buyer-readiness','net-proceeds','closing'];
+  const exit=locales.flatMap(locale=>[
+    {url:`${SITE_URL}/building/${locale}/exit`,lastModified:now,changeFrequency:'monthly',priority:.9},
+    ...exitSlugs.map(slug=>({url:`${SITE_URL}/building/${locale}/exit/${slug}`,lastModified:now,changeFrequency:'monthly',priority:.75})),
+  ]);
+  return [...home,...analysis,...contract,...management,...exit,...selfCheck,...results];
 }

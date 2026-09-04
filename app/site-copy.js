@@ -14,6 +14,130 @@ export const LOCALES = [
   { code: 'ja', label: '日本語' },
 ];
 
+
+export const HEADER_SUBMENUS = {
+  ko: {
+    self: [
+      { label: '자가진단 시작', href: '/self-check' },
+    ],
+    analysis: [
+      { label: '가격', href: '/analysis/price' },
+      { label: '수익', href: '/analysis/income' },
+      { label: '권리', href: '/analysis/rights' },
+      { label: '건물', href: '/analysis/building' },
+      { label: '입지', href: '/analysis/location' },
+      { label: '운영', href: '/analysis/operation' },
+    ],
+    contract: [
+      { label: '계약 상대 확인', href: '/contract/parties' },
+      { label: '계약 대상·현황 확인', href: '/contract/property' },
+      { label: '가격·지급조건', href: '/contract/payment' },
+      { label: '계약서·특약', href: '/contract/terms' },
+      { label: '계약 후~잔금 전 재확인', href: '/contract/recheck' },
+      { label: '잔금·권리말소·소유권 이전', href: '/contract/closing' },
+      { label: '계약 체크리스트', href: '/contract/checklist' },
+      { label: '사기·위험 신호 감별', href: '/contract/red-flags' },
+      { label: '흔한 계약 실수', href: '/contract/mistakes' },
+    ],
+    management: [
+      { label: '임대수익 관리', href: '/management/rent' },
+      { label: '공실 관리', href: '/management/vacancy' },
+      { label: '임차인 관리', href: '/management/tenant' },
+      { label: '비용 관리', href: '/management/cost' },
+      { label: '시설 관리', href: '/management/facility' },
+      { label: '기록 관리·관리일지', href: '/management/record' },
+    ],
+    exit: [
+      { label: '매각 판단', href: '/exit/decision' },
+      { label: '가치정리', href: '/exit/readiness' },
+      { label: '가격전략', href: '/exit/pricing' },
+      { label: '매수자 준비', href: '/exit/buyer-readiness' },
+      { label: '순회수액', href: '/exit/net-proceeds' },
+      { label: '종료·인계', href: '/exit/closing' },
+    ],
+  },
+  en: {
+    self: [
+      { label: 'Start Self Check', href: '/self-check' },
+    ],
+    analysis: [
+      { label: 'Price', href: '/analysis/price' },
+      { label: 'Income', href: '/analysis/income' },
+      { label: 'Rights', href: '/analysis/rights' },
+      { label: 'Building', href: '/analysis/building' },
+      { label: 'Location', href: '/analysis/location' },
+      { label: 'Operation', href: '/analysis/operation' },
+    ],
+    contract: [
+      { label: 'Parties & Authority', href: '/contract/parties' },
+      { label: 'Property & Condition', href: '/contract/property' },
+      { label: 'Price & Payment Terms', href: '/contract/payment' },
+      { label: 'Contract Terms & Clauses', href: '/contract/terms' },
+      { label: 'Pre-closing Recheck', href: '/contract/recheck' },
+      { label: 'Closing & Title Transfer', href: '/contract/closing' },
+      { label: 'Contract Checklist', href: '/contract/checklist' },
+      { label: 'Fraud & Red Flags', href: '/contract/red-flags' },
+      { label: 'Common Contract Mistakes', href: '/contract/mistakes' },
+    ],
+    management: [
+      { label: 'Rent Income', href: '/management/rent' },
+      { label: 'Vacancy Management', href: '/management/vacancy' },
+      { label: 'Tenant Management', href: '/management/tenant' },
+      { label: 'Cost Management', href: '/management/cost' },
+      { label: 'Facility Management', href: '/management/facility' },
+      { label: 'Records & Management Log', href: '/management/record' },
+    ],
+    exit: [
+      { label: 'Sell or Hold', href: '/exit/decision' },
+      { label: 'Sale Preparation', href: '/exit/readiness' },
+      { label: 'Pricing Strategy', href: '/exit/pricing' },
+      { label: 'Buyer Due Diligence', href: '/exit/buyer-readiness' },
+      { label: 'Net Proceeds', href: '/exit/net-proceeds' },
+      { label: 'Closing & Handover', href: '/exit/closing' },
+    ],
+  },
+  ja: {
+    self: [
+      { label: '自己診断を始める', href: '/self-check' },
+    ],
+    analysis: [
+      { label: '価格', href: '/analysis/price' },
+      { label: '収益', href: '/analysis/income' },
+      { label: '権利', href: '/analysis/rights' },
+      { label: '建物', href: '/analysis/building' },
+      { label: '立地', href: '/analysis/location' },
+      { label: '運営', href: '/analysis/operation' },
+    ],
+    contract: [
+      { label: '契約当事者・権限確認', href: '/contract/parties' },
+      { label: '契約対象・現況確認', href: '/contract/property' },
+      { label: '価格・支払条件', href: '/contract/payment' },
+      { label: '契約書・特約', href: '/contract/terms' },
+      { label: '決済前の再確認', href: '/contract/recheck' },
+      { label: '決済・権利整理・所有権移転', href: '/contract/closing' },
+      { label: '契約チェックリスト', href: '/contract/checklist' },
+      { label: '詐欺・取引リスクの兆候', href: '/contract/red-flags' },
+      { label: 'よくある契約ミス', href: '/contract/mistakes' },
+    ],
+    management: [
+      { label: '賃料収入管理', href: '/management/rent' },
+      { label: '空室管理', href: '/management/vacancy' },
+      { label: 'テナント管理', href: '/management/tenant' },
+      { label: '費用管理', href: '/management/cost' },
+      { label: '設備管理', href: '/management/facility' },
+      { label: '記録管理・管理日誌', href: '/management/record' },
+    ],
+    exit: [
+      { label: '売却判断', href: '/exit/decision' },
+      { label: '売却資料の整理', href: '/exit/readiness' },
+      { label: '価格戦略', href: '/exit/pricing' },
+      { label: '買主対応', href: '/exit/buyer-readiness' },
+      { label: '手取り額', href: '/exit/net-proceeds' },
+      { label: '終了・引継ぎ', href: '/exit/closing' },
+    ],
+  },
+};
+
 export const SITE_COPY = {
   ko: {
     metaTitle: 'FIX BUILDING',

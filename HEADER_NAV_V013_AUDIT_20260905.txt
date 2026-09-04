@@ -1,0 +1,29 @@
+FIX BUILDING HEADER NAV V013 AUDIT — 2026-09-05
+
+BASELINE
+- fixlgs-building_EXIT_V012_REMOVE_CASE_MAIN_ONLY_20260905.zip
+
+SCOPE
+- Hidden top navigation only.
+- Preserve SELF CHECK / ANALYSIS / CONTRACT / MANAGEMENT / EXIT service structure.
+- Add only existing submenu routes.
+- Add RESULT SAMPLES -> /building/{locale}/self-check/results.
+
+IMPLEMENTED
+1. Brand-to-menu spacing: 92px desktop (brand block preserved).
+2. Five primary service items use one 5-column navigation grid with equal gaps.
+3. Hover/focus submenu added for all five services.
+4. Submenu links use only existing routes:
+   SELF CHECK 1 / ANALYSIS 6 / CONTRACT 9 / MANAGEMENT 6 / EXIT 6.
+5. Submenu hover: Santorini Blue #0868D7 + transform scale(1.05).
+6. RESULT SAMPLES placed at the right utility area before locale selector.
+7. RESULT SAMPLES keeps a separate gap before KO/EN/JA selector.
+8. All submenu/sample URLs preserve current locale.
+9. Existing homepage top-level behavior (#self/#analysis/#contract/#management/#exit) preserved.
+10. Current state highlighting extended to MANAGEMENT and EXIT routes.
+
+NOT CHANGED
+- Main content cards/flow/guide/footer.
+- Service detail content.
+- Sitemap/robots/index policy.
+- EXIT route/content/SEO settings.

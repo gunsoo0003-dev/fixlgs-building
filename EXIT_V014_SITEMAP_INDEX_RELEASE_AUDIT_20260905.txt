@@ -1,0 +1,25 @@
+FIX BUILDING — EXIT V014 SITEMAP / INDEX RELEASE AUDIT
+Date: 2026-09-05
+Baseline: EXIT V013 HEADER_SUBMENU_RESULT_SAMPLES
+
+CHANGE SCOPE
+1. Added EXIT to sitemap:
+   - /{locale}/exit
+   - /{locale}/exit/decision
+   - /{locale}/exit/readiness
+   - /{locale}/exit/pricing
+   - /{locale}/exit/buyer-readiness
+   - /{locale}/exit/net-proceeds
+   - /{locale}/exit/closing
+   for ko/en/ja = 21 URLs total.
+2. EXIT metadata robots changed from noindex,follow to index,follow.
+3. Existing EXIT self-canonical and ko/en/ja/x-default hreflang preserved.
+4. robots.js unchanged: public site allowed; self-check dev-preview remains disallowed.
+5. MANAGEMENT and other service index/sitemap policies unchanged.
+
+STATIC ACCEPTANCE
+- EXIT sitemap count: 21
+- EXIT slugs: 6 + main
+- locales: ko/en/ja
+- EXIT robots: index=true, follow=true
+- sitemap and metadata index policy consistent

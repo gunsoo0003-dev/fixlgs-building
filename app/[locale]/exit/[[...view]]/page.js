@@ -50,7 +50,7 @@ export async function generateMetadata({params}){
   const slug=list[0]||'';
   if(slug&&!ALLOWED.includes(slug)) return {};
   const key=slug||'main'; const [title,description]=META[locale][key]; const path=pathFor(slug); const canonical=`${SITE_URL}/building/${locale}${path}`;
-  return {title,description,alternates:{canonical,languages:alternatesFor(path)},robots:{index:false,follow:true},openGraph:{title,description,url:canonical,type:slug?'article':'website'}};
+  return {title,description,alternates:{canonical,languages:alternatesFor(path)},robots:{index:true,follow:true},openGraph:{title,description,url:canonical,type:slug?'article':'website'}};
 }
 
 export default async function ExitRoute({params}){
