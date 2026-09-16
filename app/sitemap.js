@@ -1,6 +1,6 @@
 import { PUBLIC_RESULT_PATHS } from './self-check-public-data';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.fixlgs.com';
 const locales=['ko','en','ja'];
 
 export default function sitemap(){

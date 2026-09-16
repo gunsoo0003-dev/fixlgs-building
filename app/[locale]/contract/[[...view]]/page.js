@@ -3,7 +3,7 @@ import ContractPage from '../../../ContractPage';
 import {CONTRACT_COPY,CONTRACT_LOCALES,CONTRACT_SLUGS} from '../../../contract-copy';
 import '../../../contract.css';
 
-const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
+const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://www.fixlgs.com';
 
 export async function generateMetadata({params}){
   const {locale,view=[]}=await params;

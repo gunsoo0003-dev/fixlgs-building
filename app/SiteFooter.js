@@ -2,10 +2,10 @@
 
 import { SITE_COPY } from './site-copy';
 
-const MAIN_HOME = 'https://fixlgs.com/';
-const MAIN_PRIVACY = 'https://fixlgs.com/privacy';
-const MAIN_TERMS = 'https://fixlgs.com/terms';
-const MAIN_CONTACT = 'https://fixlgs.com/contact?app=FIX%20BUILDING';
+const MAIN_HOME = 'https://www.fixlgs.com/';
+const MAIN_PRIVACY = 'https://www.fixlgs.com/privacy';
+const MAIN_TERMS = 'https://www.fixlgs.com/terms';
+const MAIN_CONTACT = 'https://www.fixlgs.com/contact?app=FIX%20BUILDING';
 const BASE_PATH = '/building';
 
 export default function SiteFooter({ locale='ko' }) {
