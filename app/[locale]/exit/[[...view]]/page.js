@@ -6,7 +6,7 @@ import {EXIT_LOCALES,getExitDecision,getExitMain,getExitSection} from '../../../
 import '../../../analysis.css';
 import '../../../contract.css';
 
-const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://www.fixlgs.com';
+const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 const ALLOWED=['decision','readiness','pricing','buyer-readiness','net-proceeds','closing'];
 
 const META={

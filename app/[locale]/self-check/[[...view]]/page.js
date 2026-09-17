@@ -8,7 +8,7 @@ import { getStage2Asset, stage2Value } from '../../../self-check-stage2-copy';
 import { getStage3Comic } from '../../../self-check-stage3-copy';
 
 const locales = ['ko','en','ja'];
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.fixlgs.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 const assetById = Object.fromEntries(PUBLIC_ASSETS.map(x=>[x.id,x]));
 
 const META_COPY={

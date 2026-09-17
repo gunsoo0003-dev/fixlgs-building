@@ -4,7 +4,7 @@ import {getManagementContent,MANAGEMENT_LOCALES,MANAGEMENT_SLUGS} from '../../..
 import '../../../analysis.css';
 import '../../../contract.css';
 
-const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://www.fixlgs.com';
+const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 
 export async function generateMetadata({params}){
   const {locale,view=[]}=await params;

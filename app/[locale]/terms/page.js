@@ -1,5 +1,5 @@
 import { permanentRedirect } from 'next/navigation';
 
 export default function Page() {
-  permanentRedirect('https://www.fixlgs.com/terms');
+  permanentRedirect('https://fixlgs.com/terms');
 }
