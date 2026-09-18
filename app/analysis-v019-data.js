@@ -757,11 +757,11 @@ export const ANALYSIS_AXES_V019 = [
 ];
 
 export const ANALYSIS_TOOLS_V019 = [
-  {num:'01',name:'수익률 계산기',desc:'임대수입과 비용을 넣어 수익 구조를 계산합니다.',status:'연결',href:'https://fixlgs.com/tools/ko'},
-  {num:'02',name:'대출·레버리지 계산',desc:'대출액과 금리에 따라 금융비용이 어떻게 달라지는지 확인합니다.',status:'연결',href:'https://fixlgs.com/tools/ko'},
+  {num:'01',name:'수익률 계산기',desc:'임대수입과 비용을 넣어 수익 구조를 계산합니다.',status:'연결',href:'https://www.fixlgs.com/tools/ko'},
+  {num:'02',name:'대출·레버리지 계산',desc:'대출액과 금리에 따라 금융비용이 어떻게 달라지는지 확인합니다.',status:'연결',href:'https://www.fixlgs.com/tools/ko'},
   {num:'03',name:'적정가격 비교',desc:'비교거래와 조건 차이를 기준으로 현재 가격의 위치를 봅니다.',status:'준비중'},
-  {num:'04',name:'평당가 계산',desc:'가격과 면적을 같은 단위로 바꿔 비교합니다.',status:'연결',href:'https://fixlgs.com/tools/ko'},
-  {num:'05',name:'공실 반영 계산',desc:'비어 있는 기간을 수입에서 빼면 얼마가 남는지 확인합니다.',status:'연결',href:'https://fixlgs.com/tools/ko'},
+  {num:'04',name:'평당가 계산',desc:'가격과 면적을 같은 단위로 바꿔 비교합니다.',status:'연결',href:'https://www.fixlgs.com/tools/ko'},
+  {num:'05',name:'공실 반영 계산',desc:'비어 있는 기간을 수입에서 빼면 얼마가 남는지 확인합니다.',status:'연결',href:'https://www.fixlgs.com/tools/ko'},
   {num:'06',name:'등기부 권리 체크',desc:'등기부에서 확인할 권리 항목을 순서대로 점검합니다.',status:'준비중'},
   {num:'07',name:'종합 분석표',desc:'6축에서 확인한 결과를 한 번에 정리합니다.',status:'준비중'}
 ];
