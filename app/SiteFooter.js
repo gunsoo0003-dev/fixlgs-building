@@ -2,7 +2,7 @@
 
 import { SITE_COPY } from './site-copy';
 
-const MAIN_HOME = 'https://fixlgs.com/';
+const MAIN_HOME = 'https://fixlgs.com/company';
 const MAIN_PRIVACY = 'https://fixlgs.com/privacy';
 const MAIN_TERMS = 'https://fixlgs.com/terms';
 const MAIN_CONTACT = 'https://fixlgs.com/contact?app=FIX%20BUILDING';
