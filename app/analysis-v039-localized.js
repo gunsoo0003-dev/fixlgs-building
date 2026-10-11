@@ -13,8 +13,8 @@ export const ANALYSIS_HOME_V039={
     resultStates:[['01','Confirmed','Evidence or an on-site check is sufficient. Record it separately from assumptions.'],['02','Needs verification','The evidence is incomplete or must be checked again before closing. Leaving an item open is part of good analysis.'],['03','Burden to absorb','Repairs, vacancy or operating complexity may be real without automatically disqualifying the property. Decide whether you can absorb them.']],
     workflowTitle:'A practical order for checking a building.',workflowLead:'The order in which you collect evidence is slightly different from the six learning axes. Match the documents first, add field checks and comparables, keep unknowns open, then synthesize.',
     workflow:[['01','Gather the basics','Bring the sale information and core building facts into one place so the subject property is clearly defined.'],['02','Match the lease data','Compare unit-by-unit contracts with actual receipts and vacancy status.'],['03','Cross-check public records','Compare registry and building-register records with actual ownership and use.'],['04','Check the site','Verify physical condition, access, nearby vacancy and signs of day-to-day management that documents cannot show.'],['05','Add comparables','Place nearby transactions, rents and competing spaces next to the subject to understand where its numbers sit.'],['06','Keep unknowns visible','Do not force estimates for unverified items. Move them to a separate follow-up list.'],['07','Synthesize last','Review confirmed facts, open questions and burdens together before deciding whether your evidence is sufficient.']],
-    toolsTitle:'When should you use an analysis tool?',toolsLead:'A tool does not replace analysis. Use it after you know what you are trying to calculate, compare or verify.',
-    toolUse:{'Yield Calculator':'When you need a quick view of income relative to price','Loan & Leverage':'When you need to see how debt ratio and interest affect cash flow','Price Comparison':'When you need to place the subject next to comparable transactions','Price per Area':'When properties of different sizes need a common unit','Vacancy Adjustment':'When you need to test income after periods of vacancy','Registry Rights Check':'When you need to organize rights into release, survival and follow-up items','Analysis Summary':'When you need to collect the six-axis findings without turning them into one score'},
+    toolsTitle:'Seven review points for building analysis',toolsLead:'These are guidance topics, not working calculators. Check the figures and underlying evidence for each point before making a decision.',
+    toolUse:{'Yield Review':'When you need a quick view of income relative to price','Loan & Leverage Review':'When you need to see how debt ratio and interest affect cash flow','Price Comparison':'When you need to place the subject next to comparable transactions','Price per Area Review':'When properties of different sizes need a common unit','Vacancy Impact Review':'When you need to test income after periods of vacancy','Registry Rights Check':'When you need to organize rights into release, survival and follow-up items','Analysis Summary':'When you need to collect the six-axis findings without turning them into one score'},
     finalTitle:'Finish with three final checks.',finalLead:'At the end, adding more items matters less than checking what your judgment is actually based on.',
     finalChecks:[['Do I have evidence?','Can I point to documents, market data or an on-site check that explains my judgment?'],['What is still open?','Keep unverified items on a separate list and resolve them before the transaction.'],['Can I absorb the burden?','Do not reduce cost, vacancy, rights or operating burden to good/bad. Decide whether it is acceptable for you.']],
     finalLine1:'The purpose of building analysis is not to give you the answer,',finalLine2:'but to show what to verify and what evidence should support the decision.',
@@ -25,7 +25,7 @@ export const ANALYSIS_HOME_V039={
       {id:'building',num:'04',code:'BUILDING',name:'Building',prompt:'Translate condition into repairs, replacements and future cash needs.',action:'View building analysis',facts:['Condition','Repairs','Future cost']},
       {id:'location',num:'05',code:'LOCATION',name:'Location',prompt:'Check whether relevant demand—not just foot traffic—can keep using this space.',action:'View location analysis',facts:['Demand base','Access','Durability']},
       {id:'operation',num:'06',code:'OPERATION',name:'Operation',prompt:'Measure the recurring management needed to keep the current income.',action:'View operation analysis',facts:['Tenant stability','Intervention','Operating burden']},
-      {id:'tools',num:'07',code:'TOOLS',name:'Analysis Tools',prompt:'Use seven tools when you need to calculate, compare or verify a specific point.',action:'Analysis Tools',facts:['Calculate','Compare','Verify']}
+      {id:'tools',num:'07',code:'GUIDE',name:'Review Points',prompt:'Review seven practical checks for calculations, comparison, and evidence.',action:'View review points',facts:['Calculation basis','Comparison','Evidence']}
     ]
   },
   ja:{
@@ -40,8 +40,8 @@ export const ANALYSIS_HOME_V039={
     resultStates:[['01','確認済み','資料や現地で十分に根拠を確認できた内容です。推測とは分けて記録します。'],['02','追加確認','資料不足、または取引前に再確認が必要な項目です。未確認を未確認のまま残すことも分析です。'],['03','引き受ける負担','修繕費・空室・運営難易度など、存在するだけで即不適格とは限らない負担です。自分が許容できるかを別に判断します。']],
     workflowTitle:'実際の建物はこの順番で確認してみてください。',workflowLead:'6軸を学ぶ順番と、資料を集める順番は少し違います。まず資料を合わせ、現地と比較資料を追加し、未確認項目を残して最後に統合します。',
     workflow:[['01','基本資料を集める','売買情報と建物の基本情報を一か所にまとめ、分析対象を正確に定義します。'],['02','賃貸資料を照合する','区画別の契約内容と実入金・空室状況が一致するか確認します。'],['03','公的資料を照合する','登記と建築物台帳を実際の所有関係・利用状態と比較します。'],['04','現地で確認する','書類だけでは分からない建物状態、アクセス、周辺空室、管理の痕跡を確認します。'],['05','比較資料を加える','周辺成約・賃料・競合スペースを並べ、現在の数字がどこに位置するかを確認します。'],['06','分からないことを残す','未確認項目を無理に推定せず、追加確認リストに分けます。'],['07','最後に統合する','確認済み・追加確認・引き受ける負担を並べ、判断根拠が十分かを再確認します。']],
-    toolsTitle:'分析ツールはいつ使うのでしょうか？',toolsLead:'ツールは分析の代わりではありません。何を計算・比較・確認したいかを決めてから必要なツールを使います。',
-    toolUse:{'利回り計算':'価格に対して現在の収益がどの水準か素早く見るとき','ローン・レバレッジ':'借入比率と金利がキャッシュフローに与える影響を見るとき','価格比較':'対象価格を比較成約と並べて差の理由を検討するとき','坪単価計算':'規模の異なる物件を同じ単位で比較するとき','空室反映計算':'満室前提ではなく空室発生時の収益変化を見るとき','登記権利チェック':'登記上の権利を抹消・承継・追加確認に整理するとき','総合分析表':'6つの結果を一つの点数にせず状態としてまとめるとき'},
+    toolsTitle:'建物分析で確認したい7つのポイント',toolsLead:'ここは計算機能の画面ではなく、確認すべき数値と比較基準を説明する案内です。実際の資料を照合して判断してください。',
+    toolUse:{'利回りの確認':'価格に対して現在の収益がどの水準か素早く見るとき','融資とレバレッジの確認':'借入比率と金利がキャッシュフローに与える影響を見るとき','価格比較':'対象価格を比較成約と並べて差の理由を検討するとき','面積当たり価格の比較':'規模の異なる物件を同じ単位で比較するとき','空室の影響確認':'満室前提ではなく空室発生時の収益変化を見るとき','登記権利チェック':'登記上の権利を抹消・承継・追加確認に整理するとき','総合分析表':'6つの結果を一つの点数にせず状態としてまとめるとき'},
     finalTitle:'分析が終わったら、最後に3つを確認してください。',finalLead:'ここまで来たら項目を増やすより、今の判断がどの根拠に立っているかを確認する方が重要です。',
     finalChecks:[['根拠があるか','判断を説明できる資料・市場データ・現地確認が実際にあるかを見ます。'],['何がまだ未確認か','確認できていない項目を別リストに残し、取引前に再確認します。'],['負担を受け入れられるか','費用・空室・権利・運営負担を単純な良し悪しにせず、自分が許容できるかを判断します。']],
     finalLine1:'建物分析の目的は正解を代わりに出すことではなく、',finalLine2:'何を確認し、どんな根拠で判断すべきかを分かるようにすることです。',
@@ -52,17 +52,17 @@ export const ANALYSIS_HOME_V039={
       {id:'building',num:'04',code:'BUILDING',name:'建物',prompt:'築年より、今後必要な修繕・交換と実際の負担を確認します。',action:'建物分析を見る',facts:['現状','修繕・交換','将来費用']},
       {id:'location',num:'05',code:'LOCATION',name:'立地',prompt:'人の多さより、この空間を必要とする需要が続くかを見ます。',action:'立地分析を見る',facts:['背後需要','アクセス','持続性']},
       {id:'operation',num:'06',code:'OPERATION',name:'運営',prompt:'現在の収益より、その収益を維持する管理負担を確認します。',action:'運営分析を見る',facts:['テナント安定','管理介入','運営負担']},
-      {id:'tools',num:'07',code:'TOOLS',name:'分析ツール',prompt:'必要な数字を計算・比較・確認するときに7つのツールを使います。',action:'分析ツール',facts:['計算','比較','検証']}
+      {id:'tools',num:'07',code:'GUIDE',name:'確認ポイント',prompt:'計算・比較・根拠確認に使う7つの視点を案内します。',action:'確認ポイントを見る',facts:['計算基準','比較','根拠確認']}
     ]
   }
 };
 
 export const ANALYSIS_TOOLS_V039={
   en:[
-    {num:'01',name:'Yield Calculator',desc:'Estimate the income structure from rent and recurring costs.'},{num:'02',name:'Loan & Leverage',desc:'See how loan size and interest rate change financing cost.'},{num:'03',name:'Price Comparison',desc:'Place the subject price against comparable transactions and condition gaps.'},{num:'04',name:'Price per Area',desc:'Convert price and area to a common unit for comparison.'},{num:'05',name:'Vacancy Adjustment',desc:'Estimate what remains after periods with no rent.'},{num:'06',name:'Registry Rights Check',desc:'Review registry rights in a practical transaction order.'},{num:'07',name:'Analysis Summary',desc:'Organize the findings from all six axes in one place.'}
+    {num:'01',name:'Yield Review',desc:'Estimate the income structure from rent and recurring costs.'},{num:'02',name:'Loan & Leverage Review',desc:'See how loan size and interest rate change financing cost.'},{num:'03',name:'Price Comparison',desc:'Place the subject price against comparable transactions and condition gaps.'},{num:'04',name:'Price per Area Review',desc:'Convert price and area to a common unit for comparison.'},{num:'05',name:'Vacancy Impact Review',desc:'Estimate what remains after periods with no rent.'},{num:'06',name:'Registry Rights Check',desc:'Review registry rights in a practical transaction order.'},{num:'07',name:'Analysis Summary',desc:'Organize the findings from all six axes in one place.'}
   ],
   ja:[
-    {num:'01',name:'利回り計算',desc:'賃料収入と反復費用から収益構造を確認します。'},{num:'02',name:'ローン・レバレッジ',desc:'借入額と金利によって金融費用がどう変わるかを確認します。'},{num:'03',name:'価格比較',desc:'比較成約と条件差から対象価格の位置を見ます。'},{num:'04',name:'坪単価計算',desc:'価格と面積を同じ単位にそろえて比較します。'},{num:'05',name:'空室反映計算',desc:'空室期間を収入から差し引いた場合に何が残るかを確認します。'},{num:'06',name:'登記権利チェック',desc:'登記で確認する権利項目を取引の順番で整理します。'},{num:'07',name:'総合分析表',desc:'6軸で確認した結果を一か所にまとめます。'}
+    {num:'01',name:'利回りの確認',desc:'賃料収入と反復費用から収益構造を確認します。'},{num:'02',name:'融資とレバレッジの確認',desc:'借入額と金利によって金融費用がどう変わるかを確認します。'},{num:'03',name:'価格比較',desc:'比較成約と条件差から対象価格の位置を見ます。'},{num:'04',name:'面積当たり価格の比較',desc:'価格と面積を同じ単位にそろえて比較します。'},{num:'05',name:'空室の影響確認',desc:'空室期間を収入から差し引いた場合に何が残るかを確認します。'},{num:'06',name:'登記権利チェック',desc:'登記で確認する権利項目を取引の順番で整理します。'},{num:'07',name:'総合分析表',desc:'6軸で確認した結果を一か所にまとめます。'}
   ]
 };
 

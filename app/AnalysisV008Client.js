@@ -242,13 +242,13 @@ function Home({locale,onOpen}){
     ['07','마지막에 종합하기','확인됨·추가확인·감수할 부담을 함께 놓고 내 판단의 근거가 충분한지 다시 봅니다.']
   ]:h.workflow;
   const toolUse=ko?{
-    '수익률 계산기':'현재 수입이 가격 대비 어느 수준인지 빠르게 확인할 때',
-    '대출·레버리지 계산':'대출비율과 금리가 내 현금흐름에 어떤 영향을 주는지 볼 때',
-    '적정가격 비교':'대상가격을 비교거래와 나란히 놓고 가격 차이를 검토할 때',
-    '평당가 계산':'규모가 다른 물건을 같은 단위로 비교해야 할 때',
-    '공실 반영 계산':'만실 가정이 아니라 공실이 생겼을 때 수익 변화를 확인할 때',
-    '등기부 권리 체크':'등기부에서 확인한 권리를 말소·승계·추가확인으로 정리할 때',
-    '종합 분석표':'6가지 기준의 결과를 점수가 아니라 상태로 한 화면에 모을 때'
+    '수익률 확인':'현재 수입이 가격 대비 어느 수준인지 빠르게 확인할 때',
+    '대출·레버리지 검토':'대출비율과 금리가 내 현금흐름에 어떤 영향을 주는지 볼 때',
+    '가격 비교 기준':'대상가격을 비교거래와 나란히 놓고 가격 차이를 검토할 때',
+    '면적당 가격 비교':'규모가 다른 물건을 같은 단위로 비교해야 할 때',
+    '공실 영향 확인':'만실 가정이 아니라 공실이 생겼을 때 수익 변화를 확인할 때',
+    '등기부 권리 확인':'등기부에서 확인한 권리를 말소·승계·추가확인으로 정리할 때',
+    '6축 분석 정리':'6가지 기준의 결과를 점수가 아니라 상태로 한 화면에 모을 때'
   }:h.toolUse;
   const finalChecks=ko?[
     ['근거가 있는가','내가 내린 판단을 설명할 자료와 확인내용이 실제로 있는지 봅니다.'],
@@ -262,7 +262,7 @@ function Home({locale,onOpen}){
     {id:'building',num:'04',code:'BUILDING',name:'건물',prompt:'연식보다 앞으로 필요한 수선·교체와 실제 부담을 확인합니다.',action:'건물 분석 보기',facts:['현재상태','수선·교체','미래비용']},
     {id:'location',num:'05',code:'LOCATION',name:'입지',prompt:'사람 수보다 이 공간을 필요로 하는 수요가 계속 존재하는지 봅니다.',action:'입지 분석 보기',facts:['배후수요','접근성','지속성']},
     {id:'operation',num:'06',code:'OPERATION',name:'운영',prompt:'현재 수익보다 그 수익을 유지하기 위한 관리부담을 확인합니다.',action:'운영 분석 보기',facts:['임차안정','관리개입','운영부담']},
-    {id:'tools',num:'07',code:'TOOLS',name:'분석도구',prompt:'판단에 필요한 숫자를 계산하고 확인할 때 7가지 도구를 사용합니다.',action:'분석도구',facts:['계산','비교','검증']}
+    {id:'tools',num:'07',code:'GUIDE',name:'분석 확인 기준',prompt:'일곱 가지 상황에서 어떤 수치와 자료를 확인해야 하는지 살펴봅니다.',action:'확인 기준 보기',facts:['계산 기준','비교 방법','근거 확인']}
   ]:h.nav;
   useEffect(()=>{
     const root=rootRef.current;if(!root)return;
@@ -303,7 +303,7 @@ function Home({locale,onOpen}){
 
     <section className="an32-order"><div className="an19-shell"><header className="an32-section-head an32-reveal"><small>ANALYSIS WORKFLOW.</small><h2>{ko?'실제 건물은 이런 순서로 확인해 보세요.':h.workflowTitle}</h2><p>{ko?'여섯 축을 차례대로 읽는 것과 실제 자료를 모으는 순서는 조금 다릅니다. 먼저 자료를 맞추고, 현장과 비교자료를 붙인 뒤, 모르는 것을 남겨 마지막에 종합합니다.':h.workflowLead}</p></header><div className="an32-order-list">{workflow.map(([num,name,body])=><div className="an32-reveal" key={num}><span>{num}</span><strong>{name}</strong><p>{body}</p></div>)}</div></div></section>
 
-    <section ref={toolsRef} className="an19-tools-section an32-tools"><div className="an19-shell"><header className="an32-section-head an32-reveal"><small>USE THE TOOLS WHEN NEEDED.</small><h2>{ko?'분석도구는 언제 사용해야 할까요?':h.toolsTitle}</h2><p>{ko?'도구는 분석을 대신하는 메뉴가 아니라 필요한 순간에 숫자를 계산하거나 사실을 정리하는 보조수단입니다. 먼저 무엇을 확인하려는지 정하고 그다음 필요한 도구를 선택합니다.':h.toolsLead}</p></header><div className="an19-tool-grid an33-tool-grid">{localizedTools.map(tool=><article className="an32-reveal" key={tool.num}><span>{tool.num}</span><h3>{tool.name}</h3><p className="an33-tool-when"><b>WHEN</b>{toolUse[tool.name]||tool.desc}</p><p>{tool.desc}</p></article>)}</div></div></section>
+    <section ref={toolsRef} className="an19-tools-section an32-tools"><div className="an19-shell"><header className="an32-section-head an32-reveal"><small>SEVEN REVIEW POINTS.</small><h2>{ko?'분석에서 어떤 수치와 자료를 확인할까요?':h.toolsTitle}</h2><p>{ko?'이 영역은 계산기 실행 화면이 아니라 확인할 수치와 비교 기준을 설명하는 안내입니다. 실제 분석에서는 자료를 직접 대조해 판단해야 합니다.':h.toolsLead}</p></header><div className="an19-tool-grid an33-tool-grid">{localizedTools.map(tool=><article className="an32-reveal" key={tool.num}><span>{tool.num}</span><h3>{tool.name}</h3><p className="an33-tool-when"><b>WHEN</b>{toolUse[tool.name]||tool.desc}</p><p>{tool.desc}</p></article>)}</div></div></section>
 
     <section className="an32-final"><div className="an19-shell an32-reveal"><small>FINAL CHECK.</small><h2>{ko?'분석이 끝났다면 마지막으로 세 가지를 확인하세요.':h.finalTitle}</h2><p>{ko?'여기까지 왔다면 더 많은 항목을 추가하는 것보다, 지금 가진 판단이 어떤 근거 위에 있는지를 확인하는 것이 중요합니다.':h.finalLead}</p><div className="an33-final-checks">{finalChecks.map(([title,body],i)=><article key={title}><span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{body}</p></article>)}</div><strong>{ko?<><span>건물분석의 목적은 정답을 대신 내려주는 것이 아니라,</span><br className="an34-final-break"/><span>무엇을 확인하고 어떤 근거로 판단해야 하는지를 알게 하는 것입니다.</span></>:<><span>{h.finalLine1}</span><br className="an34-final-break"/><span>{h.finalLine2}</span></>}</strong></div></section>
   </div>;

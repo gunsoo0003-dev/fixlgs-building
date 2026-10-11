@@ -38,6 +38,5 @@ export default async function ManagementRoute({params}){
   if(!MANAGEMENT_LOCALES.includes(locale)) notFound();
   const list=Array.isArray(view)?view:[];
   if(list.length>1 || (list[0]&&!MANAGEMENT_SLUGS.includes(list[0]))) notFound();
-  const content=getManagementContent(locale);
-  return <main className="analysis-page-v019-root"><ManagementClient locale={locale} initialView={list}/><section className="an19-seo-corpus" aria-label="FIX BUILDING MANAGEMENT"><h2>FIX BUILDING MANAGEMENT</h2><p>{content.ui.seoCorpus}</p></section></main>;
+  return <main className="analysis-page-v019-root"><ManagementClient locale={locale} initialView={list}/></main>;
 }

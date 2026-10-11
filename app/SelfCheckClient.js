@@ -1523,7 +1523,11 @@ export default function SelfCheckClient({ locale='ko', initialView=[] }) {
   const rich=useMemo(()=>buildRichResult(finalTypeId,finalAxes,assets,process),[finalTypeId,finalAxes,assets,process]);
   const reset=()=>{setAnswers({});setPage(0);setScreen('landing');try{localStorage.removeItem(STORAGE_KEY)}catch{}};
   const startNew=()=>{setAnswers({});setPage(0);setScreen('stage1');try{localStorage.removeItem(STORAGE_KEY)}catch{}};
-  if(!loaded) return null;
+  // For the public landing URL, render the useful start screen in the initial HTML.
+  // Saved answers are restored by the existing client effect without altering the workflow.
+  if(!loaded) return (!Array.isArray(initialView) || initialView.length===0)
+    ? <Landing locale={locale} onStart={startNew}/>
+    : null;
   if(screen==='landing') return <Landing locale={locale} onStart={startNew}/>;
   if(screen==='stage1') return <FlowQuestions title={copy.stages[1].title} stage={1} locale={locale} onRestart={reset} screens={STAGE1_SCREENS} page={page} answers={answers} onAnswer={(id,i)=>setAnswers(a=>({...a,[id]:i}))} onPrev={page>0?()=>setPage(p=>p-1):()=>navigate('landing',0)} onNext={()=>{if(page<STAGE1_SCREENS.length-1)setPage(p=>p+1);else navigate('result1',0)}} nextLabel={page===STAGE1_SCREENS.length-1?copy.common.resultView:copy.common.next}/>;
   if(screen==='result1') return <ResultShell stage={1} locale={locale}><Stage1Result axes={stage1Axes} typeId={stage1TypeId} onNext={()=>navigate('stage2',0)} onRestart={reset} locale={locale}/></ResultShell>;

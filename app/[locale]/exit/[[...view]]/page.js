@@ -2,7 +2,7 @@ import {notFound} from 'next/navigation';
 import ExitMainClient from '../../../ExitMainClient';
 import ExitClient from '../../../ExitClient';
 import ExitPrototypeClient from '../../../ExitPrototypeClient';
-import {EXIT_LOCALES,getExitDecision,getExitMain,getExitSection} from '../../../exit-i18n-data';
+import {EXIT_LOCALES,getExitSection} from '../../../exit-i18n-data';
 import '../../../analysis.css';
 import '../../../contract.css';
 
@@ -58,8 +58,8 @@ export default async function ExitRoute({params}){
   const list=Array.isArray(view)?view:(view?[view]:[]);
   if(!EXIT_LOCALES.includes(locale)||list.length>1) notFound();
   const slug=list[0]||''; if(slug&&!ALLOWED.includes(slug)) notFound();
-  if(!slug){const s=getExitMain(locale);return <main className="analysis-page-v019-root mg-management-page exit-main-page"><ExitMainClient locale={locale}/><section className="an19-seo-corpus" aria-label="FIX BUILDING EXIT"><h2>FIX BUILDING EXIT</h2><p>{s.lead}</p></section></main>;}
-  if(slug==='decision'){const s=getExitDecision(locale);return <main className="analysis-page-v019-root"><ExitClient locale={locale}/><section className="an19-seo-corpus" aria-label="FIX BUILDING EXIT 01"><h2>FIX BUILDING EXIT 01</h2><p>{s.lead}</p></section></main>;}
+  if(!slug) return <main className="analysis-page-v019-root mg-management-page exit-main-page"><ExitMainClient locale={locale}/></main>;
+  if(slug==='decision') return <main className="analysis-page-v019-root"><ExitClient locale={locale}/></main>;
   const s=getExitSection(locale,slug); if(!s) notFound();
-  return <main className="analysis-page-v019-root"><ExitPrototypeClient locale={locale} view={slug}/><section className="an19-seo-corpus" aria-label={`FIX BUILDING EXIT ${slug}`}><h2>FIX BUILDING EXIT</h2><p>{s.lead}</p></section></main>;
+  return <main className="analysis-page-v019-root"><ExitPrototypeClient locale={locale} view={slug}/></main>;
 }

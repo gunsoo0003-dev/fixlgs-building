@@ -2450,21 +2450,18 @@ const EN_MANAGEMENT_CASES=[
 const EN_MANAGEMENT_TOOLS=[
   {
     "num": "01",
-    "name": "Vacancy Loss Calculator",
-    "desc": "Estimate actual vacancy loss by combining missed rent with fixed costs that continue while the space is empty.",
-    "href": "#"
+    "name": "Vacancy Loss Review",
+    "desc": "Estimate actual vacancy loss by combining missed rent with fixed costs that continue while the space is empty."
   },
   {
     "num": "02",
-    "name": "Operating Return Calculator",
-    "desc": "Review operating performance for a period using actual rental income and actual operating costs.",
-    "href": "#"
+    "name": "Operating Return Review",
+    "desc": "Review operating performance for a period using actual rental income and actual operating costs."
   },
   {
     "num": "03",
-    "name": "Lease Expiry Planner",
-    "desc": "Organize lease end dates and review points for renewal or move-out preparation, not contract drafting.",
-    "href": "#"
+    "name": "Lease Expiry Check",
+    "desc": "Organize lease end dates and review points for renewal or move-out preparation, not contract drafting."
   }
 ];
 
@@ -4918,21 +4915,18 @@ const JA_MANAGEMENT_CASES=[
 const JA_MANAGEMENT_TOOLS=[
   {
     "num": "01",
-    "name": "空室損失計算",
-    "desc": "空室期間の未収賃料と、空室中も続く固定費を合わせて実際の損失を確認します。",
-    "href": "#"
+    "name": "空室損失の確認",
+    "desc": "空室期間の未収賃料と、空室中も続く固定費を合わせて実際の損失を確認します。"
   },
   {
     "num": "02",
-    "name": "建物運営収益計算",
-    "desc": "一定期間の実際の賃料収入と実際の運営費から運営結果を確認します。",
-    "href": "#"
+    "name": "建物運営収益の確認",
+    "desc": "一定期間の実際の賃料収入と実際の運営費から運営結果を確認します。"
   },
   {
     "num": "03",
-    "name": "契約満了管理",
-    "desc": "契約作成ではなく、更新・退去準備のために満了日と確認時点を整理します。",
-    "href": "#"
+    "name": "契約満了日の確認",
+    "desc": "契約作成ではなく、更新・退去準備のために満了日と確認時点を整理します。"
   }
 ];
 
@@ -4942,7 +4936,7 @@ const UI={
     "homeLead": "건물을 샀다면, 이제 수익을 지켜야 합니다. 매입 후 달라지는 돈·사람·건물의 상태를 확인하고, 중요한 변화를 기록으로 이어갑니다.",
     "quickAria": "건물관리 빠른 선택",
     "viewSuffix": " 보기",
-    "toolsView": "관리도구 보기 →",
+    "toolsView": "반복 점검 항목 보기 →",
     "statementLead": "건물관리는 고장 수리만을 뜻하지 않습니다.",
     "statementBody": "시설을 고치는 일은 관리의 일부입니다. 실제 운영에서는 돈이 들어오는 흐름, 비어 있는 공간, 임차인과의 계약, 계속 늘어나는 비용, 시설의 변화, 그리고 그 모든 기록을 함께 봐야 합니다.",
     "expectedTitle": "매입할 때 계산한 수익률은 그대로 유지되지 않습니다.",
@@ -4953,9 +4947,9 @@ const UI={
     "calendarBody": "현금흐름은 매월, 공실과 비용 흐름은 분기, 계약과 시설은 만료·점검 일정에 맞춰 확인합니다. 사고나 고장은 발생 즉시 기록합니다.",
     "connectedTitle": "하나의 문제는 다른 관리항목으로 이어집니다.",
     "connectedBody": "상세페이지에서는 한 축을 깊게 보고, 여기서는 실제 운영에서 여러 축이 어떻게 연결되는지 확인합니다.",
-    "toolsTitle": "반복해서 계산하는 일은 도구로 줄입니다.",
-    "toolsBody": "관리도구는 관리법을 대신하지 않습니다. 이미 이해한 기준을 반복해서 계산하거나 일정을 정리할 때 사용하는 보조수단입니다.",
-    "toolsNote": "도구 기능은 전체 MVP 완성 후 연결합니다. 현재는 관리 콘텐츠 흐름을 확인하기 위한 링크 자리입니다.",
+    "toolsTitle": "반복해서 확인할 세 가지 항목",
+    "toolsBody": "공실 손실, 실제 운영수익, 계약 만료일은 건물 보유기간 동안 정기적으로 비교하고 기록할 항목입니다. 아래에서 각 항목의 확인 기준을 살펴보세요.",
+    "toolsNote": "아래 항목은 운영기록에 무엇을 남길지 설명하는 안내입니다. 자동 계산이나 계약관리 기능을 제공하지 않습니다.",
     "finalTitle": "관리의 마지막은 기록입니다.",
     "finalBody": "문제가 생기지 않는 건물은 없습니다. 중요한 것은 이전 기록을 확인하고 원인을 찾고 다음 조치를 판단할 수 있는 구조를 만드는 것입니다.",
     "finalChecks": [
@@ -5055,7 +5049,7 @@ const UI={
       "facility": "View Facilities",
       "record": "View Records"
     },
-    "toolsView": "View Management Tools →",
+    "toolsView": "View routine checks →",
     "statementLead": "Building management is more than fixing what breaks.",
     "statementBody": "Repairs are only one part of management. Real operations also require watching incoming cash, vacant space, tenant agreements, rising costs, physical changes, and the records that connect all of them.",
     "expectedTitle": "The return you calculated at purchase does not stay fixed.",
@@ -5066,9 +5060,9 @@ const UI={
     "calendarBody": "Review cash flow monthly, vacancy and cost trends quarterly, and leases and facilities around expiry or inspection dates. Record incidents and failures when they happen.",
     "connectedTitle": "One issue often moves into another management area.",
     "connectedBody": "The detail pages go deep on one area. Here, focus on how several areas connect during real operations.",
-    "toolsTitle": "Use tools for work you calculate repeatedly.",
-    "toolsBody": "Tools do not replace management judgment. Use them to repeat calculations or organize dates after you understand the underlying standard.",
-    "toolsNote": "Tool functions will be connected after the full MVP is complete. These links currently show where the tools fit in the management flow.",
+    "toolsTitle": "Three checks to repeat during ownership",
+    "toolsBody": "Review vacancy losses, actual operating returns, and upcoming lease expiries regularly. The items below explain what to check and record.",
+    "toolsNote": "These are practical review points, not automated calculators or an active lease-management service.",
     "finalTitle": "Good management ends with usable records.",
     "finalBody": "No building operates without problems. What matters is having enough history to find the cause, understand what changed, and decide what to do next.",
     "finalChecks": [
@@ -5168,7 +5162,7 @@ const UI={
       "facility": "設備管理を見る",
       "record": "記録管理を見る"
     },
-    "toolsView": "管理ツールを見る →",
+    "toolsView": "定期チェック項目を見る →",
     "statementLead": "建物管理は、故障を直すことだけではありません。",
     "statementBody": "設備修理は管理の一部です。実際の運営では、入金の流れ、空いている空間、テナントとの契約、増えていく費用、設備の変化、そしてそれらをつなぐ記録を一緒に見ます。",
     "expectedTitle": "購入時に計算した利回りは、そのまま続くとは限りません。",
@@ -5179,9 +5173,9 @@ const UI={
     "calendarBody": "キャッシュフローは毎月、空室と費用の流れは四半期、契約と設備は満了・点検時期に合わせて確認します。事故や故障は発生時に記録します。",
     "connectedTitle": "一つの問題は、別の管理領域へつながります。",
     "connectedBody": "詳細ページでは一つの領域を深く見ます。ここでは実際の運営で複数の領域がどうつながるかを確認します。",
-    "toolsTitle": "繰り返し計算する作業はツールで減らします。",
-    "toolsBody": "管理ツールは判断基準の代わりではありません。基準を理解したうえで、計算や日程整理を繰り返すときの補助手段として使います。",
-    "toolsNote": "ツール機能はMVP全体の完成後に接続します。現在は管理コンテンツの中でどこに入るかを確認するリンクです。",
+    "toolsTitle": "保有期間中に繰り返す3つの確認項目",
+    "toolsBody": "空室損失、実際の運営収益、契約満了予定を定期的に確認して記録します。以下ではそれぞれの確認ポイントを紹介します。",
+    "toolsNote": "以下は運営記録に何を残すかを説明する項目です。自動計算や契約管理の機能は提供していません。",
     "finalTitle": "管理の最後は、使える記録です。",
     "finalBody": "問題がまったく起きない建物はありません。大切なのは、過去の記録から原因と変化を確認し、次の対応を判断できる状態を作ることです。",
     "finalChecks": [
