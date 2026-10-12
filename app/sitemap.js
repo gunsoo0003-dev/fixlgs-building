@@ -1,7 +1,8 @@
 import { PUBLIC_RESULT_PATHS } from './self-check-public-data';
+import {PUBLISHED_LOCALES} from '../publication-config.mjs';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
-const locales=['ko','en','ja'];
+const locales=PUBLISHED_LOCALES;
 
 export default function sitemap(){
   const now=new Date();

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import AnalysisPage from '../../../AnalysisPage';
 import { ANALYSIS_COPY, ANALYSIS_LOCALES } from '../../../analysis-copy';
 import '../../../analysis.css';
+import {publishedLanguageUrls} from '../../../../publication-config.mjs';
 
 const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 
@@ -14,7 +15,7 @@ export async function generateMetadata({params}){
   return {
     title:copy.metaTitle,
     description:copy.metaDescription,
-    alternates:{canonical,languages:{'ko-KR':`${SITE_URL}/building/ko/analysis`,'en':`${SITE_URL}/building/en/analysis`,'ja-JP':`${SITE_URL}/building/ja/analysis`}},
+    alternates:{canonical,languages:publishedLanguageUrls('/analysis',SITE_URL)},
     robots:{index:isRoot,follow:true},
     openGraph:{title:copy.metaTitle,description:copy.metaDescription,url:canonical,type:'article'},
   };

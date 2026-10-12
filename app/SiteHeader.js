@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { SITE_COPY, LOCALES, HEADER_SUBMENUS } from './site-copy';
+import {PUBLISHED_LOCALES} from '../publication-config.mjs';
 
 const BASE_PATH = '/building';
 
@@ -11,6 +12,7 @@ export default function SiteHeader({ locale='ko' }) {
   const services = copy.services;
   const submenus = HEADER_SUBMENUS[locale] || HEADER_SUBMENUS.ko;
   const pathname = usePathname();
+  const publishedLanguages = LOCALES.filter(item => PUBLISHED_LOCALES.includes(item.code));
   const [langOpen, setLangOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -115,17 +117,17 @@ export default function SiteHeader({ locale='ko' }) {
             })}
           </nav>
           <a className="nav-result-samples" href={sampleHref}>RESULT SAMPLES</a>
-          <div className={`language-menu ${langOpen ? 'is-open' : ''}`}>
+          {publishedLanguages.length > 1 && <div className={`language-menu ${langOpen ? 'is-open' : ''}`}>
             <button type="button" className="language-trigger" aria-haspopup="menu" aria-expanded={langOpen} onClick={() => setLangOpen((value) => !value)}>
               {locale.toUpperCase()} <span aria-hidden="true">⌄</span>
             </button>
             <div className="language-dropdown" role="menu">
-              {LOCALES.map((item) => {
+              {publishedLanguages.map((item) => {
                 const target = languageHref(item.code);
                 return <a key={item.code} role="menuitem" href={target} onClick={(event)=>switchLanguage(event,item.code)} className={locale === item.code ? 'is-active' : ''} aria-current={locale === item.code ? 'page' : undefined}>{item.label}</a>;
               })}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </header>

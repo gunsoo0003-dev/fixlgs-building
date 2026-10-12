@@ -2,6 +2,7 @@ import {notFound} from 'next/navigation';
 import ContractPage from '../../../ContractPage';
 import {CONTRACT_COPY,CONTRACT_LOCALES,CONTRACT_SLUGS} from '../../../contract-copy';
 import '../../../contract.css';
+import {publishedLanguageUrls} from '../../../../publication-config.mjs';
 
 const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 
@@ -17,7 +18,7 @@ export async function generateMetadata({params}){
   const canonical=`${SITE_URL}/building/${locale}${path}`;
   const title=page?`${page.title} | FIX BUILDING`:copy.metaTitle;
   const description=page?page.hero:copy.metaDescription;
-  return {title,description,alternates:{canonical,languages:{'ko':`${SITE_URL}/building/ko${path}`,'en':`${SITE_URL}/building/en${path}`,'ja':`${SITE_URL}/building/ja${path}`,'x-default':`${SITE_URL}/building/ko${path}`}},robots:{index:true,follow:true},openGraph:{title,description,url:canonical,type:'article'}};
+  return {title,description,alternates:{canonical,languages:publishedLanguageUrls(path,SITE_URL)},robots:{index:true,follow:true},openGraph:{title,description,url:canonical,type:'article'}};
 }
 
 export default async function ContractRoute({params}){

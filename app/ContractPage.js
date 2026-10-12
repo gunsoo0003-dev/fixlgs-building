@@ -2,7 +2,8 @@
 
 import {useEffect} from 'react';
 import {CONTRACT_COPY} from './contract-copy';
-import {CONTRACT_KO_DEEP,CONTRACT_KO_SOURCES} from './contract-ko-deep';
+import {CONTRACT_KO_DEEP} from './contract-ko-deep';
+import {contractTopics, firstContractSteps, PARTY_CHAIN, CONTRACT_FLOW_BODIES} from './contract-localized-topics';
 import {CONTRACT_KO_COMPLETE} from './contract-ko-complete';
 import {CONTRACT_PARTIES_V004} from './contract-parties-v004';
 import {CONTRACT_0206_V013} from './contract-0206-v013';
@@ -253,13 +254,6 @@ function CompleteGuide({page,locale}){
   </section>;
 }
 
-function SourceLinks({locale}){
-  if(locale!=='ko') return null;
-  return <section className="ct-sources" data-ct-reveal><small>{koLabel('OFFICIAL REFERENCES')}</small><h2>내용 확인에 참고한 공식 자료</h2><p>법령과 행정 안내는 변경될 수 있습니다. 실제 거래에서는 계약 시점의 최신 자료를 다시 확인하세요.</p><div>{CONTRACT_KO_SOURCES.map(source=><a key={source.href} href={source.href} target="_blank" rel="noreferrer">{source.label}<b>↗</b></a>)}</div></section>;
-}
-
-
-
 const CT_SHARED_LABELS={
   en:{'IF DIFFERENT':'IF DIFFERENT','WHAT TO CHECK':'WHAT TO CHECK','WHY IT MATTERS':'WHY IT MATTERS','IF YOU FIND IT':'IF YOU FIND IT','WHY THIS MATTERS':'WHY THIS MATTERS','PREVENT':'PREVENT','WHAT GOES WRONG':'WHAT GOES WRONG','IF DISCOVERED':'IF DISCOVERED','LOOK HERE':'LOOK HERE','COMPARE THIS':'COMPARE THIS','COMPARE':'COMPARE','IF MATCHED':'IF MATCHED','NORMAL':'NORMAL','IF NOT':'IF NOT','SAID':'SAID','SAID / EXPECTED':'SAID / EXPECTED','FOUND':'FOUND','ALL MATCH':'ALL MATCH','IF ONE IS DIFFERENT':'IF ONE IS DIFFERENT','IF NOT EXPLAINED':'IF NOT EXPLAINED','WHO OWNS':'WHO OWNS','WHO APPEARS':'WHO APPEARS','WHO SIGNS':'WHO SIGNS','WHO GETS PAID':'WHO GETS PAID','EXPERIENCED BUYERS MISS THIS':'EXPERIENCED BUYERS MISS THIS','REAL-WORLD CASES':'REAL-WORLD CASES','ACTION':'ACTION','CHECK':'CHECK','DECISION':'DECISION','CORE PRINCIPLE':'CORE PRINCIPLE','FINAL SUMMARY':'FINAL SUMMARY','NEXT':'NEXT','CONTRACT STANDARD':'CONTRACT STANDARD'},
   ja:{'IF DIFFERENT':'IF DIFFERENT · 不一致時','WHAT TO CHECK':'WHAT TO CHECK · 確認項目','WHY IT MATTERS':'WHY IT MATTERS · 重要な理由','IF YOU FIND IT':'IF YOU FIND IT · 発見時','WHY THIS MATTERS':'WHY THIS MATTERS · 重要な理由','PREVENT':'PREVENT · 予防','WHAT GOES WRONG':'WHAT GOES WRONG · 問題点','IF DISCOVERED':'IF DISCOVERED · 発見後','LOOK HERE':'LOOK HERE · 確認先','COMPARE THIS':'COMPARE THIS · 比較対象','COMPARE':'COMPARE · 比較','IF MATCHED':'IF MATCHED · 一致時','NORMAL':'NORMAL · 正常','IF NOT':'IF NOT · 不一致時','SAID':'SAID · 説明','SAID / EXPECTED':'SAID / EXPECTED · 説明 / 想定','FOUND':'FOUND · 実際の確認','ALL MATCH':'ALL MATCH · すべて一致','IF ONE IS DIFFERENT':'IF ONE IS DIFFERENT · 一つでも違う場合','IF NOT EXPLAINED':'IF NOT EXPLAINED · 説明できない場合','WHO OWNS':'WHO OWNS · 所有者','WHO APPEARS':'WHO APPEARS · 契約相手','WHO SIGNS':'WHO SIGNS · 契約権限','WHO GETS PAID':'WHO GETS PAID · 代金受領権限','EXPERIENCED BUYERS MISS THIS':'EXPERIENCED BUYERS MISS THIS · 経験者も見落とす点','REAL-WORLD CASES':'REAL-WORLD CASES · 実例','ACTION':'ACTION · 対応','CHECK':'CHECK · 確認','DECISION':'DECISION · 判断','CORE PRINCIPLE':'CORE PRINCIPLE · 核心原則','FINAL SUMMARY':'FINAL SUMMARY · 最終確認','NEXT':'NEXT · 次の内容','CONTRACT STANDARD':'CONTRACT STANDARD · 契約基準'}
@@ -314,6 +308,16 @@ function ctUi(locale,text,kind='card'){
   if(locale==='en'&&!/[.!?]$/.test(out)) out=out.replace(/[;,—\s]+$/,'')+'.';
   return out;
 }
+function topicSections(locale,card,topics,count){
+  const labels=locale==='ja'?['確認範囲','確認点','次へ進む前に']:['Scope','Verification point','Before proceeding'];
+  const points=card.points||[];
+  const fragments=[
+    [labels[0],card.body,points],
+    ...points.map((point,i)=>[`${labels[1]} ${i+1}`,point,[point]]),
+    [labels[2],topics.map(topic=>topic.question).join(' '),topics.flatMap(topic=>topic.points)]
+  ];
+  return fragments.slice(0,count);
+}
 function buildLocalizedPartiesData(locale,page){
   if(locale==='ko') return CONTRACT_PARTIES_V004;
   const adv=CONTRACT_I18N_V035.advanced?.[locale]?.parties;
@@ -323,17 +327,17 @@ function buildLocalizedPartiesData(locale,page){
   const who=localText(locale,'Owner','所有者'), party=localText(locale,'Contracting party','契約相手'), authority=localText(locale,'Authority','権限'), account=localText(locale,'Payment account','支払口座');
   const actionDefault=localText(locale,'Verify the relationship and authority before signing or paying.','署名・支払いの前に関係と権限を確認します。');
   const checkDefault=localText(locale,'Compare the people, documents and authority that support the transaction.','取引を支える人物・書類・権限を照合します。');
-  const firstTitles=[...checks.map(x=>x[0]),...cards.map(x=>x.title),...questions];
+  const topics=contractTopics('parties',adv);
   return {
     hero:{eyebrow:`01 · PARTIES & AUTHORITY`,title:page.title,question:page.question,lead:page.hero},
-    firstDeal:{eyebrow:'FIELD GUIDE',title:localText(locale,'Start by confirming who can actually make this transaction.','まず、誰がこの取引を実際に行えるのかを確認します。'),lead:deep.intro,steps:Array.from({length:9},(_,i)=>{const c=cycle(checks,i,[]);const card=cycle(cards,i,{});return {no:String(i+1).padStart(2,'0'),title:firstTitles[i%firstTitles.length]||page.title,summary:c[1]||card.body||deep.intro,action:cycle(questions,i,actionDefault),checks:c[2]||card.points||[checkDefault],ifDifferent:actionDefault};}),rule:localText(locale,'Do not move from identity to payment until every authority link is explained.','本人確認から支払いまで、権限のつながりが説明できるまで次へ進みません。')},
+    firstDeal:{eyebrow:'FIELD GUIDE',title:localText(locale,'Start by confirming who can actually make this transaction.','まず、誰がこの取引を実際に行えるのかを確認します。'),lead:deep.intro,steps:firstContractSteps(locale),rule:localText(locale,'Do not move from identity to payment until every authority link is explained.','本人確認から支払いまで、権限のつながりが説明できるまで次へ進みません。')},
     normal:{eyebrow:'NORMAL BASELINE',title:localText(locale,'A normal transaction connects the same ownership story from start to payment.','通常の取引では所有関係から支払いまで同じ取引としてつながります。'),lead:core[0]?.[1]||page.hero,chain:[who,party,authority,account]},
-    variables:{eyebrow:'VARIABLES',title:localText(locale,'When one link changes, identify the transaction variable first.','一つのつながりが変わる場合は、まず取引変数を特定します。'),lead:complete.overview,items:Array.from({length:4},(_,i)=>{const c=cycle(checks,i,[]);return {no:String(i+1).padStart(2,'0'),title:c[0]||cycle(questions,i,page.title),situation:c[1]||complete.overview,check:c[2]||[checkDefault],why:cycle(cards,i,{}).body||deep.intro,prevent:cycle(c[2]||[],0,checkDefault),respond:cycle(questions,i,actionDefault),decision:localText(locale,'Verify before proceeding.','確認後に進行します。')};})},
-    missed:{eyebrow:'EXPERIENCED BUYERS MISS THIS',title:localText(locale,'Small gaps between person, authority and payment can be missed.','人物・権限・支払いの小さなずれは見落とされやすいです。'),body:deep.intro,chain:Array.from({length:4},(_,i)=>({label:['WHO OWNS','WHO APPEARS','WHO SIGNS','WHO GETS PAID'][i],title:[who,party,authority,account][i],question:cycle(questions,i,checkDefault),check:cycle(checks,i,[])[1]||checkDefault})),scenarios:Array.from({length:4},(_,i)=>{const x=cycle(scenarios,i,[]);return {no:String(i+1).padStart(2,'0'),title:x[0]||cycle(questions,i,page.title),body:x[1]||deep.intro,point:x[2]||checkDefault,action:x[3]||actionDefault};}),prevention:questions.slice(0,4),decision:questions.slice(1,5)},
-    mistakes:{eyebrow:'EXPERIENCED BUYERS MISS THIS',title:localText(locale,'Common mistakes come from treating an explanation as completed verification.','よくあるミスは、説明を確認済みの事実として扱うことから始まります。'),items:Array.from({length:5},(_,i)=>{const c=cycle(checks,i,[]);return {no:`MISTAKE ${String(i+1).padStart(2,'0')}`,title:c[0]||cycle(questions,i,page.title),reason:c[1]||deep.intro,problem:cycle(cards,i,{}).body||deep.intro,prevent:cycle(c[2]||[],0,checkDefault),after:cycle(questions,i,actionDefault),decision:localText(locale,'Recheck before signing or paying.','署名・支払いの前に再確認します。')};})},
-    method:{eyebrow:'HOW TO CHECK',title:localText(locale,'Follow the authority check in the same order on site.','現場でも同じ順序で権限確認を進めます。'),lead:deep.intro,steps:Array.from({length:6},(_,i)=>{const c=cycle(checks,i,[]);return {no:String(i+1).padStart(2,'0'),title:c[0]||cycle(questions,i,page.title),where:c[1]||deep.intro,compare:cycle(c[2]||[],0,checkDefault),normal:localText(locale,'The information and authority connect consistently.','情報と権限が一貫してつながっています。'),ifDifferent:localText(locale,'Identify why the person, authority or payment route differs.','人物・権限・支払経路が異なる理由を特定します。'),actions:c[2]||[checkDefault],result:cycle(questions,i,actionDefault)};})},
+    variables:{eyebrow:'VARIABLES',title:localText(locale,'When one link changes, identify the transaction variable first.','一つのつながりが変わる場合は、まず取引変数を特定します。'),lead:complete.overview,items:Array.from({length:4},(_,i)=>{const c=cycle(checks,i,[]);return {no:String(i+1).padStart(2,'0'),title:c[0]||cycle(questions,i,page.title),situation:c[1]||complete.overview,check:c[2]||[checkDefault],why:topics[i].detail,prevent:cycle(c[2]||[],0,checkDefault),respond:topics[i].question,decision:localText(locale,'Verify before proceeding.','確認後に進行します。')};})},
+    missed:{eyebrow:'EXPERIENCED BUYERS MISS THIS',title:localText(locale,'Small gaps between person, authority and payment can be missed.','人物・権限・支払いの小さなずれは見落とされやすいです。'),body:deep.intro,chain:Array.from({length:4},(_,i)=>({label:['WHO OWNS','WHO APPEARS','WHO SIGNS','WHO GETS PAID'][i],title:[who,party,authority,account][i],question:PARTY_CHAIN[locale][i][0],check:PARTY_CHAIN[locale][i][1]})),scenarios:Array.from({length:4},(_,i)=>{const x=cycle(scenarios,i,[]);return {no:String(i+1).padStart(2,'0'),title:x[0]||cycle(questions,i,page.title),body:x[1]||deep.intro,point:x[2]||checkDefault,action:x[3]||actionDefault};}),prevention:questions.slice(0,4),decision:questions.slice(1,5)},
+    mistakes:{eyebrow:'EXPERIENCED BUYERS MISS THIS',title:localText(locale,'Common mistakes come from treating an explanation as completed verification.','よくあるミスは、説明を確認済みの事実として扱うことから始まります。'),items:Array.from({length:5},(_,i)=>{const c=cycle(checks,i,[]);return {no:`MISTAKE ${String(i+1).padStart(2,'0')}`,title:c[0]||cycle(questions,i,page.title),reason:c[1]||deep.intro,problem:topics[i].detail,prevent:cycle(c[2]||[],0,checkDefault),after:topics[i].question,decision:localText(locale,'Recheck before signing or paying.','署名・支払いの前に再確認します。')};})},
+    method:{eyebrow:'HOW TO CHECK',title:localText(locale,'Follow the authority check in the same order on site.','現場でも同じ順序で権限確認を進めます。'),lead:deep.intro,steps:[1,2,4,5,6,7].map((index,i)=>{const step=firstContractSteps(locale)[index];return {no:String(i+1).padStart(2,'0'),title:step.title,where:step.summary,compare:step.checks.join(' · '),normal:step.action,ifDifferent:step.ifDifferent,actions:step.checks,result:step.action};})},
     mismatch:{eyebrow:'WHEN THINGS DO NOT MATCH',title:localText(locale,'If the explanation and evidence differ, resolve the cause first.','説明と根拠が違う場合は、まず原因を解消します。'),examples:Array.from({length:4},(_,i)=>{const x=cycle(scenarios,i,[]);return [x[1]||cycle(questions,i,''),x[2]||checkDefault,x[3]||actionDefault];}),process:questions.slice(0,5).concat([actionDefault]).slice(0,6)},
-    deepDives:Array.from({length:2},(_,di)=>({no:`DEEP DIVE ${String(di+1).padStart(2,'0')}`,title:cycle(cards,di,{}).title||complete.title,intro:cycle(cards,di,{}).body||deep.intro,sections:Array.from({length:5},(_,i)=>{const c=cycle(checks,di*3+i,[]);return {title:c[0]||cycle(questions,i,page.title),body:c[1]||deep.intro,checks:c[2]||[checkDefault]};}),action:cycle(questions,di,actionDefault)})),
+    deepDives:cards.slice(0,2).map((card,di)=>({no:`DEEP DIVE ${String(di+1).padStart(2,'0')}`,title:card.title,intro:card.body,sections:topicSections(locale,card,topics.filter(t=>t.detail===card.body),5).map(([title,body,checks])=>({title,body,checks})),action:topics.filter(t=>t.detail===card.body).map(t=>t.question).join(' ')})),
     cases:Array.from({length:5},(_,i)=>{const x=cycle(scenarios,i,[]);return {no:`CASE ${String(i+1).padStart(2,'0')}`,title:x[0]||cycle(questions,i,page.title),situation:x[1]||deep.intro,check:[x[2]||checkDefault],finding:x[2]||checkDefault,action:x[3]||actionDefault,result:localText(locale,'VERIFY','確認')};}),
     decision:{eyebrow:'DECISION',title:localText(locale,'Choose the next action from the verification result.','確認結果に応じて次の行動を決めます。'),items:[
       {no:'01',title:localText(locale,'Proceed','進行'),body:localText(locale,'Identity, authority and payment are consistently verified.','本人・権限・支払いが一貫して確認できています。'),next:localText(locale,'Move to the next contract check.','次の契約確認へ進みます。')},
@@ -372,19 +376,20 @@ function buildLocalizedJourneyData(locale,page){
   const adv=CONTRACT_I18N_V035.advanced?.[locale]?.[page.slug];
   if(!base||!adv) return base;
   const complete=adv.complete, deep=adv.deep, core=page.sections||[], checks=complete.checks||[], scenarios=complete.scenarios||[], questions=complete.questions||[];
+  const topics=contractTopics(page.slug,adv);
   const chain=localChain(locale,page.slug);
   const normalChain=chain.slice(0,base.normal.chain.length);
   const genericCheck=localText(locale,'Compare the current evidence with the agreed transaction condition.','現在の資料と合意した取引条件を照合します。');
   const genericAction=localText(locale,'Resolve the difference before moving to payment or closing.','差異を解消してから支払い・決済へ進みます。');
   return {
     images:base.images, eyebrow:`${page.num} · ${page.label}`, title:page.title, question:page.question, lead:page.hero,
-    flow:{eyebrow:'CONTRACT FLOW',title:journeyDisplay(locale,page.slug,'flow',localText(locale,'Connect each check as one transaction flow.','各確認を一つの取引フローとしてつなげます。')),lead:core[0]?.[1]||page.hero,steps:chain.map((x,i)=>[String(i+1).padStart(2,'0'),x,cycle(core,i,[])[1]||cycle(checks,i,[])[1]||page.hero])},
+    flow:{eyebrow:'CONTRACT FLOW',title:journeyDisplay(locale,page.slug,'flow',localText(locale,'Connect each check as one transaction flow.','各確認を一つの取引フローとしてつなげます。')),lead:core[0]?.[1]||page.hero,steps:chain.map((x,i)=>[String(i+1).padStart(2,'0'),x,CONTRACT_FLOW_BODIES[locale][page.slug][i]])},
     normal:{eyebrow:'NORMAL BASELINE',title:journeyDisplay(locale,page.slug,'normal',localText(locale,'Start from the normal baseline before reading exceptions.','例外を見る前に正常な基準状態から確認します。')),lead:core[1]?.[1]||page.hero,chain:normalChain,result:localText(locale,'When the sequence connects without unexplained gaps, move to the next verification.','説明できないずれがなくつながれば次の確認へ進みます。')},
-    variables:{eyebrow:'VARIABLES',title:journeyDisplay(locale,page.slug,'variables',complete.title),lead:complete.overview,items:Array.from({length:4},(_,i)=>{const c=cycle(checks,i,[]);return {title:c[0]||cycle(questions,i,page.title),situation:c[1]||complete.overview,check:c[2]||[genericCheck],why:cycle(deep.cards,i,{}).body||deep.intro,prevent:cycle(c[2]||[],0,genericCheck),respond:cycle(questions,i,genericAction),decision:genericAction};})},
-    missed:{eyebrow:'MISSED POINT',title:journeyDisplay(locale,page.slug,'missed',localText(locale,'These are the points most easily skipped during a real transaction.','実際の取引で特に抜けやすい確認点です。')),body:deep.intro,points:Array.from({length:5},(_,i)=>[cycle(questions,i,cycle(checks,i,[])[0]||page.title),cycle(checks,i,[])[1]||deep.intro]),prevention:questions.slice(0,5)},
-    method:{eyebrow:'HOW TO CHECK',title:journeyDisplay(locale,page.slug,'method',localText(locale,'Use the same verification order in practice.','実務でも同じ確認順序を使います。')),lead:deep.intro,steps:Array.from({length:5},(_,i)=>{const c=cycle(checks,i,[]);return {title:c[0]||cycle(questions,i,page.title),where:c[1]||deep.intro,compare:cycle(c[2]||[],0,genericCheck),normal:localText(locale,'The current evidence matches the expected condition.','現在の資料が想定条件と一致しています。'),ifDifferent:localText(locale,'Identify the cause and impact of the difference.','差異の原因と影響を特定します。'),actions:c[2]||[genericCheck],result:cycle(questions,i,genericAction)};})},
+    variables:{eyebrow:'VARIABLES',title:journeyDisplay(locale,page.slug,'variables',complete.title),lead:complete.overview,items:Array.from({length:4},(_,i)=>{const c=cycle(checks,i,[]);return {title:c[0]||cycle(questions,i,page.title),situation:c[1]||complete.overview,check:c[2]||[genericCheck],why:topics[i].detail,prevent:cycle(c[2]||[],0,genericCheck),respond:topics[i].question,decision:genericAction};})},
+    missed:{eyebrow:'MISSED POINT',title:journeyDisplay(locale,page.slug,'missed',localText(locale,'These are the points most easily skipped during a real transaction.','実際の取引で特に抜けやすい確認点です。')),body:deep.intro,points:topics.map(topic=>[topic.title,topic.body]),prevention:questions.slice(0,5)},
+    method:{eyebrow:'HOW TO CHECK',title:journeyDisplay(locale,page.slug,'method',localText(locale,'Use the same verification order in practice.','実務でも同じ確認順序を使います。')),lead:deep.intro,steps:Array.from({length:5},(_,i)=>{const c=cycle(checks,i,[]);return {title:c[0]||cycle(questions,i,page.title),where:c[1]||deep.intro,compare:cycle(c[2]||[],0,genericCheck),normal:localText(locale,'The current evidence matches the expected condition.','現在の資料が想定条件と一致しています。'),ifDifferent:localText(locale,'Identify the cause and impact of the difference.','差異の原因と影響を特定します。'),actions:c[2]||[genericCheck],result:topics[i].question};})},
     mismatch:{eyebrow:'WHEN THINGS DO NOT MATCH',title:journeyDisplay(locale,page.slug,'mismatch',localText(locale,'If the expected condition and actual condition differ, verify before proceeding.','想定条件と実際の状態が違う場合は、進む前に確認します。')),examples:Array.from({length:3},(_,i)=>{const x=cycle(scenarios,i,[]);return [x[1]||cycle(questions,i,''),x[2]||genericCheck,x[3]||genericAction];}),process:questions.concat([genericAction]).slice(0,6)},
-    deepDives:Array.from({length:base.deepDives.length},(_,di)=>({no:`DEEP DIVE ${String(di+1).padStart(2,'0')}`,title:cycle(deep.cards,di,{}).title||complete.title,intro:cycle(deep.cards,di,{}).body||deep.intro,sections:Array.from({length:base.deepDives[di].sections.length},(_,i)=>{const c=cycle(checks,di*3+i,[]);return [c[0]||cycle(questions,i,page.title),c[1]||deep.intro,cycle(c[2]||[],0,genericCheck)];}),action:cycle(questions,di,genericAction)})),
+    deepDives:deep.cards.slice(0,base.deepDives.length).map((card,di)=>({no:`DEEP DIVE ${String(di+1).padStart(2,'0')}`,title:card.title,intro:card.body,sections:topicSections(locale,card,topics.filter(t=>t.detail===card.body),base.deepDives[di].sections.length).map(([title,body,points])=>[title,body,points.join(' · ')]),action:topics.filter(t=>t.detail===card.body).map(t=>t.question).join(' ')})),
     cases:Array.from({length:base.cases.length},(_,i)=>{const x=cycle(scenarios,i,[]);return [`CASE ${String(i+1).padStart(2,'0')}`,x[0]||cycle(questions,i,page.title),x[1]||deep.intro,x[2]||genericCheck,x[3]||genericAction,localText(locale,'VERIFY','確認')];}),
     decision:{title:journeyDisplay(locale,page.slug,'decision',localText(locale,'Choose the next action from what you verified.','確認結果から次の行動を決めます。')),items:[
       ['01',localText(locale,'PROCEED','進行'),localText(locale,'The required condition is verified.','必要条件が確認できています。'),localText(locale,'Move to the next step.','次の段階へ進みます。')],
@@ -558,7 +563,6 @@ function Detail({copy,page,locale}){
       <DeepDive page={page} locale={locale}/>
       <CompleteGuide page={page} locale={locale}/>
       <ChecklistPreview page={page} copy={copy}/>
-      <SourceLinks locale={locale}/>
       <p className="ct-notice">{copy.notice}</p>
     </div>
     <OtherLinks copy={copy} current={page.slug} locale={locale}/>

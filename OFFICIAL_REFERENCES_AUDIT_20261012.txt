@@ -1,0 +1,26 @@
+FIX BUILDING — 한국어 공식 출처 최소 보강 / 2026-10-12
+
+적용 기준: 기존 한국어 전용 공개본. 승인 보장 목적의 형식적 링크가 아닌, 본문 주제 관련 공공기관 자료만 표시.
+
+수정 경로
+- app/OfficialReferences.js (새 파일: 주제별 URL 매핑, 자체 분류·가상 예시 주의문)
+- app/official-references.css (새 파일: 카드 없는 소형 부록)
+- app/[locale]/layout.js (본문 하단/푸터 앞)
+- app/ContractPage.js (기존 상세 화면의 중복/대형 출처 섹션 제거)
+- app/AnalysisV008Client.js (한국어 실제 사례 -> 교육용 사례 표기 1곳)
+- scripts/official-references-regression.mjs (새 파일)
+- FIX_BUILDING_HANDOVER.md (최신 상태·검증 결과 갱신)
+
+검사 실측
+PASS: node scripts/publication-regression.mjs
+PASS: node scripts/i18n-content-regression.mjs
+PASS: node scripts/official-references-regression.mjs
+BLOCKED: npm ci -> registry.npmjs.org DNS EAI_AGAIN
+NOT PASSED: npm run build -> next: not found (종속 패키지 미설치)
+NOT RUN: 브라우저 동작·PC/모바일 반응형·프로덕션 배포/검증
+
+특이사항
+- 수치나 가상의 교육 사례를 기관이 승인했다는 주장은 하지 않는다.
+- 공식 근거를 연결할 수 없는 분석/관리/EXIT 하위 주제에는 빈 부록을 표시하지 않는다.
+- 기존 계약 참고링크 목록 원본은 app/contract-ko-deep.js에 보존됐으며 UI에서는 더 이상 사용하지 않는다.
+- 실제 수정은 새 ZIP에만 있으며 사용자 운영사이트에 배포하지 않았다.

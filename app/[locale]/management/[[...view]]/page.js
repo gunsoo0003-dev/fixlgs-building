@@ -3,6 +3,7 @@ import ManagementClient from '../../../ManagementClient';
 import {getManagementContent,MANAGEMENT_LOCALES,MANAGEMENT_SLUGS} from '../../../management-i18n';
 import '../../../analysis.css';
 import '../../../contract.css';
+import {publishedLanguageUrls} from '../../../../publication-config.mjs';
 
 const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 
@@ -18,12 +19,7 @@ export async function generateMetadata({params}){
   const canonical=`${SITE_URL}/building/${locale}${path}`;
   const title=section?`${section.name} | FIX BUILDING`:content.meta.title;
   const description=section?`${section.prompt}. ${section.introParagraphs?.[0]||''}`.replace(/\s+/g,' ').trim():content.meta.description;
-  const languages={
-    ko:`${SITE_URL}/building/ko${path}`,
-    en:`${SITE_URL}/building/en${path}`,
-    ja:`${SITE_URL}/building/ja${path}`,
-    'x-default':`${SITE_URL}/building/ko${path}`,
-  };
+  const languages=publishedLanguageUrls(path,SITE_URL);
   return {
     title,
     description,

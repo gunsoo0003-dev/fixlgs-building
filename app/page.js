@@ -1,7 +1,8 @@
 import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import {DEFAULT_LOCALE, PUBLISHED_LOCALES} from '../publication-config.mjs';
 
-const SUPPORTED = new Set(['ko', 'en', 'ja']);
+const SUPPORTED = new Set(PUBLISHED_LOCALES);
 
 function detectLocale(acceptLanguage = '') {
   const candidates = acceptLanguage
@@ -17,6 +18,9 @@ function detectLocale(acceptLanguage = '') {
 }
 
 export default async function RootPage() {
+  if (PUBLISHED_LOCALES.length === 1) {
+    redirect(`/${DEFAULT_LOCALE}`);
+  }
   const cookieStore = await cookies();
   const saved = cookieStore.get('fix-building-locale')?.value;
   if (SUPPORTED.has(saved)) redirect(`/${saved}`);

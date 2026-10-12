@@ -1,0 +1,20 @@
+FIX BUILDING · 한국어 단독 공개 검증 · 2026-10-12
+
+BUILD: PASS (Next.js 15.5.23, 63 static pages)
+PUBLICATION REGRESSION: PASS (scripts/publication-regression.mjs)
+EN/JA CONTENT REGRESSION: PASS (scripts/i18n-content-regression.mjs)
+REDIRECTS: 176 requests returned 307 with matching Korean path
+SITEMAP: 76 Korean URLs returned HTTP 200; no EN/JA URLs
+BROWSER: 10 representative entry paths returned Korean pages, HTTP 200
+BROWSER: Page execution errors = 0
+BROWSER: English browser / old JA cookie / EN localStorage still open Korean
+BROWSER: No language selector or EN/JA links in tested pages
+BROWSER: Hreflang contains only ko-KR and x-default
+BROWSER: Query and fragment preservation passed
+BROWSER: 1440px / 390px menu absence and horizontal overflow checks passed
+
+EN/JA source and previous content corrections retained.
+Existing Korean content, calculation logic and assets retained.
+Initial root basePath duplication found and corrected before final verification.
+No production deployment performed. Source/reference publication is a separate task.
+Full scope, prior history and remaining work: FIX_BUILDING_HANDOVER.md

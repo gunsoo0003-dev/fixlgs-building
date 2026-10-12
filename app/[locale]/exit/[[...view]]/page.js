@@ -5,6 +5,7 @@ import ExitPrototypeClient from '../../../ExitPrototypeClient';
 import {EXIT_LOCALES,getExitSection} from '../../../exit-i18n-data';
 import '../../../analysis.css';
 import '../../../contract.css';
+import {publishedLanguageUrls} from '../../../../publication-config.mjs';
 
 const SITE_URL=process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
 const ALLOWED=['decision','readiness','pricing','buyer-readiness','net-proceeds','closing'];
@@ -40,7 +41,7 @@ const META={
 };
 
 function pathFor(slug=''){return slug?`/exit/${slug}`:'/exit';}
-function alternatesFor(path){return {ko:`${SITE_URL}/building/ko${path}`,en:`${SITE_URL}/building/en${path}`,ja:`${SITE_URL}/building/ja${path}`,'x-default':`${SITE_URL}/building/ko${path}`};}
+function alternatesFor(path){return publishedLanguageUrls(path,SITE_URL);}
 
 export async function generateMetadata({params}){
   const {locale,view=[]}=await params;

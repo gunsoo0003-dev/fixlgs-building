@@ -1,0 +1,13 @@
+/* Compact, unobtrusive appendix. No cards, hero treatments, or repeated feature blocks. */
+.fb-official-references{margin:0;color:#64717d;background:transparent;font-family:inherit}
+.fb-official-inner{max-width:1120px;margin:0 auto;padding:21px 24px 24px;border-top:1px solid #dce2e6}
+.fb-official-heading{display:block;color:#3c5063;font-size:12px;font-weight:750;letter-spacing:.01em;margin-bottom:10px}
+.fb-official-references ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 23px}
+.fb-official-references li{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;font-size:12px;line-height:1.8}
+.fb-official-references a{color:#285f93;text-decoration:underline;text-decoration-color:#bdcedd;text-underline-offset:3px;font-weight:650}
+.fb-official-references a:hover,.fb-official-references a:focus-visible{color:#0758a8;text-decoration-color:currentColor}
+.fb-official-references a span{display:inline-block;padding-left:4px;font-size:11px}
+.fb-official-references li small{font-size:11px;color:#758391}
+.fb-official-references p{margin:8px 0 0;font-size:11px;line-height:1.65;color:#79858f}
+.fb-method-note p{font-size:12px;margin:0}
+@media(max-width:640px){.fb-official-inner{padding:17px 18px 20px}.fb-official-references ul{display:block}.fb-official-references li{margin-bottom:7px;gap:4px 6px}.fb-official-references li small{display:block;width:100%;line-height:1.35}.fb-official-references p{font-size:11px}}

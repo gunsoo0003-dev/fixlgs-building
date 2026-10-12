@@ -1,0 +1,15 @@
+FIX BUILDING · 영문/일문 오류수정 검증 · 2026-10-12
+
+BUILD: PASS (Next.js 15.5.23, 177 static pages)
+REGRESSION: PASS (scripts/i18n-content-regression.mjs)
+BROWSER: 36 pages returned 200
+BROWSER: 12 Korean pages exactly match original text
+BROWSER: 12 translated contract pages preserve section counts and image paths
+BROWSER: 12 translated analysis pages have 7 distinct method explanations
+BROWSER: Price example and first-contract step regressions passed
+BROWSER: EN/JA mobile widths passed
+
+Page errors: 0
+
+이번 수정은 언어 비공개 전환·출처 공개를 포함하지 않음.
+변경 범위·미해결 항목은 FIX_BUILDING_HANDOVER.md 참고.

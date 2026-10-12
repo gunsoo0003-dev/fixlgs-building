@@ -6,6 +6,7 @@ import { PUBLIC_TYPE_IDS, PUBLIC_ASSETS, PUBLIC_BEHAVIOR_IDS, PUBLIC_RESULT_PATH
 import { getStage1Type } from '../../../self-check-stage1-copy';
 import { getStage2Asset, stage2Value } from '../../../self-check-stage2-copy';
 import { getStage3Comic } from '../../../self-check-stage3-copy';
+import {PUBLISHED_LOCALES, publishedLanguageUrls} from '../../../../publication-config.mjs';
 
 const locales = ['ko','en','ja'];
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://fixlgs.com';
@@ -88,7 +89,7 @@ function publicDescriptor(locale,view=[]){
 }
 
 export function generateStaticParams(){
-  return locales.flatMap(locale=>[
+  return PUBLISHED_LOCALES.flatMap(locale=>[
     {locale,view:[]},
     {locale,view:['results']},
     ...PUBLIC_RESULT_PATHS.map(path=>({locale,view:path.split('/')})),
@@ -109,7 +110,7 @@ export async function generateMetadata({params}){
     return {
       title:m.catalogTitle,
       description:m.catalogDescription,
-      alternates:{canonical,languages:{'ko-KR':`${SITE_URL}/building/ko/self-check/results`,'en':`${SITE_URL}/building/en/self-check/results`,'ja-JP':`${SITE_URL}/building/ja/self-check/results`}},
+      alternates:{canonical,languages:publishedLanguageUrls('/self-check/results',SITE_URL)},
       robots:{index:true,follow:true},
     };
   }
@@ -121,7 +122,7 @@ export async function generateMetadata({params}){
     return {
       title:descriptor.title,
       description:descriptor.description.slice(0,160),
-      alternates:{canonical,languages:{'ko-KR':`${SITE_URL}/building/ko/${languagePath}`,'en':`${SITE_URL}/building/en/${languagePath}`,'ja-JP':`${SITE_URL}/building/ja/${languagePath}`}},
+      alternates:{canonical,languages:publishedLanguageUrls(`/${languagePath}`,SITE_URL)},
       robots:{index:true,follow:true},
       openGraph:{title:descriptor.title,description:descriptor.description.slice(0,160),url:canonical,type:'article'},
     };
@@ -135,7 +136,7 @@ export async function generateMetadata({params}){
   return {
     title:m.landingTitle,
     description:m.landingDescription,
-    alternates:{canonical,languages:{'ko-KR':`${SITE_URL}/building/ko/self-check`,'en':`${SITE_URL}/building/en/self-check`,'ja-JP':`${SITE_URL}/building/ja/self-check`}},
+    alternates:{canonical,languages:publishedLanguageUrls('/self-check',SITE_URL)},
   };
 }
 

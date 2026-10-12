@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import HomePage from '../HomePageClient';
 import { SITE_COPY } from '../site-copy';
+import {PUBLISHED_LOCALES, publishedLanguageUrls} from '../../publication-config.mjs';
 
 export function generateStaticParams() {
-  return ['ko', 'en', 'ja'].map((locale) => ({ locale }));
+  return PUBLISHED_LOCALES.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }) {
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }) {
     description: copy.metaDescription,
     alternates: {
       canonical: `/building/${locale}`,
-      languages: { 'ko-KR': '/building/ko', 'en': '/building/en', 'ja-JP': '/building/ja' },
+      languages: publishedLanguageUrls(),
     },
   };
 }
