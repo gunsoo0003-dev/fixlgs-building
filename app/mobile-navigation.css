@@ -1,0 +1,25 @@
+/* A minimal touch-friendly route menu, isolated from the desktop hover header. */
+.fb-mobile-header{display:none}
+@media(max-width:700px){
+  .top-hotzone,.reveal-nav{display:none}
+  .fb-mobile-header{display:flex;align-items:center;justify-content:space-between;position:fixed;z-index:1100;top:0;left:0;right:0;height:52px;padding:0 20px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.09);color:#111}
+  .fb-mobile-brand{font-size:12px;font-weight:750;letter-spacing:.13em;white-space:nowrap}
+  .fb-mobile-menu{height:100%;display:flex;align-items:center}
+  .fb-mobile-menu>summary{display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;font-size:13px;font-weight:650;min-height:44px;padding:0 4px}
+  .fb-mobile-menu>summary::-webkit-details-marker,.fb-mobile-submenu>summary::-webkit-details-marker{display:none}
+  .fb-mobile-menu>summary span{font-size:17px;font-weight:400;color:#0868d7}
+  .fb-mobile-menu>summary:focus-visible,.fb-mobile-submenu>summary:focus-visible,.fb-mobile-menu-panel a:focus-visible{outline:2px solid #0868d7;outline-offset:3px}
+  .fb-mobile-menu-panel{position:absolute;top:52px;left:0;right:0;max-height:calc(100dvh - 52px);overflow-y:auto;overscroll-behavior:contain;padding:12px 20px 18px;background:#fff;border-bottom:1px solid #e3e6e9;box-shadow:0 15px 26px rgba(0,0,0,.09)}
+  .fb-mobile-group{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;border-bottom:1px solid #edf0f2}
+  .fb-mobile-main-link{min-height:50px;display:flex;align-items:center;font-size:14px;font-weight:670}
+  .fb-mobile-main-link.is-current{color:#0868d7}
+  .fb-mobile-submenu{position:relative}
+  .fb-mobile-submenu>summary{cursor:pointer;list-style:none;padding:14px 2px;font-size:11px;color:#62666c;white-space:nowrap}
+  .fb-mobile-submenu>summary span{margin-left:3px}
+  .fb-mobile-submenu[open]{display:contents}
+  .fb-mobile-submenu[open]>summary{grid-column:2;grid-row:1}
+  .fb-mobile-submenu-links{grid-column:1 / -1;padding:1px 0 12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 8px}
+  .fb-mobile-submenu-links a{padding:10px 6px;font-size:12px;line-height:1.35;color:#454e59;overflow-wrap:anywhere}
+  .fb-mobile-submenu-links a:hover,.fb-mobile-submenu-links a:focus-visible{color:#0868d7}
+  .fb-mobile-samples{display:block;padding:17px 0 4px;font-size:12px;font-weight:650;color:#0868d7}
+}
