@@ -1,4 +1,5 @@
 import {ANALYSIS_METHOD_DETAILS, reasonDetail, PRICE_CASE} from './analysis-localized-details';
+import {LOCALIZED_ANALYSIS_CASES} from './analysis-localized-cases';
 
 const makeAxis=(o)=>o;
 
@@ -98,18 +99,22 @@ function makeLocalizedAxis(locale,id,index){
     termsTitle:locale==='en'?'Start with the terms that matter for this axis.':'この分析で使う基本用語から確認します。',terms:s.terms,
     concept:{title:s.concept[0],body:s.concept[1],takeaway:s.concept[2]},
     visual:{type:id==='income'?'incomeCore':id==='rights'?'rightsCore':id==='building'?'buildingCore':id==='location'?'locationCore':id==='operation'?'operationCore':'priceReasons',
-      ...(id==='price'?{price:'1.5B',factors:locale==='en'?['Comparables','Condition gaps','Income support']:['比較成約','条件差','収益裏付け'],result:s.question}:{}),
+      ...(id==='price'?{price:locale==='en'?'KRW 1.5B':'15億ウォン',factors:locale==='en'?['Comparables','Condition gaps','Income support']:['比較成約','条件差','収益裏付け'],result:s.question}:{}),
       ...(id==='income'?{top:locale==='en'?'Scheduled rent':'契約賃料',deductions:locale==='en'?['Vacancy','Operating costs','Recurring maintenance']:['空室','運営費','反復維持費'],result:locale==='en'?'Income that remains':'実際に残る収益'}:{}),
-      ...(id==='rights'?{current:locale==='en'?['Mortgage','Attachment','Other rights']:['根抵当','差押え','その他権利'],process:locale==='en'?['Release','Assume','Verify']:['抹消','承継','追加確認'],result:locale==='en'?'Post-closing state':'決済後の状態'}:{}),
+      ...(id==='rights'?{current:locale==='en'?['Mortgage','Attachment','Other rights']:['根抵当権','差押え','その他権利'],process:locale==='en'?['Release','Assume','Verify']:['抹消','承継','追加確認'],result:locale==='en'?'Post-closing state':'決済後の状態'}:{}),
       ...(id==='building'?{price:locale==='en'?'Purchase price':'取得価格',costs:locale==='en'?['Repairs','Replacement','Compliance','Maintenance']:['修繕','設備交換','是正','維持管理'],result:locale==='en'?'Real ownership burden':'実際の保有負担'}:{}),
       ...(id==='location'?{left:locale==='en'?'Many people':'人が多い',right:locale==='en'?'This building is needed':'この建物が必要',path:locale==='en'?['Who','Why','Space need','Tenant demand']:['誰が','なぜ','空間需要','テナント需要']}:{}),
-      ...(id==='operation'?{yield:'5%',a:locale==='en'?['Long leases','Low vacancy','Simple systems']:['長期賃貸','空室少','設備単純'],b:locale==='en'?['Frequent turnover','Repeated vacancy','Complex systems']:['入替頻繁','空室反復','設備複雑'],result:locale==='en'?'Same yield · different burden':'同じ利回り · 異なる運営負担'}:{})
+      ...(id==='operation'?{yield:'5%',a:locale==='en'?['Long leases','Low vacancy','Simple systems']:['長期賃貸','空室少','設備単純'],b:locale==='en'?['Frequent turnover','Repeated vacancy','Complex systems']:['入替頻繁','空室反復','設備複雑'],result:locale==='en'?'Same yield · different burden':'同じ利回り・異なる運営負担'}:{})
     },
     reasonSection:{eyebrow:`03 · ${reasonLabels[locale][id]}`,title:locale==='en'?'Understand the reason behind each check.':'各確認項目の「なぜ」を理解します。',lead:locale==='en'?'The point is not to memorize a checklist. Follow the questions and understand what each one prevents you from missing.':'チェックリストを覚えるのではなく、各質問が何を見落とさないためのものかを確認します。'},
     engineGuide:s.reasons.map((x,i)=>({node:`${codes[id]} ${String(i+1).padStart(2,'0')}`,title:x[0],answer:x[1],body:reasonDetail(locale,id,i),concept:i===s.reasons.length-1?s.concept[2]:undefined,next:i<s.reasons.length-1?s.steps[i+1]:undefined})),
     steps:s.steps.map((x,i)=>[x,ANALYSIS_METHOD_DETAILS[locale][id][i]]),
     methodTitle:locale==='en'?'Use a repeatable order when you analyze a real property.':'実物件でも同じ順序で確認します。',methodLead:locale==='en'?'The sequence keeps one attractive number from controlling the whole judgment.':'目立つ一つの数字に全体判断を引っ張られないための順序です。',
-    practice:id==='price'?{mode:'report',reportCode:codes[id],title:practiceTitles[locale][id],subtitle:locale==='en'?'A hypothetical educational case using the same assumptions as the Korean guide.':'韓国語版と同じ前提を使った仮想の教育用事例です。',...PRICE_CASE[locale]}:{mode:'report',reportCode:codes[id],title:practiceTitles[locale][id],subtitle:locale==='en'?'This short case shows how evidence turns into an axis-specific judgment without pretending to make the whole purchase decision.':'短いケースで、資料がこの軸の判断にどうつながるかを確認します。',subject:{label:locale==='en'?'Example property':'例示物件',price:locale==='en'?'One property, one axis':'一つの物件・一つの軸',note:locale==='en'?'Educational example':'教育用例示'},snapshot:[[locale==='en'?'Key question':'中心質問',s.question,locale==='en'?'Judge only this axis':'この軸だけを判断'],[locale==='en'?'Method':'方法',s.steps[0],locale==='en'?'Start with evidence':'根拠から開始'],[locale==='en'?'End point':'終点',s.steps[s.steps.length-1],locale==='en'?'Keep open questions visible':'未確認を残す']],report:s.reasons.slice(0,4).map((r,i)=>({label:`${String(i+1).padStart(2,'0')} · ${reportState}`,state:r[0],body:r[1]})),graphic:{title:s.question,inputs:s.steps.slice(0,3).map((x,i)=>[String(i+1).padStart(2,'0'),x]),result:s.summary[0]},conclusion:{state:s.summary[0],body:s.summary[1],note:locale==='en'?'This conclusion applies only to this analysis axis, not to the overall buy/sell decision.':'この結論はこの分析軸に限られ、物件全体の売買判断ではありません。'}},
+    practice:{
+      mode:'report',reportCode:codes[id],title:practiceTitles[locale][id],
+      subtitle:locale==='en'?'Hypothetical educational scenario using the same facts and calculation basis as the Korean guide.':'韓国語版と同じ事実関係・計算基準を使った仮想の教育用事例です。',
+      ...(id==='price'?PRICE_CASE[locale]:LOCALIZED_ANALYSIS_CASES[locale][id]),
+    },
     axisSummary:{eyebrow:`06 · ${codes[id]} ${locale==='en'?'CORE PRINCIPLE':'核心'}`,title:s.summary[0],lead:s.summary[1],pillars:[[locale==='en'?'Evidence':'根拠',locale==='en'?'Keep the evidence that supports the judgment visible.':'判断を支える根拠を見える形で残します。'],[locale==='en'?'Open questions':'追加確認',locale==='en'?'Do not hide what is still unknown.':'未確認項目を隠さず残します。'],[locale==='en'?'Scope':'判断範囲',locale==='en'?'Keep this axis separate from the overall purchase decision.':'この軸の結論を全体の売買判断に拡大しません。']],graphic:{inputs:locale==='en'?['Evidence','Conditions','Cross-check']:['根拠','条件','交差確認'],question:s.question},contrast:[[locale==='en'?'Shortcut':'短絡した質問',s.reasons[0][0]],[locale==='en'?'Better question':'より良い質問',s.question]],principle:s.summary[1],nextLabel:index<5?`NEXT · ${Object.keys(codes)[index+1]?.toUpperCase()||''}`:'ANALYSIS COMPLETE',next:index<5?(locale==='en'?'Move to the next axis without carrying this conclusion over as the whole answer.':'この結論を全体判断にせず次の軸へ進みます。'):(locale==='en'?'Connect the six axes only after each one has been checked separately.':'6軸を個別に確認した後で最後に統合します。')},
     tools:locale==='en'?['Analysis Summary']:['総合分析表']
   });

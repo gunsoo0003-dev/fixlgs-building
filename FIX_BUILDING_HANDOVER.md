@@ -1,5 +1,76 @@
 # FIX BUILDING 인수인계
 
+## 현재 유효 기준 · 2026-10-13 · EN_JA_TRANSLATION_QA_20261013
+
+### 반드시 지킬 확정 요구사항
+
+- **서비스 범위는 대한민국 부동산(건물·상가) 하나**다. 한국어가 원본이며, 영어·일본어는 *같은 한국 제도와 정보를 다른 언어로 설명하는 버전*이다. 미국·일본 등의 법령·등기 제도·화폐·면적·판단 기준으로 현지화하지 않는다.
+- 한국어·영어·일본어의 금액은 원화(KRW), 면적은 ㎡·평, 법률과 공식 출처는 한국 기준. 분석 로직·판단 기준·예시의 사실·숫자는 언어와 무관하게 동일해야 한다.
+- **현재 공개 언어는 한국어만이다**. `publication-config.mjs`의 `PUBLISHED_LOCALES=['ko']`를 애드센스 심사 전에는 변경하지 않는다. EN/JA 소스는 삭제하지 않으며 현재 해당 URL은 한국어 URL로 임시 307 리다이렉트한다.
+- 주요 목표는 FIX BUILDING 중심 애드센스 재심사 준비이며, 광고 승인 확률을 수치로 보장하지 않는다. 출처는 내용에 직접 연관된 한국 공식자료에 한정하고 작은 하단 영역으로 연결한다. 기존 UI·계산·기능·이미지 보존.
+- 운영 우선순위: 정적·자동화, 유지비 0원, 정기 수동관리 0. 유료 API·상시 서버를 새로 만들지 않는다.
+- ZIP 전달 구조의 최상위 폴더는 늘 **`fixlgs-building` 단일 폴더**. 기존 PC 프로젝트 루트에 덮어쓰기 가능해야 한다.
+
+### 현재 구현 상태 · 코드로 확인한 사실
+
+1. **한국어 단독 공개(기존):** `publication-config.mjs`, `next.config.mjs`, `app/SiteHeader.js`, `app/sitemap.js` 및 언어 라우트에서 한국어 단독 공개/메타데이터/307 처리를 유지한다. 이번 작업에서 해당 설정은 수정하지 않았다.
+2. **한국어 공식 출처(기존):** `app/OfficialReferences.js`, `app/official-references.css`, `app/[locale]/layout.js`에서 한국어 콘텐츠별 0~2개 한국 공식기관 출처를 본문 하단에 작은 링크로 표시한다. 개인투자판단이나 가상 사례를 공공기관이 승인했다는 인상을 피한다.
+3. **2026-10-13 영·일문 콘텐츠 보강(신규):** `app/analysis-localized-cases.js`에 한국어 분석의 INCOME/RIGHTS/BUILDING/LOCATION/OPERATION에 대응하는 구체적 교육용 예시를 영어·일본어 각 5개씩 등록했다. 기존 일반 안내 수준의 실전 리포트 대신 한국어처럼 증거·수치·그래픽·판단 범위를 별도로 전달하도록 `app/analysis-v039-localized.js`에서 연결했다. PRICE 예시는 기존 한국어 조건을 유지한다.
+4. **한국 제도 고정 안내(신규):** `app/site-copy.js`의 영문·일문 메타데이터에서 대한민국 부동산임을 명시한다. `app/SiteFooter.js`, `app/globals.css`에서 영·일문이 공개될 때만 KRW·㎡/평·한국 공식기관 자료 기준을 작은 문구로 명시한다. 한국어 UI에는 해당 문구를 추가하지 않는다.
+5. **영·일문 공식 출처/용어(신규):** `app/OfficialReferences.js`가 미래 EN/JA 공개 화면에서 **한국어판과 같은 한국 공식 URL**을 이용하되 자료명·설명·자체 분석 주의문을 각 언어로 표시할 준비를 한다. 출처 원문이 한국어로 열림을 알린다. `app/AnalysisV008Client.js`는 일부 분석 도표 접근성 문구와 일본어 '가상 교육용 사례' 표기를 교정했다.
+6. **판단/계산 원본:** 한국어 분석 6축, 계약, 관리, EXIT, 자가진단 등의 계산/결정 로직·다국어 소스는 기존대로 유지. 국가별 별도 로직 도입 없음.
+7. **영·일문 번역 QA(최신):** `app/site-copy.js` 분석 안내를 한국어 원본의 “호가·표면수익률만으로 판단하지 않기”까지 확장하고 일부 영어 이미지 대체텍스트를 중립적으로 교정. `app/analysis-localized-cases.js`에서 양 언어의 교육용 임대수익 **가정치/실제 수입 구분** 보강. `app/self-check-question-copy.js` 일본어에서 잘못된 “공실이 안정적”을 “입주율이 안정적”으로 수정. `app/OfficialReferences.js`의 한국 건축물대장 출처 설명 정밀화. `app/analysis-v039-localized.js` 일본어 법률·표기 용어 통일. 콘텐츠 판단·설문 점수·금액과 계산 로직은 변경 없음.
+8. **번역 검증 추가:** `scripts/translation-quality-regression.mjs`에 대표 사전 1,914개 한국어 대응 텍스트의 영·일문 구조, 42문항 선택지 원본 점수 인덱스 보존, 교육 사례 5축×2언어, 한국어 단독 공개 설정 검사를 추가했다. 구조 검사로 사람 수준의 번역 감수/법률 감수를 대체하지 않는다.
+
+### 실행한 검증과 한계
+
+- **이번 작업 통과:** `node scripts/translation-quality-regression.mjs`, `node scripts/publication-regression.mjs`, `node scripts/i18n-content-regression.mjs`, `node scripts/official-references-regression.mjs` 각각 PASS. 수정된 일반 JS 파일과 신규 검사 스크립트 `node --check` PASS. EN/JA 공개 설정 변경 없음.
+- **이번 작업 한계:** `npm ci --no-audit --no-fund --fetch-retries=0 --fetch-timeout=8000`은 npm 자체 `Exit handler never called!` 오류로 실패, 따라서 **이번 버전의 Next.js 전체 빌드 및 실화면 QA는 미검증**. Vercel 배포도 실행하지 않았고 사용자의 기존 Git 저장소에서 빌드·push가 필요하다. 한국법 법률가 감수/원어민 전문 교열 전체 완료라고 주장하지 않는다.
+
+- **통과:** `node scripts/i18n-content-regression.mjs` (언어별 분석 12축, 12개 실전 사례/사실 기반, 계약 9단계, 가격 계산식·단위 검사), `node scripts/publication-regression.mjs` (한국어 공개·EN/JA 307 규칙·대체언어 링크/소스 유지), `node scripts/official-references-regression.mjs` (기존 출처 9개, 31개 경로 패턴, 세 언어 동일 URL과 안내문 정적 확인).
+- **통과:** `node --check`로 변경한 일반 JS 데이터 모듈 3개 구문 확인. JSX까지 빌드 검사한 것은 아니다.
+- **미완료:** 이번 환경의 `npm ci --offline --no-audit --no-fund`는 `ENOTCACHED`(tslib 패키지 미보유)로 실패. `npm run build` 및 PC·모바일 브라우저 렌더링 검증을 실제 수행하지 못했다. 출처 URL의 현 시점 200 응답·개별 법률 문장 정확성·전체 영일문 전문 번역 검수도 미확인이다.
+- 사용자 확인: 이전 출처 보강판은 실제 사이트에 반영되었다고 알렸으나, **이번 다국어 패치 압축본은 아직 로컬·Vercel에 배포하지 않았다**.
+
+### 다음 작업
+
+- 최우선: 최신 ZIP을 기존 `WebProjects/fixlgs-building` 루트에 덮어쓴 뒤 `npm ci; npm run build; node scripts/translation-quality-regression.mjs; node scripts/publication-regression.mjs` 성공을 확인하고 Git `main` 브랜치에 push. Vercel 배포 결과는 사용자 환경에서 확인.
+
+1. 사용자 PC의 `WebProjects/fixlgs-building`에 새 ZIP 덮어쓴 후 PowerShell에서 `npm ci`, `npm run build`, `node scripts/publication-regression.mjs`, `node scripts/i18n-content-regression.mjs`, `node scripts/official-references-regression.mjs` 실행.
+2. 현재 공개 KO 대표 페이지와 /building/en/...·/building/ja/...의 한국어 307 이동이 실제 배포에서도 유지되는지 확인. 구글 애드센스 심사 전에는 다른 언어를 켜지 않는다.
+3. 추후 EN/JA 공개 직전에는 1440px/390px 실제 화면, 링크, 번역된 전문 용어, 계산/사례 표기, 법률 설명 정확성을 검수한다. 필요하면 그때 공개 언어 설정만 변경한다.
+
+### 보관 현황 · 자동 분량 관리
+
+- **현재 별도 인수인계 보관 문서/보관 ZIP 없음.** 아래 과거 작업 이력은 주 문서에 누적 보존한다.
+- 보관 전 원문 분량 점검: 2026-10-12 시점의 누적 인수인계는 **9,772자**(UTF-8 19,066바이트)였으며, 약 **20,000자**라는 분리 운영 기준에 미달했다. 2026-10-13에 이 문서를 외부 ZIP으로 분리한 것은 조기 분리 오류였으므로 **원문을 이 주 문서에 복원**했다.
+- 다음 작업에서도 최신 요구사항·구현·미해결사항을 문서 상단에 갱신하고 과거 이력은 하단에 원문 보존한다. 약 20,000자 초과 시에만 과거 이력 분리와 별도 보관 ZIP 생성 여부를 판단한다. (분량 기준은 바이트가 아닌 글자 수다.)
+- 개별 감사 기록: `EN_JA_KR_LANGUAGE_ONLY_AUDIT_20261013.txt`, `OFFICIAL_REFERENCES_AUDIT_20261012.txt`, `KO_ONLY_PUBLICATION_AUDIT_20261012.txt` 및 기존 `*_AUDIT*.txt`. 이들은 버전별 사실이며 최신 상태보다 우선하지 않는다.
+
+---
+
+## 작업 이력 · 2026-10-13 · EN_JA_TRANSLATION_QA_20261013
+
+- **요청:** AdSense 심사용 한국어 단독 공개 상태를 유지한 채 비공개 영어·일본어 번역 품질만 보강하고 배포 준비. 한국 부동산 제도·단위·출처·계산 로직 유지.
+- **수정:** `app/site-copy.js`, `app/analysis-localized-cases.js`, `app/analysis-v039-localized.js`, `app/self-check-question-copy.js`, `app/OfficialReferences.js`의 영·일문 용어/의미/가상 사례와 자료 설명 15곳 교정. `scripts/translation-quality-regression.mjs` 추가. 한국어 문구·계산·공개 플래그·UI 배치 변경 없음.
+- **검증:** 4종 Node 회귀검사 PASS, 변경 일반 JS 구문검사 PASS. npm 설치 실패로 Next 빌드/화면 미검증. 배포 미실행. 전문 원어민·법률 감수 미완료.
+- **기록:** 기존 이력 원문 보존, 보관 ZIP 신규 생성 없음(주 문서 실제 글자 수 확인 후 분량 조건 적용).
+
+---
+
+## 작업 이력 · 2026-10-13 · KR_LOCALE_PARITY_20261013
+
+- **요청:** 한국 제도·거래·화폐·공식 출처를 유지하고 영문/일문은 언어만 바꾸도록 콘텐츠 보강. 한국어 단독 공개 원칙 보존.
+- **실제 수정:** EN/JA 10개 상세 가상 사례, 관련 분석 컴포넌트 연결, 다국어 공식 출처 설명, 하단 한국 제도 안내문, 영일문 메타, 일부 도표 접근성·표현, 회귀검사 확대.
+- **검증 결과:** 3종 회귀검사 및 일반 JS 구문검사 PASS. 의존성 미설치로 Next 빌드/실화면 검수 미실행, 배포 미실행.
+- **인수인계 기록 정정:** 2026-10-12까지의 원문은 19,066바이트이나 실제 9,772자로 약 20,000자 분리 기준에 미달했다. 조기에 만들었던 외부 보관 ZIP을 최신 작업 전달물에서 제외하고, 그 원문을 아래에 온전히 복원했다. 현 시점 별도 보관 ZIP 없음.
+
+---
+
+## 과거 작업 이력 원문 · 2026-10-12 및 이전 · 무삭제 복원
+
+# FIX BUILDING 인수인계
+
 ## 현재 유효 상태 · 2026-10-12 · KO_SOURCE_APPENDIX_20261012
 
 **상태:** 한국어만 공개하는 기존 구조를 보존하고 한국어 페이지 하단에 주제별 공식 자료 출처를 소형으로 적용했다. 코드는 전달용이며 실제 서비스에는 배포하지 않았다. **Next.js 빌드·브라우저 표시 검수는 이번 실행 환경에서 미완료**(의존성 다운로드 실패)다. 이전 기록에 적힌 빌드 성공은 이전 버전에만 해당한다.

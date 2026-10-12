@@ -1,0 +1,39 @@
+FIX BUILDING / 한국 제도 단일기준 + 영어/일본어 언어버전 보강
+2026-10-13 · KR_LOCALE_PARITY_20261013
+
+확정 기획
+- 제공 대상은 대한민국의 건물/상가 부동산에 관한 정보와 판단 보조 콘텐츠 한 가지.
+- 한국어/영어/일본어의 차이는 설명 언어다. 미국/일본 법령, 화폐, 단위, 계산법으로 현지화하지 않는다.
+- 한국어 원본과 한국 공식자료를 동일한 사실 기준으로 따른다. KRW, ㎡/평 유지.
+- 애드센스 재심사 준비를 위해 현재 공개하는 언어는 한국어만(EN/JA는 비공개, 기존 경로 307).
+
+코드에서 발견한 문제
+- 영어/일본어 분석의 가격 외 5개 실전 사례가 각 축에 대한 질문 몇 개를 재조합한 간략 텍스트였음. 반면 한국어는 구체적인 비교 조건·수치·4~5개 보고 섹션·축별 그래픽이 있었음.
+- 영문/일문 공식자료 하단 출처는 한국어에 한정되어 있어서 재공개 후에는 표시되지 않는 구조였음.
+- 영어/일본어 페이지의 메타 문구는 한국 제도 중심임을 충분히 설명하지 않았음.
+- 일본어 분석 사례의 표제 '実例'는 가상 교육용 사례에 부정확한 표현.
+
+이번 반영
+- app/analysis-localized-cases.js 신설: INCOME/RIGHTS/BUILDING/LOCATION/OPERATION 각 5개 사례 × EN/JA 2개 언어의 교육용 조건·보고·그래픽·결론.
+- app/analysis-v039-localized.js: 기존 일반 사례 조립 대신 10개 구체적 교육용 사례 사용. 가격 사례는 보존하며 한국 돈 단위 표시 추가.
+- app/OfficialReferences.js: 한국 법률/통계의 동일 원문 URL을 보존하면서 EN/JA의 기관명·출처 설명·사례 주의문 번역. 현재 비공개이므로 공개되는 페이지는 여전히 한국어뿐.
+- app/SiteFooter.js + app/globals.css: 향후 다국어 공개 시에만 '한국 제도·KRW·㎡/평·한국 공식기관' 안내를 조용히 표시.
+- app/site-copy.js: EN/JA 메타 제목·설명에 한국 부동산 가이드임을 반영.
+- app/AnalysisV008Client.js: 그래픽 접근성 문구의 언어 분기, 일본어 사례 라벨 정확성 보완. 분석 계산/선택 기능은 변경하지 않음.
+- scripts/i18n-content-regression.mjs: 새 10개 사례 구조/수치/한국어 기준 확인 추가.
+- scripts/official-references-regression.mjs: 각 언어의 공식 출처 URL 동일성, 표시 텍스트 번역 확인 추가.
+- publication-config.mjs 수정하지 않음. PUBLISHED_LOCALES=['ko'] 유지.
+
+실제 검사
+PASS: node scripts/i18n-content-regression.mjs
+PASS: node scripts/publication-regression.mjs
+PASS: node scripts/official-references-regression.mjs
+PASS: node --check app/analysis-localized-cases.js / app/analysis-v039-localized.js / app/site-copy.js 각각 실행
+BLOCKED: npm ci --offline --no-audit --no-fund -> ENOTCACHED (tslib tarball), 패키지 재설치 불가
+NOT RUN: npm run build, 브라우저 PC/모바일 렌더링, 외부 링크 실접속 검증, 전체 콘텐츠 전문 번역 검수, 새 ZIP 배포
+
+남은 검수
+- 의존성을 사용할 수 있는 Windows 로컬 환경에서 npm ci && npm run build 실행.
+- 한국어 배포 동작 및 EN/JA 307 유지 확인.
+- 다국어 재공개 전에 EN/JA 주요 화면 1440px/390px 실제 시각 검수 및 번역·법령 문장 전문가 확인. 공식 출처 URL의 접속 상태와 본문별 내용 정합성 최종 검토.
+- 승인 전 EN/JA 공개로 되돌리지 말 것.

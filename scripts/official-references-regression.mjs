@@ -5,7 +5,7 @@ const source=readFileSync(new URL('../app/OfficialReferences.js', import.meta.ur
 const start=source.indexOf('const S = {');
 const end=source.indexOf('export default function OfficialReferences()', start);
 assert.ok(start>=0 && end>start, 'reference registry not found');
-const {S,REFERENCES,getPageReferences}=Function(`${source.slice(start,end)};return {S,REFERENCES,getPageReferences};`)();
+const {S,REFERENCES,getPageReferences,I18N,SOURCE_NAMES}=Function(`${source.slice(start,end)};return {S,REFERENCES,getPageReferences,I18N,SOURCE_NAMES};`)();
 for(const [section,pages] of Object.entries(REFERENCES)) {
   assert.ok(['contract','analysis','management','exit'].includes(section));
   for(const [view,keys] of Object.entries(pages)) {
@@ -23,10 +23,23 @@ for(const [section,pages] of Object.entries(REFERENCES)) {
 }
 assert.equal(getPageReferences('analysis','unverified-topic'),null,'must not attach irrelevant sources');
 assert.equal(getPageReferences('non-content-page','home'),null);
-assert.match(source,/parts\[0\]!=='ko'/,'only published Korean locale receives refs');
+assert.match(source,/if\(!I18N\[locale\]\) return null;/);
+for(const locale of ['ko','en','ja']) {
+  assert.ok(I18N[locale].heading && I18N[locale].methodNote && I18N[locale].note);
+  for(const group of Object.values(REFERENCES)) for(const [view,ids] of Object.entries(group)) {
+    const section=Object.entries(REFERENCES).find(([,v])=>v===group)[0];
+    const refs=getPageReferences(section,view,locale);
+    assert.equal(refs.length,ids.length);
+    for(let i=0;i<ids.length;i++) assert.equal(refs[i].url,S[ids[i]].url);
+  }
+}
+assert.equal(Object.keys(SOURCE_NAMES.en).length,Object.keys(S).length);
+assert.equal(Object.keys(SOURCE_NAMES.ja).length,Object.keys(S).length);
+assert.match(I18N.en.note,/South Korean/);
+assert.match(I18N.ja.note,/韓国/);
 assert.match(source,/공인 심리검사나 개인별 투자 적합성 판정 결과가 아닙니다/);
 const layout=readFileSync(new URL('../app/[locale]/layout.js',import.meta.url),'utf8');
 assert.ok(layout.indexOf('<OfficialReferences/>')>layout.indexOf('{children}') && layout.indexOf('<OfficialReferences/>')<layout.indexOf('<SiteFooter'));
 const contract=readFileSync(new URL('../app/ContractPage.js',import.meta.url),'utf8');
 assert.ok(!contract.includes('<SourceLinks'), 'legacy oversized source card must not be rendered');
-console.log(`PASS: ${Object.keys(S).length} configured official source destinations, ${Object.values(REFERENCES).reduce((sum,group)=>sum+Object.keys(group).length,0)} route variants, Korean-only/method notice/layout checks`);
+console.log(`PASS: ${Object.keys(S).length} configured official source destinations, ${Object.values(REFERENCES).reduce((sum,group)=>sum+Object.keys(group).length,0)} route variants, localized titles/Korean-source URLs/method notice/layout checks`);

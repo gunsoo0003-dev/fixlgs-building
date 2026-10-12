@@ -11,9 +11,10 @@ const BASE_PATH = '/building';
 export default function SiteFooter({ locale='ko' }) {
   const copy = SITE_COPY[locale] || SITE_COPY.ko;
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer${locale!=='ko'?' has-country-scope':''}`}>
       <a className="footer-main-home" href={MAIN_HOME} aria-label="FIXLGS HOME">FIXLGS</a>
       <a className="footer-current" href={`${BASE_PATH}/${locale}`}>FIX BUILDING</a>
+      {locale!=='ko'&&<p className="footer-country-scope">{locale==='en'?'South Korean property rules · KRW · ㎡ and pyeong · Korean official sources':'韓国の不動産制度 · 韓国ウォン（KRW）· ㎡と坪 · 韓国の公的資料'}</p>}
       <nav aria-label="Footer">
         <a href={MAIN_PRIVACY}>{copy.footer.privacy}</a><span>|</span>
         <a href={MAIN_TERMS}>{copy.footer.terms}</a><span>|</span>

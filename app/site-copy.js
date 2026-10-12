@@ -171,8 +171,8 @@ export const SITE_COPY = {
     footer: { privacy: '개인정보처리방침', terms: '이용약관', contact: '문의하기' },
   },
   en: {
-    metaTitle: 'FIX BUILDING | Property Decision Guide',
-    metaDescription: 'A practical framework for evaluating, buying, managing and exiting building investments with clearer decision criteria.',
+    metaTitle: 'FIX BUILDING | South Korean Property Decision Guide',
+    metaDescription: 'A guide to analyzing, buying, managing and selling commercial buildings in South Korea. All rules, prices and records follow Korean standards.',
     navAria: 'Service navigation',
     heroAria: 'FIX BUILDING hero',
     flowAria: 'Service process',
@@ -184,8 +184,8 @@ export const SITE_COPY = {
     heroCta: 'Explore the process',
     services: makeServices({
       self: { label: 'SELF CHECK', desc: 'Start with your own goals and constraints', alt: 'Property self-check checklist' },
-      analysis: { label: 'ANALYSIS', desc: 'Analyze price, income, rights, building, location and operation', alt: 'Professionals reviewing property data' },
-      contract: { label: 'CONTRACT', desc: 'Check the essentials before you sign', alt: 'Professional reviewing contract terms' },
+      analysis: { label: 'ANALYSIS', desc: 'Analyze price, income, rights, building, location and operation', alt: 'Illustration of commercial-building data analysis' },
+      contract: { label: 'CONTRACT', desc: 'Check the essentials before you sign', alt: 'Illustration of commercial-property contract review' },
       management: { label: 'MANAGEMENT', desc: 'Track value and cash flow while you hold', alt: 'Building management review' },
       exit: { label: 'EXIT', desc: 'Set clear criteria for holding or selling', alt: 'Architectural visualization of a six-stage commercial property exit journey around one building' },
     }),
@@ -194,7 +194,7 @@ export const SITE_COPY = {
     checkLabel: 'What to review',
     guideItems: [
       { num: '01', phase: 'START', title: 'Self Check', checks: ['Current position','Objective','Key constraints'], body: 'Before evaluating a property, clarify where you stand and what you are trying to achieve. Defining your objective, conditions and likely constraints makes it easier to decide what deserves the most attention later.' },
-      { num: '02', phase: 'CHECK', title: 'Analysis', checks: ['PRICE','INCOME','RIGHTS','BUILDING','LOCATION','OPERATION'], body: 'Review price, income, rights, building condition, location and operation in sequence so you can see what to check before deciding on a property.' },
+      { num: '02', phase: 'CHECK', title: 'Analysis', checks: ['PRICE','INCOME','RIGHTS','BUILDING','LOCATION','OPERATION'], body: 'Do not judge a building by its asking price or headline yield alone. Examine price, income, legal rights, building condition, location and operations in sequence, then connect the evidence to the checks you need before a purchase.' },
       { num: '03', phase: 'DECIDE', title: 'Contract', checks: ['Contract terms','Legal rights','Critical checks'], body: 'At the contract stage, review more than the price. Terms, rights and key confirmations should be checked again in a clear order before signing to reduce the chance of overlooking an important condition.' },
       { num: '04', phase: 'HOLD', title: 'Management', checks: ['Value changes','Cash flow','Property condition'], body: 'Once you own the property, the original purchase decision is no longer enough. Keep reviewing value, cash flow and maintenance conditions as they change so the current holding position remains visible.' },
       { num: '05', phase: 'EXIT', title: 'Exit', checks: ['Current value','Holding case','Sale conditions'], body: 'An exit decision should compare the case for continuing to hold with the case for selling. Review the current position and likely future conditions together, then define the criteria that will guide the decision.' },
@@ -202,8 +202,8 @@ export const SITE_COPY = {
     footer: { privacy: 'Privacy Policy', terms: 'Terms of Use', contact: 'Contact' },
   },
   ja: {
-    metaTitle: 'FIX BUILDING | 不動産判断ガイド',
-    metaDescription: '建物の検討から分析、契約、保有管理、売却まで、判断すべきポイントを段階ごとに整理するFIX BUILDING。',
+    metaTitle: 'FIX BUILDING | 韓国不動産の判断ガイド',
+    metaDescription: '韓国の商業用建物の分析・契約・保有管理・売却を日本語で案内します。法律、金額、資料はすべて韓国基準です。',
     navAria: 'サービスナビゲーション',
     heroAria: 'FIX BUILDING メインビジュアル',
     flowAria: 'サービスの流れ',
@@ -225,7 +225,7 @@ export const SITE_COPY = {
     checkLabel: 'この段階で確認すること',
     guideItems: [
       { num: '01', phase: 'START', title: '自己診断', checks: ['現在の条件','検討目的','主な負担要因'], body: '物件を検討する前に、まず現在の状況と目的を整理します。保有目的や検討条件、想定される負担を確認しておくことで、その後の分析で何を優先して見るべきかが明確になります。' },
-      { num: '02', phase: 'CHECK', title: '分析', checks: ['PRICE','INCOME','RIGHTS','BUILDING','LOCATION','OPERATION'], body: '価格・収益・権利・建物状態・立地・運営を順番に確認し、購入前に何をどの基準で見るかを整理します。' },
+      { num: '02', phase: 'CHECK', title: '分析', checks: ['PRICE','INCOME','RIGHTS','BUILDING','LOCATION','OPERATION'], body: '売出価格や表面利回りだけで結論を出さず、価格・収益・権利・建物状態・立地・運営の6軸を順番に確認します。購入前に何をどの基準で確かめるべきか、根拠とともに整理します。' },
       { num: '03', phase: 'DECIDE', title: '契約', checks: ['契約条件','権利関係','重要確認事項'], body: '契約段階では、価格だけでなく契約条件や権利関係、事前に確認すべき事項を改めて点検します。確認項目を順番に整理することで、重要な条件の見落としを減らせます。' },
       { num: '04', phase: 'HOLD', title: '管理', checks: ['価値の変化','キャッシュフロー','管理状況'], body: '保有を始めた後は、購入時の判断だけに頼らず、建物の価値やキャッシュフロー、維持管理の状態を継続して確認します。条件の変化を定期的に見直すことが、現在の保有状況を把握する手掛かりになります。' },
       { num: '05', phase: 'EXIT', title: '売却', checks: ['現在価値','保有条件','売却条件'], body: '売却を検討するときは、現在価格だけでなく、保有を続ける場合と売却する場合の条件を比較します。現在の状況と今後想定される条件を合わせて確認し、判断基準を整理します。' },
