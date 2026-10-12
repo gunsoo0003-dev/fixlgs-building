@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {HEADER_SUBMENUS} from '../app/site-copy.js';
 
 const source=readFileSync(new URL('../app/OfficialReferences.js', import.meta.url), 'utf8');
 const start=source.indexOf('const S = {');
@@ -21,6 +22,15 @@ for(const [section,pages] of Object.entries(REFERENCES)) {
     assert.deepEqual(getPageReferences(section,view),keys.map(key=>S[key]));
   }
 }
+// Every real analysis subpage must have a directly relevant official reference.
+const liveAnalysisPaths=HEADER_SUBMENUS.ko.analysis.map(({href})=>href.split('/').at(-1));
+assert.deepEqual(Object.keys(REFERENCES.analysis).sort(), ['home', ...liveAnalysisPaths].sort(), 'official reference routes must match visible analysis pages');
+for(const view of liveAnalysisPaths) {
+  assert.ok(getPageReferences('analysis',view).length > 0, `Missing relevant official reference: analysis/${view}`);
+}
+assert.deepEqual(REFERENCES.analysis.rights,['title'],'rights source must address registered rights');
+assert.deepEqual(REFERENCES.analysis.location,['rent','stats'],'location sources should provide area trends and statistical context');
+assert.deepEqual(REFERENCES.analysis.operation,['rent'],'operational sources should relate to commercial rent/vacancy');
 assert.equal(getPageReferences('analysis','unverified-topic'),null,'must not attach irrelevant sources');
 assert.equal(getPageReferences('non-content-page','home'),null);
 assert.match(source,/if\(!I18N\[locale\]\) return null;/);

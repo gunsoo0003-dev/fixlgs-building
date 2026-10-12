@@ -24,8 +24,9 @@ const REFERENCES = {
     'red-flags':['parties','title'], mistakes:['agreement','title'],
   },
   analysis: {
-    home:['trade','rent'], price:['trade','stats'], income:['rent'], finance:[],
-    tenancy:['rent'], building:['building'], survival:[],
+    // Match the live /analysis/:view URLs, not retired internal category names.
+    home:['trade','rent'], price:['trade','stats'], income:['rent'],
+    rights:['title'], building:['building'], location:['rent','stats'], operation:['rent'],
   },
   management: {
     home:['rent','stats'], rent:['rent'], vacancy:['rent'], tenant:['rent'],

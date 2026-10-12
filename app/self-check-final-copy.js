@@ -11,8 +11,9 @@ const UI={
 };
 
 const BEHAVIOR_SHORT={
-  en:{C01:'Independent verification',C02:'Downside simulation',C03:'Cash-flow first',C04:'Value separation',C05:'Anchor-aware',C06:'Confidence acceleration',C07:'Loss endurance',C08:'Information gathering',C09:'Management efficiency',C10:'Future-value tracking',C11:'Comparison-led',C12:'Hands-on problem solving',C13:'Expert-assisted',C14:'Field intuition',C15:'Opportunity-first',C16:'Exit-rule execution'},
-  ja:{C01:'独立検証型',C02:'防御シミュレーション型',C03:'キャッシュフロー優先型',C04:'価値分離検証型',C05:'基準価格警戒型',C06:'確信加速型',C07:'損失耐久型',C08:'情報収集型',C09:'管理効率型',C10:'将来価値追跡型',C11:'比較表判断型',C12:'直接解決型',C13:'専門家活用型',C14:'現場直感型',C15:'機会先取り型',C16:'撤退基準実行型'}
+  ko:{C01:'독립 검증형',C02:'최악상황 점검형',C03:'현금흐름 우선형',C04:'상승기대 분리형',C05:'추천 독립검증형',C06:'현장·수치 교차검증형',C07:'사전 중단기준형',C08:'현금여력 방어형',C09:'계획 우선형',C10:'전문가 교차검증형',C11:'기회탐색·계약검증형',C12:'반대근거 자기검증형',C13:'차입전 버팀기간 검증형',C14:'직관 기록·사후검증형',C15:'투자계획 우선형',C16:'정보수집·독립결정형'},
+  en:{C01:'Independent verification',C02:'Worst-case first',C03:'Cash-flow first',C04:'Separate appreciation assumptions',C05:'Verify recommendations independently',C06:'Cross-check site impressions with numbers',C07:'Set exit rules before buying',C08:'Keep cash reserves',C09:'Plan before market noise',C10:'Cross-check specialists',C11:'Spot opportunities, verify before signing',C12:'Challenge your own assumptions',C13:'Stress-test borrowing survival',C14:'Record intuition, decide after checking',C15:'Investment plan before property',C16:'Research widely, decide independently'},
+  ja:{C01:'独立検証型',C02:'最悪条件先行型',C03:'キャッシュフロー優先型',C04:'値上がり期待分離型',C05:'推薦情報独立検証型',C06:'現地感覚・数値照合型',C07:'購入前撤退基準設定型',C08:'現金余力確保型',C09:'計画優先型',C10:'複数専門家照合型',C11:'機会探索・契約慎重型',C12:'自説の反証確認型',C13:'借入前の耐久期間検証型',C14:'直感記録・事後検証型',C15:'物件より投資計画優先型',C16:'情報収集・独立判断型'}
 };
 
 const PRAISE={
@@ -56,7 +57,7 @@ const RISK_STRENGTH={
 };
 
 export function getFinalUi(locale='ko'){ return UI[locale]||UI.ko; }
-export function getFinalBehaviorShort(locale='ko',id,fallback){ return locale==='ko'?fallback:((BEHAVIOR_SHORT[locale]||{})[id]||fallback); }
+export function getFinalBehaviorShort(locale='ko',id,fallback){ return (BEHAVIOR_SHORT[locale]||BEHAVIOR_SHORT.ko)[id]||fallback; }
 export function localizeFinalPraise(locale,item){ if(locale==='ko'||!item)return item; const v=(PRAISE[locale]||{})[item.id]; return v?{...item,title:v[0],text:v[1],balance:v[2]}:item; }
 export function localizeFinalContradiction(locale,item,baseLocalize,actionLocalize){ if(locale==='ko'||!item)return item; const x=baseLocalize(locale,item); return {...x,positive:(CONTRA_POS[locale]||{})[item.id]||x.positive,check:actionLocalize(locale,x.check)}; }
 export function localizeFinalRisk(locale,item,baseLocalize,actionLocalize){ if(locale==='ko'||!item)return item; const x=baseLocalize(locale,item); return {...x,strength:(RISK_STRENGTH[locale]||{})[item.id]||x.strength,checks:(x.checks||[]).map(v=>actionLocalize(locale,v))}; }

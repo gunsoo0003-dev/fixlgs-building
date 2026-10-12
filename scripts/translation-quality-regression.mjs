@@ -3,7 +3,9 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {PUBLISHED_LOCALES} from '../publication-config.mjs';
-import {QUESTIONS} from '../app/self-check-data.js';
+import {QUESTIONS, COMIC_REPORTS} from '../app/self-check-data.js';
+import {getStage3Comic,getStage3Ui} from '../app/self-check-stage3-copy.js';
+import {getFinalBehaviorShort} from '../app/self-check-final-copy.js';
 import {QUESTION_LOCALE} from '../app/self-check-question-copy.js';
 import {SITE_COPY, HEADER_SUBMENUS} from '../app/site-copy.js';
 import {SELF_CHECK_COPY} from '../app/self-check-copy.js';
@@ -73,4 +75,44 @@ assert.match(LOCALIZED_ANALYSIS_CASES.en.income.report[0].body,/assumed/);
 const references=fs.readFileSync(new URL('../app/OfficialReferences.js',import.meta.url),'utf8');
 assert.match(references,/Information recorded in the Korean building register/);
 assert.match(references,/韓国の建築物台帳に記録された建物情報/);
-console.log(`PASS: ${comparedPaths} Korean-source copy fields have EN/JA counterparts; all 42 question scores and Korean-only publication remain intact.`);
+// C01-C16 must refer to the same *behavior*, not merely the same ID, in STEP 3 and FINAL.
+// The expectations below are independent of the production short-label lookup.
+const koreanBehaviorTokens = {
+  C01:/검증/,C02:/최악/,C03:/현금흐름/,C04:/상승기대/,C05:/추천/,C06:/현장/,C07:/중단기준/,
+  C08:/현금여력/,C09:/계획/,C10:/전문가/,C11:/계약검증/,C12:/반대근거/,C13:/차입/,C14:/직관/,C15:/투자계획/,C16:/독립결정/
+};
+const englishBehaviorTokens = {
+  C05:/recommendations/,C06:/site impressions/,C07:/exit rules/,C08:/cash reserves/,
+  C09:/plan/i,C10:/specialists/,C11:/before signing/,C12:/own assumptions/,C13:/borrowing/,C14:/intuition/,C15:/plan/i,C16:/independently/
+};
+const japaneseBehaviorTokens = {
+  C05:/推薦/,C06:/現地/,C07:/撤退/,C08:/現金/,C09:/計画/,C10:/専門家/,C11:/契約/,C12:/反証/,C13:/借入/,C14:/直感/,C15:/計画/,C16:/独立判断/
+};
+const behaviorIds=Object.keys(COMIC_REPORTS).sort();
+assert.equal(behaviorIds.length,16,'16 STEP 3 comics must be present');
+for(const id of behaviorIds){
+  assert(koreanBehaviorTokens[id],`Missing behavioral QA expectation: ${id}`);
+  for(const locale of ['ko','en','ja']){
+    const short=getFinalBehaviorShort(locale,id,'');
+    const detail=getStage3Comic(locale,id,COMIC_REPORTS[id]);
+    assert(short && detail?.name && detail?.character,`${locale} ${id}: missing final/step3 behavior`);
+    const token=(locale==='ko'?koreanBehaviorTokens:locale==='en'?englishBehaviorTokens:japaneseBehaviorTokens)[id];
+    if(token)assert.match(short,token,`${locale} ${id}: short result does not match detailed behavior`);
+    // U.S. research/financial references in KO are preserved in both translations, without implying Korean legal authority.
+    const namedSources=[...new Set(COMIC_REPORTS[id].evidence.match(/\b(?:SEC|FINRA|FDIC|OCC)\b/g)||[])];
+    for(const source of namedSources)assert(detail.evidence.includes(source),`${locale} ${id}: missing source context ${source}`);
+  }
+}
+assert.match(getStage3Ui('ja').open,/確認可能/,'Unambiguous Japanese unlocked state');
+assert.match(getStage3Ui('en').basis,/not South Korean legal guidance/);
+assert.match(getStage3Ui('ja').basis,/韓国法/);
+const managementClient=fs.readFileSync(new URL('../app/ManagementClient.js',import.meta.url),'utf8');
+const managementMetadata=fs.readFileSync(new URL('../app/[locale]/management/[[...view]]/page.js',import.meta.url),'utf8');
+const exitMetadata=fs.readFileSync(new URL('../app/[locale]/exit/[[...view]]/page.js',import.meta.url),'utf8');
+assert.match(managementClient,/locale==='ja'\?\{statement:/,'Japanese management labels are localized');
+for(const [name,text] of [['management',managementMetadata],['exit',exitMetadata]]){
+  assert.match(text,/locale==='en'\?[^\n]*South Korea/,'Korean scope for EN '+name);
+  assert.match(text,/locale==='ja'\?[^\n]*韓国/,'Korean scope for JA '+name);
+}
+
+console.log(`PASS: ${comparedPaths} EN/JA counterpart strings, 42 score mappings, 16 behavior IDs x 3 locales, Korean scope, sources and Korean-only publication.`);

@@ -2228,6 +2228,10 @@ export const TYPE_PROTOTYPES = {
   T10: { core: { 외부영향:1, 정보검증:-1, 독립판단:-1 }, aux: {} },
   T11: { core: { 직관의존:1, 위험선호:1 }, aux: { 과신:0.5 } },
   T12: { core: { 목적명확성:-1 }, aux: {} },
+  // The published T13/T14 definitions are based on the existing management-participation
+  // question axis. This completes the missing prototype mapping; score formulas stay intact.
+  T13: { core: { 관리참여:1, 공실대응:1 }, aux: { 목적명확성:0.5 } },
+  T14: { core: { 관리참여:-1, 정보검증:1 }, aux: { 목적명확성:0.5 } },
 };
 
 export const AXIS_LABELS = {

@@ -50,7 +50,9 @@ export async function generateMetadata({params}){
   if(list.length>1) return {};
   const slug=list[0]||'';
   if(slug&&!ALLOWED.includes(slug)) return {};
-  const key=slug||'main'; const [title,description]=META[locale][key]; const path=pathFor(slug); const canonical=`${SITE_URL}/building/${locale}${path}`;
+  const key=slug||'main'; const [title,baseDescription]=META[locale][key];
+  const koreaScope=locale==='en'?' This guide concerns South Korean real estate and uses Korean laws, KRW and Korean area units.':locale==='ja'?' 韓国の不動産を対象とし、法制度・通貨（KRW）・面積単位は韓国基準です。':'';
+  const description=baseDescription+koreaScope; const path=pathFor(slug); const canonical=`${SITE_URL}/building/${locale}${path}`;
   return {title,description,alternates:{canonical,languages:alternatesFor(path)},robots:{index:true,follow:true},openGraph:{title,description,url:canonical,type:slug?'article':'website'}};
 }
 

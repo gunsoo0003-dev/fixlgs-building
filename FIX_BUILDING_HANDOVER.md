@@ -1,6 +1,6 @@
 # FIX BUILDING 인수인계
 
-## 현재 유효 기준 · 2026-10-13 · EN_JA_TRANSLATION_QA_20261013
+## 현재 유효 기준 · 2026-10-13 · ADSENSE_DETAIL_INDEX_FINAL_20261013
 
 ### 반드시 지킬 확정 요구사항
 
@@ -21,8 +21,26 @@
 6. **판단/계산 원본:** 한국어 분석 6축, 계약, 관리, EXIT, 자가진단 등의 계산/결정 로직·다국어 소스는 기존대로 유지. 국가별 별도 로직 도입 없음.
 7. **영·일문 번역 QA(최신):** `app/site-copy.js` 분석 안내를 한국어 원본의 “호가·표면수익률만으로 판단하지 않기”까지 확장하고 일부 영어 이미지 대체텍스트를 중립적으로 교정. `app/analysis-localized-cases.js`에서 양 언어의 교육용 임대수익 **가정치/실제 수입 구분** 보강. `app/self-check-question-copy.js` 일본어에서 잘못된 “공실이 안정적”을 “입주율이 안정적”으로 수정. `app/OfficialReferences.js`의 한국 건축물대장 출처 설명 정밀화. `app/analysis-v039-localized.js` 일본어 법률·표기 용어 통일. 콘텐츠 판단·설문 점수·금액과 계산 로직은 변경 없음.
 8. **번역 검증 추가:** `scripts/translation-quality-regression.mjs`에 대표 사전 1,914개 한국어 대응 텍스트의 영·일문 구조, 42문항 선택지 원본 점수 인덱스 보존, 교육 사례 5축×2언어, 한국어 단독 공개 설정 검사를 추가했다. 구조 검사로 사람 수준의 번역 감수/법률 감수를 대체하지 않는다.
+9. **2026-10-13 공개 전 정합성 수정(최신):** 자가진단 C01~C16의 STEP 3 상세 유형과 FINAL 짧은 명칭을 KO/EN/JA에서 동일 의미로 연결했다(`app/self-check-final-copy.js`, `app/SelfCheckClient.js`). 판정·점수 로직은 변경하지 않았다. 영·일문의 자가진단 근거문 12유형에서 한국어 원본의 SEC/FINRA/OCC/FDIC 등 **미국 참고기관** 표기를 복원하고 한국 법률 근거와 구별했다(`app/self-check-stage3-copy.js`). JA 공개/열림 혼동을 교정했고, 일본어 관리 표제 9종과 EN/JA 관리·EXIT 메타 설명의 대한민국 대상 범위를 정리했다(`app/ManagementClient.js`, 두 언어 라우트). 콘텐츠 구조·KO 단독 공개 정책은 유지한다.
+10. **재발 방지 검사:** `scripts/translation-quality-regression.mjs`가 C01~C16의 언어별 짧은 유형 이름과 상세 유형을 대응 점검하고 KO에 등장하는 명시적 미국 참고기관을 번역본에서도 확인하며, 일본어 상태표기·관리 표제·언어별 한국 관할 메타·42문항 채점 매핑을 검사한다.
+11. **자가진단 54개 콘텐츠/유형 정합성(최신):** `app/self-check-data.js`에 T13·T14 관리참여/관리위임 프로토타입을 보완하고 `app/SelfCheckClient.js`에서 해당 유형은 기존 문항의 관리참여·공실대응/정보검증·목적명확성이 뚜렷할 때만 후보로 인정한다. 기존 점수 산식과 다른 기능은 유지하되 일부 응답의 유형 분류는 새 유형으로 바뀔 수 있다. 공개 자산 A01~A10은 고정 비교 예시로 표시하고 가상 점수·응답매칭 표현을 제거했다. FINAL T01~T14는 `app/self-check-final-scenarios.js`의 언어별 고유 가상 교차 판단 사례를 노출한다. BASIC 12개/BEHAVIOR 16개는 기존 내용 유지.
+12. **2026-10-13 출처·모바일 탐색 정비(최신):** 실제 분석 URL인 `rights`, `location`, `operation`에 주제에 부합하는 공식 출처를 연결하고 폐기된 `finance`, `tenancy`, `survival` 경로 매핑을 제거했다(`app/OfficialReferences.js`). `app/SiteHeader.js`, `app/mobile-navigation.css`, `app/[locale]/layout.js`에서 700px 이하의 접이식 모바일 탐색 메뉴(5개 서비스/세부메뉴, ESC·바깥 클릭 닫기)를 추가했다. PC 헤더 스타일과 공개 언어/자가진단 계산을 보존했다.
+
+
+13. **2026-10-13 한국어 상세 12페이지 검색 노출 정리(최신):** 분석 6개(`price/income/rights/building/location/operation`)와 관리 6개(`rent/vacancy/tenant/cost/facility/record`)의 `noindex`를 한국어에 한해 해제. 분석 상세에 URL별 제목·설명·canonical·OG를 추가하고 유효하지 않은 분석 경로는 404 처리. 관리의 기존 개별 canonical과 메타데이터 유지. `app/sitemap.js`에 12개 한국어 URL을 추가하여 총 88개로 변경. 영·일문은 기존 비공개 307과 소스 보존, 색인 불허 유지. **공통 개인정보처리방침·이용약관은 다른 메인 프로젝트의 `/privacy`, `/terms`이므로 빌딩 ZIP에서 변경 불가**(메인 소스를 제공받아 별도 최소 정비 필요).
 
 ### 실행한 검증과 한계
+
+- **최신 작업(ADSENSE_DETAIL_INDEX_FINAL_20261013):** 새 `scripts/adsense-indexing-regression.mjs`를 포함한 Node 회귀검사 **7종 PASS**. 12개 한국어 상세 URL의 고유 canonical/색인 허용/사이트맵 88개 중복 없음, EN/JA 색인 불허 및 공통 메인 정책 URL 유지 확인. 변경 파일 4개의 JS/JSX TypeScript 구문검사 PASS. `npm ci --offline`은 `tslib@2.8.1 ENOTCACHED`, 온라인 설치는 제한시간 내 완료되지 않아 **Next.js 전체 빌드·실제 화면·배포는 미검증**. 메인 FIXLGS 법적 페이지 문구 변경도 미실시(별도 프로젝트).
+
+- **최신 작업(ADSENSE_SOURCE_NAV_FINAL_FIX_20261013):** `publication-regression`, `i18n-content-regression`, `translation-quality-regression`, `official-references-regression`, `self-check-54-adsense-regression`, 신규 `mobile-navigation-regression` 총 6종 PASS. 분석 메뉴의 실제 URL 목록과 출처 매핑의 일치·관련 출처 존재를 신규 검증. 수정 JSX 3개를 TypeScript 파서로 구문검사 PASS. 기존 한국어 단독 공개/다국어 소스/자가진단 54개 회귀 PASS. `npm ci --offline --ignore-scripts`는 npm 캐시에 `tslib@2.8.1`이 없어 `ENOTCACHED` 실패하여 **Next.js 전체 빌드/실제 모바일 실화면/배포 미검증**. 공식 링크 세 개의 웹 문서 응답은 확인했으나 모든 출처의 원문 최신성·브라우저 클릭 검증은 아님.
+
+- **최신 작업(ADSENSE_SELF_CHECK_54_FIX_20261013):** 기존 회귀검사 4종 + 신규 `scripts/self-check-54-adsense-regression.mjs` 1종 모두 PASS. 신규 검사: 54개 URL·14유형×3언어 가상 사례·T13/T14의 42문항 완전응답 도달·기존 12개 대표형 분류 유지·KO만 공개 정적 검사. 변경된 3개 JS/JSX는 TypeScript 구문 파서 오류 0건. **Next.js 전체 빌드는 `next: not found`로 실패**(런타임 의존성 없음); 정적 HTML/PC·모바일·배포 실증 미완료. 검사 통과가 애드센스 승인이나 외부 사실 검증을 의미하지 않는다.
+
+- **이번 작업(EN_JA_BEHAVIOR_PARITY_QA_20261013):** Node 회귀검사 4종 PASS(번역, 공개 설정, 다국어 콘텐츠, 공식 출처). 추가 검사에서 C01~C16 × 3개 언어의 의미 기준·참고기관 연결 및 42문항 점수 배열 PASS. 변경 JS/JSX 파일 7개를 TypeScript 파서로 구문검사 PASS.
+- **이번 작업 미검증:** `npm ci --offline` 캐시 누락(`tslib@2.8.1 ENOTCACHED`), 온라인 설치도 제한 시간 내 미완료. Next.js 전체 빌드·PC/모바일 실화면·번역 전문 교열·실제 배포 미검증. SEC 등 기관명은 기존 KO 콘텐츠를 번역한 것이며 외부 사실 확인이나 한국법 적합성 보증이 아니다.
+
+**아래 항목은 이전 작업 당시 기록이며 이번 새 코드의 전체 빌드 결과가 아니다.**
 
 - **이번 작업 통과:** `node scripts/translation-quality-regression.mjs`, `node scripts/publication-regression.mjs`, `node scripts/i18n-content-regression.mjs`, `node scripts/official-references-regression.mjs` 각각 PASS. 수정된 일반 JS 파일과 신규 검사 스크립트 `node --check` PASS. EN/JA 공개 설정 변경 없음.
 - **이번 작업 한계:** `npm ci --no-audit --no-fund --fetch-retries=0 --fetch-timeout=8000`은 npm 자체 `Exit handler never called!` 오류로 실패, 따라서 **이번 버전의 Next.js 전체 빌드 및 실화면 QA는 미검증**. Vercel 배포도 실행하지 않았고 사용자의 기존 Git 저장소에서 빌드·push가 필요하다. 한국법 법률가 감수/원어민 전문 교열 전체 완료라고 주장하지 않는다.
@@ -34,18 +52,50 @@
 
 ### 다음 작업
 
-- 최우선: 최신 ZIP을 기존 `WebProjects/fixlgs-building` 루트에 덮어쓴 뒤 `npm ci; npm run build; node scripts/translation-quality-regression.mjs; node scripts/publication-regression.mjs` 성공을 확인하고 Git `main` 브랜치에 push. Vercel 배포 결과는 사용자 환경에서 확인.
-
-1. 사용자 PC의 `WebProjects/fixlgs-building`에 새 ZIP 덮어쓴 후 PowerShell에서 `npm ci`, `npm run build`, `node scripts/publication-regression.mjs`, `node scripts/i18n-content-regression.mjs`, `node scripts/official-references-regression.mjs` 실행.
-2. 현재 공개 KO 대표 페이지와 /building/en/...·/building/ja/...의 한국어 307 이동이 실제 배포에서도 유지되는지 확인. 구글 애드센스 심사 전에는 다른 언어를 켜지 않는다.
-3. 추후 EN/JA 공개 직전에는 1440px/390px 실제 화면, 링크, 번역된 전문 용어, 계산/사례 표기, 법률 설명 정확성을 검수한다. 필요하면 그때 공개 언어 설정만 변경한다.
+1. **빌딩 배포 전:** 사용자 PC `WebProjects/fixlgs-building`에 ZIP 덮어쓰기 후 `npm ci`, `npm run build`, `node scripts/adsense-indexing-regression.mjs` 및 기존 회귀검사 6종 실행. 모바일(390px)/PC 실제 화면 확인, 한국어 분석·관리 12개 URL 접근·각 canonical/meta·공식 출처 확인. Vercel 배포 후 사이트맵 주소 88개와 영·일문 한국어 307 이동 실증.
+2. **메인 FIXLGS 소스 별도 필요:** `https://fixlgs.com/privacy`, `/terms`는 빌딩의 자체 페이지가 아니며, 메인 프로젝트에서 운영하는 공통 정책이다. **메인 프로젝트 최신 소스 ZIP 제공 시에만** BUILDING을 우선 소개하면서 TOOLBOX 및 나머지 서비스에 적용되는 정당한 공통 고지는 유지해 최소 수정. 지금 ZIP의 `app/[locale]/privacy/page.js`·`terms/page.js` 301 리다이렉트와 푸터 링크는 변경하지 않음.
+3. **애드센스:** 실제 배포 빌드와 접근성/소유권 확인 완료 후 재심사. 색인 허용 자체가 승인 조건이나 승인율 보장은 아님. EN/JA 공개 전에는 전문 번역·한국법 정확성·실화면을 별도로 검수하고 `PUBLISHED_LOCALES=['ko']` 유지.
 
 ### 보관 현황 · 자동 분량 관리
 
-- **현재 별도 인수인계 보관 문서/보관 ZIP 없음.** 아래 과거 작업 이력은 주 문서에 누적 보존한다.
+- **현재 프로젝트 내부 보관 문서:** `docs/handover/HISTORY_V001.md` (2026-10-12 및 이전 원문 기록; 한국어 단독 공개 전환/공식 출처 최초 적용/영일문 오류 수정 시의 판단 근거). 초기 결정 이유나 과거 빌드 검증이 필요할 때 선택적으로 읽는다. 별도의 보관 ZIP은 없다.
 - 보관 전 원문 분량 점검: 2026-10-12 시점의 누적 인수인계는 **9,772자**(UTF-8 19,066바이트)였으며, 약 **20,000자**라는 분리 운영 기준에 미달했다. 2026-10-13에 이 문서를 외부 ZIP으로 분리한 것은 조기 분리 오류였으므로 **원문을 이 주 문서에 복원**했다.
-- 다음 작업에서도 최신 요구사항·구현·미해결사항을 문서 상단에 갱신하고 과거 이력은 하단에 원문 보존한다. 약 20,000자 초과 시에만 과거 이력 분리와 별도 보관 ZIP 생성 여부를 판단한다. (분량 기준은 바이트가 아닌 글자 수다.)
+- 다음 작업에서도 최신 상태는 주 문서 상단에 갱신하고 새 이력만 추가한다. **전체 유니코드 20,000자 초과 시에만** 오래된 기록을 `docs/handover/HISTORY_V002.md`부터 순차적으로 내부 보관한다. 기존 V001 원문은 덮어쓰지 않으며 모든 기록은 최신 프로젝트 ZIP 하나로 전달한다.
 - 개별 감사 기록: `EN_JA_KR_LANGUAGE_ONLY_AUDIT_20261013.txt`, `OFFICIAL_REFERENCES_AUDIT_20261012.txt`, `KO_ONLY_PUBLICATION_AUDIT_20261012.txt` 및 기존 `*_AUDIT*.txt`. 이들은 버전별 사실이며 최신 상태보다 우선하지 않는다.
+
+---
+
+## 작업 이력 · 2026-10-13 · ADSENSE_DETAIL_INDEX_FINAL_20261013
+
+- **목적:** 이미 충분히 작성된 한국어 분석·관리 상세 12개를 독립적인 검색 URL로 정리하고 애드센스 심사 전 기술적 일관성을 강화. 기존 디자인/자가진단/영일문 비공개 정책/공통 신뢰 페이지 URL 유지.
+- **수정:** 분석·관리 상세는 KO에서 색인 허용(숨긴 EN/JA는 색인 불허); 분석 6개에 각각 고유 title/description/canonical/OG, 잘못된 분석 경로는 404; 관리 6개는 기존 개별 canonical 유지. 사이트맵 76→88개(KO 12개 추가). `scripts/adsense-indexing-regression.mjs` 신규 추가.
+- **변경 파일:** `app/[locale]/analysis/[[...view]]/page.js`, `app/[locale]/management/[[...view]]/page.js`, `app/sitemap.js`, `scripts/adsense-indexing-regression.mjs`(신규). 기존 파일 삭제 없음.
+- **검증:** Node 회귀검사 7종 및 JS/JSX 구문검사 PASS. 전체 Next.js 빌드/브라우저/실제 배포 미검증(npm 설치 캐시 부족·온라인 설치 시간 초과). 사용자 요청의 메인 정책 페이지 수정은 다른 프로젝트 소스가 없어 실시하지 못함. SEO 조치가 애드센스 승인율을 수치로 높인다고 보장할 수 없음.
+
+## 작업 이력 · 2026-10-13 · ADSENSE_SOURCE_NAV_FINAL_FIX_20261013
+
+- **목표/보존:** AdSense 심사 전 확인된 분석 출처 경로 누락·700px 이하 모바일 탐색 부재만 최소 수정. 기존 디자인/PC 호버 메뉴/한국어 단독 공개/영일문 비공개/자가진단/계산·점수 유지.
+- **수정:** 실제 `/analysis/rights`, `/analysis/location`, `/analysis/operation`에 등기·지역 임대동향/통계·임대동향 출처 연결(기존 공식 URL 사용). 분석 레거시 `finance`, `tenancy`, `survival` 매핑 제거. 모바일 고정 높이 52px 경량 메뉴(5개 서비스 및 세부 링크, 기본 접힘, 바깥 터치·ESC·링크 이동 시 닫힘). 실제 메뉴의 모든 분석 URL을 참조 등록과 교차 확인하는 회귀검사 보강.
+- **파일:** `app/OfficialReferences.js`, `app/SiteHeader.js`, `app/[locale]/layout.js`, `scripts/official-references-regression.mjs` 수정; `app/mobile-navigation.css`, `scripts/mobile-navigation-regression.mjs` 추가.
+- **검증:** Node 6종 PASS, JS/JSX 파서 3개 PASS, 모바일 CSS 괄호 일치. npm 오프라인 캐시 부족(`tslib ENOTCACHED`)으로 전체 Next.js 빌드·실제 화면 미검증, 프로덕션 배포 미실행. 웹 문서 확인은 전체 외부 링크 200·법률 정확성의 보증이 아님.
+
+---
+
+## 작업 이력 · 2026-10-13 · ADSENSE_SELF_CHECK_54_FIX_20261013
+
+- **목표:** 자가진단 결과 54개 애드센스용 고유성/오인 위험 보강. 기존 한국어 공개·EN/JA 비공개와 설문 문항·이미지·기존 점수산식·디자인 보존.
+- **수정:** T13/T14 유형 프로토타입 및 강한 관리성향일 때만 적용하는 후보 조건 보완(기존 유형 분류 일부에 영향 가능), A01~A10 공개 비교의 개인응답/가짜 순위 표현 제거, FINAL 14유형에 각각 구분되는 가상 교차 판단 상황·충돌·반례·검토 순서(한·영·일) 추가. 사용되지 않는 `PublicEditorial/publicDepthBlocks`는 중복 방지를 위해 일괄 노출하지 않음. BASIC 12·BEHAVIOR 16은 전수검토상 선별 유지.
+- **파일:** `app/self-check-data.js`, `app/SelfCheckClient.js`, `app/self-check-final-scenarios.js`(신규), `scripts/self-check-54-adsense-regression.mjs`(신규).
+- **검증:** 기존 정적 회귀 4종+신규 1종 PASS, 변경된 JS/JSX 구문검사 PASS. `npm run build`는 패키지 미설치(`next: not found`)로 실패. 실제 HTML·PC/모바일·프로덕션 배포 미검증.
+
+---
+
+## 작업 이력 · 2026-10-13 · EN_JA_BEHAVIOR_PARITY_QA_20261013
+
+- **요청/원칙:** 영어·일본어 공개 전 정합성 보강. 한국어 원본과 대한민국 법률·KRW·㎡/평 기준, 307 임시 비공개 정책과 기존 계산·점수 보존.
+- **수정:** FINAL 결과 짧은 유형과 STEP 3 상세 유형 C01~C16의 KO/EN/JA 매핑 통일(한국어 결과 명칭도 잘못된 연결만 교정), 영어·일본어 12유형의 기관명 근거 설명 보강, 일본어 `公開` → `確認可能`, 일본어 관리 영문 표제 9종 번역, 관리·EXIT 영일문 메타에 한국 관할 명시. 검증 스크립트 의미 연결/근거 누락 검사 추가.
+- **파일:** `app/self-check-final-copy.js`, `app/SelfCheckClient.js`, `app/self-check-stage3-copy.js`, `app/ManagementClient.js`, `app/[locale]/management/[[...view]]/page.js`, `app/[locale]/exit/[[...view]]/page.js`, `scripts/translation-quality-regression.mjs`.
+- **검증:** 기존+확대 Node 검사 4종 PASS; JS/JSX 파서 구문검사 PASS. npm 설치 불가로 Next 빌드/실화면 검증 및 Vercel 배포 미수행. 공식기관 원문 사실 재확인·원어민/법률 전문감수 미수행. 한국어 단독 공개 유지.
 
 ---
 
@@ -66,182 +116,3 @@
 - **인수인계 기록 정정:** 2026-10-12까지의 원문은 19,066바이트이나 실제 9,772자로 약 20,000자 분리 기준에 미달했다. 조기에 만들었던 외부 보관 ZIP을 최신 작업 전달물에서 제외하고, 그 원문을 아래에 온전히 복원했다. 현 시점 별도 보관 ZIP 없음.
 
 ---
-
-## 과거 작업 이력 원문 · 2026-10-12 및 이전 · 무삭제 복원
-
-# FIX BUILDING 인수인계
-
-## 현재 유효 상태 · 2026-10-12 · KO_SOURCE_APPENDIX_20261012
-
-**상태:** 한국어만 공개하는 기존 구조를 보존하고 한국어 페이지 하단에 주제별 공식 자료 출처를 소형으로 적용했다. 코드는 전달용이며 실제 서비스에는 배포하지 않았다. **Next.js 빌드·브라우저 표시 검수는 이번 실행 환경에서 미완료**(의존성 다운로드 실패)다. 이전 기록에 적힌 빌드 성공은 이전 버전에만 해당한다.
-
-### 사용자 확정 요구사항 · 설계 기준
-
-- 현재 단일 목적은 FIX BUILDING을 중심으로 애드센스 재심사 준비. 승인 가능성 증가는 보장하거나 수치화하지 않는다.
-- 공개 언어는 한국어 한 가지. EN/JA 기존 소스는 삭제하지 않는다. 언어 메뉴·사이트맵·리디렉션 처리 등 기존 공개 정책 보존.
-- 디자인 훼손 없이 내용과 연결되는 **공식 자료만** 화면 하단에 작게 제공. 큰 출처 카드나 일반적인 공신력 로고 남발은 피한다.
-- 자체 투자 판단틀·자가진단 유형·가상 사례가 국가기관의 검증·승인을 받은 것처럼 표시하지 않는다.
-- 기존 계약/분석/관리/EXIT/자가진단의 핵심 기능, 문항, 계산, 자산, 라우팅은 보존한다.
-- 운영 원칙은 정적·자동화, 유지비 0원·정기 수동관리 0. 외부 유료 API나 상시 서버 추가 없음.
-- 다음 작업 전 이 문서 상단을 우선 읽고 실제 소스와 대조. ZIP 최상위 폴더는 항상 `fixlgs-building` 단일 폴더.
-
-### 이번에 실제 수정한 내용
-
-1. **`app/OfficialReferences.js` (신규):** 한국어 페이지의 현재 경로를 구분하여 CONTRACT 10개, ANALYSIS 7개, MANAGEMENT 7개, EXIT 7개 페이지 패턴(총 31개)에 각 주제 관련 공식 자료 0~2개를 연결. **주제에 대응하는 검증 가능한 외부 자료가 없는 화면에는 억지로 출처를 붙이지 않음.** 공식 자료 9개를 등록했고 기관별 원문·서비스 페이지를 웹 조회해 해당 주제와 연관성을 검토함. 이 등록 수치는 완전한 모든 원문 사실 검수 결과가 아님.
-2. **`app/official-references.css` (신규):** 본문과 푸터 사이에 가는 경계선·작은 글씨·텍스트 링크로만 표시. 모바일에서 줄바꿈하되 큰 카드·배너를 추가하지 않음.
-3. **`app/[locale]/layout.js`:** 공용 본문 하단 위치에 이 출처 컴포넌트를 삽입. 기존 페이지의 큰 본문 섹션 내부 레이아웃은 유지. 한국어 이외의 언어에는 표시되지 않음.
-4. **`app/ContractPage.js`:** 일부 옛 계약 상세 화면에서만 나타나던 큼직한 `SourceLinks` 렌더링을 제거하여 출처 UI 중복을 방지. 원래 계약 콘텐츠·기능은 변경하지 않음. `app/contract-ko-deep.js`의 과거 출처 데이터 자체는 기존 자료 보존 목적으로 유지되나 현재 UI에서는 참조하지 않음.
-5. **`app/AnalysisV008Client.js`:** 한국어 분석의 모호한 `실제 사례` 라벨 한 곳을 `교육용 사례`로 교정. 실제 실거래 검증 사례라고 오인시키지 않기 위함.
-6. **자가진단:** 같은 하단 공용 컴포넌트로 FIX BUILDING 자체 구성 교육용 분류·해설이며 공인 심리검사나 개인별 투자 적합성 평가가 아님을 밝힘. 자가진단 결과를 공공기관이 검증했다는 무관한 출처를 붙이지 않음.
-7. **`scripts/official-references-regression.mjs` (신규):** 출처 URL 형식/허용 도메인/중복/링크 수/한국어 표시 조건/구형 블록 제거/레이아웃 위치 자동 확인.
-
-### 확인된 결과와 한계
-
-- `node scripts/publication-regression.mjs`: **PASS** (공개 언어 ko, EN/JA 비공개 동작 구성, 대체언어 URL 정책).
-- `node scripts/i18n-content-regression.mjs`: **PASS** (보존된 EN/JA 콘텐츠 연결 및 계산 회귀 검사).
-- `node scripts/official-references-regression.mjs`: **PASS** (9개 등록 자료, 31개 경로 유형, 조건/링크/레이아웃 정적 검사). 네트워크 응답코드를 검사하는 도구는 아님.
-- 웹 자료 조회: 생활법령정보 매매당사자, 계약서 작성, 소유권이전등기, 거래신고 안내; 정부24 건축물대장; 인터넷등기소; 국토부 실거래가; 한국부동산원 임대동향 및 R-ONE 정보의 관련 페이지를 확인. 현재 사이트의 모든 설명·개별 사례를 항목별로 법률 검수한 것은 아님.
-- `npm ci --no-audit --no-fund`: **실행 환경 문제로 실패** (registry.npmjs.org DNS 조회 `EAI_AGAIN`). 외부 의존성이 설치되지 않음.
-- `npm run build`: **미검증/실행 실패** (`next: not found`, 위 의존성 설치 실패의 결과). JSX 컴파일·렌더링·배포 및 실제 PC/모바일 시각 QA 완료라고 주장하지 않는다.
-- 사전에 해당 ZIP이 갖고 있던 기존 검증 결과는 아래 과거 버전 당시의 결과일 뿐 이번 패치의 실제 빌드 성공 증거는 아니다.
-
-### 다음 작업(우선순위)
-
-1. 의존성 설치가 가능한 로컬 PC에서 프로젝트 루트로 이동해 `npm ci`, `npm run build`, `node scripts/official-references-regression.mjs`, `node scripts/publication-regression.mjs` 실행.
-2. `npm run start` 후 한국어 `/building/ko/contract/parties`, `/building/ko/contract/closing`, `/building/ko/analysis/price`, `/building/ko/management/facility`, `/building/ko/exit/pricing`, `/building/ko/self-check/result` 확인: 링크 주제·화면 하단 배치·PC(1440px)/모바일(390px) 가로 넘침·콘솔 오류 검증.
-3. 공식 자료 전체의 URL 운영 여부 및 설명별 사실·법적 정확도는 별도 최종 점검. 링크가 열리지 않으면 해당 URL을 대체하거나 화면에서 제거. 확신이 없는 페이지에는 무리한 출처 추가 금지.
-4. 심사 정책·검색에 관한 결론을 코드 변경만으로 보장하지 말 것. 배포 여부는 사용자가 결정하며 미배포 상태를 유지.
-
-### 과거 기록/분량 관리
-
-- 기존 `*_AUDIT*.txt`는 역사적 검수 기록. 현재 별도 인수인계 보관 ZIP 없음.
-- 주 문서가 약 20,000자를 넘거나 최신 기준 파악이 어려워지면 이전 기록을 별도 파일·보관 ZIP으로 **원문 보존 검증 후** 분리하고 보관 목록과 참조 조건을 상단에 기록한다. 현재는 분리 필요 여부를 분량 확인 후 결정한다.
-
----
-
-## 이전 버전(아래부터 원문 보존) · KO_ONLY_20261012 및 이전
-
-
-## 최신 상태 · 2026-10-12 · KO_ONLY_20261012
-
-현재 공개 언어는 한국어만이다. 아래 이전 기록의 “3개 언어 공개 유지”와 “비공개 미적용”은 이전 버전 당시의 상태이며, 이번 버전에서 변경했다. 사용자 사이트에 배포한 상태는 아니며 전달 코드의 로컬 검증을 완료한 상태다.
-
-### 요구사항과 유지 원칙
-
-- 사용자가 승인한 방향: 한국어 콘텐츠에 심사를 집중하고 한국어만 공개한다. 먼저 수정한 영문·일문 소스는 보존한다.
-- 해외 방문자도 한국어 페이지를 볼 수 있다. 국가별 차단이나 심사 크롤러만을 위한 화면 분기는 하지 않는다.
-- 기존 한국어 콘텐츠·계산·자가진단 기능과 자산을 유지한다. 운영자의 개인 신상·실제 개인 거래 이력은 공개하지 않는다.
-- 공개 출처 보강은 별도 작업이며 이번 변경에 포함하지 않았다. 애드센스 승인이나 가산점을 보장하는 변경은 아니다.
-- 추가 유료 서비스나 정기 수동 작업 없이 기존 앱 설정으로 동작하도록 구성했다.
-- 작업을 시작할 때 이 문서를 먼저 읽는다. 최신 상태는 맨 위에 갱신하고 날짜별 과거 기록은 보존한다.
-- 전달 ZIP은 최상위 `fixlgs-building` 폴더 하나로 구성하며 기존 파일 구조와 과거 검수 문서를 유지한다.
-
-### 구현 내용과 관련 경로
-
-- `publication-config.mjs`: 공개 언어를 `PUBLISHED_LOCALES = ['ko']`로 통합 관리한다. 한국어 hreflang URL과 비공개 언어 이동 규칙을 생성한다.
-- `next.config.mjs`: `/building/en/:path*`, `/building/ja/:path*`를 같은 경로의 `/building/ko/:path*`로 307 임시 이동한다. 예: `/building/en/contract/parties` → `/building/ko/contract/parties`. 쿼리를 보존하며 모든 요청에 동일하게 적용한다.
-- `app/page.js`: 기존 언어 쿠키와 브라우저 언어가 영문·일문이어도 `/building` 진입 시 한국어로 이동한다. Next.js가 basePath를 붙이므로 여기서는 `redirect('/ko')` 형태를 유지한다.
-- `app/SiteHeader.js`: 공개 언어가 하나일 때 언어 선택 메뉴를 표시하지 않는다.
-- `app/sitemap.js`: 한국어 주소만 포함한다.
-- `app/[locale]/page.js`, `app/[locale]/{analysis,contract,management,exit,self-check}/[[...view]]/page.js`: hreflang은 한국어와 x-default만 제공한다. 정적 생성 언어도 해당 설정을 따른다. 기존 canonical·robots 정책은 유지했다.
-- `scripts/publication-regression.mjs`: 공개 설정·이동 규칙·언어 URL·다국어 소스 보존을 확인한다.
-- `scripts/i18n-content-regression.mjs` 및 이전 콘텐츠 수정 파일은 유지한다.
-- `KO_ONLY_PUBLICATION_AUDIT_20261012.txt`: 이번 검증 요약이다.
-
-### 검증 결과와 재검증 방법
-
-- `npm run build`: PASS. Next.js 15.5.23, 63개 정적 페이지 생성.
-- `node scripts/publication-regression.mjs`: PASS.
-- `node scripts/i18n-content-regression.mjs`: PASS. 기존 영문·일문 오류 수정 내용 유지.
-- 빌드 결과를 실제 프로덕션 서버로 실행하여 영문·일문 주소 176건의 307 상태와 한국어 대응 경로를 확인했다.
-- 사이트맵 76개 주소 모두 한국어이고 HTTP 200을 반환했다.
-- Chromium에서 주요 진입 경로 10개를 확인했다. 첫 화면, 영문·일문 진입, 분석, 계약, 자가진단·공개 결과, 관리, 매도 화면이 한국어로 열렸고 페이지 실행 오류는 0건이었다.
-- 영어 브라우저 언어, 기존 일문 쿠키·영문 localStorage 조건에서도 한국어로 열렸다.
-- 주요 페이지의 언어 메뉴·영문/일문 링크가 없고 hreflang은 한국어·x-default만 있음을 확인했다.
-- 1440px·390px에서 언어 메뉴 미노출과 가로 넘침 없음을 확인했다. 쿼리와 해시 보존도 확인했다.
-- 외부에서 같은 검증을 반복하려면 위 명령 실행 후 `npm run start`로 서버를 켜고 `/building`, 기존 `/building/en/...`, `/building/ja/...`, `/building/sitemap.xml`을 확인한다.
-- 검증 중 첫 화면의 basePath 중복을 발견하여 수정한 뒤 전체 접속 검증을 다시 통과했다.
-
-### 미해결사항과 다음 단계
-
-- 사용자 운영 환경에는 아직 배포하지 않았다. 적용 시 기존 배포 방식으로 새 빌드를 배포하고 위 주소의 실제 응답을 재확인한다. 별도 상위 사이트나 프록시의 연결 설정은 이번 ZIP 밖의 범위다.
-- 이미 검색에 색인된 영문·일문 주소는 즉시 없어지는 것으로 간주하지 않는다. 방문은 대응 한국어 페이지로 연결되며 검색 결과 반영에는 재크롤링이 필요하다.
-- 공식 출처 노출은 다음 별도 작업이다. 기존 계약 공식 링크 5개와 자가진단의 정확한 참고 문서를 확인하고 설명과 연결해야 한다.
-- 가격 외 5개 분석 축의 영문·일문 교육용 사례는 이전 작업에서 새로 집필하지 않았다. 다시 공개하기 전에 콘텐츠 검토를 진행한다.
-- 다국어 재공개 시 `publication-config.mjs`의 `PUBLISHED_LOCALES`를 `['ko', 'en', 'ja']`로 바꾸고 재검증·재빌드·배포한다. 이동 규칙, 메뉴, 사이트맵, hreflang, 정적 생성 언어가 이 설정을 따른다.
-- 현재 307은 임시 공개 중단을 위한 선택이다. 영구 폐기로 방향이 바뀌면 URL 처리 정책을 다시 결정한다.
-
-### 아카이브 목록과 기록 분리 기준
-
-- 현재 별도 인수인계 아카이브 없음. 아래 이전 기록과 기존 `*_AUDIT*.txt` 파일을 원문 그대로 유지한다.
-- 문서가 약 20,000자를 넘으면 최신 상태·원칙·다음 단계는 본문에 유지하고 오래된 기록을 날짜별 아카이브로 분리한다. 원문을 삭제하지 않고 본문에 파일 목록과 위치를 남긴다. 별도 아카이브 ZIP에도 동일 원문을 보존한다.
-
----
-
-## 이전 버전 기록 원문 · 2026-10-12 · 영문·일문 오류 수정 당시
-
-아래는 한국어 단독 공개 전환 전의 원문 기록이다. 현재 상태는 맨 위 최신 상태를 따른다.
-
-# FIX BUILDING 인수인계
-
-## 기준 원본과 기록 원칙
-
-- 기준: 사용자가 2026-10-12에 제공한 `fixlgs-building_필수파일(1).zip`.
-- 압축본에는 HANDOVER/인수인계 문서가 없었다. 이 문서는 이번 작업부터 새로 기록한다.
-- 기존 README와 모든 `*_AUDIT*.txt` 검수 기록은 원문 그대로 보존했다. 과거 기록의 검증 결과는 당시 기록이며 이번 검증으로 소급해 바꾸지 않는다.
-- 사용자 로컬 작업 경로: 바탕화면의 `WebProjects/fixlgs-building`.
-- 전달 ZIP의 최상위 폴더는 `fixlgs-building` 하나이며 이중 중첩하지 않는다.
-
-## 현재 확정 원칙
-
-- 기존 한국어 콘텐츠, 계산, 자가진단 로직, 라우팅, 화면 구성과 자산을 임의로 변경하지 않는다.
-- 판단을 하나의 투자 점수로 만들지 않고 확인사항·미해결사항·부담을 구분하는 기존 설계를 유지한다.
-- 운영자의 개인 신상과 실제 개인 거래 이력을 공개하지 않는다.
-- 공식 근거를 사용자가 확인할 수 있게 공개하는 방향으로 전환하기로 논의했지만, 출처 공개는 별도 작업이다.
-- 영문·일문은 오류를 수정한 뒤 임시 비공개 전환하는 방향을 논의했다. 이번 사용자 지시는 최신 파일을 확인하고 **오류부터 수정**하는 것이므로 이번 버전에는 비공개 전환을 적용하지 않았다.
-- 임시 비공개 작업 시 기존 주소는 동일한 한국어 페이지로 연결하고 언어 메뉴·사이트맵·hreflang을 함께 정리할 예정이다. 현재는 기존 3개 언어 공개 설정을 유지한다.
-
-## 2026-10-12 · 영문·일문 콘텐츠 연결 오류 수정
-
-### 확인된 문제
-
-1. `ContractPage.js`의 다국어 계약 데이터 조합에서 제목, 본문, 질문, 심화설명 등 서로 길이가 다른 배열을 독립적으로 순환했다. 대리인 제목에 공동소유 설명, 계좌 관련 제목에 대리권 설명이 연결되는 등 주제가 어긋났다.
-2. 계약 상대 페이지의 소유자/현장 상대/서명 권한/수령 권한 흐름에 무관한 질문이 연결됐다.
-3. 계약 02~06 흐름의 표제와 설명이 같은 주제로 연결되지 않았다.
-4. 영문·일문 분석 6개 축의 단계 설명이 모두 같은 일반 문장으로 채워졌다. 분석 이유 본문에도 짧은 답변과 같은 일반 문장이 반복됐다.
-5. 영문·일문 가격 사례는 15억원 분석을 예고하면서 비교거래 수치 없이 앞의 질문·답을 반복했다.
-
-### 수정 내용
-
-- 새 `app/contract-localized-topics.js`에서 계약 주제별 연결을 명시했다. 독립 배열 순환 대신 같은 주제에 맞는 설명·확인 질문을 연결한다.
-- 첫 계약 9단계는 기존 한국어 절차의 의미와 순서를 영문·일문으로 구성했다. 제목, 본문, 확인항목, 불일치 대응, 행동을 하나의 단계 객체로 묶는다.
-- 소유자/현장 상대/서명 권한/수령 권한의 네 항목에 각자 맞는 질문과 설명을 연결했다.
-- 계약 02~06의 7개 흐름 항목을 표제와 맞는 설명으로 교체했다. 변수·누락 포인트·방법·심화설명의 주제 연결도 보완했다.
-- 새 `app/analysis-localized-details.js`에 분석 6개 축 × 7단계 × 2개 언어의 개별 실행 설명을 추가했다. 분석 이유에는 질문에 맞는 설명을 연결하고 기존 일반 반복 문장을 제거했다.
-- 가격 사례의 비교가격 14.2/15.1/13.8억원, 대상 호가 15억원, 만실수입 9,600만원, 공실손실 1,200만원, 운영비 1,400만원, 운영수익 7,000만원 및 약 4.7%를 기존 한국어 교육용 전제와 일치시켰다. 두 언어에 가상의 교육용 사례임을 명시했다.
-- 한국어 데이터·본문·계산과 기존 이미지·주요 섹션 구성은 보존했다.
-- 회귀 검증 스크립트 `scripts/i18n-content-regression.mjs`를 추가했다.
-
-### 검증 결과
-
-- `npm run build`: PASS (Next.js 15.5.23, 177개 정적 페이지 생성).
-- `node scripts/i18n-content-regression.mjs`: PASS. 두 언어의 주제 연결, 첫 계약 9단계, 12개 분석 축, 가격 사례 전제·수익 계산 검증.
-- 실제 Chromium 브라우저에서 한국어·영문·일문 계약 01~06과 분석 6개 축 총 36개 페이지: 모두 HTTP 200, 페이지 실행 오류 없음.
-- 한국어 12개 페이지의 `main` 본문을 최신 입력 원본과 비교: 모두 정확히 일치.
-- 영문·일문 계약 12개 페이지의 최상위 섹션 수와 이미지 경로를 원본과 비교: 일치.
-- 영문·일문 분석 12개 페이지에서 각 7개 단계 설명이 서로 다르며 기존 일반 반복 안내가 제거됨을 확인.
-- 첫 계약 6단계의 계약서 읽기 본문 연결 및 두 언어 가격 사례 수치 표시: PASS.
-- 영문·일문 모바일(390px) 계약 상대 페이지 가로 넘침 검사: PASS.
-- 검수 환경에 일본어 시스템 글꼴이 없어 시각 확인에만 로컬 Noto Sans JP를 적용했다. 프로젝트 글꼴·CSS·의존성은 변경하지 않았다.
-
-### 다음 단계와 검증 범위
-
-- 출처 공개: 아직 적용하지 않았다. 기존 계약 공식 링크 5개를 설명과 대조하고 자가진단의 정확한 참고 문서를 확인해야 한다.
-- 영문·일문 임시 비공개, 한국어 대응 URL 연결, 언어 메뉴·사이트맵·hreflang 정리: 아직 적용하지 않았다.
-- 가격 외 5개 분석 축의 기존 교육용 사례는 이번 작업에서 새로 집필하지 않았다. 이번 가격 사례 수정과 전체 사례 확장을 혼동하지 않는다.
-- 모든 사이트 콘텐츠의 사실·법률 정확성, 다국어 전체 번역의 전문 검수, 애드센스 승인 여부까지 검증한 것은 아니다.
-- 사용자 사이트에는 아직 배포하지 않았다. 이 문서의 결과는 전달 코드의 로컬 빌드·실제 브라우저 검증 결과다.
-
-## 향후 작업 시
-
-이 문서와 기존 검수 기록을 먼저 읽고 현재 코드와 대조한다. 새 변경·검증 결과·미해결사항은 기존 기록을 삭제하지 않고 날짜별로 누적한다. 다음 전달 ZIP에도 이 문서를 포함한다.

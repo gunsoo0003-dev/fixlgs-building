@@ -15,6 +15,7 @@ import { getStage1Ui, getStage1Type, stage1AxisLabel, stage1Level, stage1Readine
 import { getStage2Ui, getStage2Asset, stage2Value, stage2Axis, stage2Gate } from './self-check-stage2-copy';
 import { getStage3Ui, getStage3Process, getStage3Comic } from './self-check-stage3-copy';
 import { getFinalUi, getFinalBehaviorShort, localizeFinalPraise, localizeFinalContradiction, localizeFinalRisk } from './self-check-final-copy';
+import { getPublicFinalScenario } from './self-check-final-scenarios';
 
 const STORAGE_KEY = 'fix-building-self-check-v1';
 const byId = Object.fromEntries(QUESTIONS.map((q) => [q.id, q]));
@@ -103,8 +104,15 @@ function pickType(axes) {
   if (isHigh('레버리지선호') && isLow('위험감당능력')) return 'T05';
   if (isHigh('외부영향') && isLow('정보검증') && isLow('독립판단')) return 'T10';
   if (isLow('목적명확성')) return 'T12';
+  // Management-only types require an explicit, strong answer pattern; otherwise the
+  // older 12-type selection remains the default (no change to score arithmetic).
+  const eligibleManagementType=(id)=>{
+    if(id==='T13') return (axes.관리참여??0)>=1.5 && (axes.공실대응??0)>=.75 && (axes.목적명확성??0)>=.75;
+    if(id==='T14') return (axes.관리참여??0)<=-1.5 && (axes.정보검증??0)>=.75 && (axes.목적명확성??0)>=.75;
+    return true;
+  };
   const scored = Object.entries(TYPE_PROTOTYPES)
-    .filter(([id]) => !['T05','T10','T12'].includes(id))
+    .filter(([id]) => !['T05','T10','T12'].includes(id) && eligibleManagementType(id))
     .map(([id,p]) => ({id, score:similarity(axes,p), core:Object.keys(p.core||{}).length, verify:Math.abs((axes.정보검증??0)/2 - (p.core?.정보검증 ?? p.aux?.정보검증 ?? 0))}))
     .sort((a,b)=> b.score-a.score || b.core-a.core || a.verify-b.verify || a.id.localeCompare(b.id));
   return scored[0]?.id || 'T02';
@@ -905,8 +913,8 @@ const PUBLIC_ASSET_RELATED = {
 function publicAssetResult(primary) {
   const names=[primary,...(PUBLIC_ASSET_RELATED[primary]||[])];
   const top=names.map((asset,i)=>({
-    asset, order:i, score:0, applied:[],
-    reasonAxes:['현금흐름','관리부담','유동성'],
+    asset, order:i, score:null, applied:[],
+    reasonAxes:[],
   }));
   return {top,caution:[],purposeLow:false};
 }
@@ -976,22 +984,24 @@ function Stage2Result({ typeId, axes, assets, onNext, locale='ko', publicHeading
   const assetName=(asset)=>getStage2Asset(locale,asset).name || asset;
   const assetCopy=(asset)=>getStage2Asset(locale,asset);
   const characteristic=(asset,key)=>stage2Value(locale,ASSET_CHARACTERISTICS[asset]?.[key] || '-');
-  const reasonText=(a)=>a.reasonAxes?.length
+  const reasonText=(a)=>publicMode
+    ? (locale==='en'?'General comparison of property characteristics; not based on questionnaire answers.':locale==='ja'?'資産の一般的な特性を比較した案内であり、個人の回答に基づく判定ではありません。':'자산의 일반 특성을 비교한 안내이며 개인 응답에 따른 판정이 아닙니다.')
+    : a.reasonAxes?.length
     ? `${a.reasonAxes.map(x=>stage2Axis(locale,x)).join(' · ')}${locale==='en'?' align relatively well with the general characteristics of this asset.':locale==='ja'?'に関する回答傾向が、この資産の一般的な特性と比較的よく合っています。':' 성향이 이 자산의 일반특성과 비교적 잘 맞습니다.'}`
     : t.fallbackMatch;
   const primaryAsset=top[0]?.asset;
   const primaryName=assetName(primaryAsset);
   return <main className="sc-page sc-result-page">
     <section className="sc-result-hero sc-result-hero-light compact"><div className="sc-result-hero-copy"><small>{publicMode?t.publicKicker:t.resultKicker}</small><h1>{publicHeading || <>{t.title[0]}<br/>{t.title[1]}</>}</h1><p className="sc-result-lead">{publicMode?`${primaryName}${locale==='en'?' — general investment characteristics and review criteria, shown in the same layout as an actual result.':locale==='ja'?'の一般的な投資特性と確認基準を、実際の結果と同じレイアウトで説明します。':'의 일반적인 투자 특성과 확인 기준을 실제 결과 레이아웃으로 설명합니다.'}`:<><strong>{character.name}</strong>{locale==='en'?' profile combined with 12 additional answers to compare relative fit across asset types.':locale==='ja'?'タイプと追加12問の回答を組み合わせ、資産ごとの適合性を比較しました。':' 성향과 추가 12개 응답을 연결해 자산별 적합성을 비교했습니다.'}</>}</p><div className="sc-result-status"><span>{publicMode?t.publicAsset:t.rank1} <strong>{primaryName}</strong></span><span>{publicMode?t.personalRank:t.progress} <strong>{publicMode?t.afterCheck:'STEP 2/3'}</strong></span></div>{assets.purposeLow&&<p className="sc-result-inline-note">{t.purposeLow}</p>}</div><ResultVisual src={assetGraphic(primaryAsset)} alt={`${primaryName} ${locale==='en'?'asset-fit graphic':locale==='ja'?'資産適合性グラフィック':'적합성 그래픽'}`} tone="green"/></section>
-    <section className="sc-asset-rank">{top.map((a,i)=>{const insight=assetCopy(a.asset);return <article key={a.asset}><span className="sc-rank">0{i+1}</span><small>{publicMode?(i===0?t.assetGuide:t.relatedView):t.assetMatch}</small><h2>{insight.name}</h2><img className="sc-asset-thumb" src={assetGraphic(a.asset)} alt={`${insight.name} ${locale==='en'?'asset graphic':locale==='ja'?'資産グラフィック':'자산 그래픽'}`}/><p><strong>{insight.good || t.fallbackGood}</strong></p><p>{insight.goodText || reasonText(a)}</p>{a.applied[0]&&<em>{stage2Gate(locale,a.applied[0].msg)}</em>}<div className="sc-asset-meta"><span>{t.cashflow} {characteristic(a.asset,'cashflow')}</span><span>{t.management} {characteristic(a.asset,'management')}</span><span>{t.liquidity} {characteristic(a.asset,'liquidity')}</span></div></article>})}</section>
+    <section className="sc-asset-rank">{top.map((a,i)=>{const insight=assetCopy(a.asset);return <article key={a.asset}><span className="sc-rank">{publicMode?"—":`0${i+1}`}</span><small>{publicMode?(i===0?t.assetGuide:t.relatedView):t.assetMatch}</small><h2>{insight.name}</h2><img className="sc-asset-thumb" src={assetGraphic(a.asset)} alt={`${insight.name} ${locale==='en'?'asset graphic':locale==='ja'?'資産グラフィック':'자산 그래픽'}`}/><p><strong>{insight.good || t.fallbackGood}</strong></p><p>{insight.goodText || reasonText(a)}</p>{a.applied[0]&&<em>{stage2Gate(locale,a.applied[0].msg)}</em>}<div className="sc-asset-meta"><span>{t.cashflow} {characteristic(a.asset,'cashflow')}</span><span>{t.management} {characteristic(a.asset,'management')}</span><span>{t.liquidity} {characteristic(a.asset,'liquidity')}</span></div></article>})}</section>
 
     <section className="sc-deep-report">
-      <header className="sc-deep-head"><small>WHY THIS MATCH</small><h2>{t.whyTitle[0]}<br/>{t.whyTitle[1]}</h2><p>{t.whyDesc}</p></header>
+      <header className="sc-deep-head"><small>{publicMode?"ASSET CHARACTERISTICS":"WHY THIS MATCH"}</small><h2>{t.whyTitle[0]}<br/>{t.whyTitle[1]}</h2><p>{publicMode?(locale==='en'?'These assets are shown as fixed comparisons, not as personal recommendations or a calculated ranking.':locale==='ja'?'以下は固定の比較例であり、個別の推奨順位や回答から算出した結果ではありません。':'아래 자산은 고정 비교 예시이며 개인 응답으로 계산한 추천 순위가 아닙니다.'):t.whyDesc}</p></header>
       <div className="sc-asset-deep">{top.map((a,i)=>{const guide=assetCopy(a.asset);return <article key={a.asset}>
-        <div className="sc-asset-deep-title"><span>0{i+1}</span><div><small>{i===0?t.primary:t.alternative}</small><h3>{guide.name}</h3></div></div>
+        <div className="sc-asset-deep-title"><span>{publicMode?"—":`0${i+1}`}</span><div><small>{publicMode?(i===0?t.assetGuide:t.relatedView):(i===0?t.primary:t.alternative)}</small><h3>{guide.name}</h3></div></div>
         <p className="sc-asset-deep-lead">{guide.focus || guide.goodText}</p>
         <div className="sc-asset-deep-columns">
-          <div><small>WHY IT FITS</small><strong>{t.whyFits}</strong><p>{a.reasonAxes?.length?`${a.reasonAxes.map(x=>stage2Axis(locale,x)).join(' · ')}${locale==='en'?' responses align relatively well with this asset. ':locale==='ja'?'に関する回答が、この資産の一般的な特性と比較的よく合っています。 ':' 관련 응답이 이 자산의 일반적인 특성과 상대적으로 잘 맞았습니다. '}`:''}{guide.fit || guide.goodText}</p></div>
+          <div><small>{publicMode?'GENERAL CHARACTERISTICS':'WHY IT FITS'}</small><strong>{publicMode?(locale==='en'?'Typical considerations':locale==='ja'?'一般的な確認事項':'일반적인 검토사항'):t.whyFits}</strong><p>{!publicMode&&a.reasonAxes?.length?`${a.reasonAxes.map(x=>stage2Axis(locale,x)).join(' · ')}${locale==='en'?' responses align relatively well with this asset. ':locale==='ja'?'に関する回答が、この資産の一般的な特性と比較的よく合っています。 ':' 관련 응답이 이 자산의 일반적인 특성과 상대적으로 잘 맞았습니다. '}`:''}{guide.fit || guide.goodText}</p></div>
           <div><small>WATCH OUT</small><strong>{t.watchOut}</strong><p>{a.applied?.[0]?.msg ? stage2Gate(locale,a.applied[0].msg) : (guide.caution || guide.tiredText)}</p></div>
         </div>
         <div className="sc-asset-checks"><small>{t.checks}</small>{(guide.checks||[]).map((x,j)=><span key={x}><b>0{j+1}</b>{x}</span>)}</div>
@@ -1052,13 +1062,6 @@ function Stage3Result({ result, onSummary, onRestart, locale, publicMode=false }
   </main>;
 }
 
-const BEHAVIOR_SHORT = {
-  C01:'독립 검증형', C02:'방어 시뮬레이션형', C03:'현금흐름 우선형', C04:'가치 분리검증형',
-  C05:'기준가격 경계형', C06:'확신 가속형', C07:'손실 버티기형', C08:'정보 수집형',
-  C09:'관리 효율형', C10:'미래가치 추적형', C11:'비교표 판단형', C12:'직접 해결형',
-  C13:'전문가 활용형', C14:'현장 직관형', C15:'기회 선점형', C16:'중단기준 실행형',
-};
-
 function buildFinalComposite(stage1TypeId, finalTypeId, assets, process, axes, locale='ko') {
   const ui=getFinalUi(locale);
   const stage1Raw=TYPE_REPORTS[stage1TypeId];
@@ -1071,8 +1074,8 @@ function buildFinalComposite(stage1TypeId, finalTypeId, assets, process, axes, l
   const asset2=asset2Key ? getStage2Asset(locale,asset2Key).name : null;
   const rawComic=process.comic || {};
   const comic=getStage3Comic(locale,rawComic.id,rawComic);
-  const rawBehavior=BEHAVIOR_SHORT[rawComic.id] || rawComic.name || ui.behaviorFallback;
-  const behavior=getFinalBehaviorShort(locale,rawComic.id,rawBehavior);
+  // Use the same C01–C16 identity as the detailed STEP 3 comic in all locales.
+  const behavior=getFinalBehaviorShort(locale,rawComic.id,rawComic.name||ui.behaviorFallback);
   const changed=stage1TypeId!==finalTypeId;
   const assetCopy=assetKey ? getStage2Asset(locale,assetKey) : null;
   const assetScore=Math.round(assets.top?.[0]?.score ?? 0);
@@ -1153,6 +1156,7 @@ function SummaryResult({ stage1TypeId, finalTypeId, axes, assets, process, rich,
   const publicNextDesc=locale==='en'?'The actual FINAL connects your core investment tendency, asset fit, and decision behavior, then interprets where the three stages reinforce or contradict one another.':locale==='ja'?'実際のFINALでは、基本投資傾向・資産適合性・投資行動パターンをつなぎ、3つの結果が一致する点と衝突する点を個人回答に基づいて解釈します。':'실제 FINAL에서는 기본 투자성향, 자산 적합성, 투자 행동패턴을 하나로 연결하고 서로 일치하거나 충돌하는 지점을 개인 응답 기준으로 해석합니다.';
   const startText=locale==='en'?'Start the self-check':locale==='ja'?'自己診断を始める':'자가진단 시작하기';
   const catalogText=locale==='en'?'View all result types':locale==='ja'?'すべての結果タイプを見る':'전체 결과 유형 보기';
+  const publicScenario=publicMode?getPublicFinalScenario(finalTypeId,locale):null;
   const publicNote=locale==='en'?'The public composite result is an informational guide to the profile itself. It does not invent personal scores, asset rankings, or behavior results.':locale==='ja'?'公開総合結果はタイプ自体の情報解説であり、個人スコア・資産順位・行動結果を仮定して作成しません。':'공개 종합결과는 유형 자체의 정보 해설이며, 개인 점수나 자산·행동 결과를 임의로 만들지 않습니다.';
 
   return <main className="sc-page sc-result-page">
@@ -1166,6 +1170,21 @@ function SummaryResult({ stage1TypeId, finalTypeId, axes, assets, process, rich,
       <article className="wide"><small>COMBINED CAUTION</small><h2>{ui.combinedCaution}</h2><p>{publicMode?publicType.caution:finalProfile.cautionLine}</p></article>
     </section>
 
+    {publicMode&&publicScenario&&<section className="sc-deep-report sc-final-case-study">
+      <header className="sc-deep-head"><small>ILLUSTRATIVE CROSS-STAGE REVIEW · {finalTypeId}</small>
+        <h2>{locale==='en'?'A hypothetical decision conflict for this profile':locale==='ja'?'このタイプの仮想的な判断の衝突':'이 유형의 가상 종합 판단 사례'}</h2>
+        <p>{locale==='en'?'This is an educational property-review situation, not a transaction record or a result calculated from anyone’s answers.':locale==='ja'?'これは学習用の架空の物件検討場面であり、実際の取引や個人回答から算出した結果ではありません。':'실제 거래나 개인 응답으로 계산한 결과가 아닌 교육용 가상 매물 검토 상황입니다.'}</p>
+      </header>
+      <div className="sc-action-list">
+        {[
+          [locale==='en'?'Situation':locale==='ja'?'検討する状況':'검토 상황',publicScenario.scene],
+          [locale==='en'?'Potential conflict':locale==='ja'?'条件の衝突':'판단 충돌',publicScenario.conflict],
+          [locale==='en'?'Counter-check':locale==='ja'?'反対根拠の確認':'반대 근거 확인',publicScenario.countercheck],
+          [locale==='en'?'Review sequence':locale==='ja'?'確認する順序':'확인 순서',publicScenario.steps],
+        ].map(([heading,detail],i)=><article key={heading}><span>{String(i+1).padStart(2,'0')}</span><strong>{heading}</strong><p>{detail}</p></article>)}
+      </div>
+    </section>}
+
     <section className="sc-findings"><small>{publicMode?'TYPE TALENT':'YOUR TALENT'}</small><h2>{publicMode?publicTalent:ui.talent}</h2><div>{praises.map(p=><span key={p.id}>{p.title}</span>)}</div>{praises.map(p=><p key={p.id}><strong>{p.title}</strong><br/>{p.text} {p.balance}</p>)}</section>
 
     <section className="sc-profile"><div><small>{publicMode?'TYPE PROFILE':'42 ANSWERS / PROFILE'}</small><h2>{publicMode?publicProfileTitle:ui.profileTitle}</h2><p>{publicMode?publicProfileDesc:ui.profileDesc}</p></div><div className="sc-bars">{profile.map(k=>{const v=axes[k]??0;return <div key={k}><span>{stage1AxisLabel(locale,k,AXIS_LABELS[k])}</span><div><i style={{width:`${((v+2)/4)*100}%`}}/></div><em>{stage1Level(locale,v)}</em></div>})}</div></section>
@@ -1176,7 +1195,7 @@ function SummaryResult({ stage1TypeId, finalTypeId, axes, assets, process, rich,
 
     <section className="sc-asset-rank">{publicMode?<>
       <article><span className="sc-rank">01</span><small>ASSET VIEW</small><h2>{publicAssetView}</h2><p><strong>{publicType.approach}</strong></p><p>{publicType.features}</p><div className="sc-asset-meta"><span>{publicRank}</span><span>{publicAfter42}</span></div></article>
-      <article><span className="sc-rank">02</span><small>REVIEW ORDER</small><h2>{publicReview}</h2><p><strong>{publicType.approach}</strong></p><p>{publicType.example}</p><div className="sc-asset-meta"><span>{publicFixed}</span><span>{publicNoFake}</span></div></article>
+      <article><span className="sc-rank">02</span><small>REVIEW ORDER</small><h2>{publicReview}</h2><p><strong>{publicType.approach}</strong></p><p>{publicType.next}</p><div className="sc-asset-meta"><span>{publicFixed}</span><span>{publicNoFake}</span></div></article>
       <article><span className="sc-rank">03</span><small>WATCH OUT</small><h2>{publicWatch}</h2><p><strong>{publicType.caution}</strong></p><p>{publicType.example}</p><div className="sc-asset-meta"><span>{publicActualFit}</span><span>{publicCalc}</span></div></article>
     </>:topAssets.map((a,i)=>{const ac=getStage2Asset(locale,a.asset);const ch=ASSET_CHARACTERISTICS[a.asset]||{};return <article key={a.asset}><span className="sc-rank">0{i+1}</span><small>ASSET MATCH</small><h2>{ac.name}</h2><img className="sc-asset-thumb" src={assetGraphic(a.asset)} alt={`${ac.name} ${locale==='en'?'asset graphic':locale==='ja'?'資産グラフィック':'자산 그래픽'}`}/><p><strong>{ac.good||ui.assetFallback}</strong></p><p>{ac.goodText||ui.assetFallbackText}</p><div className="sc-asset-meta"><span>{ui.cashflow} {stage2Value(locale,ch.cashflow)}</span><span>{ui.management} {stage2Value(locale,ch.management)}</span><span>{ui.liquidity} {stage2Value(locale,ch.liquidity)}</span></div></article>})}</section>
 
@@ -1184,7 +1203,7 @@ function SummaryResult({ stage1TypeId, finalTypeId, axes, assets, process, rich,
 
     <section className="sc-process-cards">{publicMode?<>
       <article><span>01</span><small>DECISION VIEW</small><h2>{publicDecisionStart}</h2><p>{publicType.approach}</p></article>
-      <article><span>02</span><small>REVIEW STYLE</small><h2>{publicReviewStyle}</h2><p>{publicType.approach}</p></article>
+      <article><span>02</span><small>REVIEW STYLE</small><h2>{publicReviewStyle}</h2><p>{publicType.view}</p></article>
     </>:process.top.map((x,i)=>{const raw=PROCESSES[x.id];const pp=getStage3Process(locale,x.id,raw);return <article key={x.id}><span>0{i+1}</span><small>{pp.user}</small><h2>{pp.name}</h2><p>{pp.method}</p></article>})}</section>
 
     <section className="sc-detail-list"><article><small>PLAY STYLE</small><h2>{publicMode?publicBasicWay:c.name}</h2><p>{publicMode?publicType.approach:c.decision}</p></article><article><small>BEST WEAPON</small><h2>{praises[0]?.title||ui.bestWeapon}</h2><p>{praises[0]?.text||publicType.strength}</p></article>{risks.map((r,i)=><article key={r.id} className={i===risks.length-1&&risks.length%2===1?'wide':''}><small>RISK MOMENT {String(i+1).padStart(2,'0')}</small><h2>{ui.riskPrefix} {r.title}</h2><p>{r.text}<br/><b>{r.strength}</b><br/>{r.prescription}</p></article>)}</section>

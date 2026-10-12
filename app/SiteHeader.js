@@ -17,6 +17,12 @@ export default function SiteHeader({ locale='ko' }) {
   const [navVisible, setNavVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const hideTimer = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const mobileLabels = {
+    ko: {menu:'메뉴', sections:'세부 항목', samples:'결과 예시 보기'},
+    en: {menu:'Menu', sections:'Details', samples:'Result examples'},
+    ja: {menu:'メニュー', sections:'詳細項目', samples:'結果例を見る'},
+  }[locale] || {menu:'메뉴', sections:'세부 항목', samples:'결과 예시 보기'};
 
   const cleanPath = (pathname || `/${locale}`).replace(/^\/building(?=\/|$)/, '');
   const localeRoot = `/${locale}`;
@@ -52,6 +58,31 @@ export default function SiteHeader({ locale='ko' }) {
       window.clearTimeout(hideTimer.current);
     };
   }, [isHome, services]);
+
+  // Native <details> keeps the mobile menu keyboard-accessible without an added library.
+  useEffect(() => {
+    const closeOutside = (event) => {
+      if (mobileMenuRef.current?.open && !mobileMenuRef.current.contains(event.target)) {
+        mobileMenuRef.current.open = false;
+      }
+    };
+    const closeEscape = (event) => {
+      if (event.key === 'Escape' && mobileMenuRef.current?.open) {
+        mobileMenuRef.current.open = false;
+        mobileMenuRef.current.querySelector('summary')?.focus();
+      }
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    document.addEventListener('keydown', closeEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOutside);
+      document.removeEventListener('keydown', closeEscape);
+    };
+  }, []);
+
+  const closeMobileMenu = () => {
+    if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+  };
 
   const showNav = () => {
     window.clearTimeout(hideTimer.current);
@@ -99,6 +130,28 @@ export default function SiteHeader({ locale='ko' }) {
   };
 
   return <>
+    <header className="fb-mobile-header">
+      <a className="fb-mobile-brand" href={`${BASE_PATH}/${locale}#top`} onClick={closeMobileMenu}>FIX BUILDING</a>
+      <details className="fb-mobile-menu" ref={mobileMenuRef}>
+        <summary>{mobileLabels.menu}<span aria-hidden="true">☰</span></summary>
+        <nav className="fb-mobile-menu-panel" aria-label={copy.navAria}>
+          {services.map((service) => {
+            const children = submenus[service.id] || [];
+            const current = serviceCurrent(service.id);
+            return <div className="fb-mobile-group" key={service.id}>
+              <a className={`fb-mobile-main-link ${current ? 'is-current' : ''}`} href={serviceHref(service.id)} onClick={closeMobileMenu}>{service.label}</a>
+              {children.length > 0 && <details className="fb-mobile-submenu">
+                <summary>{mobileLabels.sections} <span aria-hidden="true">⌄</span></summary>
+                <div className="fb-mobile-submenu-links">
+                  {children.map((item) => <a key={item.href} href={submenuHref(item.href)} onClick={closeMobileMenu}>{item.label}</a>)}
+                </div>
+              </details>}
+            </div>;
+          })}
+          <a className="fb-mobile-samples" href={sampleHref} onClick={closeMobileMenu}>{mobileLabels.samples}</a>
+        </nav>
+      </details>
+    </header>
     <div className="top-hotzone" onMouseEnter={showNav} aria-hidden="true" />
     <header className={`reveal-nav ${navVisible ? 'is-visible' : ''}`} onMouseEnter={showNav} onMouseLeave={queueHide}>
       <div className="nav-inner">
