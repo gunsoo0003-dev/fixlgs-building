@@ -1,6 +1,6 @@
 # FIX BUILDING 인수인계
 
-## 현재 유효 기준 · 2026-10-13 · ADSENSE_DETAIL_INDEX_FINAL_20261013
+## 현재 유효 기준 · 2026-10-16 · SELF_CHECK_INVALID_ROUTE_404_FIX_20261016
 
 ### 반드시 지킬 확정 요구사항
 
@@ -29,6 +29,10 @@
 
 13. **2026-10-13 한국어 상세 12페이지 검색 노출 정리(최신):** 분석 6개(`price/income/rights/building/location/operation`)와 관리 6개(`rent/vacancy/tenant/cost/facility/record`)의 `noindex`를 한국어에 한해 해제. 분석 상세에 URL별 제목·설명·canonical·OG를 추가하고 유효하지 않은 분석 경로는 404 처리. 관리의 기존 개별 canonical과 메타데이터 유지. `app/sitemap.js`에 12개 한국어 URL을 추가하여 총 88개로 변경. 영·일문은 기존 비공개 307과 소스 보존, 색인 불허 유지. **공통 개인정보처리방침·이용약관은 다른 메인 프로젝트의 `/privacy`, `/terms`이므로 빌딩 ZIP에서 변경 불가**(메인 소스를 제공받아 별도 최소 정비 필요).
 
+- **2026-10-16 정적 검수:** 제출된 ZIP 242개 엔트리 무결성 통과, `publication-config.mjs` 포함 확인. 공개 KO 88개 URL/분석 6·관리 6/54 결과/출처·모바일·언어 회귀검사 7종 PASS. 기존 앱 코드 수정 없음. 다만 Next.js 전체 빌드, 프로덕션 HTTP 상태·실화면·크롤링 결과는 이 검수에서 실행하지 않아 미검증. TOOLBOX 분리 여부는 본체/툴박스 프로젝트 별도 검증 필요.
+
+- **2026-10-16 잘못된 자가진단 URL 404 수정(신규):** 운영 `.../result/basic/INVALID999` HTTP 200 확인(사용자 PC curl 결과). `app/[locale]/self-check/[[...view]]/page.js`에 허용 경로 판별을 추가하고 잘못된 경로는 `notFound()` 호출. 정상 공개 54유형·결과 목록·진행 중 클라이언트 설문 경로 6종·기존 dev-preview 유지. 서버 빌드/배포 후 실제 404 재확인 필요. 새 `scripts/self-check-invalid-url-regression.mjs` PASS.
+
 ### 실행한 검증과 한계
 
 - **최신 작업(ADSENSE_DETAIL_INDEX_FINAL_20261013):** 새 `scripts/adsense-indexing-regression.mjs`를 포함한 Node 회귀검사 **7종 PASS**. 12개 한국어 상세 URL의 고유 canonical/색인 허용/사이트맵 88개 중복 없음, EN/JA 색인 불허 및 공통 메인 정책 URL 유지 확인. 변경 파일 4개의 JS/JSX TypeScript 구문검사 PASS. `npm ci --offline`은 `tslib@2.8.1 ENOTCACHED`, 온라인 설치는 제한시간 내 완료되지 않아 **Next.js 전체 빌드·실제 화면·배포는 미검증**. 메인 FIXLGS 법적 페이지 문구 변경도 미실시(별도 프로젝트).
@@ -52,6 +56,8 @@
 
 ### 다음 작업
 
+- **2026-10-16 운영 웹 부분 확인:** 메인·가격 상세·개인정보·약관·문의 링크는 웹 도구로 열림. 사이트맵/robots 실제 HTTP 및 잘못된 자가진단 경로 응답은 접근 도구 제한으로 계속 미검증. 위 `DEPLOYED_WEB_PARTIAL_CHECK_20261016` 이력 참고.
+
 1. **빌딩 배포 전:** 사용자 PC `WebProjects/fixlgs-building`에 ZIP 덮어쓰기 후 `npm ci`, `npm run build`, `node scripts/adsense-indexing-regression.mjs` 및 기존 회귀검사 6종 실행. 모바일(390px)/PC 실제 화면 확인, 한국어 분석·관리 12개 URL 접근·각 canonical/meta·공식 출처 확인. Vercel 배포 후 사이트맵 주소 88개와 영·일문 한국어 307 이동 실증.
 2. **메인 FIXLGS 소스 별도 필요:** `https://fixlgs.com/privacy`, `/terms`는 빌딩의 자체 페이지가 아니며, 메인 프로젝트에서 운영하는 공통 정책이다. **메인 프로젝트 최신 소스 ZIP 제공 시에만** BUILDING을 우선 소개하면서 TOOLBOX 및 나머지 서비스에 적용되는 정당한 공통 고지는 유지해 최소 수정. 지금 ZIP의 `app/[locale]/privacy/page.js`·`terms/page.js` 301 리다이렉트와 푸터 링크는 변경하지 않음.
 3. **애드센스:** 실제 배포 빌드와 접근성/소유권 확인 완료 후 재심사. 색인 허용 자체가 승인 조건이나 승인율 보장은 아님. EN/JA 공개 전에는 전문 번역·한국법 정확성·실화면을 별도로 검수하고 `PUBLISHED_LOCALES=['ko']` 유지.
@@ -62,6 +68,33 @@
 - 보관 전 원문 분량 점검: 2026-10-12 시점의 누적 인수인계는 **9,772자**(UTF-8 19,066바이트)였으며, 약 **20,000자**라는 분리 운영 기준에 미달했다. 2026-10-13에 이 문서를 외부 ZIP으로 분리한 것은 조기 분리 오류였으므로 **원문을 이 주 문서에 복원**했다.
 - 다음 작업에서도 최신 상태는 주 문서 상단에 갱신하고 새 이력만 추가한다. **전체 유니코드 20,000자 초과 시에만** 오래된 기록을 `docs/handover/HISTORY_V002.md`부터 순차적으로 내부 보관한다. 기존 V001 원문은 덮어쓰지 않으며 모든 기록은 최신 프로젝트 ZIP 하나로 전달한다.
 - 개별 감사 기록: `EN_JA_KR_LANGUAGE_ONLY_AUDIT_20261013.txt`, `OFFICIAL_REFERENCES_AUDIT_20261012.txt`, `KO_ONLY_PUBLICATION_AUDIT_20261012.txt` 및 기존 `*_AUDIT*.txt`. 이들은 버전별 사실이며 최신 상태보다 우선하지 않는다.
+
+---
+
+## 작업 이력 · 2026-10-16 · SELF_CHECK_INVALID_ROUTE_404_FIX_20261016
+
+- **근거:** 사용자 PC에서 미존재 `/building/ko/self-check/result/basic/INVALID999` 요청이 최종 URL 변화 없이 HTTP 200임을 실측. 메인 사이트맵은 5개, 도구 패턴 URL 0개(제공된 PowerShell 출력에 한함). 빌딩 사이트맵 88개 URL XML도 사용자 제공 파일에서 확인.
+- **수정:** `app/[locale]/self-check/[[...view]]/page.js`에서 정상 결과 54유형, 목록, 루트, 클라이언트 설문 진행 URL 6종과 내부 미리보기만 허용. 그 외 없는 동적 URL에 `notFound()` 적용. 잘못된 페이지 메타는 색인 금지. 정상 UI/문항/계산/공개 언어 및 사이트맵 미변경.
+- **검증:** 기존 `scripts/*regression.mjs` 7종 PASS + 신규 `scripts/self-check-invalid-url-regression.mjs` PASS(유효·무효 경로 23개, 소스 기반 게이트 검증). 이 실행 환경에 `node_modules`가 없어 Next.js 실제 빌드/HTTP 404 실측/브라우저 동작/배포는 **미검증**. 사용자는 로컬 빌드·배포 뒤 같은 curl 명령으로 404 확인 필요.
+- **미해결:** 사이트맵에서 TOOLBOX 0개 확인은 과거 구글 색인 제거 확인이 아님. 메인 FIXLGS 도구 URL 실제 redirect/404 전체 검증은 별도 프로젝트 범위.
+
+---
+
+## 작업 이력 · 2026-10-16 · DEPLOYED_WEB_PARTIAL_CHECK_20261016
+
+- **목적:** 직전 정적 감사에서 미검증으로 남긴 운영 URL/공통 신뢰 페이지/잘못된 자가진단 주소를 추가 점검. 기존 기능 및 배포 설정은 변경하지 않음.
+- **공개 웹 확인:** `https://fixlgs.com/`에서 `/building/ko`로 이동하고 빌딩의 5개 기본 영역 메뉴 표시됨. `/building/ko/analysis/price`가 공개 텍스트로 열림. 메인 푸터 연결의 `/privacy`, `/terms`, `/contact?app=FIX+BUILDING`가 웹 도구에서 확인됨. 개인정보처리방침·약관은 빌딩 및 독립 FIXLGS 서비스 공통 적용을 표기함. 공통 정책의 TOOLBOX 언급만으로 심사 결격이라 단정하지 않음.
+- **코드 근거:** `app/robots.js`는 사이트맵을 `/building/sitemap.xml`로 지정. `app/sitemap.js`는 한국어 공개 경로 88개 생성 설정. 자가진단 페이지의 `SelfCheckPage`는 알 수 없는 `view`를 `SelfCheckClient`로 전달해 일부 잘못된 URL이 200을 반환할 가능성이 있지만 실측은 못 함(확정 결함 아님).
+- **검증 한계:** 웹 검색 도구는 `/robots.txt`, `/sitemap.xml`, `/building/sitemap.xml`, 임의의 잘못된 자가진단 URL을 가져오지 못했음. 이는 HTTP 오류 확인과 다르므로 정상/장애 판단 불가. 이 실행 환경의 `curl`은 DNS 조회 실패. `node_modules/next`가 없어 Next 전체 빌드 미실시. 실제 모바일 클릭·Googlebot 크롤링·Search Console 및 본체 TOOLBOX 리디렉션은 미확인.
+- **후속 우선순위:** 배포된 `/building/sitemap.xml` 및 루트 `/robots.txt`의 HTTP 200과 내용, 잘못된 자가진단 URL HTTP status를 사용자 PC 또는 Search Console에서 직접 측정. 본체 메인 소스와 서브도메인 라우팅의 전체 분리는 별도 프로젝트에서 검증.
+
+## 작업 이력 · 2026-10-16 · ADSENSE_PRE_REVIEW_STATIC_AUDIT_20261016
+
+- **목표:** 한국어 단독 빌딩 사이트의 애드센스 재심사 전 소스 정적 감사. 변경보다 남은 구조적 위험 분류에 집중.
+- **확인:** 최신 제출 ZIP 242개 엔트리의 손상 검사 PASS; 이전에 빠졌던 `publication-config.mjs`와 `FIX_BUILDING_HANDOVER.md` 확인; `PUBLISHED_LOCALES=['ko']`, 미공개 EN/JA 임시 리디렉트, 88개 KO 사이트맵, 주요 경로의 개별 메타/canonical, 자가진단 공개 54 경로와 공식 출처 연결 검토.
+- **실행 검증:** `scripts/*regression.mjs` 7종 모두 종료 코드 0 및 PASS. 원본 소스/디자인/계산 로직 변경 없음.
+- **남은 미검증:** Next.js 빌드 및 실제 HTML 응답, 모바일 화면, URL별 HTTP status/canonical 실측, Search Console/AdSense 심사 측 판단, 별도 본체 TOOLBOX 분리 및 공통 `/privacy`/`/terms` 내용은 검증하지 않음. 단순 정적 검사로 승인 가능성을 보장할 수 없음.
+- **검토 포인트:** `app/[locale]/self-check/[[...view]]/page.js`는 인식되지 않는 뷰도 기본 자가진단 화면으로 돌리는 폴백이 있어, 미지원 경로의 200/soft-404 여부를 배포 후 실측할 가치가 있음. 확정 결함으로 기록하지 않음.
 
 ---
 

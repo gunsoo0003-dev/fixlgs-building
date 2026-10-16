@@ -88,6 +88,23 @@ function publicDescriptor(locale,view=[]){
   return null;
 }
 
+// These short URLs are used by the client-side questionnaire history/restore flow.
+// All other unknown paths must return a real 404 instead of a blank 200 page.
+const WORKFLOW_PATHS = new Set([
+  'questions/basic',
+  'questions/asset',
+  'result/basic',
+  'result/asset',
+  'result/behavior',
+  'result/final',
+]);
+function isValidSelfCheckView(view=[]){
+  if(!Array.isArray(view)) return false;
+  if(view.length===0) return true;
+  if(view.length===1) return view[0]==='results' || view[0]==='dev-preview';
+  return (view.length===2 && WORKFLOW_PATHS.has(view.join('/'))) || Boolean(publicDescriptor('ko',view));
+}
+
 export function generateStaticParams(){
   return PUBLISHED_LOCALES.flatMap(locale=>[
     {locale,view:[]},
@@ -98,7 +115,7 @@ export function generateStaticParams(){
 
 export async function generateMetadata({params}){
   const {locale,view=[]}=await params;
-  if(!locales.includes(locale)) return {};
+  if(!locales.includes(locale) || !isValidSelfCheckView(view)) return {robots:{index:false,follow:false}};
   const m=META_COPY[locale]||META_COPY.ko;
 
   if(view[0]==='dev-preview'){
@@ -142,7 +159,7 @@ export async function generateMetadata({params}){
 
 export default async function SelfCheckPage({params}){
   const {locale,view=[]}=await params;
-  if(!locales.includes(locale)) notFound();
+  if(!locales.includes(locale) || !isValidSelfCheckView(view)) notFound();
   if(view[0]==='dev-preview') return <DevPreview locale={locale}/>;
   if(view.length===1 && view[0]==='results') return <SelfCheckResultsCatalog locale={locale}/>;
   const descriptor=publicDescriptor(locale,view);

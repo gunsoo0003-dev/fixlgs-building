@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source = fs.readFileSync('app/[locale]/self-check/[[...view]]/page.js','utf8');
+assert.match(source,/if\(!locales\.includes\(locale\) \|\| !isValidSelfCheckView\(view\)\) notFound\(\)/);
+const start=source.indexOf('const WORKFLOW_PATHS =');
+const end=source.indexOf('export function generateStaticParams()',start);
+assert.ok(start>=0 && end>start);
+const body=source.slice(start,end);
+const validate=new Function('publicDescriptor',`${body};return isValidSelfCheckView;`)((locale,path)=>path.length===3 && path[0]==='result' && ({basic:/^T(?:0[1-9]|1[0-4])$/,asset:/^A(?:0[1-9]|10)$/,behavior:/^C(?:0[1-9]|1[0-6])$/,final:/^T(?:0[1-9]|1[0-4])$/}[path[1]]?.test(path[2]) ? {} : null));
+for(const route of ['', 'results','dev-preview','questions/basic','questions/asset','result/basic','result/asset','result/behavior','result/final','result/basic/T01','result/basic/T14','result/asset/A10','result/behavior/C16','result/final/T14']) assert.equal(validate(route ? route.split('/') : []),true,route);
+for(const route of ['result/basic/INVALID999','result/basic/T15','result/asset/A11','result/behavior/C17','result/final/T99','questions/unknown','questions/basic/extra','unexpected','result/basic/T01/extra','result']) assert.equal(validate(route.split('/')),false,route);
+console.log('PASS: legitimate self-check routes kept; invalid result and unexpected paths rejected by 404 guard.');
